@@ -1,5 +1,5 @@
 /**
- * Build Store - manages the current active build state
+ * Build Store - manages the current active build state.
  */
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
