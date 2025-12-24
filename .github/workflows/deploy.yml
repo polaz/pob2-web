@@ -29,6 +29,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Configure Git for Yarn
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
       - name: Install dependencies
         run: yarn install --immutable
 
