@@ -213,7 +213,14 @@ export const useConfigStore = defineStore('config', () => {
 
   /** Set full config */
   function setConfig(newConfig: BuildConfig): void {
-    config.value = structuredClone(newConfig);
+    const clonedConfig = structuredClone(newConfig);
+
+    // Enforce mutual exclusivity between low life and full life
+    if (clonedConfig.isOnFullLife && clonedConfig.isOnLowLife) {
+      clonedConfig.isOnLowLife = false;
+    }
+
+    config.value = clonedConfig;
   }
 
   /** Reset to defaults */
