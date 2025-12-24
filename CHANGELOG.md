@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/polaz/pob2-web/compare/v1.1.0...v1.2.0) (2025-12-24)
+
+
+### Features
+
+* **types:** implement proto-first type architecture ([#51](https://github.com/polaz/pob2-web/issues/51)) ([b9f0377](https://github.com/polaz/pob2-web/commit/b9f0377516062c6aea78b24ec1b27514d8dfc920)), closes [#3](https://github.com/polaz/pob2-web/issues/3)
+* **workers:** setup Web Worker infrastructure with Comlink ([#52](https://github.com/polaz/pob2-web/issues/52)) ([89bfb5e](https://github.com/polaz/pob2-web/commit/89bfb5ee2f4d8e8a015e29e0471d544265162dc8)), closes [#2](https://github.com/polaz/pob2-web/issues/2)
+
 # [1.1.0](https://github.com/polaz/pob2-web/compare/v1.0.6...v1.1.0) (2025-12-24)
 
 
