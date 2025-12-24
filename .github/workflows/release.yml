@@ -11,11 +11,120 @@ permissions:
   pull-requests: write
 
 jobs:
-  release:
+  # Step 1: Check if release is needed (dry-run)
+  check-release:
     runs-on: ubuntu-latest
     outputs:
-      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
-      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+      should_release: ${{ steps.check.outputs.new_release_published }}
+      next_version: ${{ steps.check.outputs.new_release_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Configure Git for Yarn
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Check if release needed (dry-run)
+        id: check
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 24
+          dry_run: true
+          extra_plugins: |
+            @semantic-release/changelog@6
+            @semantic-release/git@10
+            @semantic-release/exec@6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Step 2: Build all platforms (only if release needed)
+  build-electron:
+    needs: check-release
+    if: needs.check-release.outputs.should_release == 'true'
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - os: macos-15-intel
+            platform: mac
+            arch: x64
+          - os: macos-latest
+            platform: mac
+            arch: arm64
+          - os: windows-latest
+            platform: win
+            arch: x64
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Configure Git for Yarn
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build Electron app
+        run: yarn build:electron
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          PUBLISH: never
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            dist/electron/Packaged/*.dmg
+            dist/electron/Packaged/*.zip
+            dist/electron/Packaged/*.exe
+            dist/electron/Packaged/*.AppImage
+            dist/electron/Packaged/*.deb
+            dist/electron/Packaged/*.yml
+            dist/electron/Packaged/*.blockmap
+          if-no-files-found: error
+
+  # Step 3: Create release (only after ALL builds succeed)
+  create-release:
+    needs: [check-release, build-electron]
+    if: success() && needs.check-release.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.semantic.outputs.new_release_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,76 +160,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build-electron:
-    needs: release
-    if: needs.release.outputs.new_release_published == 'true'
-    strategy:
-      fail-fast: true
-      matrix:
-        include:
-          - os: macos-15-intel
-            platform: mac
-            arch: x64
-          - os: macos-latest
-            platform: mac
-            arch: arm64
-          - os: windows-latest
-            platform: win
-            arch: x64
-          - os: ubuntu-latest
-            platform: linux
-            arch: x64
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-
-      - name: Pull latest changes (after semantic-release)
-        run: git pull origin main
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Configure Git for Yarn
-        run: |
-          git config --global core.autocrlf false
-          git config --global core.eol lf
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Build Electron app (no publish)
-        run: yarn build:electron
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: false
-          PUBLISH: never
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: electron-${{ matrix.platform }}-${{ matrix.arch }}
-          path: |
-            dist/electron/Packaged/*.dmg
-            dist/electron/Packaged/*.zip
-            dist/electron/Packaged/*.exe
-            dist/electron/Packaged/*.AppImage
-            dist/electron/Packaged/*.deb
-            dist/electron/Packaged/*.yml
-            dist/electron/Packaged/*.blockmap
-          if-no-files-found: error
-
-  upload-release:
-    needs: [release, build-electron]
+  # Step 4: Upload artifacts to release
+  upload-assets:
+    needs: [check-release, build-electron, create-release]
     if: success()
     runs-on: ubuntu-latest
     steps:
@@ -136,7 +178,7 @@ jobs:
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ needs.release.outputs.new_release_version }}
+          tag_name: v${{ needs.create-release.outputs.version }}
           files: artifacts/*
           body: |
             ## Download Instructions
