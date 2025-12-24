@@ -204,13 +204,15 @@ export default defineConfig((ctx) => {
         productName: 'Path of Building 2',
         artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
 
-        // Publish to GitHub Releases
-        publish: {
-          provider: 'github',
-          owner: 'polaz',
-          repo: 'pob2-web',
-          releaseType: 'release',
-        },
+        // Publish to GitHub Releases (only when not disabled via env)
+        ...(process.env.PUBLISH !== 'never' && {
+          publish: {
+            provider: 'github',
+            owner: 'polaz',
+            repo: 'pob2-web',
+            releaseType: 'release',
+          },
+        }),
 
         // macOS
         mac: {
