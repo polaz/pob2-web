@@ -51,7 +51,7 @@ export default defineConfig((ctx) => {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // publicPath: '/',
+      publicPath: process.env.GITHUB_ACTIONS ? '/pob2-web/' : '/',
       // analyze: true,
       // env: {},
       // rawDefine: {}
