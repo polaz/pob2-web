@@ -11,7 +11,6 @@ permissions:
   pull-requests: write
 
 jobs:
-  # First job: determine if we need to release
   release:
     runs-on: ubuntu-latest
     outputs:
@@ -45,18 +44,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Build Electron apps for each platform
   build-electron:
     needs: release
     if: needs.release.outputs.new_release_published == 'true'
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         include:
-          - os: macos-latest
+          - os: macos-13
             platform: mac
             arch: x64
-          - os: macos-latest
+          - os: macos-14
             platform: mac
             arch: arm64
           - os: windows-latest
@@ -87,21 +85,67 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Build Electron app
+      - name: Build Electron app (no publish)
         run: yarn build:electron
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
 
-      - name: Upload artifacts to GitHub Release
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-${{ matrix.platform }}-${{ matrix.arch }}
+          path: |
+            dist/electron/Packaged/*.dmg
+            dist/electron/Packaged/*.zip
+            dist/electron/Packaged/*.exe
+            dist/electron/Packaged/*.AppImage
+            dist/electron/Packaged/*.deb
+            dist/electron/Packaged/*.yml
+            dist/electron/Packaged/*.blockmap
+          if-no-files-found: error
+
+  upload-release:
+    needs: [release, build-electron]
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: List artifacts
+        run: find artifacts -type f | head -50
+
+      - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ needs.release.outputs.new_release_version }}
-          files: |
-            dist/electron/Packager/*.dmg
-            dist/electron/Packager/*.zip
-            dist/electron/Packager/*.exe
-            dist/electron/Packager/*.AppImage
-            dist/electron/Packager/*.deb
-            dist/electron/Packager/*.yml
+          files: artifacts/*
+          body: |
+            ## Download Instructions
+
+            ### macOS
+            | Chip | File |
+            |------|------|
+            | **Apple Silicon (M1/M2/M3/M4)** | `*-mac-arm64.dmg` |
+            | **Intel** | `*-mac-x64.dmg` |
+
+            > 💡 Not sure? Click  → About This Mac → check "Chip" field
+
+            ### Windows
+            | Type | File |
+            |------|------|
+            | **Installer** | `*-win-x64.exe` |
+
+            ### Linux
+            | Format | File |
+            |--------|------|
+            | **AppImage** (universal) | `*-linux-x86_64.AppImage` |
+            | **Debian/Ubuntu** | `*-linux-amd64.deb` |
+
+            ---
+            *Auto-update is enabled. The app will notify you when new versions are available.*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
