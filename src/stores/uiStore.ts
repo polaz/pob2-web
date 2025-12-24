@@ -1,14 +1,12 @@
 /**
  * UI Store - manages global UI state
+ * Note: Tab navigation is handled by Vue Router, not this store
  */
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { getUserPreferences, updateUserPreferences } from 'src/db';
 import type { UserPreferences } from 'src/types/db';
 import { DEFAULT_USER_PREFERENCES } from 'src/types/db';
-
-/** Main tabs in the application */
-export type MainTab = 'tree' | 'skills' | 'items' | 'calcs' | 'config' | 'notes';
 
 /** Available themes */
 export type Theme = 'dark' | 'light' | 'system';
@@ -35,12 +33,6 @@ export const useUiStore = defineStore('ui', () => {
   // ============================================================================
   // State
   // ============================================================================
-
-  /** Current active main tab */
-  const activeTab = ref<MainTab>('tree');
-
-  /** Previous tab (for back navigation) */
-  const previousTab = ref<MainTab | null>(null);
 
   /** Current theme */
   const theme = ref<Theme>('dark');
@@ -102,23 +94,6 @@ export const useUiStore = defineStore('ui', () => {
   // ============================================================================
   // Actions
   // ============================================================================
-
-  /** Set active tab */
-  function setActiveTab(tab: MainTab): void {
-    if (tab === activeTab.value) {
-      return; // Don't update if same tab
-    }
-    previousTab.value = activeTab.value;
-    activeTab.value = tab;
-  }
-
-  /** Go back to previous tab */
-  function goBack(): void {
-    if (previousTab.value) {
-      activeTab.value = previousTab.value;
-      previousTab.value = null;
-    }
-  }
 
   /** Set theme */
   function setTheme(newTheme: Theme): void {
@@ -275,8 +250,6 @@ export const useUiStore = defineStore('ui', () => {
 
   return {
     // State
-    activeTab,
-    previousTab,
     theme,
     language,
     isSidebarCollapsed,
@@ -297,8 +270,6 @@ export const useUiStore = defineStore('ui', () => {
     notificationCount,
 
     // Actions
-    setActiveTab,
-    goBack,
     setTheme,
     toggleTheme,
     setLanguage,

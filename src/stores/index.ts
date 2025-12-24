@@ -7,7 +7,7 @@ export { useTreeStore, type TreeViewport, type NodeSearchResult } from './treeSt
 export { useItemStore, EQUIPMENT_SLOTS, FLASK_SLOTS, SWAP_SLOTS, type SlotInfo } from './itemStore';
 export { useSkillStore, type GemSearchResult } from './skillStore';
 export { useConfigStore, DEFAULT_BUILD_CONFIG, ENEMY_TYPES, BOSS_PRESETS } from './configStore';
-export { useUiStore, type MainTab, type Theme, type ModalType, type Notification } from './uiStore';
+export { useUiStore, type Theme, type ModalType, type Notification } from './uiStore';
 
 /*
  * When adding new properties to stores, you should also
