@@ -3,6 +3,7 @@
  */
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
+import { cloneDeep } from 'lodash-es';
 import type { Build, BuildConfig, Item, SkillGroup } from 'src/protos/pob2_pb';
 import { CharacterClass } from 'src/protos/pob2_pb';
 import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
@@ -350,18 +351,14 @@ export const useBuildStore = defineStore('build', () => {
 
   /** Import build from Build object */
   function importBuild(build: Build): void {
-    // Deep clone via JSON to avoid external mutations affecting store state
-    // JSON serialization handles plain objects properly without protobuf issues
-    currentBuild.value = JSON.parse(JSON.stringify(build)) as Build;
+    currentBuild.value = cloneDeep(build);
     currentBuildDbId.value = undefined;
     isDirty.value = true;
   }
 
   /** Export current build as Build object */
   function exportBuild(): Build {
-    // Deep clone via JSON to ensure exported build is independent
-    // JSON serialization handles plain objects properly without protobuf issues
-    return JSON.parse(JSON.stringify(currentBuild.value)) as Build;
+    return cloneDeep(currentBuild.value);
   }
 
   return {

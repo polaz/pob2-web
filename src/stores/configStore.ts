@@ -3,6 +3,7 @@
  */
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
+import { cloneDeep } from 'lodash-es';
 import type { BuildConfig } from 'src/protos/pob2_pb';
 
 /** Default build configuration */
@@ -213,7 +214,7 @@ export const useConfigStore = defineStore('config', () => {
 
   /** Set full config */
   function setConfig(newConfig: BuildConfig): void {
-    const clonedConfig = structuredClone(newConfig);
+    const clonedConfig = cloneDeep(newConfig);
 
     // Enforce mutual exclusivity between low life and full life
     if (clonedConfig.isOnFullLife && clonedConfig.isOnLowLife) {
@@ -225,12 +226,12 @@ export const useConfigStore = defineStore('config', () => {
 
   /** Reset to defaults */
   function resetToDefaults(): void {
-    config.value = structuredClone(DEFAULT_BUILD_CONFIG);
+    config.value = cloneDeep(DEFAULT_BUILD_CONFIG);
   }
 
   /** Export config */
   function exportConfig(): BuildConfig {
-    return structuredClone(config.value);
+    return cloneDeep(config.value);
   }
 
   /** Toggle panel expansion */

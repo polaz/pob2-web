@@ -3,6 +3,7 @@
  */
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
+import { cloneDeep } from 'lodash-es';
 import type { Item } from 'src/protos/pob2_pb';
 import { ItemSlot } from 'src/protos/pob2_pb';
 
@@ -158,9 +159,7 @@ export const useItemStore = defineStore('item', () => {
 
   /** Copy item to clipboard */
   function copyItem(item: Item): void {
-    // Deep clone via JSON to avoid shared references with original item
-    // JSON serialization handles plain objects properly without protobuf issues
-    const clonedItem = JSON.parse(JSON.stringify(item)) as Item;
+    const clonedItem = cloneDeep(item);
     clonedItem.id = crypto.randomUUID();
     clipboardItem.value = clonedItem;
   }
