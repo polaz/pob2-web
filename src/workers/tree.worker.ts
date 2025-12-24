@@ -107,7 +107,8 @@ const treeWorkerApi = {
   ): Promise<boolean> {
     // TODO: Implement connectivity check
     // A node can be deallocated if removing it doesn't disconnect the tree
-    return Promise.resolve(false);
+    // Permissive default for skeleton - real implementation will validate
+    return Promise.resolve(true);
   },
 
   /**

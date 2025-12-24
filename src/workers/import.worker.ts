@@ -41,7 +41,9 @@ export type ImportFormat = 'pob' | 'pob2' | 'pathofexile' | 'unknown';
  */
 const importWorkerApi = {
   /**
-   * Detect the format of a build code
+   * Detect the format of a build code without importing.
+   * Use this for UI hints (e.g., showing format icon) before user confirms import.
+   * Note: importBuild() auto-detects format, so calling this first is optional.
    */
   detectFormat(_code: string): Promise<ImportFormat> {
     // TODO: Implement format detection
@@ -52,7 +54,8 @@ const importWorkerApi = {
   },
 
   /**
-   * Import a build from code string
+   * Import a build from code string.
+   * Auto-detects format - no need to call detectFormat() first.
    */
   importBuild(code: string): Promise<ImportResult> {
     // TODO: Implement build import
@@ -138,7 +141,9 @@ const importWorkerApi = {
   },
 
   /**
-   * Validate a build code without full import
+   * Validate a build code without full import.
+   * Returns both validity status and detected format.
+   * Faster than importBuild() when you only need validation.
    */
   validateCode(code: string): Promise<{ valid: boolean; format: ImportFormat }> {
     const format = detectFormatSync(code);

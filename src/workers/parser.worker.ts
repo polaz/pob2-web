@@ -65,17 +65,14 @@ const parserWorkerApi = {
    */
   parseModifiers(
     texts: string[],
-    source: ModSource = 'ITEM' as ModSource,
-    sourceLabel?: string
+    _source: ModSource = 'ITEM' as ModSource,
+    _sourceLabel?: string
   ): Promise<ModParseResult[]> {
     const results: ModParseResult[] = texts.map((text) => ({
       success: false,
       originalText: text,
       error: 'Modifier parsing not yet implemented',
     }));
-    // Mark source and sourceLabel as used
-    void source;
-    void sourceLabel;
     return Promise.resolve(results);
   },
 
