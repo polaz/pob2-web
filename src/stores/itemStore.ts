@@ -79,7 +79,13 @@ export const useItemStore = defineStore('item', () => {
   // Getters
   // ============================================================================
 
-  /** Internal pre-computed slot lookup map for O(1) access in getters (not exposed externally) */
+  /**
+   * Internal pre-computed slot lookup map for O(1) access in getters.
+   * Defined inside store function (not at module level) because:
+   * - It uses store-specific constants (EQUIPMENT_SLOTS, etc.)
+   * - Created once per store instance, which is a singleton in Pinia
+   * - Keeps the lookup logic co-located with the getters that use it
+   */
   const slotLookup: Map<ItemSlot, SlotInfo> = new Map(
     [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].map((s) => [s.slot, s])
   );
@@ -173,8 +179,15 @@ export const useItemStore = defineStore('item', () => {
    * Add item to recent items.
    * Assumes item IDs are globally unique (enforced at Item creation time).
    * Duplicate detection relies on this uniqueness guarantee.
+   *
+   * @param item - Item to add. Must have a valid non-empty id field.
    */
   function addToRecentItems(item: Item): void {
+    // Validate item has a valid ID
+    if (!item.id || typeof item.id !== 'string') {
+      console.warn('addToRecentItems: Item missing valid ID, skipping');
+      return;
+    }
     // Remove if already exists (by unique ID)
     const filtered = recentItems.value.filter((i) => i.id !== item.id);
     // Add to front, keep max items

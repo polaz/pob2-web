@@ -29,9 +29,26 @@ let loadingPromise: Promise<TreeData> | null = null;
  * data composable. It must only be called from test code to ensure a clean
  * state between tests and MUST NOT be used in production/runtime code.
  *
+ * @example
+ * ```typescript
+ * // In test setup (beforeEach or afterEach)
+ * import { resetTreeDataForTesting } from 'src/composables/useTreeData';
+ *
+ * beforeEach(() => {
+ *   resetTreeDataForTesting(); // Clear cache before each test
+ * });
+ * ```
+ *
+ * @throws {Error} If called outside of test environment (NODE_ENV !== 'test')
  * @internal
  */
 export function resetTreeDataForTesting(): void {
+  if (process.env.NODE_ENV !== 'test') {
+    throw new Error(
+      'resetTreeDataForTesting() can only be called in test environment. ' +
+        'This function is not meant for production use.'
+    );
+  }
   treeDataCache = null;
   loadingPromise = null;
 }

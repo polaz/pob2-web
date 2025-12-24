@@ -29,7 +29,16 @@ export interface RawTreeNode {
   classStartIndex?: number;
   // Mastery info
   isMastery: boolean;
-  masteryEffects?: unknown;
+  /**
+   * Mastery effects available for this node.
+   * Each effect has an ID and stat descriptions.
+   * Only present on mastery nodes (isMastery: true).
+   * Can be null in raw JSON data for non-mastery nodes.
+   */
+  masteryEffects?: Array<{
+    effect: number;
+    stats: string[];
+  }> | null;
 }
 
 /**

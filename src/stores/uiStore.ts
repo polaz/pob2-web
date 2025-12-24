@@ -147,7 +147,17 @@ export const useUiStore = defineStore('ui', () => {
     modalData.value = null;
   }
 
-  /** Timeout IDs for auto-dismissing notifications */
+  /**
+   * Timeout IDs for auto-dismissing notifications.
+   *
+   * Cleanup strategy:
+   * - Individual: dismissNotification() clears timeout before removing notification
+   * - Bulk: clearNotifications() clears all timeouts before emptying array
+   * - Auto-dismiss: notify() timeout callback removes itself from map before splicing
+   *
+   * This prevents memory leaks from orphaned timeouts and avoids race conditions
+   * where a timeout fires after manual dismissal.
+   */
   const notificationTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
   /** Add notification */

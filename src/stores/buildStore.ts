@@ -262,11 +262,18 @@ export const useBuildStore = defineStore('build', () => {
     return result;
   }
 
-  /** Parse JSON safely with fallback */
-  function safeJsonParse<T>(json: string, fallback: T): T {
+  /**
+   * Parse JSON safely with fallback.
+   * Logs parse errors to help debug data corruption issues.
+   */
+  function safeJsonParse<T>(json: string, fallback: T, fieldName?: string): T {
     try {
       return JSON.parse(json) as T;
-    } catch {
+    } catch (e) {
+      console.warn(
+        `Failed to parse JSON${fieldName ? ` for field "${fieldName}"` : ''}:`,
+        e instanceof Error ? e.message : e
+      );
       return fallback;
     }
   }
@@ -302,7 +309,7 @@ export const useBuildStore = defineStore('build', () => {
     // Parse and validate equipped items
     let equippedItems: Record<string, Item> = {};
     if (stored.items) {
-      const parsed = safeJsonParse<unknown>(stored.items, null);
+      const parsed = safeJsonParse<unknown>(stored.items, null, 'equippedItems');
       if (isValidItemsRecord(parsed)) {
         equippedItems = parsed;
       }
@@ -311,7 +318,7 @@ export const useBuildStore = defineStore('build', () => {
     // Parse and validate skill groups
     let skillGroups: SkillGroup[] = [];
     if (stored.skills) {
-      const parsed = safeJsonParse<unknown>(stored.skills, null);
+      const parsed = safeJsonParse<unknown>(stored.skills, null, 'skillGroups');
       if (isValidSkillGroups(parsed)) {
         skillGroups = parsed;
       }
@@ -320,7 +327,7 @@ export const useBuildStore = defineStore('build', () => {
     // Parse and validate mastery selections
     let masterySelections: Record<string, string> = {};
     if (stored.masterySelections) {
-      const parsed = safeJsonParse<unknown>(stored.masterySelections, null);
+      const parsed = safeJsonParse<unknown>(stored.masterySelections, null, 'masterySelections');
       if (isValidMasterySelections(parsed)) {
         masterySelections = parsed;
       }
@@ -338,7 +345,7 @@ export const useBuildStore = defineStore('build', () => {
     };
     if (stored.ascendancy) result.ascendancy = stored.ascendancy;
     if (stored.config) {
-      const parsedConfig = safeJsonParse<BuildConfig | null>(stored.config, null);
+      const parsedConfig = safeJsonParse<BuildConfig | null>(stored.config, null, 'config');
       if (parsedConfig) result.config = parsedConfig;
     }
     if (stored.notes) result.notes = stored.notes;

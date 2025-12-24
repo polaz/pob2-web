@@ -85,7 +85,17 @@ export const useTreeStore = defineStore('tree', () => {
     return map;
   });
 
-  /** Get node by ID (direct lookup, not wrapped in computed) */
+  /**
+   * Get node by ID.
+   *
+   * This is a regular function (not a computed) by design for performance.
+   * Use cases like mouse event handlers need immediate synchronous lookups
+   * without the overhead of creating reactive subscriptions. The underlying
+   * nodesById computed is already cached and reactive, so changes to treeData
+   * will still produce updated results.
+   *
+   * For reactive bindings in templates, use hoveredNode/selectedNode computeds.
+   */
   function getNode(nodeId: string): PassiveNode | undefined {
     return nodesById.value.get(nodeId);
   }
@@ -102,7 +112,16 @@ export const useTreeStore = defineStore('tree', () => {
     return nodesById.value.get(selectedNodeId.value) ?? null;
   });
 
-  /** All node IDs */
+  /**
+   * All node IDs as an array.
+   *
+   * Note: Creates a new array on each access. This is acceptable given:
+   * - PoE2 tree has ~1500 nodes (small dataset)
+   * - Computed caching prevents recalculation unless treeData changes
+   * - Primary use is iteration, not frequent random access
+   *
+   * For O(1) key existence checks, use nodesById.value.has(id) directly.
+   */
   const allNodeIds = computed(() => {
     return Array.from(nodesById.value.keys());
   });

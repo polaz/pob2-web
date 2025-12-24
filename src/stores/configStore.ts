@@ -84,13 +84,23 @@ export const useConfigStore = defineStore('config', () => {
   /** Enemy type */
   const enemyType = computed(() => config.value.enemyType ?? 'Normal');
 
-  /** Power charges enabled */
+  /**
+   * Power charges enabled.
+   * Note: Getter name includes "Enabled" suffix for clarity in templates,
+   * while config property is just "powerCharges" for brevity in storage.
+   */
   const powerChargesEnabled = computed(() => config.value.powerCharges ?? false);
 
-  /** Frenzy charges enabled */
+  /**
+   * Frenzy charges enabled.
+   * Note: Getter name includes "Enabled" suffix for clarity in templates.
+   */
   const frenzyChargesEnabled = computed(() => config.value.frenzyCharges ?? false);
 
-  /** Endurance charges enabled */
+  /**
+   * Endurance charges enabled.
+   * Note: Getter name includes "Enabled" suffix for clarity in templates.
+   */
   const enduranceChargesEnabled = computed(() => config.value.enduranceCharges ?? false);
 
   /** Power charge count */
@@ -226,10 +236,17 @@ export const useConfigStore = defineStore('config', () => {
   }
 
   /**
-   * Set full config.
+   * Set full config from external source (e.g., database load, import).
+   *
    * Enforces mutual exclusivity: if both isOnFullLife and isOnLowLife are true,
    * isOnLowLife takes precedence (full life is disabled) since low life is a
    * more specific build-defining state.
+   *
+   * Note: This differs from toggle functions which simply disable the other
+   * flag when enabling one. This function handles potentially inconsistent
+   * data from external sources by applying a deterministic precedence rule.
+   *
+   * Life states: Both false = mid-life (35-99% HP).
    */
   function setConfig(newConfig: BuildConfig): void {
     const clonedConfig = cloneDeep(newConfig);
