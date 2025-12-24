@@ -75,11 +75,14 @@ export interface TreeBounds {
 }
 
 /**
- * Group data for node positioning
+ * Group data for node positioning.
+ * Note: nodes array contains numeric indices matching the source data format.
+ * Convert to string IDs when looking up in TreeData.nodes Map.
  */
 export interface TreeGroup {
   x: number;
   y: number;
+  /** Numeric node indices - use String(index) for TreeData.nodes lookup */
   nodes: number[];
   orbits?: number[];
 }
