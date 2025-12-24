@@ -207,6 +207,7 @@ export const useBuildStore = defineStore('build', () => {
       skills: JSON.stringify(currentBuild.value.skillGroups),
     };
     if (currentBuild.value.ascendancy) result.ascendancy = currentBuild.value.ascendancy;
+    if (currentBuild.value.config) result.config = JSON.stringify(currentBuild.value.config);
     if (currentBuild.value.notes) result.notes = currentBuild.value.notes;
     if (currentBuild.value.buildCode) result.buildCode = currentBuild.value.buildCode;
     return result;
@@ -234,6 +235,10 @@ export const useBuildStore = defineStore('build', () => {
       skillGroups: stored.skills ? safeJsonParse<SkillGroup[]>(stored.skills, []) : [],
     };
     if (stored.ascendancy) result.ascendancy = stored.ascendancy;
+    if (stored.config) {
+      const parsedConfig = safeJsonParse<BuildConfig | null>(stored.config, null);
+      if (parsedConfig) result.config = parsedConfig;
+    }
     if (stored.notes) result.notes = stored.notes;
     if (stored.buildCode) result.buildCode = stored.buildCode;
     return result;

@@ -20,6 +20,8 @@ export interface StoredBuild {
   items: string;
   /** Active skill gems configuration */
   skills: string;
+  /** Build configuration (enemy, charges, combat state) */
+  config?: string;
   /** Build notes/description */
   notes?: string;
   /** Creation timestamp */

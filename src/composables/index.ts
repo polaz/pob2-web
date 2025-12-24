@@ -5,3 +5,4 @@ export { useCalcWorker } from './useCalcWorker';
 export { useTreeWorker } from './useTreeWorker';
 export { useImportWorker } from './useImportWorker';
 export { useParserWorker } from './useParserWorker';
+export { useTreeData } from './useTreeData';

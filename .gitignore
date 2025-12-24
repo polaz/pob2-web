@@ -43,3 +43,4 @@ yarn-error.log*
 .copilot/
 .aider*
 .continue/
+.scripts/
