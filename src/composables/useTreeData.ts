@@ -1,5 +1,5 @@
 // src/composables/useTreeData.ts
-// Composable for loading and traversing passive tree data
+// Composable for loading and traversing passive tree data.
 
 import { ref, shallowRef, computed, onMounted } from 'vue';
 import type {
@@ -97,8 +97,9 @@ async function loadTreeData(): Promise<TreeData> {
           return treeData;
         }
       }
-    } catch {
+    } catch (e) {
       // Cache miss or error, continue to use bundled JSON
+      console.warn('[useTreeData] Cache read failed:', e);
     }
 
     // Use bundled JSON
@@ -113,8 +114,9 @@ async function loadTreeData(): Promise<TreeData> {
         bundledRawData.version,
         TREE_CACHE_TTL
       );
-    } catch {
+    } catch (e) {
       // Caching failed, but we still have the data in memory
+      console.warn('[useTreeData] Cache write failed:', e);
     }
 
     return treeData;
