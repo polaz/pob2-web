@@ -191,6 +191,7 @@ export const useBuildStore = defineStore('build', () => {
    */
   function removeSkillGroup(index: number): void {
     const groups = currentBuild.value.skillGroups;
+    // Silently ignore invalid indices - no state change, no dirty flag
     if (index < 0 || index >= groups.length) {
       return;
     }

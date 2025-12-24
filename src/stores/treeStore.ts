@@ -147,10 +147,14 @@ export const useTreeStore = defineStore('tree', () => {
     selectedNodeId.value = nodeId;
   }
 
-  /** Set search query */
+  /**
+   * Set search query.
+   * This store only manages state - actual search is performed by tree worker
+   * at the component level. Worker initialization and error handling is the
+   * responsibility of the component that integrates the worker.
+   */
   function setSearchQuery(query: string): void {
     searchQuery.value = query;
-    // Search is performed by the tree worker, results set via setSearchResults
   }
 
   /** Set search results */
