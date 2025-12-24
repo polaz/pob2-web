@@ -6,14 +6,20 @@ import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
 import type { BuildConfig } from 'src/protos/pob2_pb';
 
-/** Default build configuration */
+/**
+ * Default build configuration.
+ * Note: Charge counts represent the maximum available charges for the build,
+ * while the boolean flags indicate whether charges are currently active.
+ * This allows preserving charge counts when toggling charges on/off.
+ */
 export const DEFAULT_BUILD_CONFIG: BuildConfig = {
   // Enemy configuration
   enemyLevel: 83,
   enemyIsBoss: false,
   enemyType: 'Normal',
 
-  // Charge configuration
+  // Charge configuration: enabled flags and max counts are separate
+  // to preserve counts when toggling charges on/off
   powerCharges: false,
   frenzyCharges: false,
   enduranceCharges: false,
@@ -21,7 +27,8 @@ export const DEFAULT_BUILD_CONFIG: BuildConfig = {
   frenzyChargeCount: 3,
   enduranceChargeCount: 3,
 
-  // Combat state
+  // Combat state: isOnFullLife and isOnLowLife are mutually exclusive.
+  // When both are false, character is in mid-life state (35-99% HP).
   isLeeching: false,
   isOnLowLife: false,
   isOnFullLife: true,
@@ -218,13 +225,18 @@ export const useConfigStore = defineStore('config', () => {
     }
   }
 
-  /** Set full config */
+  /**
+   * Set full config.
+   * Enforces mutual exclusivity: if both isOnFullLife and isOnLowLife are true,
+   * isOnLowLife takes precedence (full life is disabled) since low life is a
+   * more specific build-defining state.
+   */
   function setConfig(newConfig: BuildConfig): void {
     const clonedConfig = cloneDeep(newConfig);
 
-    // Enforce mutual exclusivity between low life and full life
+    // Enforce mutual exclusivity: low life takes precedence
     if (clonedConfig.isOnFullLife && clonedConfig.isOnLowLife) {
-      clonedConfig.isOnLowLife = false;
+      clonedConfig.isOnFullLife = false;
     }
 
     config.value = clonedConfig;

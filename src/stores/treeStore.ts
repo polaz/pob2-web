@@ -85,12 +85,10 @@ export const useTreeStore = defineStore('tree', () => {
     return map;
   });
 
-  /** Get node by ID */
-  const getNode = computed(() => {
-    return (nodeId: string): PassiveNode | undefined => {
-      return nodesById.value.get(nodeId);
-    };
-  });
+  /** Get node by ID (direct lookup, not wrapped in computed) */
+  function getNode(nodeId: string): PassiveNode | undefined {
+    return nodesById.value.get(nodeId);
+  }
 
   /** Currently hovered node */
   const hoveredNode = computed(() => {

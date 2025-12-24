@@ -162,8 +162,13 @@ export const useUiStore = defineStore('ui', () => {
 
     if (timeout > 0) {
       const timeoutId = setTimeout(() => {
+        // Remove notification directly instead of calling dismissNotification
+        // to avoid race condition where timeout fires after manual dismiss
         notificationTimeouts.delete(id);
-        dismissNotification(id);
+        const index = notifications.value.findIndex((n) => n.id === id);
+        if (index !== -1) {
+          notifications.value.splice(index, 1);
+        }
       }, timeout);
       notificationTimeouts.set(id, timeoutId);
     }

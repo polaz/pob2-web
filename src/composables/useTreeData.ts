@@ -24,10 +24,14 @@ let loadingPromise: Promise<TreeData> | null = null;
 
 /**
  * Reset module-level state for testing purposes.
- * This should only be called from test code to ensure clean state between tests.
+ *
+ * WARNING: This function mutates the shared singleton cache used by the tree
+ * data composable. It must only be called from test code to ensure a clean
+ * state between tests and MUST NOT be used in production/runtime code.
+ *
  * @internal
  */
-export function __resetTreeDataForTesting(): void {
+export function resetTreeDataForTesting(): void {
   treeDataCache = null;
   loadingPromise = null;
 }
@@ -129,11 +133,21 @@ async function loadTreeData(): Promise<TreeData> {
     return treeData;
   })();
 
+  // Clear loadingPromise after resolution to allow fresh loads if cache is cleared
+  void loadingPromise.finally(() => {
+    loadingPromise = null;
+  });
+
   return loadingPromise;
 }
 
 /**
- * Find shortest path between two nodes using BFS
+ * Find shortest path between two nodes using BFS.
+ *
+ * Uses head pointer pattern for O(1) dequeue. The queue array grows but
+ * isn't trimmed during traversal. For PoE2's tree size (~1500 nodes),
+ * this is acceptable. For significantly larger graphs, consider periodic
+ * array slicing or a proper deque implementation.
  */
 function findShortestPath(
   nodes: Map<string, TreeNode>,

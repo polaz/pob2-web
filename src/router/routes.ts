@@ -1,5 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router';
 
+/**
+ * Application routes.
+ * Route names match path names for simplicity (e.g., 'tree' for '/tree').
+ * All page components are lazy-loaded via dynamic imports.
+ * Import errors are handled by Vue Router's global error handler.
+ */
 const routes: RouteRecordRaw[] = [
   {
     path: '/',

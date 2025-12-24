@@ -153,13 +153,20 @@ export const useBuildStore = defineStore('build', () => {
     isDirty.value = true;
   }
 
-  /** Set equipped item in slot */
+  /**
+   * Set equipped item in slot.
+   * Note: ItemSlot enum values are converted to strings for JSON serialization
+   * compatibility. The Build.equippedItems uses string keys by design.
+   */
   function setEquippedItem(slot: ItemSlot, item: Item): void {
     currentBuild.value.equippedItems[String(slot)] = item;
     isDirty.value = true;
   }
 
-  /** Remove equipped item from slot */
+  /**
+   * Remove equipped item from slot.
+   * Note: ItemSlot enum values are converted to strings for JSON serialization.
+   */
   function removeEquippedItem(slot: ItemSlot): void {
     delete currentBuild.value.equippedItems[String(slot)];
     isDirty.value = true;
@@ -177,7 +184,11 @@ export const useBuildStore = defineStore('build', () => {
     isDirty.value = true;
   }
 
-  /** Remove skill group by index */
+  /**
+   * Remove skill group by index.
+   * Note: Callers should update skillStore selection state after removal
+   * to handle cases where the removed group was selected.
+   */
   function removeSkillGroup(index: number): void {
     const groups = currentBuild.value.skillGroups;
     if (index < 0 || index >= groups.length) {
@@ -199,11 +210,40 @@ export const useBuildStore = defineStore('build', () => {
     isDirty.value = true;
   }
 
+  /**
+   * Convert CharacterClass enum to string name for storage.
+   * Handles both numeric enum values and already-string values.
+   */
+  function characterClassToString(charClass: CharacterClass): string {
+    // CharacterClass is a numeric enum, so CharacterClass[value] gives the name
+    const name = CharacterClass[charClass];
+    return typeof name === 'string' ? name : 'WARRIOR';
+  }
+
+  /**
+   * Convert stored class name string back to CharacterClass enum.
+   * Handles both string names (e.g., "WARRIOR") and numeric string values.
+   */
+  function stringToCharacterClass(className: string): CharacterClass {
+    // First try as enum name (e.g., "WARRIOR")
+    const enumValue = CharacterClass[className as keyof typeof CharacterClass];
+    if (typeof enumValue === 'number') {
+      return enumValue;
+    }
+    // Try parsing as numeric value
+    const numValue = Number(className);
+    if (!Number.isNaN(numValue) && CharacterClass[numValue] !== undefined) {
+      return numValue as CharacterClass;
+    }
+    // Default fallback
+    return CharacterClass.WARRIOR;
+  }
+
   /** Convert Build to StoredBuild for database */
   function toStoredBuild(): Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> {
     const result: Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> = {
       name: currentBuild.value.name ?? 'Unnamed Build',
-      className: CharacterClass[currentBuild.value.characterClass ?? CharacterClass.WARRIOR],
+      className: characterClassToString(currentBuild.value.characterClass ?? CharacterClass.WARRIOR),
       level: currentBuild.value.level ?? 1,
       passiveNodes: currentBuild.value.allocatedNodeIds
         .map((id) => Number.parseInt(id, 10))
@@ -288,7 +328,7 @@ export const useBuildStore = defineStore('build', () => {
     const result: Build = {
       id: String(stored.id),
       name: stored.name,
-      characterClass: CharacterClass[stored.className as keyof typeof CharacterClass] ?? CharacterClass.WARRIOR,
+      characterClass: stringToCharacterClass(stored.className),
       level: stored.level,
       allocatedNodeIds: stored.passiveNodes.map((id) => String(id)),
       masterySelections,

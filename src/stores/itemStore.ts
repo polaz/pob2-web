@@ -79,7 +79,7 @@ export const useItemStore = defineStore('item', () => {
   // Getters
   // ============================================================================
 
-  /** Pre-computed slot lookup map for O(1) access (created once per store instance) */
+  /** Internal pre-computed slot lookup map for O(1) access in getters (not exposed externally) */
   const slotLookup: Map<ItemSlot, SlotInfo> = new Map(
     [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].map((s) => [s.slot, s])
   );
@@ -169,9 +169,13 @@ export const useItemStore = defineStore('item', () => {
     clipboardItem.value = null;
   }
 
-  /** Add item to recent items */
+  /**
+   * Add item to recent items.
+   * Assumes item IDs are globally unique (enforced at Item creation time).
+   * Duplicate detection relies on this uniqueness guarantee.
+   */
   function addToRecentItems(item: Item): void {
-    // Remove if already exists
+    // Remove if already exists (by unique ID)
     const filtered = recentItems.value.filter((i) => i.id !== item.id);
     // Add to front, keep max items
     recentItems.value = [item, ...filtered].slice(0, MAX_RECENT_ITEMS);
