@@ -53,7 +53,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Step 2: Build all platforms (only if release needed)
+  # Step 2: Build all platforms with next version
   build-electron:
     needs: check-release
     if: needs.check-release.outputs.should_release == 'true'
@@ -95,8 +95,11 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.eol lf
 
+      - name: Update version for build
+        run: npm pkg set version=${{ needs.check-release.outputs.next_version }}
+
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Build Electron app
         run: yarn build:electron
