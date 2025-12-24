@@ -1,3 +1,11 @@
+## [1.0.5](https://github.com/polaz/pob2-web/compare/v1.0.4...v1.0.5) (2025-12-24)
+
+
+### Bug Fixes
+
+* **ci:** build only native arch on each macOS runner ([5a28ebe](https://github.com/polaz/pob2-web/commit/5a28ebed20a482bc220f442eb9959f765c633a92))
+* **config:** cast BUILD_ARCH to correct ArchType ([dd5bf2d](https://github.com/polaz/pob2-web/commit/dd5bf2db1b3e10d9484129f7610a3fce4178cd6a))
+
 ## [1.0.4](https://github.com/polaz/pob2-web/compare/v1.0.3...v1.0.4) (2025-12-24)
 
 
