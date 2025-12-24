@@ -81,33 +81,36 @@ async function loadTreeData(): Promise<TreeData> {
   }
 
   loadingPromise = (async () => {
+    // Load bundled JSON to know current version
+    const module = await import('src/data/tree/poe2-tree.json');
+    const bundledRawData = module.default as RawTreeData;
+
     // Try to load from IndexedDB cache first
     try {
       const cached = await getCachedData(TREE_CACHE_KEY);
       if (cached) {
-        const rawData = JSON.parse(cached.data) as RawTreeData;
-        const treeData = convertToTreeData(rawData);
-        treeDataCache = treeData;
-        return treeData;
+        const cachedRawData = JSON.parse(cached.data) as RawTreeData;
+        // Only use cache if version matches bundled data
+        if (cachedRawData.version === bundledRawData.version) {
+          const treeData = convertToTreeData(cachedRawData);
+          treeDataCache = treeData;
+          return treeData;
+        }
       }
     } catch {
-      // Cache miss or error, continue to load from JSON
+      // Cache miss or error, continue to use bundled JSON
     }
 
-    // Load from bundled JSON
-    const module = await import('src/data/tree/poe2-tree.json');
-    const rawData = module.default as RawTreeData;
-
-    // Convert to optimized format
-    const treeData = convertToTreeData(rawData);
+    // Use bundled JSON
+    const treeData = convertToTreeData(bundledRawData);
     treeDataCache = treeData;
 
     // Cache in IndexedDB for faster future loads
     try {
       await setCachedData(
         TREE_CACHE_KEY,
-        JSON.stringify(rawData),
-        rawData.version,
+        JSON.stringify(bundledRawData),
+        bundledRawData.version,
         TREE_CACHE_TTL
       );
     } catch {
@@ -115,7 +118,11 @@ async function loadTreeData(): Promise<TreeData> {
     }
 
     return treeData;
-  })();
+  })().catch((error) => {
+    // Reset loadingPromise on failure to allow retry
+    loadingPromise = null;
+    throw error;
+  });
 
   return loadingPromise;
 }
@@ -139,13 +146,14 @@ function findShortestPath(
     return { path: [], length: 0, found: false };
   }
 
-  // BFS
+  // BFS with O(1) dequeue using head pointer
   const queue: string[] = [startId];
+  let head = 0;
   const visited = new Set<string>([startId]);
   const parent = new Map<string, string>();
 
-  while (queue.length > 0) {
-    const currentId = queue.shift()!;
+  while (head < queue.length) {
+    const currentId = queue[head++]!;
     const current = nodes.get(currentId);
 
     if (!current) continue;
@@ -184,6 +192,7 @@ function findReachableNodes(
   const reachable = new Set<string>();
   const distances = new Map<string, number>();
   const queue: Array<{ id: string; distance: number }> = [];
+  let head = 0;
 
   for (const id of startIds) {
     if (nodes.has(id)) {
@@ -193,8 +202,8 @@ function findReachableNodes(
     }
   }
 
-  while (queue.length > 0) {
-    const { id, distance } = queue.shift()!;
+  while (head < queue.length) {
+    const { id, distance } = queue[head++]!;
     const node = nodes.get(id);
 
     if (!node) continue;
@@ -222,6 +231,7 @@ function getNodesWithinDistance(
 ): Set<string> {
   const result = new Set<string>();
   const queue: Array<{ id: string; distance: number }> = [];
+  let head = 0;
 
   for (const id of startIds) {
     if (nodes.has(id)) {
@@ -230,8 +240,8 @@ function getNodesWithinDistance(
     }
   }
 
-  while (queue.length > 0) {
-    const { id, distance } = queue.shift()!;
+  while (head < queue.length) {
+    const { id, distance } = queue[head++]!;
 
     if (distance >= maxDistance) continue;
 
