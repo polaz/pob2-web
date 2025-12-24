@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/polaz/pob2-web/compare/v1.0.6...v1.1.0) (2025-12-24)
+
+
+### Features
+
+* **db:** implement Dexie.js database for offline storage ([#48](https://github.com/polaz/pob2-web/issues/48)) ([de00ce2](https://github.com/polaz/pob2-web/commit/de00ce2235c332b2aceb3ff3d1a4c24d2f31ab11))
+
 ## [1.0.6](https://github.com/polaz/pob2-web/compare/v1.0.5...v1.0.6) (2025-12-24)
 
 
