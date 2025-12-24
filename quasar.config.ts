@@ -196,23 +196,62 @@ export default defineConfig((ctx) => {
       // specify the debugging port to use for the Electron app when running in development mode
       inspectPort: 5858,
 
-      bundler: 'packager', // 'packager' or 'builder'
-
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-        // Windows only
-        // win32metadata: { ... }
-      },
+      bundler: 'builder', // using electron-builder for installers and auto-update
 
       builder: {
         // https://www.electron.build/configuration/configuration
+        appId: 'com.polaz.pob2web',
+        productName: 'Path of Building 2',
+        artifactName: '${productName}-${version}-${os}-${arch}.${ext}',
 
-        appId: 'pob2-web',
+        // Publish to GitHub Releases
+        publish: {
+          provider: 'github',
+          owner: 'polaz',
+          repo: 'pob2-web',
+          releaseType: 'release',
+        },
+
+        // macOS
+        mac: {
+          category: 'public.app-category.games',
+          target: [
+            { target: 'dmg', arch: ['x64', 'arm64'] },
+            { target: 'zip', arch: ['x64', 'arm64'] },
+          ],
+          icon: 'src-electron/icons/icon.icns',
+        },
+        dmg: {
+          contents: [
+            { x: 130, y: 220 },
+            { x: 410, y: 220, type: 'link', path: '/Applications' },
+          ],
+        },
+
+        // Windows
+        win: {
+          target: [
+            { target: 'nsis', arch: ['x64'] },
+            { target: 'portable', arch: ['x64'] },
+          ],
+          icon: 'src-electron/icons/icon.ico',
+        },
+        nsis: {
+          oneClick: false,
+          perMachine: false,
+          allowToChangeInstallationDirectory: true,
+          installerIcon: 'src-electron/icons/icon.ico',
+        },
+
+        // Linux
+        linux: {
+          target: [
+            { target: 'AppImage', arch: ['x64'] },
+            { target: 'deb', arch: ['x64'] },
+          ],
+          category: 'Game',
+          icon: 'src-electron/icons',
+        },
       },
     },
 
