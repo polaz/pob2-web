@@ -176,19 +176,25 @@ export const useConfigStore = defineStore('config', () => {
     config.value.isLeeching = !config.value.isLeeching;
   }
 
-  /** Toggle low life state */
+  /**
+   * Toggle low life state.
+   * Low life (<35% HP) and full life (100% HP) are mutually exclusive.
+   * When both are false, character is in mid-life state (35-99% HP).
+   */
   function toggleLowLife(): void {
     config.value.isOnLowLife = !config.value.isOnLowLife;
-    // Low life and full life are mutually exclusive
     if (config.value.isOnLowLife) {
       config.value.isOnFullLife = false;
     }
   }
 
-  /** Toggle full life state */
+  /**
+   * Toggle full life state.
+   * Full life (100% HP) and low life (<35% HP) are mutually exclusive.
+   * When both are false, character is in mid-life state (35-99% HP).
+   */
   function toggleFullLife(): void {
     config.value.isOnFullLife = !config.value.isOnFullLife;
-    // Low life and full life are mutually exclusive
     if (config.value.isOnFullLife) {
       config.value.isOnLowLife = false;
     }

@@ -17,8 +17,8 @@ function createEmptyBuild(): Build {
     characterClass: CharacterClass.WARRIOR,
     level: 1,
     allocatedNodeIds: [],
-    masterySelections: {},
-    equippedItems: {},
+    masterySelections: {} as Record<string, string>,
+    equippedItems: {} as Record<string, Item>,
     skillGroups: [],
   };
 }
@@ -179,7 +179,11 @@ export const useBuildStore = defineStore('build', () => {
 
   /** Remove skill group by index */
   function removeSkillGroup(index: number): void {
-    currentBuild.value.skillGroups.splice(index, 1);
+    const groups = currentBuild.value.skillGroups;
+    if (index < 0 || index >= groups.length) {
+      return;
+    }
+    groups.splice(index, 1);
     isDirty.value = true;
   }
 

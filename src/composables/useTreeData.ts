@@ -151,13 +151,14 @@ function findShortestPath(
     return { path: [], length: 0, found: false };
   }
 
-  // BFS
+  // BFS with O(1) dequeue using head pointer
   const queue: string[] = [startId];
   const visited = new Set<string>([startId]);
   const parent = new Map<string, string>();
+  let head = 0;
 
-  while (queue.length > 0) {
-    const currentId = queue.shift()!;
+  while (head < queue.length) {
+    const currentId = queue[head++]!;
     const current = nodes.get(currentId);
 
     if (!current) continue;
@@ -205,8 +206,10 @@ function findReachableNodes(
     }
   }
 
-  while (queue.length > 0) {
-    const { id, distance } = queue.shift()!;
+  // BFS with O(1) dequeue using head pointer
+  let head = 0;
+  while (head < queue.length) {
+    const { id, distance } = queue[head++]!;
     const node = nodes.get(id);
 
     if (!node) continue;
@@ -242,8 +245,10 @@ function getNodesWithinDistance(
     }
   }
 
-  while (queue.length > 0) {
-    const { id, distance } = queue.shift()!;
+  // BFS with O(1) dequeue using head pointer
+  let head = 0;
+  while (head < queue.length) {
+    const { id, distance } = queue[head++]!;
 
     if (distance >= maxDistance) continue;
 
