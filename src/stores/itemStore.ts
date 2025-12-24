@@ -75,23 +75,22 @@ export const useItemStore = defineStore('item', () => {
   // Getters
   // ============================================================================
 
+  /** Pre-computed slot lookup maps for O(1) access */
+  const slotLookup = new Map<ItemSlot, SlotInfo>(
+    [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].map((s) => [s.slot, s])
+  );
+
   /** Get slot display name */
   const getSlotName = computed(() => {
     return (slot: ItemSlot): string => {
-      const info = [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].find(
-        (s) => s.slot === slot
-      );
-      return info?.name ?? 'Unknown';
+      return slotLookup.get(slot)?.name ?? 'Unknown';
     };
   });
 
   /** Get slot short name */
   const getSlotShortName = computed(() => {
     return (slot: ItemSlot): string => {
-      const info = [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].find(
-        (s) => s.slot === slot
-      );
-      return info?.shortName ?? '?';
+      return slotLookup.get(slot)?.shortName ?? '?';
     };
   });
 
@@ -156,7 +155,10 @@ export const useItemStore = defineStore('item', () => {
 
   /** Copy item to clipboard */
   function copyItem(item: Item): void {
-    clipboardItem.value = { ...item, id: crypto.randomUUID() };
+    // Deep clone to avoid shared references with original item
+    const clonedItem = structuredClone(item);
+    clonedItem.id = crypto.randomUUID();
+    clipboardItem.value = clonedItem;
   }
 
   /** Clear clipboard */

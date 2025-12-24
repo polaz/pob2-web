@@ -213,17 +213,17 @@ export const useConfigStore = defineStore('config', () => {
 
   /** Set full config */
   function setConfig(newConfig: BuildConfig): void {
-    config.value = { ...newConfig };
+    config.value = structuredClone(newConfig);
   }
 
   /** Reset to defaults */
   function resetToDefaults(): void {
-    config.value = { ...DEFAULT_BUILD_CONFIG };
+    config.value = structuredClone(DEFAULT_BUILD_CONFIG);
   }
 
   /** Export config */
   function exportConfig(): BuildConfig {
-    return { ...config.value };
+    return structuredClone(config.value);
   }
 
   /** Toggle panel expansion */

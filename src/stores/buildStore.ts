@@ -200,7 +200,9 @@ export const useBuildStore = defineStore('build', () => {
       name: currentBuild.value.name ?? 'Unnamed Build',
       className: CharacterClass[currentBuild.value.characterClass ?? CharacterClass.WARRIOR],
       level: currentBuild.value.level ?? 1,
-      passiveNodes: currentBuild.value.allocatedNodeIds.map((id) => parseInt(id, 10)),
+      passiveNodes: currentBuild.value.allocatedNodeIds
+        .map((id) => Number.parseInt(id, 10))
+        .filter((num) => !Number.isNaN(num)),
       items: JSON.stringify(currentBuild.value.equippedItems),
       skills: JSON.stringify(currentBuild.value.skillGroups),
     };
@@ -208,6 +210,15 @@ export const useBuildStore = defineStore('build', () => {
     if (currentBuild.value.notes) result.notes = currentBuild.value.notes;
     if (currentBuild.value.buildCode) result.buildCode = currentBuild.value.buildCode;
     return result;
+  }
+
+  /** Parse JSON safely with fallback */
+  function safeJsonParse<T>(json: string, fallback: T): T {
+    try {
+      return JSON.parse(json) as T;
+    } catch {
+      return fallback;
+    }
   }
 
   /** Load Build from StoredBuild */
@@ -219,8 +230,8 @@ export const useBuildStore = defineStore('build', () => {
       level: stored.level,
       allocatedNodeIds: stored.passiveNodes.map((id) => String(id)),
       masterySelections: {},
-      equippedItems: stored.items ? (JSON.parse(stored.items) as Record<string, Item>) : {},
-      skillGroups: stored.skills ? (JSON.parse(stored.skills) as SkillGroup[]) : [],
+      equippedItems: stored.items ? safeJsonParse<Record<string, Item>>(stored.items, {}) : {},
+      skillGroups: stored.skills ? safeJsonParse<SkillGroup[]>(stored.skills, []) : [],
     };
     if (stored.ascendancy) result.ascendancy = stored.ascendancy;
     if (stored.notes) result.notes = stored.notes;
@@ -278,14 +289,16 @@ export const useBuildStore = defineStore('build', () => {
 
   /** Import build from Build object */
   function importBuild(build: Build): void {
-    currentBuild.value = build;
+    // Deep clone to avoid external mutations affecting store state
+    currentBuild.value = structuredClone(build);
     currentBuildDbId.value = undefined;
     isDirty.value = true;
   }
 
   /** Export current build as Build object */
   function exportBuild(): Build {
-    return { ...currentBuild.value };
+    // Deep clone to ensure exported build is independent
+    return structuredClone(currentBuild.value);
   }
 
   return {

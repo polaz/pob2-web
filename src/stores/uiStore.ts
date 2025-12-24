@@ -105,6 +105,9 @@ export const useUiStore = defineStore('ui', () => {
 
   /** Set active tab */
   function setActiveTab(tab: MainTab): void {
+    if (tab === activeTab.value) {
+      return; // Don't update if same tab
+    }
     previousTab.value = activeTab.value;
     activeTab.value = tab;
   }
@@ -169,6 +172,9 @@ export const useUiStore = defineStore('ui', () => {
     modalData.value = null;
   }
 
+  /** Timeout IDs for auto-dismissing notifications */
+  const notificationTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
+
   /** Add notification */
   function notify(
     type: Notification['type'],
@@ -180,9 +186,11 @@ export const useUiStore = defineStore('ui', () => {
     notifications.value.push(notification);
 
     if (timeout > 0) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
+        notificationTimeouts.delete(id);
         dismissNotification(id);
       }, timeout);
+      notificationTimeouts.set(id, timeoutId);
     }
 
     return id;
@@ -190,6 +198,13 @@ export const useUiStore = defineStore('ui', () => {
 
   /** Dismiss notification by ID */
   function dismissNotification(id: string): void {
+    // Clear timeout if exists to prevent memory leak
+    const timeoutId = notificationTimeouts.get(id);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+      notificationTimeouts.delete(id);
+    }
+
     const index = notifications.value.findIndex((n) => n.id === id);
     if (index !== -1) {
       notifications.value.splice(index, 1);
@@ -198,6 +213,11 @@ export const useUiStore = defineStore('ui', () => {
 
   /** Clear all notifications */
   function clearNotifications(): void {
+    // Clear all pending timeouts
+    for (const timeoutId of notificationTimeouts.values()) {
+      clearTimeout(timeoutId);
+    }
+    notificationTimeouts.clear();
     notifications.value = [];
   }
 
@@ -210,6 +230,7 @@ export const useUiStore = defineStore('ui', () => {
   /** Toggle keyboard shortcuts */
   function toggleKeyboardShortcuts(): void {
     keyboardShortcutsEnabled.value = !keyboardShortcutsEnabled.value;
+    void savePreferences();
   }
 
   /** Load preferences from database */
