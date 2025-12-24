@@ -216,8 +216,8 @@ export default defineConfig((ctx) => {
         mac: {
           category: 'public.app-category.games',
           target: [
-            { target: 'dmg', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH] : ['x64', 'arm64'] },
-            { target: 'zip', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH] : ['x64', 'arm64'] },
+            { target: 'dmg', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH as 'x64' | 'arm64'] : ['x64', 'arm64'] },
+            { target: 'zip', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH as 'x64' | 'arm64'] : ['x64', 'arm64'] },
           ],
           icon: 'src-electron/icons/icon.icns',
         },
