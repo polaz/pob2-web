@@ -24,7 +24,7 @@
     "build:electron:publish": "yarn proto:generate && quasar build -m electron",
     "type-check": "vue-tsc --noEmit",
     "postinstall": "quasar prepare",
-    "proto:generate": "./node_modules/.bin/protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_opt ts_nocheck,eslint_disable,add_pb_suffix --ts_out ./src/protos/ -I ./src/proto/vendor -I ./src/proto pob2.proto",
+    "proto:generate": "yarn dlx protoc --ts_out ./src/protos/ --ts_opt ts_nocheck,eslint_disable,add_pb_suffix -I ./src/proto/vendor -I ./src/proto pob2.proto",
     "proto:watch": "chokidar \"src/proto/**/*.proto\" -c \"yarn proto:generate\""
   },
   "dependencies": {
