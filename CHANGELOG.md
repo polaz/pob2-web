@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/polaz/pob2-web/compare/v1.0.0...v1.0.1) (2025-12-24)
+
+
+### Bug Fixes
+
+* **ci:** add PUBLISH=never env to prevent auto-publish in CI ([64a8fc8](https://github.com/polaz/pob2-web/commit/64a8fc8d0339ebfb7c2a05728ab9a80201f8699b))
+
 # 1.0.0 (2025-12-24)
 
 
