@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/polaz/pob2-web/compare/v1.0.3...v1.0.4) (2025-12-24)
+
+
+### Bug Fixes
+
+* **config:** correct publish conditional logic to use ternary ([4e2eb19](https://github.com/polaz/pob2-web/commit/4e2eb19785dad83049ac556c46c304294cda7e1d))
+
 ## [1.0.3](https://github.com/polaz/pob2-web/compare/v1.0.2...v1.0.3) (2025-12-24)
 
 
