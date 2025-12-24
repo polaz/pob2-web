@@ -1,0 +1,339 @@
+/**
+ * Build Store - manages the current active build state
+ */
+import { ref, computed } from 'vue';
+import { defineStore, acceptHMRUpdate } from 'pinia';
+import type { Build, BuildConfig, Item, SkillGroup } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/pob2_pb';
+import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
+import type { StoredBuild } from 'src/types/db';
+
+/** Create a new empty build with defaults */
+function createEmptyBuild(): Build {
+  return {
+    id: crypto.randomUUID(),
+    name: 'New Build',
+    characterClass: CharacterClass.WARRIOR,
+    level: 1,
+    allocatedNodeIds: [],
+    masterySelections: {},
+    equippedItems: {},
+    skillGroups: [],
+  };
+}
+
+export const useBuildStore = defineStore('build', () => {
+  // ============================================================================
+  // State
+  // ============================================================================
+
+  /** Current active build */
+  const currentBuild = ref<Build>(createEmptyBuild());
+
+  /** Database ID of the current build (undefined if not saved) */
+  const currentBuildDbId = ref<number | undefined>(undefined);
+
+  /** Whether the build has unsaved changes */
+  const isDirty = ref(false);
+
+  /** Whether build is currently being saved */
+  const isSaving = ref(false);
+
+  /** Whether build is currently being loaded */
+  const isLoading = ref(false);
+
+  // ============================================================================
+  // Getters
+  // ============================================================================
+
+  /** Build display name */
+  const buildName = computed(() => currentBuild.value.name ?? 'Unnamed Build');
+
+  /** Character class */
+  const characterClass = computed(() => currentBuild.value.characterClass);
+
+  /** Ascendancy */
+  const ascendancy = computed(() => currentBuild.value.ascendancy);
+
+  /** Character level */
+  const level = computed(() => currentBuild.value.level ?? 1);
+
+  /** Allocated passive node IDs */
+  const allocatedNodeIds = computed(() => currentBuild.value.allocatedNodeIds);
+
+  /** Number of allocated nodes */
+  const allocatedNodeCount = computed(() => currentBuild.value.allocatedNodeIds.length);
+
+  /** Equipped items map */
+  const equippedItems = computed(() => currentBuild.value.equippedItems);
+
+  /** Skill groups */
+  const skillGroups = computed(() => currentBuild.value.skillGroups);
+
+  /** Build configuration */
+  const config = computed(() => currentBuild.value.config);
+
+  /** Whether build is saved to database */
+  const isSaved = computed(() => currentBuildDbId.value !== undefined);
+
+  // ============================================================================
+  // Actions
+  // ============================================================================
+
+  /** Create a new empty build */
+  function newBuild(): void {
+    currentBuild.value = createEmptyBuild();
+    currentBuildDbId.value = undefined;
+    isDirty.value = false;
+  }
+
+  /** Set build name */
+  function setName(name: string): void {
+    currentBuild.value.name = name;
+    isDirty.value = true;
+  }
+
+  /** Set character class */
+  function setCharacterClass(charClass: CharacterClass): void {
+    currentBuild.value.characterClass = charClass;
+    // Reset ascendancy when class changes
+    delete currentBuild.value.ascendancy;
+    isDirty.value = true;
+  }
+
+  /** Set ascendancy */
+  function setAscendancy(asc: string | undefined): void {
+    if (asc === undefined) {
+      delete currentBuild.value.ascendancy;
+    } else {
+      currentBuild.value.ascendancy = asc;
+    }
+    isDirty.value = true;
+  }
+
+  /** Set character level */
+  function setLevel(lvl: number): void {
+    currentBuild.value.level = Math.max(1, Math.min(100, lvl));
+    isDirty.value = true;
+  }
+
+  /** Set allocated node IDs */
+  function setAllocatedNodes(nodeIds: string[]): void {
+    currentBuild.value.allocatedNodeIds = nodeIds;
+    isDirty.value = true;
+  }
+
+  /** Add allocated node */
+  function allocateNode(nodeId: string): void {
+    if (!currentBuild.value.allocatedNodeIds.includes(nodeId)) {
+      currentBuild.value.allocatedNodeIds.push(nodeId);
+      isDirty.value = true;
+    }
+  }
+
+  /** Remove allocated node */
+  function deallocateNode(nodeId: string): void {
+    const index = currentBuild.value.allocatedNodeIds.indexOf(nodeId);
+    if (index !== -1) {
+      currentBuild.value.allocatedNodeIds.splice(index, 1);
+      isDirty.value = true;
+    }
+  }
+
+  /** Set mastery selection for a node */
+  function setMasterySelection(nodeId: string, effectId: string): void {
+    currentBuild.value.masterySelections[nodeId] = effectId;
+    isDirty.value = true;
+  }
+
+  /** Remove mastery selection */
+  function removeMasterySelection(nodeId: string): void {
+    delete currentBuild.value.masterySelections[nodeId];
+    isDirty.value = true;
+  }
+
+  /** Set equipped item in slot */
+  function setEquippedItem(slot: string, item: Item): void {
+    currentBuild.value.equippedItems[slot] = item;
+    isDirty.value = true;
+  }
+
+  /** Remove equipped item from slot */
+  function removeEquippedItem(slot: string): void {
+    delete currentBuild.value.equippedItems[slot];
+    isDirty.value = true;
+  }
+
+  /** Set skill groups */
+  function setSkillGroups(groups: SkillGroup[]): void {
+    currentBuild.value.skillGroups = groups;
+    isDirty.value = true;
+  }
+
+  /** Add skill group */
+  function addSkillGroup(group: SkillGroup): void {
+    currentBuild.value.skillGroups.push(group);
+    isDirty.value = true;
+  }
+
+  /** Remove skill group by index */
+  function removeSkillGroup(index: number): void {
+    currentBuild.value.skillGroups.splice(index, 1);
+    isDirty.value = true;
+  }
+
+  /** Set build configuration */
+  function setConfig(cfg: BuildConfig): void {
+    currentBuild.value.config = cfg;
+    isDirty.value = true;
+  }
+
+  /** Set build notes */
+  function setNotes(notes: string): void {
+    currentBuild.value.notes = notes;
+    isDirty.value = true;
+  }
+
+  /** Convert Build to StoredBuild for database */
+  function toStoredBuild(): Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> {
+    const result: Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> = {
+      name: currentBuild.value.name ?? 'Unnamed Build',
+      className: CharacterClass[currentBuild.value.characterClass ?? CharacterClass.WARRIOR],
+      level: currentBuild.value.level ?? 1,
+      passiveNodes: currentBuild.value.allocatedNodeIds.map((id) => parseInt(id, 10)),
+      items: JSON.stringify(currentBuild.value.equippedItems),
+      skills: JSON.stringify(currentBuild.value.skillGroups),
+    };
+    if (currentBuild.value.ascendancy) result.ascendancy = currentBuild.value.ascendancy;
+    if (currentBuild.value.notes) result.notes = currentBuild.value.notes;
+    if (currentBuild.value.buildCode) result.buildCode = currentBuild.value.buildCode;
+    return result;
+  }
+
+  /** Load Build from StoredBuild */
+  function fromStoredBuild(stored: StoredBuild): Build {
+    const result: Build = {
+      id: String(stored.id),
+      name: stored.name,
+      characterClass: CharacterClass[stored.className as keyof typeof CharacterClass] ?? CharacterClass.WARRIOR,
+      level: stored.level,
+      allocatedNodeIds: stored.passiveNodes.map((id) => String(id)),
+      masterySelections: {},
+      equippedItems: stored.items ? (JSON.parse(stored.items) as Record<string, Item>) : {},
+      skillGroups: stored.skills ? (JSON.parse(stored.skills) as SkillGroup[]) : [],
+    };
+    if (stored.ascendancy) result.ascendancy = stored.ascendancy;
+    if (stored.notes) result.notes = stored.notes;
+    if (stored.buildCode) result.buildCode = stored.buildCode;
+    return result;
+  }
+
+  /** Save current build to database */
+  async function save(): Promise<number> {
+    isSaving.value = true;
+    try {
+      const storedData = toStoredBuild();
+
+      if (currentBuildDbId.value !== undefined) {
+        // Update existing build
+        await updateBuild(currentBuildDbId.value, storedData);
+        isDirty.value = false;
+        return currentBuildDbId.value;
+      } else {
+        // Create new build
+        const newId = await createBuild(storedData);
+        currentBuildDbId.value = newId;
+        isDirty.value = false;
+        return newId;
+      }
+    } finally {
+      isSaving.value = false;
+    }
+  }
+
+  /** Load build from database by ID */
+  async function load(id: number): Promise<boolean> {
+    isLoading.value = true;
+    try {
+      const stored = await getBuild(id);
+      if (stored) {
+        currentBuild.value = fromStoredBuild(stored);
+        currentBuildDbId.value = id;
+        isDirty.value = false;
+        return true;
+      }
+      return false;
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  /** Delete current build from database */
+  async function deleteCurrentBuild(): Promise<void> {
+    if (currentBuildDbId.value !== undefined) {
+      await deleteBuild(currentBuildDbId.value);
+      newBuild();
+    }
+  }
+
+  /** Import build from Build object */
+  function importBuild(build: Build): void {
+    currentBuild.value = build;
+    currentBuildDbId.value = undefined;
+    isDirty.value = true;
+  }
+
+  /** Export current build as Build object */
+  function exportBuild(): Build {
+    return { ...currentBuild.value };
+  }
+
+  return {
+    // State
+    currentBuild,
+    currentBuildDbId,
+    isDirty,
+    isSaving,
+    isLoading,
+
+    // Getters
+    buildName,
+    characterClass,
+    ascendancy,
+    level,
+    allocatedNodeIds,
+    allocatedNodeCount,
+    equippedItems,
+    skillGroups,
+    config,
+    isSaved,
+
+    // Actions
+    newBuild,
+    setName,
+    setCharacterClass,
+    setAscendancy,
+    setLevel,
+    setAllocatedNodes,
+    allocateNode,
+    deallocateNode,
+    setMasterySelection,
+    removeMasterySelection,
+    setEquippedItem,
+    removeEquippedItem,
+    setSkillGroups,
+    addSkillGroup,
+    removeSkillGroup,
+    setConfig,
+    setNotes,
+    save,
+    load,
+    deleteCurrentBuild,
+    importBuild,
+    exportBuild,
+  };
+});
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useBuildStore, import.meta.hot));
+}
