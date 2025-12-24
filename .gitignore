@@ -43,3 +43,6 @@ yarn-error.log*
 .copilot/
 .aider*
 .continue/
+
+# Development scripts
+.scripts/
