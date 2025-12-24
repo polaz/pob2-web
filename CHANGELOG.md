@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/polaz/pob2-web/compare/v1.0.5...v1.0.6) (2025-12-24)
+
+
+### Bug Fixes
+
+* **ci:** update package.json version before building ([7160acb](https://github.com/polaz/pob2-web/commit/7160acb393bdfb147075cbe1c85b9d4ce6fa1abd))
+
 ## [1.0.5](https://github.com/polaz/pob2-web/compare/v1.0.4...v1.0.5) (2025-12-24)
 
 
