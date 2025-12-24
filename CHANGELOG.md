@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/polaz/pob2-web/compare/v1.0.1...v1.0.2) (2025-12-24)
+
+
+### Bug Fixes
+
+* **ci:** pass GH_TOKEN to electron build for publisher init ([0c7f66f](https://github.com/polaz/pob2-web/commit/0c7f66f6864919ca28f9e40dbac8daabbd6646cb))
+
 ## [1.0.1](https://github.com/polaz/pob2-web/compare/v1.0.0...v1.0.1) (2025-12-24)
 
 
