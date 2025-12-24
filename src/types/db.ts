@@ -70,6 +70,8 @@ export interface UserPreferences {
   recentBuilds: number[];
   /** Custom keyboard shortcuts */
   keyboardShortcuts?: Record<string, string>;
+  /** Whether keyboard shortcuts are enabled */
+  keyboardShortcutsEnabled: boolean;
 }
 
 /** Default user preferences */
@@ -82,4 +84,5 @@ export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   autoSave: true,
   autoSaveInterval: 30,
   recentBuilds: [],
+  keyboardShortcutsEnabled: true,
 };

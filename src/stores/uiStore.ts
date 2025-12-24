@@ -215,6 +215,7 @@ export const useUiStore = defineStore('ui', () => {
       theme.value = prefs.theme;
       language.value = prefs.language;
       tooltipsEnabled.value = prefs.showTooltips;
+      keyboardShortcutsEnabled.value = prefs.keyboardShortcutsEnabled;
       preferencesLoaded.value = true;
     } catch (error) {
       console.error('Failed to load preferences:', error);
@@ -222,6 +223,7 @@ export const useUiStore = defineStore('ui', () => {
       theme.value = DEFAULT_USER_PREFERENCES.theme;
       language.value = DEFAULT_USER_PREFERENCES.language;
       tooltipsEnabled.value = DEFAULT_USER_PREFERENCES.showTooltips;
+      keyboardShortcutsEnabled.value = DEFAULT_USER_PREFERENCES.keyboardShortcutsEnabled;
       preferencesLoaded.value = true;
     }
   }
@@ -233,6 +235,7 @@ export const useUiStore = defineStore('ui', () => {
         theme: theme.value,
         language: language.value,
         showTooltips: tooltipsEnabled.value,
+        keyboardShortcutsEnabled: keyboardShortcutsEnabled.value,
       });
     } catch (error) {
       console.error('Failed to save preferences:', error);
@@ -245,6 +248,7 @@ export const useUiStore = defineStore('ui', () => {
       theme: theme.value,
       language: language.value,
       showTooltips: tooltipsEnabled.value,
+      keyboardShortcutsEnabled: keyboardShortcutsEnabled.value,
     };
   }
 

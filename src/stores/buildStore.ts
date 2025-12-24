@@ -4,7 +4,7 @@
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
-import type { Build, BuildConfig, Item, SkillGroup } from 'src/protos/pob2_pb';
+import type { Build, BuildConfig, Item, SkillGroup, ItemSlot } from 'src/protos/pob2_pb';
 import { CharacterClass } from 'src/protos/pob2_pb';
 import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
 import type { StoredBuild } from 'src/types/db';
@@ -154,14 +154,14 @@ export const useBuildStore = defineStore('build', () => {
   }
 
   /** Set equipped item in slot */
-  function setEquippedItem(slot: string, item: Item): void {
-    currentBuild.value.equippedItems[slot] = item;
+  function setEquippedItem(slot: ItemSlot, item: Item): void {
+    currentBuild.value.equippedItems[String(slot)] = item;
     isDirty.value = true;
   }
 
   /** Remove equipped item from slot */
-  function removeEquippedItem(slot: string): void {
-    delete currentBuild.value.equippedItems[slot];
+  function removeEquippedItem(slot: ItemSlot): void {
+    delete currentBuild.value.equippedItems[String(slot)];
     isDirty.value = true;
   }
 

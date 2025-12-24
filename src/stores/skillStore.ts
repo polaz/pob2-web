@@ -147,20 +147,37 @@ export const useSkillStore = defineStore('skill', () => {
     gemSearchResults.value = [];
   }
 
-  /** Set gem search query */
+  /** Set gem search query and perform search by name and tags */
   function setGemSearchQuery(query: string): void {
     gemSearchQuery.value = query;
     // Perform search
     if (query.length > 0) {
       const lowerQuery = query.toLowerCase();
-      gemSearchResults.value = availableGems.value
-        .filter((gem) => gem.name?.toLowerCase().includes(lowerQuery))
-        .map((gem) => ({
-          gem,
-          matchType: 'name' as const,
-          matchText: gem.name ?? '',
-        }))
-        .slice(0, MAX_SEARCH_RESULTS);
+      const results: GemSearchResult[] = [];
+
+      for (const gem of availableGems.value) {
+        // Check name match
+        if (gem.name?.toLowerCase().includes(lowerQuery)) {
+          results.push({
+            gem,
+            matchType: 'name',
+            matchText: gem.name,
+          });
+          continue; // Skip tag check if name matches
+        }
+
+        // Check tag match
+        const matchingTag = gem.tags?.find((tag) => tag.toLowerCase().includes(lowerQuery));
+        if (matchingTag) {
+          results.push({
+            gem,
+            matchType: 'tag',
+            matchText: matchingTag,
+          });
+        }
+      }
+
+      gemSearchResults.value = results.slice(0, MAX_SEARCH_RESULTS);
     } else {
       gemSearchResults.value = [];
     }

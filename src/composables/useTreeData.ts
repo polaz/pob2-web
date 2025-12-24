@@ -23,6 +23,16 @@ let treeDataCache: TreeData | null = null;
 let loadingPromise: Promise<TreeData> | null = null;
 
 /**
+ * Reset module-level state for testing purposes.
+ * This should only be called from test code to ensure clean state between tests.
+ * @internal
+ */
+export function __resetTreeDataForTesting(): void {
+  treeDataCache = null;
+  loadingPromise = null;
+}
+
+/**
  * Convert raw tree data to optimized format
  */
 function convertToTreeData(rawData: RawTreeData): TreeData {
@@ -90,8 +100,9 @@ async function loadTreeData(): Promise<TreeData> {
         treeDataCache = treeData;
         return treeData;
       }
-    } catch {
+    } catch (e) {
       // Cache miss or error, continue to load from JSON
+      console.warn('Failed to load tree data from cache:', e);
     }
 
     // Load from bundled JSON
@@ -110,8 +121,9 @@ async function loadTreeData(): Promise<TreeData> {
         rawData.version,
         TREE_CACHE_TTL
       );
-    } catch {
+    } catch (e) {
       // Caching failed, but we still have the data in memory
+      console.warn('Failed to cache tree data to IndexedDB:', e);
     }
 
     return treeData;

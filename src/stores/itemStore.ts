@@ -79,8 +79,8 @@ export const useItemStore = defineStore('item', () => {
   // Getters
   // ============================================================================
 
-  /** Pre-computed slot lookup maps for O(1) access */
-  const slotLookup = new Map<ItemSlot, SlotInfo>(
+  /** Pre-computed slot lookup map for O(1) access (created once per store instance) */
+  const slotLookup: Map<ItemSlot, SlotInfo> = new Map(
     [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].map((s) => [s.slot, s])
   );
 
