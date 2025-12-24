@@ -212,12 +212,12 @@ export default defineConfig((ctx) => {
           releaseType: 'release',
         },
 
-        // macOS
+        // macOS - arch controlled by BUILD_ARCH env or defaults to both
         mac: {
           category: 'public.app-category.games',
           target: [
-            { target: 'dmg', arch: ['x64', 'arm64'] },
-            { target: 'zip', arch: ['x64', 'arm64'] },
+            { target: 'dmg', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH] : ['x64', 'arm64'] },
+            { target: 'zip', arch: process.env.BUILD_ARCH ? [process.env.BUILD_ARCH] : ['x64', 'arm64'] },
           ],
           icon: 'src-electron/icons/icon.icns',
         },
