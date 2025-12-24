@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/polaz/pob2-web/compare/v1.0.2...v1.0.3) (2025-12-24)
+
+
+### Bug Fixes
+
+* **ci:** conditionally disable publish config via PUBLISH env ([82cb93a](https://github.com/polaz/pob2-web/commit/82cb93a761493bbc6499e8b740e8ebc21ce88c4a))
+
 ## [1.0.2](https://github.com/polaz/pob2-web/compare/v1.0.1...v1.0.2) (2025-12-24)
 
 
