@@ -20,6 +20,11 @@ export interface NodeSearchResult {
   matchText: string;
 }
 
+/** Zoom limits for tree viewport */
+const ZOOM_MIN = 0.1;
+const ZOOM_MAX = 3.0;
+const ZOOM_DEFAULT = 1.0;
+
 export const useTreeStore = defineStore('tree', () => {
   // ============================================================================
   // State
@@ -50,7 +55,7 @@ export const useTreeStore = defineStore('tree', () => {
   const viewport = ref<TreeViewport>({
     x: 0,
     y: 0,
-    zoom: 1.0,
+    zoom: ZOOM_DEFAULT,
   });
 
   /** Whether tree is being dragged */
@@ -169,7 +174,7 @@ export const useTreeStore = defineStore('tree', () => {
 
   /** Set viewport zoom */
   function setViewportZoom(zoom: number): void {
-    viewport.value.zoom = Math.max(0.1, Math.min(3.0, zoom));
+    viewport.value.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, zoom));
   }
 
   /** Pan viewport by delta */
@@ -181,7 +186,7 @@ export const useTreeStore = defineStore('tree', () => {
   /** Zoom viewport at point */
   function zoomViewportAt(x: number, y: number, zoomDelta: number): void {
     const oldZoom = viewport.value.zoom;
-    const newZoom = Math.max(0.1, Math.min(3.0, oldZoom + zoomDelta));
+    const newZoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, oldZoom + zoomDelta));
 
     // Adjust position to zoom towards the point
     const zoomRatio = newZoom / oldZoom;
@@ -192,7 +197,7 @@ export const useTreeStore = defineStore('tree', () => {
 
   /** Reset viewport to default */
   function resetViewport(): void {
-    viewport.value = { x: 0, y: 0, zoom: 1.0 };
+    viewport.value = { x: 0, y: 0, zoom: ZOOM_DEFAULT };
   }
 
   /** Center viewport on node */
@@ -224,7 +229,7 @@ export const useTreeStore = defineStore('tree', () => {
     comparisonNodeIds.value = nodeIds;
   }
 
-  /** Clear tree data */
+  /** Clear tree data and reset all tree-related state */
   function clearTreeData(): void {
     treeData.value = null;
     hoveredNodeId.value = null;
@@ -232,6 +237,8 @@ export const useTreeStore = defineStore('tree', () => {
     searchQuery.value = '';
     searchResults.value = [];
     highlightedPath.value = [];
+    comparisonNodeIds.value = null;
+    loadError.value = null;
   }
 
   return {

@@ -22,6 +22,8 @@ export interface StoredBuild {
   skills: string;
   /** Build configuration (enemy, charges, combat state) */
   config?: string;
+  /** Mastery selections: nodeId -> effectId mapping */
+  masterySelections?: string;
   /** Build notes/description */
   notes?: string;
   /** Creation timestamp */

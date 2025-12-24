@@ -208,6 +208,9 @@ export const useBuildStore = defineStore('build', () => {
     };
     if (currentBuild.value.ascendancy) result.ascendancy = currentBuild.value.ascendancy;
     if (currentBuild.value.config) result.config = JSON.stringify(currentBuild.value.config);
+    if (Object.keys(currentBuild.value.masterySelections).length > 0) {
+      result.masterySelections = JSON.stringify(currentBuild.value.masterySelections);
+    }
     if (currentBuild.value.notes) result.notes = currentBuild.value.notes;
     if (currentBuild.value.buildCode) result.buildCode = currentBuild.value.buildCode;
     return result;
@@ -222,17 +225,70 @@ export const useBuildStore = defineStore('build', () => {
     }
   }
 
+  /** Validate that value is a Record<string, Item> */
+  function isValidItemsRecord(value: unknown): value is Record<string, Item> {
+    if (typeof value !== 'object' || value === null) return false;
+    // Basic shape validation - items should have id and name at minimum
+    for (const item of Object.values(value)) {
+      if (typeof item !== 'object' || item === null) return false;
+    }
+    return true;
+  }
+
+  /** Validate that value is a SkillGroup array */
+  function isValidSkillGroups(value: unknown): value is SkillGroup[] {
+    if (!Array.isArray(value)) return false;
+    // Basic shape validation - each group should be an object
+    return value.every((group) => typeof group === 'object' && group !== null);
+  }
+
+  /** Validate that value is a Record<string, string> for mastery selections */
+  function isValidMasterySelections(value: unknown): value is Record<string, string> {
+    if (typeof value !== 'object' || value === null) return false;
+    for (const [key, val] of Object.entries(value)) {
+      if (typeof key !== 'string' || typeof val !== 'string') return false;
+    }
+    return true;
+  }
+
   /** Load Build from StoredBuild */
   function fromStoredBuild(stored: StoredBuild): Build {
+    // Parse and validate equipped items
+    let equippedItems: Record<string, Item> = {};
+    if (stored.items) {
+      const parsed = safeJsonParse<unknown>(stored.items, null);
+      if (isValidItemsRecord(parsed)) {
+        equippedItems = parsed;
+      }
+    }
+
+    // Parse and validate skill groups
+    let skillGroups: SkillGroup[] = [];
+    if (stored.skills) {
+      const parsed = safeJsonParse<unknown>(stored.skills, null);
+      if (isValidSkillGroups(parsed)) {
+        skillGroups = parsed;
+      }
+    }
+
+    // Parse and validate mastery selections
+    let masterySelections: Record<string, string> = {};
+    if (stored.masterySelections) {
+      const parsed = safeJsonParse<unknown>(stored.masterySelections, null);
+      if (isValidMasterySelections(parsed)) {
+        masterySelections = parsed;
+      }
+    }
+
     const result: Build = {
       id: String(stored.id),
       name: stored.name,
       characterClass: CharacterClass[stored.className as keyof typeof CharacterClass] ?? CharacterClass.WARRIOR,
       level: stored.level,
       allocatedNodeIds: stored.passiveNodes.map((id) => String(id)),
-      masterySelections: {},
-      equippedItems: stored.items ? safeJsonParse<Record<string, Item>>(stored.items, {}) : {},
-      skillGroups: stored.skills ? safeJsonParse<SkillGroup[]>(stored.skills, []) : [],
+      masterySelections,
+      equippedItems,
+      skillGroups,
     };
     if (stored.ascendancy) result.ascendancy = stored.ascendancy;
     if (stored.config) {
@@ -294,16 +350,18 @@ export const useBuildStore = defineStore('build', () => {
 
   /** Import build from Build object */
   function importBuild(build: Build): void {
-    // Deep clone to avoid external mutations affecting store state
-    currentBuild.value = structuredClone(build);
+    // Deep clone via JSON to avoid external mutations affecting store state
+    // JSON serialization handles plain objects properly without protobuf issues
+    currentBuild.value = JSON.parse(JSON.stringify(build)) as Build;
     currentBuildDbId.value = undefined;
     isDirty.value = true;
   }
 
   /** Export current build as Build object */
   function exportBuild(): Build {
-    // Deep clone to ensure exported build is independent
-    return structuredClone(currentBuild.value);
+    // Deep clone via JSON to ensure exported build is independent
+    // JSON serialization handles plain objects properly without protobuf issues
+    return JSON.parse(JSON.stringify(currentBuild.value)) as Build;
   }
 
   return {

@@ -12,6 +12,15 @@ export interface GemSearchResult {
   matchText: string;
 }
 
+/** Maximum search results to display */
+const MAX_SEARCH_RESULTS = 50;
+
+/** Default gem level for new instances */
+const DEFAULT_GEM_LEVEL = 20;
+
+/** Default gem quality for new instances */
+const DEFAULT_GEM_QUALITY = 20;
+
 export const useSkillStore = defineStore('skill', () => {
   // ============================================================================
   // State
@@ -151,7 +160,7 @@ export const useSkillStore = defineStore('skill', () => {
           matchType: 'name' as const,
           matchText: gem.name ?? '',
         }))
-        .slice(0, 50);
+        .slice(0, MAX_SEARCH_RESULTS);
     } else {
       gemSearchResults.value = [];
     }
@@ -198,8 +207,8 @@ export const useSkillStore = defineStore('skill', () => {
     return {
       id: crypto.randomUUID(),
       gemId,
-      level: 20,
-      quality: 20,
+      level: DEFAULT_GEM_LEVEL,
+      quality: DEFAULT_GEM_QUALITY,
       enabled: true,
       count: 1,
     };

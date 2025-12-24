@@ -42,6 +42,9 @@ export const SWAP_SLOTS: SlotInfo[] = [
   { slot: ItemSlot.SLOT_WEAPON_2_SWAP, name: 'Swap Off Hand', shortName: 'SOH' },
 ];
 
+/** Maximum number of recent items to keep */
+const MAX_RECENT_ITEMS = 20;
+
 export const useItemStore = defineStore('item', () => {
   // ============================================================================
   // State
@@ -155,8 +158,9 @@ export const useItemStore = defineStore('item', () => {
 
   /** Copy item to clipboard */
   function copyItem(item: Item): void {
-    // Deep clone to avoid shared references with original item
-    const clonedItem = structuredClone(item);
+    // Deep clone via JSON to avoid shared references with original item
+    // JSON serialization handles plain objects properly without protobuf issues
+    const clonedItem = JSON.parse(JSON.stringify(item)) as Item;
     clonedItem.id = crypto.randomUUID();
     clipboardItem.value = clonedItem;
   }
@@ -170,8 +174,8 @@ export const useItemStore = defineStore('item', () => {
   function addToRecentItems(item: Item): void {
     // Remove if already exists
     const filtered = recentItems.value.filter((i) => i.id !== item.id);
-    // Add to front, keep max 20
-    recentItems.value = [item, ...filtered].slice(0, 20);
+    // Add to front, keep max items
+    recentItems.value = [item, ...filtered].slice(0, MAX_RECENT_ITEMS);
   }
 
   /** Clear recent items */
