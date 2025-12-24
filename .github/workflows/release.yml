@@ -37,7 +37,7 @@ jobs:
           git config --global core.eol lf
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Semantic Release
         id: semantic
@@ -97,7 +97,7 @@ jobs:
           git config --global core.eol lf
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Build Electron app (no publish)
         run: npx quasar build -m electron -- --publish never
