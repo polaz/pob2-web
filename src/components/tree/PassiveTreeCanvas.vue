@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="passive-tree-canvas relative full-width full-height overflow-hidden">
+  <div ref="containerRef" class="passive-tree-canvas absolute-full overflow-hidden">
     <canvas ref="canvasRef" class="block full-width full-height" />
 
     <!-- Dev mode FPS counter with renderer info -->
@@ -150,15 +150,16 @@ function handleResize(): void {
 
 /**
  * Perform the actual resize operation.
- * Uses getBoundingClientRect for accurate visible dimensions.
+ * Uses container dimensions to avoid PixiJS canvas attribute conflicts with CSS.
  */
 function performResize(): void {
-  if (!canvasRef.value || !ready.value) return;
+  if (!containerRef.value || !canvasRef.value || !ready.value) return;
 
-  // Use getBoundingClientRect for accurate visible dimensions
-  const rect = canvasRef.value.getBoundingClientRect();
-  const width = Math.round(rect.width);
-  const height = Math.round(rect.height);
+  // Use container dimensions (respects CSS layout) for width
+  // Use visible viewport height (clamped) for height
+  const containerRect = containerRef.value.getBoundingClientRect();
+  const width = Math.round(containerRect.width);
+  const height = Math.round(Math.min(containerRect.height, window.innerHeight - containerRect.top));
 
   if (width > 0 && height > 0) {
     resize(width, height);
@@ -201,9 +202,9 @@ function handlePointerDown(event: PointerEvent): void {
  * Handle pointer move for panning and coordinate tracking.
  */
 function handlePointerMove(event: PointerEvent): void {
-  // Update mouse tree coordinates for debug display
-  if (containerRef.value) {
-    const rect = containerRef.value.getBoundingClientRect();
+  // Update mouse tree coordinates for debug display (use canvasRef for consistency with centering)
+  if (canvasRef.value) {
+    const rect = canvasRef.value.getBoundingClientRect();
     const screenX = event.clientX - rect.left;
     const screenY = event.clientY - rect.top;
 
@@ -362,10 +363,12 @@ watch(error, (err) => {
 watch(
   () => treeRenderer.nodeCount.value,
   (count) => {
-    if (count > 0 && !userHasPanned && canvasRef.value) {
-      const rect = canvasRef.value.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0) {
-        treeRenderer.centerViewport(Math.round(rect.width), Math.round(rect.height));
+    if (count > 0 && !userHasPanned && containerRef.value) {
+      const rect = containerRef.value.getBoundingClientRect();
+      const width = Math.round(rect.width);
+      const height = Math.round(Math.min(rect.height, window.innerHeight - rect.top));
+      if (width > 0 && height > 0) {
+        treeRenderer.centerViewport(width, height);
       }
     }
   }
@@ -394,10 +397,8 @@ defineExpose({
   /* FPS counter styling */
   --tree-fps-bg: rgba(0, 0, 0, 0.7);
   --tree-fps-color: #4ade80;
-  /* Minimum height for canvas container */
-  --tree-canvas-min-height: 200px;
 
-  min-height: var(--tree-canvas-min-height);
+  /* Background color for canvas container */
   background-color: var(--tree-canvas-bg);
 }
 

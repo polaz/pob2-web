@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/polaz/pob2-web/compare/v1.17.0...v1.17.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* **tree:** fix canvas centering and resize behavior ([71df6bf](https://github.com/polaz/pob2-web/commit/71df6bfe854d34b415ff9f2b0bb630eef222ea48))
+
 # [1.17.0](https://github.com/polaz/pob2-web/compare/v1.16.0...v1.17.0) (2025-12-25)
 
 

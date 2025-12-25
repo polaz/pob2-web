@@ -22,10 +22,16 @@ export interface NodeSearchResult {
   matchText: string;
 }
 
-/** Zoom limits for tree viewport */
-const ZOOM_MIN = 0.8;
+/**
+ * Zoom limits for tree viewport.
+ * Calculated from node size constraints (base_size = 12):
+ * - Z_min = MIN_NODE_SIZE / base_size = 24/12 = 2.0 (nodes at 24px minimum)
+ * - Z_max = MAX_NODE_SIZE / base_size = 64/12 ≈ 5.0 (nodes at ~60px)
+ * Below Z_min, positions compress but nodes stay 24px → overlap.
+ */
+const ZOOM_MIN = 2.0;
 const ZOOM_MAX = 5.0;
-const ZOOM_DEFAULT = 2.0; // Start zoomed in showing central area like in-game
+const ZOOM_DEFAULT = 2.5; // Comfortable starting zoom
 
 /** Minimum query length for n-gram search */
 const MIN_QUERY_LENGTH = 2;

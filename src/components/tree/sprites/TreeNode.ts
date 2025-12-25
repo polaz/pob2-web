@@ -12,7 +12,6 @@ import {
   HIGHLIGHT_CONSTANTS,
   HIT_AREA,
   MAX_POLYGON_SIDES,
-  LOD_ZOOM_SIZE_OFFSET,
   type NodeState,
   type LODLevel,
   DEFAULT_NODE_STATE,
@@ -202,16 +201,16 @@ export class TreeNode extends Container {
   }
 
   /**
-   * Update LOD based on zoom level.
-   * Only re-renders if LOD level changes.
+   * Update LOD and size based on zoom level.
+   * Re-renders when zoom changes to update node size (linear scaling).
    */
   updateLOD(zoom: number): void {
+    const prevZoom = this._currentZoom;
     this._currentZoom = zoom;
-    const newLOD = getLODLevel(zoom);
+    this._currentLOD = getLODLevel(zoom);
 
-    // Check if LOD changed
-    if (newLOD.minZoom !== this._currentLOD.minZoom) {
-      this._currentLOD = newLOD;
+    // Re-render if zoom changed (node size scales with zoom)
+    if (prevZoom !== zoom) {
       this.render();
     }
 
@@ -220,10 +219,11 @@ export class TreeNode extends Container {
       const inverseZoom = 1 / zoom;
       this.labelText.scale.set(inverseZoom);
 
-      // Update position offset too
+      // Update position offset too - use local size (screen size / zoom)
       const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
-      const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
-      const nodeRadius = size / 2;
+      const screenSize = getNodeSize(nodeType, this._currentZoom);
+      const localSize = screenSize / this._currentZoom;
+      const nodeRadius = localSize / 2;
       const screenOffset = getLabelVerticalOffset() * inverseZoom;
       this.labelText.position.set(0, nodeRadius + screenOffset);
     }
@@ -238,7 +238,10 @@ export class TreeNode extends Container {
    */
   render(): void {
     const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
-    const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
+    // getNodeSize returns desired screen size, but container is scaled by zoom,
+    // so we divide by zoom to get local size that results in correct screen size
+    const screenSize = getNodeSize(nodeType, this._currentZoom);
+    const size = screenSize / this._currentZoom;
     const lod = this._currentLOD;
 
     // Clear previous graphics
@@ -425,10 +428,11 @@ export class TreeNode extends Container {
     // Update alpha for hover effect
     this.alpha = getNodeAlpha(this._state);
 
-    // Re-render to show/hide label on hover
+    // Re-render to show/hide label on hover - use local size
     const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
-    const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
-    this.renderLabel(size, this._currentLOD);
+    const screenSize = getNodeSize(nodeType, this._currentZoom);
+    const localSize = screenSize / this._currentZoom;
+    this.renderLabel(localSize, this._currentLOD);
   }
 
   // ============================================================================
@@ -495,7 +499,7 @@ export class TreeNode extends Container {
 
   /** Get the visual size of the node */
   get nodeSize(): number {
-    return getNodeSize(this.nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
+    return getNodeSize(this.nodeType, this._currentZoom);
   }
 
   // ============================================================================
