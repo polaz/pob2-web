@@ -543,7 +543,8 @@ async function handlePasteFromClipboard(): Promise<void> {
       pasteText.value = text;
       handlePasteTextChange(text);
     }
-  } catch (_error) {
+  } catch (error) {
+    console.warn('Failed to read from clipboard:', error);
     parseError.value = 'Failed to read clipboard. Please paste manually.';
   }
 }

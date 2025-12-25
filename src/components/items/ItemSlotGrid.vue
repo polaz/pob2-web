@@ -139,7 +139,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import type { Item, ItemSlot as ItemSlotEnum } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/pob2_pb';
+import { ItemSlot as ItemSlotEnum } from 'src/protos/pob2_pb';
 import { useItemStore, EQUIPMENT_SLOTS, FLASK_SLOTS, SWAP_SLOTS, type SlotInfo } from 'src/stores/itemStore';
 import { useBuildStore } from 'src/stores/buildStore';
 import { parseItem } from 'src/engine/items/ItemParser';
@@ -239,29 +240,11 @@ const contextMenuSlot = ref<ItemSlotEnum | null>(null);
 
 /**
  * Gets the enum name from ItemSlot value for filtering.
+ * Uses TypeScript enum reverse mapping instead of manual lookup table.
  */
 function getSlotEnumName(slot: ItemSlotEnum): string {
-  // Map enum values to names
-  const slotNames: Record<number, string> = {
-    1: 'SLOT_WEAPON_1',
-    2: 'SLOT_WEAPON_2',
-    3: 'SLOT_WEAPON_1_SWAP',
-    4: 'SLOT_WEAPON_2_SWAP',
-    10: 'SLOT_HELMET',
-    11: 'SLOT_BODY_ARMOUR',
-    12: 'SLOT_GLOVES',
-    13: 'SLOT_BOOTS',
-    20: 'SLOT_AMULET',
-    21: 'SLOT_RING_1',
-    22: 'SLOT_RING_2',
-    23: 'SLOT_BELT',
-    30: 'SLOT_FLASK_1',
-    31: 'SLOT_FLASK_2',
-    32: 'SLOT_FLASK_3',
-    33: 'SLOT_FLASK_4',
-    34: 'SLOT_FLASK_5',
-  };
-  return slotNames[slot] ?? 'UNKNOWN';
+  const name = ItemSlotEnum[slot];
+  return typeof name === 'string' ? name : 'UNKNOWN';
 }
 
 /**
@@ -371,6 +354,8 @@ function handleRemoveItem(): void {
   gap: 24px;
 }
 
+/* Custom flex layout for slot columns - uses CSS custom property for gap
+   and requires column direction for vertical stacking of equipment slots */
 .item-slot-grid__column {
   display: flex;
   flex-direction: column;

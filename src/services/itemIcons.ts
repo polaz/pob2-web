@@ -150,6 +150,12 @@ class ItemIconLoader {
     resolve: (result: IconLoadResult) => void;
   }> = [];
 
+  /**
+   * Head pointer for O(1) dequeue from queue array.
+   * Queue grows but isn't trimmed - acceptable for icon loading batches.
+   */
+  private queueHead = 0;
+
   /** Current number of active loads */
   private activeLoads = 0;
 
@@ -198,10 +204,11 @@ class ItemIconLoader {
 
   /**
    * Processes the load queue, respecting concurrency limits.
+   * Uses head pointer pattern for O(1) dequeue instead of O(n) shift().
    */
   private processQueue(): void {
-    while (this.activeLoads < MAX_CONCURRENT_LOADS && this.queue.length > 0) {
-      const item = this.queue.shift();
+    while (this.activeLoads < MAX_CONCURRENT_LOADS && this.queueHead < this.queue.length) {
+      const item = this.queue[this.queueHead++];
       if (!item) break;
 
       this.activeLoads++;
@@ -211,6 +218,12 @@ class ItemIconLoader {
           this.activeLoads--;
           this.processQueue();
         });
+    }
+
+    // Reset queue when fully processed to free memory
+    if (this.queueHead >= this.queue.length && this.activeLoads === 0) {
+      this.queue = [];
+      this.queueHead = 0;
     }
   }
 
@@ -257,10 +270,12 @@ class ItemIconLoader {
 
   /**
    * Adds entry to cache, evicting old entries if needed.
+   * Uses FIFO eviction based on Map's insertion order guarantee (ES2015+).
    */
   private addToCache(key: string, url: string): void {
-    // Evict oldest entries if cache is full
+    // Evict oldest entry (first inserted) if cache is at capacity
     if (this.cache.size >= MEMORY_CACHE_MAX_SIZE) {
+      // Map.keys().next() returns first inserted key due to Map's insertion order
       const oldestKey = this.cache.keys().next().value;
       if (oldestKey) {
         this.cache.delete(oldestKey);

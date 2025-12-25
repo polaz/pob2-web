@@ -337,6 +337,8 @@ function handleClear(): void {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
+/* Custom flex layout for centered empty state - component-specific styling
+   that requires precise control over BEM element positioning */
 .item-comparison-pane__empty {
   min-height: 200px;
   display: flex;

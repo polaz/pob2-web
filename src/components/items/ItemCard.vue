@@ -458,6 +458,7 @@ function formatBlock(value: number): string {
 .item-card {
   --item-card-bg: #0d0d14;
   --item-card-border: #3a3a4e;
+  --socket-size: 16px;
 
   background-color: var(--item-card-bg);
   border-width: 2px;
@@ -523,8 +524,8 @@ function formatBlock(value: number): string {
 }
 
 .item-card__socket {
-  width: 16px;
-  height: 16px;
+  width: var(--socket-size);
+  height: var(--socket-size);
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }

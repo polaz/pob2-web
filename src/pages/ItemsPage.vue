@@ -336,11 +336,20 @@ function clearComparison(): void {
 
 <style scoped>
 .items-page {
-  padding: 16px;
+  /* Layout dimensions */
+  --page-padding: 16px;
+  --slots-panel-width: 280px;
+  --details-panel-min-width: 300px;
+  --comparison-panel-min-width: 280px;
+  --comparison-panel-max-width: 320px;
+  --empty-state-min-height: 300px;
+  --header-offset: 100px;
+
+  padding: var(--page-padding);
 }
 
 .items-page__container {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - var(--header-offset));
 }
 
 .items-page__card {
@@ -348,20 +357,20 @@ function clearComparison(): void {
 }
 
 .items-page__slots {
-  min-width: 280px;
+  min-width: var(--slots-panel-width);
 }
 
 .items-page__details {
-  min-width: 300px;
+  min-width: var(--details-panel-min-width);
 }
 
 .items-page__comparison {
-  min-width: 280px;
-  max-width: 320px;
+  min-width: var(--comparison-panel-min-width);
+  max-width: var(--comparison-panel-max-width);
 }
 
 .items-page__empty {
-  min-height: 300px;
+  min-height: var(--empty-state-min-height);
   display: flex;
   flex-direction: column;
   align-items: center;

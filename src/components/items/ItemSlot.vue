@@ -57,6 +57,22 @@ import {
 import ItemCard from './ItemCard.vue';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/** Normal slot size in pixels */
+const SLOT_SIZE_NORMAL = 64;
+
+/** Small slot size for rings in pixels */
+const SLOT_SIZE_SMALL = 48;
+
+/** Flask slot width in pixels */
+const FLASK_SLOT_WIDTH = 40;
+
+/** Flask slot height in pixels */
+const FLASK_SLOT_HEIGHT = 64;
+
+// ============================================================================
 // Props & Emits
 // ============================================================================
 
@@ -103,11 +119,11 @@ const slotClasses = computed(() => ({
 const slotDimensions = computed(() => {
   switch (slotSize.value) {
     case 'small':
-      return { width: '48px', height: '48px' };
+      return { width: `${SLOT_SIZE_SMALL}px`, height: `${SLOT_SIZE_SMALL}px` };
     case 'flask':
-      return { width: '40px', height: '64px' };
+      return { width: `${FLASK_SLOT_WIDTH}px`, height: `${FLASK_SLOT_HEIGHT}px` };
     default:
-      return { width: '64px', height: '64px' };
+      return { width: `${SLOT_SIZE_NORMAL}px`, height: `${SLOT_SIZE_NORMAL}px` };
   }
 });
 
