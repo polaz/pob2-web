@@ -57,8 +57,10 @@ Web-based PWA build planner for Path of Exile 2, inspired by [Path of Building C
 
 ### Prerequisites
 
-- Node.js 20+
-- Yarn 1.x
+- **Node.js 20+** (24+ recommended)
+- **Yarn 4.12+** (managed via `packageManager` field)
+
+> Note: Yarn is automatically installed via corepack. If not enabled, run `corepack enable`.
 
 ### Install dependencies
 
@@ -82,6 +84,14 @@ yarn dev:pwa
 yarn build:pwa
 ```
 
+### Run tests
+
+```bash
+yarn test           # Run all tests
+yarn test:unit      # Unit tests only
+yarn test:cov       # With coverage report
+```
+
 ### Lint & Type Check
 
 ```bash
@@ -102,7 +112,11 @@ src/
 ├── workers/        # Web Workers (heavy computations)
 ├── stores/         # Pinia state stores
 ├── data/           # Game data (JSON)
-└── types/          # TypeScript definitions
+│   ├── tree/       # Passive tree data
+│   ├── gems/       # Gem definitions
+│   └── mods/       # Modifier definitions
+├── types/          # TypeScript definitions
+└── protos/         # Generated protobuf types
 ```
 
 ## Credits
