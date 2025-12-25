@@ -8,7 +8,11 @@ on:
 
 # Feature flags for CI behavior
 env:
-  # Set to 'true' to skip build job on PRs (still runs on merge to main)
+  # Set to 'true' to skip build job on PRs (still runs on merge to main).
+  # Trade-off: Faster PR feedback but build errors caught later at merge time.
+  # This is acceptable because: (1) type-check catches most issues, (2) build
+  # runs on merge to main before deployment, (3) saves CI minutes during development.
+  # Set to 'false' when approaching releases or when build stability is critical.
   SKIP_BUILD_ON_PR: 'true'
 
 concurrency:

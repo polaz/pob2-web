@@ -103,24 +103,6 @@
       "examples": ["-10% to Fire Resistance"]
     },
     {
-      "id": "gain_percent_as_extra",
-      "regex": "^[Gg]ain (\\d+(?:\\.\\d+)?)% of (\\w+) [Dd]amage as [Ee]xtra (\\w+) [Dd]amage$",
-      "type": "BASE",
-      "valueGroup": 1,
-      "valueScale": 0.01,
-      "outputStats": ["${source}DamageGainAs${target}"],
-      "examples": ["Gain 20% of Physical Damage as Extra Fire Damage"]
-    },
-    {
-      "id": "convert_percent",
-      "regex": "^(\\d+(?:\\.\\d+)?)% of (\\w+) [Dd]amage [Cc]onverted to (\\w+) [Dd]amage$",
-      "type": "BASE",
-      "valueGroup": 1,
-      "valueScale": 0.01,
-      "outputStats": ["${source}DamageConvertTo${target}"],
-      "examples": ["50% of Physical Damage Converted to Fire Damage"]
-    },
-    {
       "id": "chance_percent",
       "regex": "^(\\d+(?:\\.\\d+)?)% chance to (.+)$",
       "type": "BASE",
@@ -147,15 +129,7 @@
       "statGroup": 2,
       "outputStats": ["${stat}Regen"],
       "examples": ["Regenerate 50 Life per second"]
-    },
-    {
-      "id": "leech_percent",
-      "regex": "^(\\d+(?:\\.\\d+)?)% of (.+) [Ll]eeched as (.+)$",
-      "type": "BASE",
-      "valueGroup": 1,
-      "valueScale": 0.01,
-      "outputStats": ["${source}LeechAs${target}"],
-      "examples": ["2% of Physical Damage Leeched as Life"]
     }
-  ]
+  ],
+  "_future_patterns_comment": "Patterns requiring ${source}/${target} template support are planned for future implementation: gain_percent_as_extra, convert_percent, leech_percent"
 }

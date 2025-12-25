@@ -68,6 +68,24 @@ function createTestData(): ModParserData {
         outputStats: ['${stat}DamageMin', '${stat}DamageMax'],
       },
       {
+        id: 'adds_damage_range_to_attacks',
+        regex: '^[Aa]dds (\\d+) to (\\d+) (\\w+) [Dd]amage to [Aa]ttacks$',
+        type: 'BASE',
+        valueGroups: [1, 2],
+        statGroup: 3,
+        outputStats: ['${stat}DamageMin', '${stat}DamageMax'],
+        flagNames: ['Attack'],
+      },
+      {
+        id: 'adds_damage_range_to_spells',
+        regex: '^[Aa]dds (\\d+) to (\\d+) (\\w+) [Dd]amage to [Ss]pells$',
+        type: 'BASE',
+        valueGroups: [1, 2],
+        statGroup: 3,
+        outputStats: ['${stat}DamageMin', '${stat}DamageMax'],
+        flagNames: ['Spell'],
+      },
+      {
         id: 'plus_percent_to_stat',
         regex: '^\\+(\\d+(?:\\.\\d+)?)% to (.+)$',
         type: 'BASE',
@@ -422,6 +440,26 @@ describe('ModParser', () => {
 
       expect(result.success).toBe(true);
       expect(result.mods[0]!.keywordFlags & KeywordFlag.Fire).toBeTruthy();
+    });
+
+    it('should apply pattern-level flagNames', () => {
+      const result = parser.parse('Adds 10 to 20 Fire Damage to Attacks', context);
+
+      expect(result.success).toBe(true);
+      expect(result.mods).toHaveLength(2);
+      // Pattern flagNames: ['Attack'] should set the Attack flag
+      expect(result.mods[0]!.flags & ModFlag.Attack).toBeTruthy();
+      expect(result.mods[1]!.flags & ModFlag.Attack).toBeTruthy();
+    });
+
+    it('should apply pattern-level flagNames for spells', () => {
+      const result = parser.parse('Adds 5 to 15 Cold Damage to Spells', context);
+
+      expect(result.success).toBe(true);
+      expect(result.mods).toHaveLength(2);
+      // Pattern flagNames: ['Spell'] should set the Spell flag
+      expect(result.mods[0]!.flags & ModFlag.Spell).toBeTruthy();
+      expect(result.mods[1]!.flags & ModFlag.Spell).toBeTruthy();
     });
   });
 

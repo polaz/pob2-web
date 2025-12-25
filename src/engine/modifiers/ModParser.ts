@@ -379,8 +379,26 @@ export class ModParser {
     }
 
     // Extract flags and conditions from text
-    const { flags, keywordFlags } = this.extractFlags(originalText);
+    let { flags, keywordFlags } = this.extractFlags(originalText);
     const condition = this.extractCondition(originalText);
+
+    // Apply pattern-level flags (from flagNames/keywordFlagNames in pattern definition)
+    if (pattern.flagNames) {
+      for (const name of pattern.flagNames) {
+        const flag = ModFlag[name as keyof typeof ModFlag];
+        if (flag !== undefined) {
+          flags |= flag;
+        }
+      }
+    }
+    if (pattern.keywordFlagNames) {
+      for (const name of pattern.keywordFlagNames) {
+        const flag = KeywordFlag[name as keyof typeof KeywordFlag];
+        if (flag !== undefined) {
+          keywordFlags |= flag;
+        }
+      }
+    }
 
     // Build mods based on outputStats or single stat
     const mods: Mod[] = [];
