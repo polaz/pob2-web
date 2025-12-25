@@ -145,6 +145,15 @@ export const HIGHLIGHT_CONSTANTS = {
 /** Minimum zoom level below which connections are hidden for performance */
 export const MIN_ZOOM_FOR_CONNECTIONS = 0.15;
 
+/**
+ * Small offset added to LOD minZoom when calculating node size.
+ * This ensures we use the size for the current LOD level rather than
+ * potentially falling into a lower LOD bracket at exact boundaries.
+ * For example, at zoom 0.3 (boundary between minimal and medium LOD),
+ * adding 0.1 ensures we use medium LOD sizing (0.4) not minimal (0.3).
+ */
+export const LOD_ZOOM_SIZE_OFFSET = 0.1;
+
 // ============================================================================
 // LOD (Level of Detail) Configuration
 // ============================================================================

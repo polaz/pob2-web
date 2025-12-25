@@ -130,13 +130,12 @@ export class NodeSpriteManager {
 
   /**
    * Generate background texture for a node.
+   * Uses PixiJS v8 Graphics API.
    */
   private generateBackgroundTexture(nodeType: NodeType, size: number, allocated: boolean): Texture {
     const graphics = new Graphics();
     const color = allocated ? NODE_COLORS.allocatedBg : NODE_COLORS.unallocatedBg;
     const radius = size / 2;
-
-    graphics.beginFill(color);
 
     const sides = getNodeShapeSides(nodeType);
     if (sides <= MAX_POLYGON_SIDES) {
@@ -144,23 +143,21 @@ export class NodeSpriteManager {
       this.drawPolygon(graphics, 0, 0, radius, sides);
     } else {
       // Draw circle for normal nodes
-      graphics.drawCircle(0, 0, radius);
+      graphics.circle(0, 0, radius);
     }
-
-    graphics.endFill();
+    graphics.fill(color);
 
     return this.graphicsToTexture(graphics, size);
   }
 
   /**
    * Generate frame/border texture for a node.
+   * Uses PixiJS v8 Graphics API.
    */
   private generateFrameTexture(nodeType: NodeType, size: number, frameWidth: number): Texture {
     const graphics = new Graphics();
     const color = getNodeFrameColor(nodeType);
     const radius = size / 2;
-
-    graphics.lineStyle(frameWidth, color, 1);
 
     const sides = getNodeShapeSides(nodeType);
     if (sides <= MAX_POLYGON_SIDES) {
@@ -168,14 +165,16 @@ export class NodeSpriteManager {
       this.drawPolygon(graphics, 0, 0, radius - frameWidth / 2, sides);
     } else {
       // Draw circle outline
-      graphics.drawCircle(0, 0, radius - frameWidth / 2);
+      graphics.circle(0, 0, radius - frameWidth / 2);
     }
+    graphics.stroke({ width: frameWidth, color });
 
     return this.graphicsToTexture(graphics, size);
   }
 
   /**
    * Generate glow effect texture for allocated nodes.
+   * Uses PixiJS v8 Graphics API.
    * @param _nodeType - Reserved for future use when different node types have different glow styles
    */
   private generateGlowTexture(_nodeType: NodeType, size: number): Texture {
@@ -190,9 +189,7 @@ export class NodeSpriteManager {
       const currentRadius = radius + (glowSize / 2 - radius) * (1 - ratio);
       const alpha = ratio * GLOW_CONSTANTS.maxAlpha;
 
-      graphics.beginFill(NODE_COLORS.allocatedGlow, alpha);
-      graphics.drawCircle(0, 0, currentRadius);
-      graphics.endFill();
+      graphics.circle(0, 0, currentRadius).fill({ color: NODE_COLORS.allocatedGlow, alpha });
     }
 
     return this.graphicsToTexture(graphics, glowSize);
@@ -200,6 +197,7 @@ export class NodeSpriteManager {
 
   /**
    * Draw a regular polygon on a Graphics object.
+   * Uses PixiJS v8 poly() API - caller must call fill() or stroke() after.
    */
   private drawPolygon(
     graphics: Graphics,
@@ -217,7 +215,7 @@ export class NodeSpriteManager {
       points.push(y + Math.sin(angle) * radius);
     }
 
-    graphics.drawPolygon(points);
+    graphics.poly(points, true);
   }
 
   /**

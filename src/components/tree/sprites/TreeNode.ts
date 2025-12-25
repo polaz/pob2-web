@@ -12,6 +12,7 @@ import {
   HIGHLIGHT_CONSTANTS,
   HIT_AREA,
   MAX_POLYGON_SIDES,
+  LOD_ZOOM_SIZE_OFFSET,
   type NodeState,
   type LODLevel,
   DEFAULT_NODE_STATE,
@@ -215,7 +216,7 @@ export class TreeNode extends Container {
    */
   render(): void {
     const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
-    const size = getNodeSize(nodeType, this._currentLOD.minZoom + 0.1);
+    const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
     const lod = this._currentLOD;
 
     // Clear previous graphics
@@ -253,25 +254,24 @@ export class TreeNode extends Container {
     const radius = size / 2;
     const sides = getNodeShapeSides(nodeType);
 
-    // Draw background
-    this.backgroundGraphics.beginFill(bgColor);
+    // Draw background using PixiJS v8 API
     if (sides <= MAX_POLYGON_SIDES) {
       this.drawPolygon(this.backgroundGraphics, radius, sides);
     } else {
-      this.backgroundGraphics.drawCircle(0, 0, radius);
+      this.backgroundGraphics.circle(0, 0, radius);
     }
-    this.backgroundGraphics.endFill();
+    this.backgroundGraphics.fill(bgColor);
 
     // Draw frame if LOD allows detail
     if (lod.showFrameDetails) {
       const frameWidth = this.getFrameWidth(nodeType);
-      this.frameGraphics.lineStyle(frameWidth, frameColor, 1);
 
       if (sides <= MAX_POLYGON_SIDES) {
         this.drawPolygon(this.frameGraphics, radius - frameWidth / 2, sides);
       } else {
-        this.frameGraphics.drawCircle(0, 0, radius - frameWidth / 2);
+        this.frameGraphics.circle(0, 0, radius - frameWidth / 2);
       }
+      this.frameGraphics.stroke({ width: frameWidth, color: frameColor });
     }
 
     // Add selection/search highlight
@@ -280,8 +280,9 @@ export class TreeNode extends Container {
         ? NODE_COLORS.selectedGlow
         : NODE_COLORS.searchHighlight;
 
-      this.frameGraphics.lineStyle(HIGHLIGHT_CONSTANTS.lineWidth, highlightColor, HIGHLIGHT_CONSTANTS.alpha);
-      this.frameGraphics.drawCircle(0, 0, radius + HIGHLIGHT_CONSTANTS.radiusOffset);
+      this.frameGraphics
+        .circle(0, 0, radius + HIGHLIGHT_CONSTANTS.radiusOffset)
+        .stroke({ width: HIGHLIGHT_CONSTANTS.lineWidth, color: highlightColor, alpha: HIGHLIGHT_CONSTANTS.alpha });
     }
   }
 
@@ -324,16 +325,14 @@ export class TreeNode extends Container {
     const glowSize = size * GLOW_CONSTANTS.sizeMultiplier;
     const radius = size / 2;
 
-    // Radial gradient effect using shared constants
+    // Radial gradient effect using shared constants and PixiJS v8 API
     const steps = GLOW_CONSTANTS.gradientSteps;
     for (let i = steps; i >= 0; i--) {
       const ratio = i / steps;
       const currentRadius = radius + (glowSize / 2 - radius) * (1 - ratio);
       const alpha = ratio * GLOW_CONSTANTS.maxAlpha;
 
-      glowGraphics.beginFill(NODE_COLORS.allocatedGlow, alpha);
-      glowGraphics.drawCircle(0, 0, currentRadius);
-      glowGraphics.endFill();
+      glowGraphics.circle(0, 0, currentRadius).fill({ color: NODE_COLORS.allocatedGlow, alpha });
     }
 
     // Add glow behind other elements and store reference for cleanup
@@ -374,9 +373,7 @@ export class TreeNode extends Container {
     // Make hit area slightly larger for easier interaction
     const hitRadius = size / 2 + HIT_AREA.padding;
 
-    this.hitAreaGraphics.beginFill(0xffffff);
-    this.hitAreaGraphics.drawCircle(0, 0, hitRadius);
-    this.hitAreaGraphics.endFill();
+    this.hitAreaGraphics.circle(0, 0, hitRadius).fill(0xffffff);
   }
 
   /**
@@ -398,6 +395,7 @@ export class TreeNode extends Container {
 
   /**
    * Draw a regular polygon on a Graphics object centered at origin.
+   * Uses PixiJS v8 poly() API - caller must call fill() or stroke() after.
    */
   private drawPolygon(graphics: Graphics, radius: number, sides: number): void {
     const points: number[] = [];
@@ -409,7 +407,7 @@ export class TreeNode extends Container {
       points.push(Math.sin(angle) * radius);
     }
 
-    graphics.drawPolygon(points);
+    graphics.poly(points, true);
   }
 
   /**
@@ -463,7 +461,7 @@ export class TreeNode extends Container {
 
   /** Get the visual size of the node */
   get nodeSize(): number {
-    return getNodeSize(this.nodeType, this._currentLOD.minZoom + 0.1);
+    return getNodeSize(this.nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
   }
 
   // ============================================================================
