@@ -325,7 +325,7 @@ describe('buildCode', () => {
   });
 
   describe('performance', () => {
-    it('should encode in under 100ms', () => {
+    it('should encode 100 builds in under 1000ms', () => {
       const build = createFullBuild();
 
       const start = performance.now();
@@ -340,7 +340,7 @@ describe('buildCode', () => {
       expect(elapsed).toBeLessThan(1000);
     });
 
-    it('should decode in under 100ms', () => {
+    it('should decode 100 builds in under 1000ms', () => {
       const build = createFullBuild();
       const code = encodeBuildCode(build);
 

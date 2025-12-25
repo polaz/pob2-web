@@ -73,13 +73,13 @@ export interface EncodeOptions {
 /**
  * Encode Uint8Array to base64 string.
  * Uses browser's btoa with proper binary handling.
- *
- * Note: Array.from with join is used for readability. For typical build codes (~10-50KB),
- * the performance difference vs a for-loop is negligible (<1ms). If encoding very large
- * payloads becomes a bottleneck, consider switching to a for-loop with string concatenation.
  */
 function uint8ArrayToBase64(bytes: Uint8Array): string {
-  const binary = Array.from(bytes, (byte) => String.fromCharCode(byte)).join('');
+  // Use for-loop for better performance with large arrays (vs Array.from().join())
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
   return btoa(binary);
 }
 

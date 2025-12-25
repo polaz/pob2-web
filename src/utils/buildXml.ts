@@ -107,6 +107,27 @@ const ITEM_LEVEL_PREFIX_LENGTH = 12;
 const IMPLICITS_PREFIX_LENGTH = 11;
 
 // =============================================================================
+// UUID Generation
+// =============================================================================
+
+/**
+ * Generate a UUID v4 string.
+ * Uses crypto.randomUUID when available (modern browsers), falls back to
+ * Math.random-based generation for older environments (Safari < 15.4, Node < 19).
+ */
+function generateUUID(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  // Fallback: RFC4122 v4 UUID using Math.random
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    const r = (Math.random() * 16) | 0;
+    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+// =============================================================================
 // Character Class Mapping
 // =============================================================================
 
@@ -757,10 +778,8 @@ function parseGem(gemElement: Element): GemInstance {
   const count = getNumAttr(gemElement, 'count');
 
   const gem: GemInstance = {
-    // Use gemId as instance id when available for PoB2 compatibility, else generate UUID.
-    // crypto.randomUUID is supported in all modern browsers (Chrome 92+, Firefox 95+, Safari 15.4+)
-    // and Node.js 19+. For older environments, a polyfill would be needed.
-    id: gemId ?? crypto.randomUUID(),
+    // Use gemId as instance id when available for PoB2 compatibility, else generate UUID
+    id: gemId ?? generateUUID(),
   };
 
   if (gemId) gem.gemId = gemId;
@@ -811,7 +830,7 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
 
     // Conditional spread: empty strings are intentionally excluded (meaningless labels/slots)
     const group: SkillGroup = {
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       // Use ?? (not ||) to preserve explicit false values; only undefined triggers default
       enabled: getBoolAttr(skillEl, 'enabled') ?? true,
       gems,
@@ -959,7 +978,7 @@ export function xmlToBuild(xml: string): Build {
 
   // Build object using conditional spread for optional properties
   const build: Build = {
-    id: crypto.randomUUID(),
+    id: generateUUID(),
     name: getAttr(specElOrRoot, 'title') ?? getAttr(buildElOrRoot, 'buildName') ?? 'Imported Build',
     characterClass,
     level: getNumAttr(buildElOrRoot, 'level') ?? DEFAULT_LEVEL,
