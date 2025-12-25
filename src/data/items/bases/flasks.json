@@ -21,9 +21,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Frozen",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 40,
@@ -46,9 +43,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you start Bleeding",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 30,
@@ -71,9 +65,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Poisoned",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 20,
@@ -96,9 +87,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Ignited",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 30,
@@ -121,9 +109,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Shocked",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 30,
@@ -146,9 +131,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Stunned",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 20,
@@ -171,9 +153,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you are affected by a Slow",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 20,
@@ -196,9 +175,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you take Fire damage from a Hit",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 4,
         "chargesUsed": 20,
@@ -221,9 +197,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you take Cold damage from a Hit",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 4,
         "chargesUsed": 20,
@@ -246,9 +219,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you take Lightning damage from a Hit",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 4,
         "chargesUsed": 20,
@@ -271,9 +241,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you take Chaos damage from a Hit",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 4,
         "chargesUsed": 30,
@@ -296,9 +263,6 @@
         "utility_flask": true
       },
       "implicit": "Used when you kill a Rare or Unique enemy",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 1,
         "chargesUsed": 80,
@@ -321,16 +285,10 @@
         "utility_flask": true
       },
       "implicit": "Used when you become Cursed",
-      "implicitModTypes": [
-        {}
-      ],
       "charm": {
         "duration": 3,
         "chargesUsed": 20,
-        "chargesMax": 40,
-        "buff": [
-          ""
-        ]
+        "chargesMax": 40
       },
       "req": {
         "level": 40
@@ -346,7 +304,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 50,
         "duration": 3,
@@ -365,7 +322,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 90,
         "duration": 5,
@@ -386,7 +342,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 150,
         "duration": 4,
@@ -407,7 +362,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 260,
         "duration": 5,
@@ -428,7 +382,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 340,
         "duration": 4,
@@ -449,7 +402,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 450,
         "duration": 4,
@@ -470,7 +422,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 710,
         "duration": 5,
@@ -491,7 +442,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 840,
         "duration": 4,
@@ -512,7 +462,6 @@
         "flask": true,
         "life_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "life": 920,
         "duration": 3,
@@ -533,7 +482,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 50,
         "duration": 2,
@@ -552,7 +500,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 70,
         "duration": 3,
@@ -573,7 +520,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 90,
         "duration": 2.5,
@@ -594,7 +540,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 110,
         "duration": 2.5,
@@ -615,7 +560,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 165,
         "duration": 3.5,
@@ -636,7 +580,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 165,
         "duration": 2.5,
@@ -657,7 +600,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 185,
         "duration": 2,
@@ -678,7 +620,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 285,
         "duration": 3.5,
@@ -699,7 +640,6 @@
         "flask": true,
         "mana_flask": true
       },
-      "implicitModTypes": {},
       "flask": {
         "mana": 310,
         "duration": 3,

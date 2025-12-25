@@ -224,9 +224,6 @@
         "ring": true
       },
       "implicit": "Grants 1 additional Skill Slot",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 44
       }
@@ -239,9 +236,6 @@
         "ring": true
       },
       "implicit": "Inflict Abyssal Wasting on Hit",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {}
     },
     "Ring": {
@@ -251,7 +245,6 @@
         "default": true,
         "ring": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Dusk Ring": {
@@ -262,10 +255,6 @@
         "ring": true
       },
       "implicit": "+1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Gloam Ring": {
@@ -276,10 +265,6 @@
         "ring": true
       },
       "implicit": "-1 Prefix Modifier allowed\\n+1 Suffix Modifier allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Penumbra Ring": {
@@ -290,10 +275,6 @@
         "ring": true
       },
       "implicit": "+2 Prefix Modifiers allowed\\n-2 Suffix Modifiers allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Tenebrous Ring": {
@@ -304,10 +285,6 @@
         "ring": true
       },
       "implicit": "-2 Prefix Modifiers allowed\\n+2 Suffix Modifiers allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Breach Ring": {
@@ -318,9 +295,6 @@
         "ring": true
       },
       "implicit": "Maximum Quality is 40%",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 40
       }
@@ -470,9 +444,6 @@
         "default": true
       },
       "implicit": "+(10-15) to Spirit",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 30
       }
@@ -523,10 +494,6 @@
         "default": true
       },
       "implicit": "+1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Gloam Amulet": {
@@ -537,10 +504,6 @@
         "default": true
       },
       "implicit": "-1 Prefix Modifier allowed\\n+1 Suffix Modifier allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Penumbra Amulet": {
@@ -551,10 +514,6 @@
         "default": true
       },
       "implicit": "+2 Prefix Modifiers allowed\\n-2 Suffix Modifiers allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Tenebrous Amulet": {
@@ -565,10 +524,6 @@
         "default": true
       },
       "implicit": "-2 Prefix Modifiers allowed\\n+2 Suffix Modifiers allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Distorted Amulet": {
@@ -579,10 +534,6 @@
         "default": true
       },
       "implicit": "-1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
-      "implicitModTypes": [
-        {},
-        {}
-      ],
       "req": {}
     },
     "Golden Obi": {
@@ -661,9 +612,6 @@
         "default": true
       },
       "implicit": "(15-20)% increased Charm Effect Duration\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 20
       }
@@ -694,9 +642,6 @@
         "default": true
       },
       "implicit": "(10-15)% reduced Charm Charges used\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 31
       }
@@ -726,9 +671,6 @@
         "default": true
       },
       "implicit": "(20-30)% increased Charm Charges gained\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 44
       }
@@ -741,9 +683,6 @@
         "default": true
       },
       "implicit": "(20-30)% increased Stun Threshold\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 50
       }
@@ -756,9 +695,6 @@
         "default": true
       },
       "implicit": "20% of Flask Recovery applied Instantly\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 55
       }
@@ -771,9 +707,6 @@
         "default": true
       },
       "implicit": "Flasks gain 0.17 charges per Second\\nHas (1-3) Charm Slots",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 62
       }
@@ -861,9 +794,6 @@
         "quiver": true
       },
       "implicit": "(25-40)% increased Stun Buildup",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 32
       }
@@ -934,9 +864,6 @@
         "quiver": true
       },
       "implicit": "100% chance to Pierce an Enemy",
-      "implicitModTypes": [
-        {}
-      ],
       "req": {
         "level": 55
       }
@@ -989,7 +916,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 12
       },
@@ -1007,7 +933,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 15
       },
@@ -1028,7 +953,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 17
       },
@@ -1049,7 +973,6 @@
         "int_armour": true,
         "maraketh_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 21
       },
@@ -1070,7 +993,6 @@
         "int_armour": true,
         "maraketh_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 25
       },
@@ -1091,7 +1013,6 @@
         "int_armour": true,
         "maraketh_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 28
       },
@@ -1112,7 +1033,6 @@
         "int_armour": true,
         "vaal_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 32
       },
@@ -1133,7 +1053,6 @@
         "int_armour": true,
         "vaal_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 34
       },
@@ -1154,7 +1073,6 @@
         "int_armour": true,
         "karui_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 40
       },
@@ -1175,7 +1093,6 @@
         "int_armour": true,
         "karui_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 43
       },
@@ -1195,7 +1112,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 44
       },
@@ -1215,7 +1131,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 47
       },
@@ -1235,7 +1150,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 52
       },
@@ -1255,7 +1169,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 40
       },
@@ -1275,7 +1188,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 42
       },
@@ -1295,7 +1207,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 43
       },
@@ -1315,7 +1226,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 45
       },
@@ -1335,7 +1245,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 49
       },
@@ -1355,7 +1264,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 53
       },
@@ -1375,7 +1283,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 58
       },
@@ -1395,7 +1302,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 66
       },
@@ -1415,7 +1321,6 @@
         "focus": true,
         "int_armour": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 75
       },
@@ -1436,7 +1341,6 @@
         "int_armour": true,
         "karui_basetype": true
       },
-      "implicitModTypes": {},
       "armour": {
         "EnergyShield": 85
       },
@@ -1457,7 +1361,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 9,
         "PhysicalMax": 15,
@@ -1479,7 +1382,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 12,
         "PhysicalMax": 20,
@@ -1572,7 +1474,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 23,
         "PhysicalMax": 38,
@@ -1630,9 +1531,6 @@
         "weapon": true
       },
       "implicit": "+(8-12) to Maximum Rage",
-      "implicitModTypes": [
-        {}
-      ],
       "weapon": {
         "PhysicalMin": 31,
         "PhysicalMax": 58,
@@ -1658,7 +1556,6 @@
         "vaal_basetype": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 43,
         "PhysicalMax": 71,
@@ -1719,7 +1616,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 71,
         "PhysicalMax": 107,
@@ -1745,9 +1641,6 @@
         "weapon": true
       },
       "implicit": "+(8-12) to Maximum Rage",
-      "implicitModTypes": [
-        {}
-      ],
       "weapon": {
         "PhysicalMin": 57,
         "PhysicalMax": 96,
@@ -1772,7 +1665,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 45,
         "PhysicalMax": 83,
@@ -1861,9 +1753,6 @@
         "weapon": true
       },
       "implicit": "+(8-12) to Maximum Rage",
-      "implicitModTypes": [
-        {}
-      ],
       "weapon": {
         "PhysicalMin": 49,
         "PhysicalMax": 91,
@@ -1889,7 +1778,6 @@
         "vaal_basetype": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 62,
         "PhysicalMax": 103,
@@ -1915,7 +1803,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 60,
         "PhysicalMax": 99,
@@ -2008,7 +1895,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 59,
         "PhysicalMax": 98,
@@ -2066,9 +1952,6 @@
         "weapon": true
       },
       "implicit": "+(8-12) to Maximum Rage",
-      "implicitModTypes": [
-        {}
-      ],
       "weapon": {
         "PhysicalMin": 61,
         "PhysicalMax": 114,
@@ -2094,7 +1977,6 @@
         "vaal_basetype": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 67,
         "PhysicalMax": 112,
@@ -2155,7 +2037,6 @@
         "twohand": true,
         "weapon": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 101,
         "PhysicalMax": 151,

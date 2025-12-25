@@ -21,7 +21,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -34,7 +33,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -47,7 +45,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -60,7 +57,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -73,7 +69,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -86,7 +81,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -99,7 +93,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -112,7 +105,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -125,7 +117,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -138,7 +129,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -151,7 +141,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -164,7 +153,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -177,7 +165,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -190,7 +177,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -203,7 +189,6 @@
         "soul_core": true,
         "soul_core_tier3": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -216,7 +201,6 @@
         "soul_core": true,
         "soul_core_tier1": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -229,7 +213,6 @@
         "soul_core": true,
         "soul_core_tier1": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -242,7 +225,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -255,7 +237,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -268,7 +249,6 @@
         "soul_core": true,
         "soul_core_tier1": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -281,7 +261,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -294,7 +273,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -307,7 +285,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -320,7 +297,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -333,7 +309,6 @@
         "soul_core": true,
         "soul_core_tier1": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -346,7 +321,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -359,7 +333,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -372,7 +345,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -385,7 +357,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -398,7 +369,6 @@
         "soul_core": true,
         "soul_core_tier2": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 35
       }
@@ -410,7 +380,6 @@
         "abyssal_eye": true,
         "default": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -422,7 +391,6 @@
         "abyssal_eye": true,
         "default": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -434,7 +402,6 @@
         "abyssal_eye": true,
         "default": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -446,7 +413,6 @@
         "abyssal_eye": true,
         "default": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -459,7 +425,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -472,7 +437,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -485,7 +449,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -498,7 +461,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -511,7 +473,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 37
       }
@@ -524,7 +485,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 37
       }
@@ -537,7 +497,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 45
       }
@@ -550,7 +509,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 45
       }
@@ -563,7 +521,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 41
       }
@@ -576,7 +533,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 41
       }
@@ -589,7 +545,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -602,7 +557,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -615,7 +569,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -628,7 +581,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -641,7 +593,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 11
       }
@@ -654,7 +605,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 11
       }
@@ -667,7 +617,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 21
       }
@@ -680,7 +629,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 21
       }
@@ -693,7 +641,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 16
       }
@@ -706,7 +653,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 16
       }
@@ -719,7 +665,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -732,7 +677,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -745,7 +689,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -758,7 +701,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -771,7 +713,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 57
       }
@@ -784,7 +725,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 57
       }
@@ -797,7 +737,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 62
       }
@@ -810,7 +749,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 62
       }
@@ -823,7 +761,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 59
       }
@@ -836,7 +773,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 59
       }
@@ -849,7 +785,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -862,7 +797,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -875,7 +809,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -888,7 +821,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -901,7 +833,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -914,7 +845,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -927,7 +857,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -940,7 +869,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -953,7 +881,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -966,7 +893,6 @@
         "rune": true,
         "rune_lesser": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 5
       }
@@ -979,7 +905,6 @@
         "rune": true,
         "rune_normal": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 31
       }
@@ -992,7 +917,6 @@
         "rune": true,
         "rune_greater": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 52
       }
@@ -1004,7 +928,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1016,7 +939,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1028,7 +950,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1040,7 +961,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1052,7 +972,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1064,7 +983,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1076,7 +994,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1088,7 +1005,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1100,7 +1016,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1112,7 +1027,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1124,7 +1038,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1136,7 +1049,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1148,7 +1060,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1160,7 +1071,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1172,7 +1082,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1184,7 +1093,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1196,7 +1104,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1208,7 +1115,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1220,7 +1126,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1232,7 +1137,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1244,7 +1148,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1256,7 +1159,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1268,7 +1170,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1280,7 +1181,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1292,7 +1192,6 @@
         "default": true,
         "rune": true
       },
-      "implicitModTypes": {},
       "req": {
         "level": 65
       }
@@ -1305,7 +1204,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Thruldana": {
@@ -1316,7 +1214,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Grold": {
@@ -1327,7 +1224,6 @@
         "idol": true,
         "wild_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Eeshta": {
@@ -1338,7 +1234,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Egrin": {
@@ -1349,7 +1244,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Maxarius": {
@@ -1360,7 +1254,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Idol of Ralakesh": {
@@ -1371,7 +1264,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Snake Idol": {
@@ -1382,7 +1274,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Primate Idol": {
@@ -1393,7 +1284,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Owl Idol": {
@@ -1404,7 +1294,6 @@
         "idol": true,
         "primal_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Cat Idol": {
@@ -1415,7 +1304,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Wolf Idol": {
@@ -1426,7 +1314,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Stag Idol": {
@@ -1437,7 +1324,6 @@
         "idol": true,
         "vivid_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Boar Idol": {
@@ -1448,7 +1334,6 @@
         "idol": true,
         "wild_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Bear Idol": {
@@ -1459,7 +1344,6 @@
         "idol": true,
         "wild_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Ox Idol": {
@@ -1470,7 +1354,6 @@
         "idol": true,
         "wild_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Rabbit Idol": {
@@ -1481,7 +1364,6 @@
         "idol": true,
         "sacred_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Fox Idol": {
@@ -1492,7 +1374,6 @@
         "idol": true,
         "sacred_idol": true
       },
-      "implicitModTypes": {},
       "req": {}
     },
     "Fishing Rod": {
@@ -1506,7 +1387,6 @@
         "not_for_sale": true,
         "twohand": true
       },
-      "implicitModTypes": {},
       "weapon": {
         "PhysicalMin": 10,
         "PhysicalMax": 18,
