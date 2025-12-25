@@ -87,7 +87,12 @@ const ASCENDANCY_SOURCE = 'ascendancy';
 /**
  * Module-level warning flag to log mastery limitation only once per session.
  *
- * Note: Module-level state persists across tests. Use resetMasteryWarningFlag()
+ * LIFECYCLE: This flag resets when the application is reloaded (page refresh,
+ * app restart). It persists across build switches and data reloads within a
+ * single session. This is intentional to prevent console spam while still
+ * ensuring developers see the warning at least once per session.
+ *
+ * TESTING: Module-level state persists across tests. Use resetMasteryWarningFlag()
  * in test cleanup if testing warning behavior.
  */
 let masteryLimitationWarned = false;

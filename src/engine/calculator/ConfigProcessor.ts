@@ -20,7 +20,7 @@
 import { ModDB } from '../modifiers/ModDB';
 import type { Mod } from '../modifiers/types';
 import type { ResolvedBuildConfig } from './Environment';
-import { CHARGE_CONSTANTS, BOSS_CONSTANTS } from 'src/shared/constants';
+import { CHARGE_MULTIPLIERS, BOSS_CONSTANTS } from 'src/shared/constants';
 
 // ============================================================================
 // Types
@@ -114,9 +114,8 @@ export function processConfig(input: ConfigProcessorInput): ConfigProcessorResul
 /**
  * Generate modifiers from charge configuration.
  *
- * Note: CHARGE_CONSTANTS are stored as percentages (e.g., 40 for 40%) to match
- * in-game display values. We divide by 100 here at setup time (not hot path)
- * to convert to decimal form for the modifier system.
+ * Uses pre-computed CHARGE_MULTIPLIERS (decimal form) to avoid repeated
+ * division operations during config processing.
  *
  * @param config - Resolved build config
  * @returns Array of charge-related mods
@@ -126,8 +125,7 @@ function processCharges(config: ResolvedBuildConfig): Mod[] {
 
   // Power charges: +40% crit chance per charge
   if (config.powerCharges && config.powerChargeCount > 0) {
-    const critBonus =
-      config.powerChargeCount * (CHARGE_CONSTANTS.POWER_CHARGE_CRIT / 100);
+    const critBonus = config.powerChargeCount * CHARGE_MULTIPLIERS.POWER_CHARGE_CRIT;
 
     mods.push(createConfigMod('CritChance', 'INC', critBonus, 'power_charges'));
 
@@ -145,9 +143,9 @@ function processCharges(config: ResolvedBuildConfig): Mod[] {
   // Frenzy charges: +4% attack/cast speed, +4% more damage per charge
   if (config.frenzyCharges && config.frenzyChargeCount > 0) {
     const speedBonus =
-      config.frenzyChargeCount * (CHARGE_CONSTANTS.FRENZY_CHARGE_ATTACK_SPEED / 100);
+      config.frenzyChargeCount * CHARGE_MULTIPLIERS.FRENZY_CHARGE_ATTACK_SPEED;
     const damageBonus =
-      config.frenzyChargeCount * (CHARGE_CONSTANTS.FRENZY_CHARGE_DAMAGE / 100);
+      config.frenzyChargeCount * CHARGE_MULTIPLIERS.FRENZY_CHARGE_DAMAGE;
 
     // Speed bonus (applies to both attack and cast speed)
     mods.push(createConfigMod('Speed', 'INC', speedBonus, 'frenzy_charges'));
@@ -169,11 +167,9 @@ function processCharges(config: ResolvedBuildConfig): Mod[] {
   // Endurance charges: +4% phys DR, +4% elemental res per charge
   if (config.enduranceCharges && config.enduranceChargeCount > 0) {
     const physDR =
-      config.enduranceChargeCount *
-      (CHARGE_CONSTANTS.ENDURANCE_CHARGE_PHYS_DR / 100);
+      config.enduranceChargeCount * CHARGE_MULTIPLIERS.ENDURANCE_CHARGE_PHYS_DR;
     const elemRes =
-      config.enduranceChargeCount *
-      (CHARGE_CONSTANTS.ENDURANCE_CHARGE_RESIST / 100);
+      config.enduranceChargeCount * CHARGE_MULTIPLIERS.ENDURANCE_CHARGE_RESIST;
 
     // Physical damage reduction
     mods.push(

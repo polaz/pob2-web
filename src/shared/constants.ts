@@ -57,7 +57,7 @@ export const DEFENCE_CONSTANTS = {
 } as const;
 
 /**
- * Charge constants
+ * Charge constants (percentage values for display/documentation)
  */
 export const CHARGE_CONSTANTS = {
   // Power charges
@@ -74,6 +74,19 @@ export const CHARGE_CONSTANTS = {
   ENDURANCE_CHARGE_PHYS_DR: 4, // +4% physical damage reduction per endurance charge
   ENDURANCE_CHARGE_RESIST: 4, // +4% elemental resistances per endurance charge
   DEFAULT_ENDURANCE_CHARGES: 3, // Default max endurance charges
+} as const;
+
+/**
+ * Pre-computed decimal multipliers for charge bonuses.
+ * Use these in calculations to avoid repeated division by 100.
+ */
+export const CHARGE_MULTIPLIERS = {
+  POWER_CHARGE_CRIT: CHARGE_CONSTANTS.POWER_CHARGE_CRIT / 100, // 0.40
+  FRENZY_CHARGE_ATTACK_SPEED: CHARGE_CONSTANTS.FRENZY_CHARGE_ATTACK_SPEED / 100, // 0.04
+  FRENZY_CHARGE_CAST_SPEED: CHARGE_CONSTANTS.FRENZY_CHARGE_CAST_SPEED / 100, // 0.04
+  FRENZY_CHARGE_DAMAGE: CHARGE_CONSTANTS.FRENZY_CHARGE_DAMAGE / 100, // 0.04
+  ENDURANCE_CHARGE_PHYS_DR: CHARGE_CONSTANTS.ENDURANCE_CHARGE_PHYS_DR / 100, // 0.04
+  ENDURANCE_CHARGE_RESIST: CHARGE_CONSTANTS.ENDURANCE_CHARGE_RESIST / 100, // 0.04
 } as const;
 
 /**

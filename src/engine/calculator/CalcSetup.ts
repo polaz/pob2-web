@@ -48,7 +48,11 @@ import {
 } from './Environment';
 
 import { processPassives, updatePassivesIncremental, diffAllocatedNodes } from './PassiveProcessor';
-import { processItemsBothSets, updateItemSlot } from './ItemProcessor';
+import {
+  processItemsBothSets,
+  updateItemSlot,
+  SWAP_WEAPON_SLOTS,
+} from './ItemProcessor';
 import { processJewels, createJewelSocketMap } from './JewelProcessor';
 import { processSkills } from './SkillProcessor';
 import { processConfig, processEnemyConfig } from './ConfigProcessor';
@@ -135,6 +139,12 @@ export async function setupEnvironment(
 
   // Process jewels and merge into passiveDB.
   // In accelerated mode, skip if no jewel changes; in full mode, always process.
+  //
+  // NOTE: When any jewel changes, we reprocess ALL jewels rather than doing incremental
+  // updates. This is intentional because jewel radius effects can interact with passive
+  // nodes in complex ways (e.g., Timeless Jewels transform nodes within radius). Tracking
+  // which nodes are affected by each jewel would add significant complexity. Full
+  // reprocessing is acceptable since jewel counts are small (typically <10).
   const shouldProcessJewels = !accelerated || !previousEnv || dirtyFlags.jewels.size > 0;
   if (shouldProcessJewels) {
     const jewelResult = processJewels({ jewelSockets, parser });
@@ -281,10 +291,13 @@ function processAccelerated(
       // In this branch, we know wildcard is not set (checked above), so all
       // entries in dirtyFlags.items are specific slot names that need updating.
       // Defensively skip the wildcard marker in case it's ever mixed with slots.
+      // Update the correct map based on whether the slot is a swap weapon slot.
+      const swapSlotSet = new Set<string>(SWAP_WEAPON_SLOTS);
       for (const slot of dirtyFlags.items) {
         if (slot === DIRTY_WILDCARD) continue;
         const item = build.equippedItems[slot];
-        updateItemSlot(itemDBs, slot, item, parser);
+        const targetDB = swapSlotSet.has(slot) ? itemDBsSwap : itemDBs;
+        updateItemSlot(targetDB, slot, item, parser);
       }
     }
   }
@@ -576,9 +589,12 @@ export function updateItem(
 ): Environment {
   const parser = env.parser;
 
-  // Shallow clone of the Map structure only. ModDB instances are reused;
-  // updateItemSlot replaces the slot entry with a new ModDB rather than
-  // mutating the existing one, so this is safe.
+  // Shallow clone of the Map structure only. ModDB instances are reused.
+  //
+  // IMMUTABILITY CONTRACT: updateItemSlot MUST replace the slot entry with a
+  // new ModDB rather than mutating existing ones. This allows safe Map reuse.
+  // If updateItemSlot is ever changed to mutate ModDBs in place, this clone
+  // would need to deep-clone the ModDB instances as well.
   const itemDBs = new Map(env.itemDBs);
   updateItemSlot(itemDBs, slot, item, parser);
 
