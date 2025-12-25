@@ -82,6 +82,12 @@ export class ModParser {
   /** Pre-parsed mod cache */
   private readonly modCache: Map<string, ModDefinition>;
 
+  /** Pre-compiled regex patterns for phrase matching (keyed by phrase) */
+  private readonly phrasePatterns: Map<string, RegExp>;
+
+  /** Cached length-sorted condition mappings for extractCondition */
+  private readonly sortedConditionMappings: Array<[string, ModCondition]>;
+
   /**
    * Create a new ModParser instance.
    *
@@ -111,6 +117,25 @@ export class ModParser {
     // Build mod cache (normalize keys based on mod text, not cache key)
     this.modCache = new Map(
       Object.entries(data.modCache).map(([_k, v]) => [this.normalizeText(v.text), v])
+    );
+
+    // Pre-compile regex patterns for all phrases used in flag/keyword/condition matching
+    // This avoids creating RegExp objects on every containsPhrase call
+    this.phrasePatterns = new Map();
+    const allPhrases = [
+      ...this.flagMappings.keys(),
+      ...this.keywordMappings.keys(),
+      ...this.conditionMappings.keys(),
+    ];
+    for (const phrase of allPhrases) {
+      const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
+      this.phrasePatterns.set(phrase, new RegExp(`\\b${escapedPhrase}\\b`, 'i'));
+    }
+
+    // Pre-sort condition mappings by phrase length (descending) for extractCondition
+    // Longer/more specific phrases should match first
+    this.sortedConditionMappings = [...this.conditionMappings.entries()].sort(
+      (a, b) => b[0].length - a[0].length
     );
   }
 
@@ -222,11 +247,19 @@ export class ModParser {
    * matches "Adds 12 to 25 Fire Damage" if 12 is in [10,15] and 25 is in [20,30].
    */
   private matchesRangePattern(cacheKey: string, input: string): boolean {
+    // Early exit: range patterns always contain '(' - skip iteration if not present
+    if (!cacheKey.includes('(')) {
+      return false;
+    }
+
     // Collect all range patterns in the cache key
     const rangeRegex = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)/g;
     const ranges: Array<{ min: number; max: number }> = [];
 
-    // Use a placeholder that won't appear in mod text
+    // PLACEHOLDER safety: Uses null character (\x00) which cannot appear in valid
+    // modifier text (mod text is human-readable strings). This ensures the placeholder
+    // won't conflict with actual mod content or be affected by regex escaping since
+    // \x00 is not a regex metacharacter.
     const PLACEHOLDER = '\x00RANGE\x00';
     let placeholderIndex = 0;
 
@@ -421,10 +454,10 @@ export class ModParser {
     if (pattern.outputStats && pattern.outputStats.length > 0) {
       // Multiple output stats - create a mod for each
       for (let i = 0; i < pattern.outputStats.length; i++) {
-        // Replace ${stat} template with captured stat name
+        // Replace all ${stat} templates with captured stat name (handles multiple placeholders)
         let statName = pattern.outputStats[i]!;
         if (statName.includes('${stat}')) {
-          statName = statName.replace('${stat}', capturedStat);
+          statName = statName.replace(/\$\{stat\}/g, capturedStat);
         }
 
         // Use corresponding value if available, otherwise use first/only value
@@ -606,9 +639,17 @@ export class ModParser {
   /**
    * Check if text contains a phrase with word boundaries.
    *
-   * Uses word boundary regex to avoid false positives like "fire" matching "bonfire".
+   * Uses pre-compiled regex patterns to avoid creating RegExp on every call.
+   * Falls back to dynamic compilation for phrases not in the pre-compiled set.
    */
   private containsPhrase(text: string, phrase: string): boolean {
+    // Use pre-compiled pattern if available (covers all flag/keyword/condition phrases)
+    const cached = this.phrasePatterns.get(phrase);
+    if (cached) {
+      return cached.test(text);
+    }
+
+    // Fallback for dynamic phrases (e.g., from mapStatName)
     const escapedPhrase = this.escapeRegExp(phrase);
     const pattern = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
     return pattern.test(text);
@@ -655,16 +696,13 @@ export class ModParser {
   /**
    * Extract condition from text.
    *
-   * Matches longer/more specific phrases first by sorting entries by length.
+   * Uses pre-sorted condition mappings (sorted by phrase length descending)
+   * to match longer/more specific phrases first.
    * Uses word boundary matching to avoid false positives.
    */
   private extractCondition(text: string): ModCondition | undefined {
-    // Sort by phrase length descending to match more specific phrases first
-    const sortedConditions = [...this.conditionMappings.entries()].sort(
-      (a, b) => b[0].length - a[0].length
-    );
-
-    for (const [phrase, condition] of sortedConditions) {
+    // Use pre-sorted mappings (sorted by phrase length in constructor)
+    for (const [phrase, condition] of this.sortedConditionMappings) {
       if (this.containsPhrase(text, phrase)) {
         return condition;
       }
