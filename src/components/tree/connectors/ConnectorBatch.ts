@@ -35,6 +35,24 @@ import {
 } from './ConnectorGeometry';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/**
+ * Multiplier for gradient arc sampling density.
+ * Gradient arcs need twice the normal sampling to ensure smooth color
+ * transitions at the midpoint where we switch between colors.
+ */
+const GRADIENT_ARC_SAMPLE_MULTIPLIER = 2;
+
+/**
+ * Divisor for calculating midpoint index when splitting a gradient.
+ * We split the gradient in half (at index length/2) to draw each half
+ * with a different color.
+ */
+const GRADIENT_MIDPOINT_DIVISOR = 2;
+
+// ============================================================================
 // Types
 // ============================================================================
 
@@ -423,12 +441,16 @@ export class ConnectorBatchRenderer {
       return;
     }
 
-    // Sample points along bezier curves
-    const points = sampleBezierCurves(conn.bezierCurves, ARC_SEGMENTS * 2);
+    // Sample points along bezier curves with higher density for smooth gradient
+    const points = sampleBezierCurves(
+      conn.bezierCurves,
+      ARC_SEGMENTS * GRADIENT_ARC_SAMPLE_MULTIPLIER
+    );
 
     if (points.length < 2) return;
 
-    const midIndex = Math.floor(points.length / 2);
+    // Split at midpoint for two-color gradient
+    const midIndex = Math.floor(points.length / GRADIENT_MIDPOINT_DIVISOR);
 
     // First half with color1
     g.setStrokeStyle({ width, color: color1, alpha: alpha1 });

@@ -198,7 +198,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
    * Render all nodes from tree data.
    */
   function renderNodes(): void {
-    if (!layers || !treeStore.treeData) {
+    if (!layers || !treeStore.treeData || !app) {
       return;
     }
 
@@ -235,6 +235,9 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
     nodeCount.value = nodeMap.size;
 
+    // Center viewport on tree on first render
+    centerViewportOnTree(nodes);
+
     // Apply current viewport
     updateViewport();
 
@@ -249,13 +252,16 @@ export function useTreeRenderer(): UseTreeRendererResult {
     groups: NodeGroup[],
     constants?: { orbitRadii?: number[]; skillsPerOrbit?: number[] }
   ): TreeConstants {
+    /** Base 10 for parsing node IDs from string to number */
+    const DECIMAL_RADIX = 10;
+
     // Convert NodeGroup[] to the format expected by connector
     const groupData: TreeConstants['groups'] = groups.map((group) => {
       if (!group) return null;
       return {
         x: group.position?.x ?? 0,
         y: group.position?.y ?? 0,
-        nodes: group.nodeIds?.map((id) => parseInt(id, 10)) ?? [],
+        nodes: group.nodeIds?.map((id) => parseInt(id, DECIMAL_RADIX)) ?? [],
         orbits: [], // Not used for arc detection
       };
     });
@@ -268,13 +274,68 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
   /**
    * Build connection state context from current store state.
+   *
+   * Note: allocatedIds is currently empty. When build store provides allocated
+   * node IDs, this should be updated to use them. Connection rendering will
+   * still function correctly - all connections will appear as "Normal" state
+   * until allocation data is available.
    */
   function buildStateContext(): ConnectionStateContext {
     return {
-      allocatedIds: new Set<string>(), // TODO: Get from build store when implemented
+      allocatedIds: new Set<string>(),
       pathIds: new Set(treeStore.highlightedPath),
       alternatePathIds: new Set(treeStore.alternateHighlightedPath),
     };
+  }
+
+  /**
+   * Calculate tree bounds and center viewport to show the entire tree.
+   */
+  function centerViewportOnTree(nodes: PassiveNode[]): void {
+    if (!app || nodes.length === 0) return;
+
+    // Calculate bounds
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+    for (const node of nodes) {
+      if (node.position) {
+        minX = Math.min(minX, node.position.x);
+        maxX = Math.max(maxX, node.position.x);
+        minY = Math.min(minY, node.position.y);
+        maxY = Math.max(maxY, node.position.y);
+      }
+    }
+
+    if (minX === Infinity) return;
+
+    const treeWidth = maxX - minX;
+    const treeHeight = maxY - minY;
+    const treeCenterX = (minX + maxX) / 2;
+    const treeCenterY = (minY + maxY) / 2;
+
+    // Get canvas dimensions
+    const canvasWidth = app.screen.width;
+    const canvasHeight = app.screen.height;
+
+    // Calculate zoom to fit tree in canvas (with padding)
+    const padding = 0.9; // 90% of canvas
+    const zoomX = (canvasWidth * padding) / treeWidth;
+    const zoomY = (canvasHeight * padding) / treeHeight;
+    const zoom = Math.min(zoomX, zoomY, 1.0); // Don't zoom in more than 1.0
+
+    // Calculate viewport position to center tree
+    // viewport.x and viewport.y offset the container position
+    // To center: canvas_center = tree_center * zoom + viewport_offset
+    // So: viewport_offset = canvas_center - tree_center * zoom
+    const viewportX = canvasWidth / 2 - treeCenterX * zoom;
+    const viewportY = canvasHeight / 2 - treeCenterY * zoom;
+
+    // Update store
+    treeStore.setViewportPosition(viewportX, viewportY);
+    treeStore.setViewportZoom(zoom);
   }
 
   /**
@@ -358,19 +419,20 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
   /**
    * Update path preview highlight.
+   *
+   * @param pathNodeIds - Node IDs in the path
+   * @param _isAlternate - Whether this is an alternate path (reserved for future
+   *   visual differentiation; currently both paths share the same node visual)
    */
-  function updatePathHighlight(pathNodeIds: string[], isAlternate: boolean): void {
+  function updatePathHighlight(pathNodeIds: string[], _isAlternate: boolean): void {
     const pathSet = new Set(pathNodeIds);
 
     // Update node states
+    // Note: Currently primary and alternate paths share the same in-path visual.
+    // The _isAlternate parameter is preserved for potential future differentiation
+    // (e.g., different glow colors or border styles for alternate path nodes).
     for (const [nodeId, treeNode] of nodeMap) {
-      if (isAlternate) {
-        // For alternate path, we might want a different visual
-        // For now, just use inPath state
-        treeNode.setInPath(pathSet.has(nodeId));
-      } else {
-        treeNode.setInPath(pathSet.has(nodeId));
-      }
+      treeNode.setInPath(pathSet.has(nodeId));
     }
 
     // Update connection states

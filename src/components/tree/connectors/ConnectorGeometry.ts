@@ -5,6 +5,28 @@ import type { Point, BezierCurve, ArcData } from './ConnectorTypes';
 import { MAX_SINGLE_BEZIER_ANGLE, MIN_ARC_ANGLE } from './ConnectorTypes';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/**
+ * RGB color bit manipulation constants.
+ * Colors are stored as 24-bit RGB integers: 0xRRGGBB
+ */
+/** Bit mask for 8-bit color channel (0-255) */
+const COLOR_CHANNEL_MASK = 0xff;
+/** Bit shift for red channel (bits 16-23) */
+const RED_CHANNEL_SHIFT = 16;
+/** Bit shift for green channel (bits 8-15) */
+const GREEN_CHANNEL_SHIFT = 8;
+
+/**
+ * Cubic bezier binomial coefficient.
+ * The cubic bezier formula uses binomial coefficients [1, 3, 3, 1] from Pascal's triangle.
+ * B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
+ */
+const CUBIC_BEZIER_COEFFICIENT = 3;
+
+// ============================================================================
 // Basic Geometry
 // ============================================================================
 
@@ -283,16 +305,17 @@ export function evaluateBezier(curve: BezierCurve, t: number): Point {
   const tSq = t * t;
   const tCub = tSq * t;
 
+  // Cubic bezier formula: B(t) = (1-t)³P₀ + 3(1-t)²tP₁ + 3(1-t)t²P₂ + t³P₃
   return {
     x:
       oneMinusTCub * p0.x +
-      3 * oneMinusTSq * t * p1.x +
-      3 * oneMinusT * tSq * p2.x +
+      CUBIC_BEZIER_COEFFICIENT * oneMinusTSq * t * p1.x +
+      CUBIC_BEZIER_COEFFICIENT * oneMinusT * tSq * p2.x +
       tCub * p3.x,
     y:
       oneMinusTCub * p0.y +
-      3 * oneMinusTSq * t * p1.y +
-      3 * oneMinusT * tSq * p2.y +
+      CUBIC_BEZIER_COEFFICIENT * oneMinusTSq * t * p1.y +
+      CUBIC_BEZIER_COEFFICIENT * oneMinusT * tSq * p2.y +
       tCub * p3.y,
   };
 }
@@ -387,19 +410,22 @@ export function sampleBezierCurves(
  * @returns Interpolated color
  */
 export function lerpColor(color1: number, color2: number, t: number): number {
-  const r1 = (color1 >> 16) & 0xff;
-  const g1 = (color1 >> 8) & 0xff;
-  const b1 = color1 & 0xff;
+  // Extract RGB channels using bit shifts and masks
+  const r1 = (color1 >> RED_CHANNEL_SHIFT) & COLOR_CHANNEL_MASK;
+  const g1 = (color1 >> GREEN_CHANNEL_SHIFT) & COLOR_CHANNEL_MASK;
+  const b1 = color1 & COLOR_CHANNEL_MASK;
 
-  const r2 = (color2 >> 16) & 0xff;
-  const g2 = (color2 >> 8) & 0xff;
-  const b2 = color2 & 0xff;
+  const r2 = (color2 >> RED_CHANNEL_SHIFT) & COLOR_CHANNEL_MASK;
+  const g2 = (color2 >> GREEN_CHANNEL_SHIFT) & COLOR_CHANNEL_MASK;
+  const b2 = color2 & COLOR_CHANNEL_MASK;
 
+  // Interpolate each channel
   const r = Math.round(r1 + (r2 - r1) * t);
   const g = Math.round(g1 + (g2 - g1) * t);
   const b = Math.round(b1 + (b2 - b1) * t);
 
-  return (r << 16) | (g << 8) | b;
+  // Recombine channels into 24-bit RGB color
+  return (r << RED_CHANNEL_SHIFT) | (g << GREEN_CHANNEL_SHIFT) | b;
 }
 
 /**

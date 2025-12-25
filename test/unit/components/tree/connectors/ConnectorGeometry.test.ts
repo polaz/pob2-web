@@ -282,13 +282,24 @@ describe('ConnectorGeometry', () => {
       expect(end).toBe(blue);
 
       const mid = lerpColor(red, blue, 0.5);
-      // Mid should have some of both (rounding can give 127 or 128)
-      const redChannel = (mid >> 16) & 0xff;
-      const blueChannel = mid & 0xff;
-      expect(redChannel).toBeGreaterThanOrEqual(127);
-      expect(redChannel).toBeLessThanOrEqual(128);
-      expect(blueChannel).toBeGreaterThanOrEqual(127);
-      expect(blueChannel).toBeLessThanOrEqual(128);
+      /**
+       * Color interpolation tolerance bounds.
+       * When interpolating between 0 and 255 at t=0.5:
+       * - Exact value is 127.5
+       * - Math.round gives either 127 or 128 depending on floating point
+       * These bounds account for acceptable rounding variance.
+       */
+      const INTERPOLATION_MIN = 127;
+      const INTERPOLATION_MAX = 128;
+      const RED_CHANNEL_SHIFT = 16;
+      const COLOR_CHANNEL_MASK = 0xff;
+
+      const redChannel = (mid >> RED_CHANNEL_SHIFT) & COLOR_CHANNEL_MASK;
+      const blueChannel = mid & COLOR_CHANNEL_MASK;
+      expect(redChannel).toBeGreaterThanOrEqual(INTERPOLATION_MIN);
+      expect(redChannel).toBeLessThanOrEqual(INTERPOLATION_MAX);
+      expect(blueChannel).toBeGreaterThanOrEqual(INTERPOLATION_MIN);
+      expect(blueChannel).toBeLessThanOrEqual(INTERPOLATION_MAX);
     });
   });
 

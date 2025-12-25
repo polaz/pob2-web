@@ -172,6 +172,8 @@ function buildConnectionData(
         arcData: arcData.arc,
         bezierCurves: arcData.curves,
         state,
+        // Note: Pattern `!== undefined && { key }` correctly handles 0 values
+        // because `0 !== undefined` evaluates to true, so { groupId: 0 } is included
         ...(fromNode.group !== undefined && { groupId: fromNode.group }),
         ...(fromNode.orbit !== undefined && { orbit: fromNode.orbit }),
       };
@@ -187,6 +189,8 @@ function buildConnectionData(
     to: toPoint,
     type: ConnectionType.Straight,
     state,
+    // Note: Pattern `!== undefined && { key }` correctly handles 0 values
+    // because `0 !== undefined` evaluates to true, so { groupId: 0 } is included
     ...(fromNode.group !== undefined && { groupId: fromNode.group }),
     ...(fromNode.orbit !== undefined && { orbit: fromNode.orbit }),
   };
