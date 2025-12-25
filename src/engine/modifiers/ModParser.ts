@@ -100,8 +100,14 @@ export class ModParser {
   /** Pre-compiled regex patterns for phrase matching (keyed by phrase) */
   private readonly phrasePatterns: Map<string, RegExp>;
 
+  /** Pre-compiled regex patterns for stat name matching */
+  private readonly statPatterns: Map<string, RegExp>;
+
   /** Cached length-sorted condition mappings for extractCondition */
   private readonly sortedConditionMappings: Array<[string, ModCondition]>;
+
+  /** Set of cache keys that contain range patterns (optimization for lookupCache) */
+  private readonly rangePatternKeys: Set<string>;
 
   /**
    * Create a new ModParser instance.
@@ -129,10 +135,29 @@ export class ModParser {
       Object.entries(data.conditionMappings).map(([k, v]) => [k.toLowerCase(), v])
     );
 
-    // Build mod cache (normalize keys based on mod text, not cache key)
-    this.modCache = new Map(
-      Object.entries(data.modCache).map(([_k, v]) => [this.normalizeText(v.text), v])
-    );
+    // Build mod cache and index range patterns
+    // Validate that cache keys match normalized text to avoid silent mismatches
+    this.modCache = new Map();
+    this.rangePatternKeys = new Set();
+    const rangePatternRegex = /\(\d+(?:\.\d+)?-\d+(?:\.\d+)?\)/;
+
+    for (const [key, def] of Object.entries(data.modCache)) {
+      const normalized = this.normalizeText(def.text);
+
+      // Warn if cache key doesn't match normalized text (helps data maintainers)
+      if (key !== normalized && process.env.NODE_ENV !== 'production') {
+        console.warn(
+          `[ModParser] Cache key mismatch: "${key}" vs normalized "${normalized}". Using normalized.`
+        );
+      }
+
+      this.modCache.set(normalized, def);
+
+      // Index keys that contain range patterns for faster lookupCache
+      if (rangePatternRegex.test(normalized)) {
+        this.rangePatternKeys.add(normalized);
+      }
+    }
 
     // Pre-compile regex patterns for all phrases used in flag/keyword/condition matching
     // This avoids creating RegExp objects on every containsPhrase call
@@ -145,6 +170,16 @@ export class ModParser {
     for (const phrase of allPhrases) {
       const escapedPhrase = phrase.replace(REGEX_ESCAPE_PATTERN, '\\$&');
       this.phrasePatterns.set(phrase, new RegExp(`\\b${escapedPhrase}\\b`, 'i'));
+    }
+
+    // Pre-compile regex patterns for stat name matching (used in mapStatName)
+    this.statPatterns = new Map();
+    for (const key of this.statMappings.keys()) {
+      const keyLower = key.toLowerCase().trim();
+      if (keyLower) {
+        const escapedKey = keyLower.replace(REGEX_ESCAPE_PATTERN, '\\$&');
+        this.statPatterns.set(key, new RegExp(`\\b${escapedKey}\\b`, 'i'));
+      }
     }
 
     // Pre-sort condition mappings by phrase length (descending) for extractCondition
@@ -246,9 +281,10 @@ export class ModParser {
 
     // Try matching range patterns: "(X-Y)% increased Foo" should match "Z% increased Foo"
     // where Z is within the range X-Y
-    for (const [key, def] of this.modCache) {
+    // Only iterate over keys known to contain range patterns (indexed in constructor)
+    for (const key of this.rangePatternKeys) {
       if (this.matchesRangePattern(key, normalized)) {
-        return def;
+        return this.modCache.get(key) ?? null;
       }
     }
 
@@ -315,7 +351,7 @@ export class ModParser {
       // Verify each captured value is within its corresponding range
       for (let i = 0; i < ranges.length; i++) {
         const capture = inputMatch[i + 1];
-        if (capture == null) {
+        if (capture === undefined) {
           return false;
         }
 
@@ -644,7 +680,11 @@ export class ModParser {
    * Check if text contains a phrase with word boundaries.
    *
    * Uses pre-compiled regex patterns to avoid creating RegExp on every call.
-   * Falls back to dynamic compilation for phrases not in the pre-compiled set.
+   * All flag/keyword/condition phrases are pre-compiled in constructor.
+   *
+   * Falls back to dynamic compilation for unexpected phrases (should not happen
+   * in normal operation - indicates a phrase was added to data files but not
+   * registered in phrasePatterns during construction).
    */
   private containsPhrase(text: string, phrase: string): boolean {
     // Use pre-compiled pattern if available (covers all flag/keyword/condition phrases)
@@ -653,7 +693,10 @@ export class ModParser {
       return cached.test(text);
     }
 
-    // Fallback for dynamic phrases (e.g., from mapStatName)
+    // Fallback for unexpected phrases - log warning in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`[ModParser] Unregistered phrase pattern: "${phrase}"`);
+    }
     const escapedPhrase = this.escapeRegExp(phrase);
     const pattern = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
     return pattern.test(text);
@@ -722,7 +765,7 @@ export class ModParser {
   /**
    * Map raw stat text to canonical stat name.
    *
-   * Uses word boundary matching for partial matches to avoid false positives.
+   * Uses pre-compiled word boundary patterns for partial matches.
    * Prefers longer matches (more specific) when multiple patterns match.
    */
   private mapStatName(rawStat: string): string {
@@ -734,22 +777,19 @@ export class ModParser {
       return exact;
     }
 
-    // Refined partial match with word boundaries
+    // Refined partial match with pre-compiled word boundary patterns
     // Prefer the longest matching key (more specific mapping)
     let bestMatch: { value: string; score: number } | undefined;
 
     for (const [key, value] of this.statMappings) {
-      const keyLower = key.toLowerCase().trim();
-      if (!keyLower) {
+      // Use pre-compiled pattern from constructor
+      const pattern = this.statPatterns.get(key);
+      if (!pattern) {
         continue;
       }
 
-      // Use word boundary regex to avoid false positives
-      const escapedKey = this.escapeRegExp(keyLower);
-      const pattern = new RegExp(`\\b${escapedKey}\\b`, 'i');
-
       if (pattern.test(normalized)) {
-        const score = keyLower.length;
+        const score = key.length;
         if (!bestMatch || score > bestMatch.score) {
           bestMatch = { value, score };
         }

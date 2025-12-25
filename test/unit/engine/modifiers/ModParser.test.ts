@@ -16,6 +16,14 @@ import { ModFlag, KeywordFlag } from 'src/types/mods';
 
 /**
  * Minimal test data for ModParser.
+ *
+ * NOTE: This test data is intentionally different from production data files.
+ * It uses simplified mappings designed for focused unit testing:
+ * - 'spell damage' -> 'SpellDamage' (production uses 'Damage')
+ * - 'melee attack speed' -> 'MeleeSpeed' (not in production)
+ *
+ * This allows tests to verify specific functionality without depending on
+ * the full production data set, which may change independently.
  */
 function createTestData(): ModParserData {
   return {
@@ -204,7 +212,10 @@ function createTestData(): ModParserData {
           {
             name: 'FireDamage',
             type: 'INC',
-            value: 20, // Average of range
+            // Cached value represents a single point in the range.
+            // When parsing live text like "18% increased Fire Damage",
+            // extractValues yields the actual value (18), which overrides this.
+            value: 20,
           },
         ],
       },
