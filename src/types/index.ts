@@ -9,3 +9,6 @@ export * from './local';
 
 // Tree data types
 export * from './tree';
+
+// Gem data types
+export * from './gems';

@@ -23,6 +23,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      // 'src' alias needed for Quasar's import convention (e.g., 'src/types/tree')
+      // which differs from the '@' alias used in standard Vue projects
       src: path.resolve(__dirname, './src'),
     },
   },
