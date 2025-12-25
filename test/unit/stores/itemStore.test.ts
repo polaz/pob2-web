@@ -12,12 +12,17 @@ import {
   FLASK_SLOTS,
   SWAP_SLOTS,
 } from 'src/stores/itemStore';
-import { ItemSlot, ItemRarity } from 'src/protos/pob2_pb';
+import { useBuildStore } from 'src/stores/buildStore';
+import { ItemSlot, ItemRarity, ItemType } from 'src/protos/pob2_pb';
 import type { Item } from 'src/protos/pob2_pb';
 
-/** Create mock item */
-function createMockItem(id: string, name: string): Item {
-  return {
+/** Create mock item with optional item type */
+function createMockItem(
+  id: string,
+  name: string,
+  itemType?: ItemType
+): Item {
+  const item: Item = {
     id,
     name,
     baseName: 'Sword',
@@ -30,6 +35,25 @@ function createMockItem(id: string, name: string): Item {
     runeMods: [],
     craftedMods: [],
   };
+  if (itemType !== undefined) {
+    item.itemType = itemType;
+  }
+  return item;
+}
+
+/** Create mock weapon item */
+function createMockWeapon(id: string, name: string): Item {
+  return createMockItem(id, name, ItemType.ONE_HAND_SWORD);
+}
+
+/** Create mock helmet item */
+function createMockHelmet(id: string, name: string): Item {
+  return createMockItem(id, name, ItemType.HELMET);
+}
+
+/** Create mock shield item */
+function createMockShield(id: string, name: string): Item {
+  return createMockItem(id, name, ItemType.SHIELD);
 }
 
 describe('itemStore', () => {
@@ -306,6 +330,272 @@ describe('itemStore', () => {
     it('should have swap slots', () => {
       expect(SWAP_SLOTS).toHaveLength(2);
       expect(SWAP_SLOTS.find((s) => s.slot === ItemSlot.SLOT_WEAPON_1_SWAP)).toBeDefined();
+    });
+  });
+
+  // ============================================================================
+  // Item Access Getters (read from buildStore)
+  // ============================================================================
+
+  describe('item access getters', () => {
+    it('should return undefined for empty slot', () => {
+      const store = useItemStore();
+
+      expect(store.getItemInSlot(ItemSlot.SLOT_HELMET)).toBeUndefined();
+    });
+
+    it('should return item from buildStore', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const helmet = createMockHelmet('h1', 'Test Helmet');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_HELMET, helmet);
+
+      expect(itemStore.getItemInSlot(ItemSlot.SLOT_HELMET)).toEqual(helmet);
+    });
+
+    it('should return all equipped items as Map', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const helmet = createMockHelmet('h1', 'Helmet');
+      const weapon = createMockWeapon('w1', 'Sword');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_HELMET, helmet);
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1, weapon);
+
+      const items = itemStore.allEquippedItems;
+      expect(items.size).toBe(2);
+      expect(items.get(ItemSlot.SLOT_HELMET)).toEqual(helmet);
+      expect(items.get(ItemSlot.SLOT_WEAPON_1)).toEqual(weapon);
+    });
+
+    it('should return main hand weapon based on active set', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const primaryWeapon = createMockWeapon('pw1', 'Primary Sword');
+      const swapWeapon = createMockWeapon('sw1', 'Swap Sword');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1, primaryWeapon);
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1_SWAP, swapWeapon);
+
+      // Default: primary set active
+      expect(itemStore.mainHandWeapon).toEqual(primaryWeapon);
+
+      // Switch to swap set
+      itemStore.toggleWeaponSwap();
+      expect(itemStore.mainHandWeapon).toEqual(swapWeapon);
+    });
+
+    it('should return off-hand item based on active set', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const primaryShield = createMockShield('ps1', 'Primary Shield');
+      const swapShield = createMockShield('ss1', 'Swap Shield');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_2, primaryShield);
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_2_SWAP, swapShield);
+
+      expect(itemStore.offHandItem).toEqual(primaryShield);
+
+      itemStore.toggleWeaponSwap();
+      expect(itemStore.offHandItem).toEqual(swapShield);
+    });
+
+    it('should return active weapon items', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const weapon = createMockWeapon('w1', 'Sword');
+      const shield = createMockShield('s1', 'Shield');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1, weapon);
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_2, shield);
+
+      const activeItems = itemStore.activeWeaponItems;
+      expect(activeItems.size).toBe(2);
+      expect(activeItems.get(ItemSlot.SLOT_WEAPON_1)).toEqual(weapon);
+      expect(activeItems.get(ItemSlot.SLOT_WEAPON_2)).toEqual(shield);
+    });
+
+    it('should return swap weapon items', () => {
+      const itemStore = useItemStore();
+      const buildStore = useBuildStore();
+      const swapWeapon = createMockWeapon('sw1', 'Swap Weapon');
+
+      buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1_SWAP, swapWeapon);
+
+      const swapItems = itemStore.swapWeaponItems;
+      expect(swapItems.size).toBe(1);
+      expect(swapItems.get(ItemSlot.SLOT_WEAPON_1_SWAP)).toEqual(swapWeapon);
+    });
+
+    it('should return correct active weapon set number', () => {
+      const store = useItemStore();
+
+      expect(store.activeWeaponSet).toBe(1);
+
+      store.toggleWeaponSwap();
+      expect(store.activeWeaponSet).toBe(2);
+    });
+  });
+
+  // ============================================================================
+  // Validated Item Actions
+  // ============================================================================
+
+  describe('validated item actions', () => {
+    describe('equipItem', () => {
+      it('should equip valid item in slot', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const helmet = createMockHelmet('h1', 'Test Helmet');
+
+        const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, helmet);
+
+        expect(result.success).toBe(true);
+        if (result.success) {
+          // Type narrowing: success=true means no error property
+          expect(result.replacedItem).toBeUndefined();
+        }
+        expect(buildStore.equippedItems[String(ItemSlot.SLOT_HELMET)]).toEqual(helmet);
+      });
+
+      it('should reject invalid item for slot', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const helmet = createMockHelmet('h1', 'Test Helmet');
+
+        // Try to equip helmet in weapon slot
+        const result = itemStore.equipItem(ItemSlot.SLOT_WEAPON_1, helmet);
+
+        expect(result.success).toBe(false);
+        if (!result.success) {
+          // Type narrowing: success=false means error is required
+          expect(result.error).toContain('HELMET');
+        }
+        expect(buildStore.equippedItems[String(ItemSlot.SLOT_WEAPON_1)]).toBeUndefined();
+      });
+
+      it('should return replaced item', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const oldHelmet = createMockHelmet('h1', 'Old Helmet');
+        const newHelmet = createMockHelmet('h2', 'New Helmet');
+
+        buildStore.setEquippedItem(ItemSlot.SLOT_HELMET, oldHelmet);
+        const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, newHelmet);
+
+        expect(result.success).toBe(true);
+        if (result.success) {
+          // Type narrowing: success=true means replacedItem may be present
+          expect(result.replacedItem).toEqual(oldHelmet);
+        }
+      });
+
+      it('should add equipped item to recent items', () => {
+        const itemStore = useItemStore();
+        const helmet = createMockHelmet('h1', 'Test Helmet');
+
+        itemStore.equipItem(ItemSlot.SLOT_HELMET, helmet);
+
+        expect(itemStore.recentItems).toHaveLength(1);
+        expect(itemStore.recentItems[0]?.id).toBe('h1');
+      });
+
+      it('should reject item without type', () => {
+        const itemStore = useItemStore();
+        const itemWithoutType = createMockItem('i1', 'No Type Item');
+
+        const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, itemWithoutType);
+
+        expect(result.success).toBe(false);
+        if (!result.success) {
+          // Type narrowing: success=false means error is required
+          expect(result.error).toContain('no type');
+        }
+      });
+    });
+
+    describe('unequipItem', () => {
+      it('should remove item from slot', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const helmet = createMockHelmet('h1', 'Test Helmet');
+
+        buildStore.setEquippedItem(ItemSlot.SLOT_HELMET, helmet);
+        const removed = itemStore.unequipItem(ItemSlot.SLOT_HELMET);
+
+        expect(removed).toEqual(helmet);
+        expect(buildStore.equippedItems[String(ItemSlot.SLOT_HELMET)]).toBeUndefined();
+      });
+
+      it('should return undefined for empty slot', () => {
+        const itemStore = useItemStore();
+
+        const removed = itemStore.unequipItem(ItemSlot.SLOT_HELMET);
+
+        expect(removed).toBeUndefined();
+      });
+    });
+
+    describe('swapWeapons', () => {
+      it('should toggle weapon set', () => {
+        const store = useItemStore();
+
+        expect(store.activeWeaponSet).toBe(1);
+
+        store.swapWeapons();
+        expect(store.activeWeaponSet).toBe(2);
+
+        store.swapWeapons();
+        expect(store.activeWeaponSet).toBe(1);
+      });
+    });
+
+    describe('canEquipInSlot', () => {
+      it('should return true for valid combination', () => {
+        const store = useItemStore();
+        const helmet = createMockHelmet('h1', 'Helmet');
+
+        expect(store.canEquipInSlot(ItemSlot.SLOT_HELMET, helmet)).toBe(true);
+      });
+
+      it('should return false for invalid combination', () => {
+        const store = useItemStore();
+        const helmet = createMockHelmet('h1', 'Helmet');
+
+        expect(store.canEquipInSlot(ItemSlot.SLOT_BOOTS, helmet)).toBe(false);
+      });
+
+      it('should return false for item without type', () => {
+        const store = useItemStore();
+        const noTypeItem = createMockItem('i1', 'No Type');
+
+        expect(store.canEquipInSlot(ItemSlot.SLOT_HELMET, noTypeItem)).toBe(false);
+      });
+    });
+
+    describe('getWeaponSetItems', () => {
+      it('should return primary set items', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const weapon = createMockWeapon('w1', 'Weapon');
+
+        buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1, weapon);
+
+        const items = itemStore.getWeaponSetItems(1);
+        expect(items.get(ItemSlot.SLOT_WEAPON_1)).toEqual(weapon);
+      });
+
+      it('should return swap set items', () => {
+        const itemStore = useItemStore();
+        const buildStore = useBuildStore();
+        const swapWeapon = createMockWeapon('sw1', 'Swap Weapon');
+
+        buildStore.setEquippedItem(ItemSlot.SLOT_WEAPON_1_SWAP, swapWeapon);
+
+        const items = itemStore.getWeaponSetItems(2);
+        expect(items.get(ItemSlot.SLOT_WEAPON_1_SWAP)).toEqual(swapWeapon);
+      });
     });
   });
 });

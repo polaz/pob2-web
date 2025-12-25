@@ -424,6 +424,31 @@ export function isTwoHandedType(itemType: ItemType | undefined): boolean {
   return itemType !== undefined && TWO_HANDED_WEAPON_TYPES.has(itemType);
 }
 
+// ============================================================================
+// Equip Result
+// ============================================================================
+
+/**
+ * Result of attempting to equip an item in a slot.
+ *
+ * Uses a discriminated union on `success` so that:
+ * - when `success` is true, an optional `replacedItem` may be present
+ * - when `success` is false, a non-optional `error` message is required
+ */
+export type EquipResult =
+  | {
+      /** Whether the equip operation succeeded */
+      success: true;
+      /** The item that was replaced (if any) */
+      replacedItem?: Item;
+    }
+  | {
+      /** Whether the equip operation succeeded */
+      success: false;
+      /** Error message explaining why equip failed */
+      error: string;
+    };
+
 /**
  * Converts proto WeaponData to computed values with quality applied.
  */
