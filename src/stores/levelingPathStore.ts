@@ -47,7 +47,7 @@ function createEmptyCheckpoint(level: number): Checkpoint {
   return {
     level,
     allocatedPassives: [],
-    equipment: {} as Record<string, Item>,
+    equipment: {},
     gems: [],
   };
 }
