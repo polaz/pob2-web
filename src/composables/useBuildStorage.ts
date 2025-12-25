@@ -339,10 +339,9 @@ export function useBuildStorage() {
     // If we deleted the current build, create new
     if (buildStore.currentBuildDbId === id) {
       buildStore.newBuild();
-      // Clear last build ID by getting current prefs and removing the field
-      const prefs = await getUserPreferences();
-      delete prefs.lastBuildId;
-      await updateUserPreferences(prefs);
+      // Clear last build ID using destructuring to avoid mutating the original object
+      const { lastBuildId: _, ...restPrefs } = await getUserPreferences();
+      await updateUserPreferences(restPrefs);
     }
 
     await refreshBuildList();
@@ -363,6 +362,7 @@ export function useBuildStorage() {
       name,
       className: characterClassToString(exported.characterClass),
       level: exported.level ?? 1,
+      // PoE2 passive node IDs are positive integers (starting from 1), so 0 is invalid
       passiveNodes: exported.allocatedNodeIds.reduce<number[]>((acc, id) => {
         const num = Number.parseInt(id, 10);
         if (!Number.isNaN(num) && num > 0) {
