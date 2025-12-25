@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/polaz/pob2-web/compare/v1.4.0...v1.5.0) (2025-12-25)
+
+
+### Features
+
+* **data:** implement gem data system with lazy loading ([#63](https://github.com/polaz/pob2-web/issues/63)) ([e5533eb](https://github.com/polaz/pob2-web/commit/e5533ebb7bc48a4da8cc76ba910f52e5fb2aeca0))
+
 # [1.4.0](https://github.com/polaz/pob2-web/compare/v1.3.0...v1.4.0) (2025-12-25)
 
 
