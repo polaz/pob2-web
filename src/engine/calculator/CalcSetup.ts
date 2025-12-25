@@ -46,7 +46,7 @@ import {
   resolveConfig,
 } from './Environment';
 
-import { processPassives, updatePassivesIncremental } from './PassiveProcessor';
+import { processPassives, updatePassivesIncremental, diffAllocatedNodes } from './PassiveProcessor';
 import { processItemsBothSets, updateItemSlot } from './ItemProcessor';
 import { processJewels, createJewelSocketMap } from './JewelProcessor';
 import { processSkills } from './SkillProcessor';
@@ -536,5 +536,4 @@ export function updateItem(
 }
 
 // Re-export for convenience
-import { diffAllocatedNodes } from './PassiveProcessor';
 export { diffAllocatedNodes };

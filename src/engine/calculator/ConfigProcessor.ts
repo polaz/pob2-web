@@ -114,6 +114,10 @@ export function processConfig(input: ConfigProcessorInput): ConfigProcessorResul
 /**
  * Generate modifiers from charge configuration.
  *
+ * Note: CHARGE_CONSTANTS are stored as percentages (e.g., 40 for 40%) to match
+ * in-game display values. We divide by 100 here at setup time (not hot path)
+ * to convert to decimal form for the modifier system.
+ *
  * @param config - Resolved build config
  * @returns Array of charge-related mods
  */

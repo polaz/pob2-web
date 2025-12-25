@@ -105,7 +105,9 @@ export function processPassives(input: PassiveProcessorInput): PassiveProcessorR
   for (const nodeId of allocatedNodeIds) {
     const node = treeData.nodes.get(nodeId);
     if (!node) {
-      // Node not found - skip silently (may be a class start node with no stats)
+      // Intentionally treat unknown/missing node IDs as a no-op:
+      // this is the only validation for allocatedNodeIds and we do not
+      // throw or log an error (e.g. class start nodes with no stats).
       continue;
     }
 
@@ -209,7 +211,7 @@ function processMasterySelection(
   _node: TreeNode,
   nodeId: string,
   masterySelections: Record<string, string>,
-  parser: ModParser
+  _parser: ModParser
 ): Mod[] {
   const mods: Mod[] = [];
 
@@ -224,31 +226,23 @@ function processMasterySelection(
   // The actual mastery effect lookup would require access to raw tree data
   // with masteryEffects array
 
-  // Create parse context for mastery
-  const context: ModParseContext = {
-    source: MASTERY_SOURCE,
-    sourceId: `${nodeId}:${selectedEffectId}`,
-  };
-
-  // Note: In a full implementation, we would look up the mastery effect stats
-  // from the raw tree data's masteryEffects array and parse those.
-  // For now, this is a placeholder that demonstrates the structure.
+  // Note: In a full implementation, we would:
+  // 1. Create a parse context with source: 'mastery', sourceId: `${nodeId}:${selectedEffectId}`
+  // 2. Look up the mastery effect stats from the raw tree data's masteryEffects array
+  // 3. Parse those stats using the parser
   //
   // Example of how it would work with raw data:
   // const rawNode = rawTreeData.nodes[nodeId];
   // const effect = rawNode?.masteryEffects?.find(e => String(e.effect) === selectedEffectId);
   // if (effect) {
   //   for (const statText of effect.stats) {
-  //     const result = parser.parse(statText, context);
+  //     const result = parser.parse(statText, { source: 'mastery', sourceId: ... });
   //     if (result.success) mods.push(...result.mods);
   //   }
   // }
 
   // For now, we'll need to integrate mastery effect lookup in CalcSetup
   // when we have access to raw tree data
-
-  void context; // Suppress unused warning
-  void parser;
 
   return mods;
 }

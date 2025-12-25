@@ -227,7 +227,7 @@ export function processItemsBothSets(
  * Check if a slot is a weapon swap slot.
  */
 function isSwapSlot(slot: string): boolean {
-  return slot === 'weapon2' || slot === 'offhand2';
+  return slot === 'weapon2' || slot === 'weapon2swap' || slot === 'offhand2';
 }
 
 /**
@@ -404,14 +404,7 @@ export function getAllItemMods(itemDBs: Map<string, ModDB>): Mod[] {
   const allMods: Mod[] = [];
 
   for (const slotDB of itemDBs.values()) {
-    for (const statName of slotDB.getStatNames()) {
-      const mods = (slotDB as unknown as { mods: Map<string, Mod[]> }).mods.get(
-        statName
-      );
-      if (mods) {
-        allMods.push(...mods);
-      }
-    }
+    allMods.push(...slotDB.getAllMods());
   }
 
   return allMods;

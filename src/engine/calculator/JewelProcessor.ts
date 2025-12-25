@@ -19,7 +19,9 @@
  * ## Socket Identification
  *
  * Jewel sockets are identified by the tree node ID where they're socketed.
- * The Build proto contains a mapping of socketNodeId -> Item (jewel).
+ * The Build proto's equippedItems contains both regular items (keyed by slot name
+ * like 'helmet', 'weapon1') and jewels (keyed by tree node ID like '26196').
+ * The createJewelSocketMap function filters to extract only jewel entries.
  */
 
 import { ModDB } from '../modifiers/ModDB';
@@ -27,6 +29,7 @@ import type { ModParser } from '../modifiers/ModParser';
 import type { ModParseContext } from '../modifiers/types';
 import type { Item } from 'src/protos/pob2_pb';
 import type { JewelSocket } from './Environment';
+import { ALL_SLOTS } from './ItemProcessor';
 
 // ============================================================================
 // Types
@@ -264,28 +267,37 @@ export function updateJewelSocket(
 // Utility Functions
 // ============================================================================
 
+/** Set of standard equipment slot names for quick lookup */
+const STANDARD_SLOTS: Set<string> = new Set(ALL_SLOTS);
+
 /**
  * Create JewelSocket map from Build data.
  *
- * Converts the Build's jewel socket data into the JewelSocket map format.
- * This is a helper for CalcSetup.
+ * Filters the Build's equippedItems to extract only jewel entries.
+ * Regular equipment slots (helmet, weapon1, etc.) are excluded.
+ * Jewels are identified by having keys that are tree node IDs (not standard slot names).
  *
- * @param socketedJewels - Map of socket node ID to jewel item
- * @returns JewelSocket map
+ * @param equippedItems - Map of slot/node ID to item (includes both regular items and jewels)
+ * @returns JewelSocket map containing only jewel entries
  */
 export function createJewelSocketMap(
-  socketedJewels: Record<string, Item> | undefined
+  equippedItems: Record<string, Item> | undefined
 ): Map<string, JewelSocket> {
   const socketMap = new Map<string, JewelSocket>();
 
-  if (!socketedJewels) {
+  if (!equippedItems) {
     return socketMap;
   }
 
-  for (const [nodeId, jewel] of Object.entries(socketedJewels)) {
-    socketMap.set(nodeId, {
-      nodeId,
-      jewel,
+  for (const [key, item] of Object.entries(equippedItems)) {
+    // Skip standard equipment slots - only process jewel socket node IDs
+    if (STANDARD_SLOTS.has(key)) {
+      continue;
+    }
+
+    socketMap.set(key, {
+      nodeId: key,
+      jewel: item,
     });
   }
 

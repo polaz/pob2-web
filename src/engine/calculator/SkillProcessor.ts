@@ -218,17 +218,32 @@ function processSkillGroup(
   return { activeSkills, supportGems, modsCreated };
 }
 
+/** Flag to log support gem heuristic warning only once */
+let supportGemHeuristicWarned = false;
+
 /**
  * Process a GemInstance into a ProcessedGem with resolved values.
  */
 function processGemInstance(gem: GemInstance): ProcessedGem {
+  // Simple heuristic: if gemId contains "support", it's a support gem
+  // TODO: Use proper gem data lookup to determine gem type (issue when gem data is integrated)
+  const isSupport = gem.gemId?.toLowerCase().includes('support') ?? false;
+
+  // Warn once about using heuristic - gems might be incorrectly categorized
+  if (!supportGemHeuristicWarned && gem.gemId) {
+    console.warn(
+      '[SkillProcessor] Using string heuristic for gem type detection. ' +
+        'Gems without "support" in name may be incorrectly categorized. ' +
+        'This will be fixed when proper gem data lookup is implemented.'
+    );
+    supportGemHeuristicWarned = true;
+  }
+
   return {
     instance: gem,
     level: gem.level ?? DEFAULT_GEM_LEVEL,
     quality: gem.quality ?? DEFAULT_GEM_QUALITY,
-    // Simple heuristic: if gemId contains "support", it's a support gem
-    // TODO: Use proper gem data lookup to determine gem type
-    isSupport: gem.gemId?.toLowerCase().includes('support') ?? false,
+    isSupport,
   };
 }
 
@@ -248,8 +263,8 @@ function processGemInstance(gem: GemInstance): ProcessedGem {
  * @returns Number of mods added
  */
 function processGemMods(
-  gem: ProcessedGem,
-  context: ModParseContext,
+  _gem: ProcessedGem,
+  _context: ModParseContext,
   _parser: ModParser,
   _skillDB: ModDB
 ): number {
@@ -257,17 +272,14 @@ function processGemMods(
   // For now, this is a placeholder that doesn't add any mods
   // The actual implementation would:
   //
-  // 1. Load gem data: const gemData = await getGemData(gem.instance.gemId);
-  // 2. Get level data: const levelData = gemData.levels[gem.level - 1];
+  // 1. Load gem data: const gemData = await getGemData(_gem.instance.gemId);
+  // 2. Get level data: const levelData = gemData.levels[_gem.level - 1];
   // 3. Get stat text: const statTexts = levelData.stats;
-  // 4. Apply quality: const qualityStats = applyQuality(gemData, gem.quality);
+  // 4. Apply quality: const qualityStats = applyQuality(gemData, _gem.quality);
   // 5. Parse stats: for (const stat of [...statTexts, ...qualityStats]) {
-  //      const result = parser.parse(stat, context);
-  //      if (result.success) skillDB.addList(result.mods);
+  //      const result = _parser.parse(stat, _context);
+  //      if (result.success) _skillDB.addList(result.mods);
   //    }
-
-  void gem;
-  void context;
 
   return 0;
 }
