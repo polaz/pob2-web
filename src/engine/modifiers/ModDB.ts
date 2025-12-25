@@ -264,7 +264,7 @@ export class ModDB {
         if (div > 0) {
           value *= Math.floor(statValue / div);
         }
-        // If div <= 0, value remains unchanged (effectively 0 multiplier)
+        // If div <= 0, value remains unchanged (no scaling applied)
       } else if (cond.type === 'Multiplier') {
         // Multiply by a variable value
         const multiplier = config.stats?.[cond.var ?? ''] ?? 0;
