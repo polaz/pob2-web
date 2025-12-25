@@ -259,10 +259,14 @@ export function useTreeRenderer(): UseTreeRendererResult {
     // Convert NodeGroup[] to the format expected by connector
     const groupData: TreeConstants['groups'] = groups.map((group) => {
       if (!group) return null;
+      // Parse node IDs to numbers, filtering out any invalid (NaN) values
+      const nodeNumbers = (group.nodeIds ?? [])
+        .map((id) => parseInt(id, DECIMAL_RADIX))
+        .filter((num) => !Number.isNaN(num));
       return {
         x: group.position?.x ?? 0,
         y: group.position?.y ?? 0,
-        nodes: group.nodeIds?.map((id) => parseInt(id, DECIMAL_RADIX)) ?? [],
+        nodes: nodeNumbers,
         orbits: [], // Not used for arc detection
       };
     });
