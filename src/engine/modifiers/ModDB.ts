@@ -125,14 +125,7 @@ export class ModDB {
    */
   removeBySource(source: string, sourceId?: string): void {
     for (const [name, mods] of this.mods) {
-      // Early check: skip if no modifiers match the source criteria
-      const hasMatch = mods.some((mod) => {
-        if (mod.source !== source) return false;
-        if (sourceId !== undefined && mod.sourceId !== sourceId) return false;
-        return true;
-      });
-
-      if (!hasMatch) continue;
+      const originalLength = mods.length;
 
       const filtered = mods.filter((mod) => {
         if (mod.source !== source) return true;
@@ -140,7 +133,10 @@ export class ModDB {
         return false;
       });
 
-      const removed = mods.length - filtered.length;
+      // Skip if no modifiers were removed
+      if (filtered.length === originalLength) continue;
+
+      const removed = originalLength - filtered.length;
       this._size -= removed;
 
       if (filtered.length === 0) {
