@@ -81,6 +81,26 @@ const MASTERY_SOURCE = 'mastery';
 const ASCENDANCY_SOURCE = 'ascendancy';
 
 // ============================================================================
+// Module-level Warning Flags
+// ============================================================================
+
+/**
+ * Module-level warning flag to log mastery limitation only once per session.
+ *
+ * Note: Module-level state persists across tests. Use resetMasteryWarningFlag()
+ * in test cleanup if testing warning behavior.
+ */
+let masteryLimitationWarned = false;
+
+/**
+ * Reset warning flag for testing purposes.
+ * Call this in test cleanup to ensure warnings can be tested in isolation.
+ */
+export function resetMasteryWarningFlag(): void {
+  masteryLimitationWarned = false;
+}
+
+// ============================================================================
 // Main Processing Function
 // ============================================================================
 
@@ -240,12 +260,16 @@ function processMasterySelection(
   // 2. Parse effect stats using the parser
   // 3. Return mods with source: 'mastery', sourceId: `${nodeId}:${selectedEffectId}`
   //
-  // Log a warning so this limitation is visible during development/debugging.
-  console.warn(
-    '[PassiveProcessor] Mastery selection found but cannot be processed: ' +
-      'masteryEffects data not available in TreeNode structure.',
-    { nodeId, selectedEffectId }
-  );
+  // Log a warning once per session so this limitation is visible during development.
+  if (!masteryLimitationWarned) {
+    console.warn(
+      '[PassiveProcessor] Mastery selections found but cannot be processed: ' +
+        'masteryEffects data not available in TreeNode structure. ' +
+        'This warning appears once per session.',
+      { nodeId, selectedEffectId }
+    );
+    masteryLimitationWarned = true;
+  }
 
   return mods;
 }

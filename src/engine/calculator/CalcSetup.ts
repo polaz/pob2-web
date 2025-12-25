@@ -55,6 +55,20 @@ import { processConfig, processEnemyConfig } from './ConfigProcessor';
 import { CLASS_STARTING_STATS } from 'src/shared/constants';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/**
+ * Fallback stats used when class is unknown or not found in CLASS_STARTING_STATS.
+ *
+ * These neutral mid-range values (14 each) keep calculations stable for
+ * incomplete builds (e.g., during import or when new classes are added).
+ * They don't match any specific PoE2 class; real builds should always
+ * resolve to CLASS_STARTING_STATS entries.
+ */
+const DEFAULT_CLASS_STATS: AttributeValues = { str: 14, dex: 14, int: 14 };
+
+// ============================================================================
 // Main Setup Function
 // ============================================================================
 
@@ -118,9 +132,13 @@ export async function setupEnvironment(
   // Build jewel socket map
   const jewelSockets = createJewelSocketMap(build.equippedItems);
 
-  // Process jewels and merge into passiveDB
-  const jewelResult = processJewels({ jewelSockets, parser });
-  passiveDB.addDB(jewelResult.jewelDB);
+  // Process jewels and merge into passiveDB.
+  // In accelerated mode, skip if no jewel changes; in full mode, always process.
+  const shouldProcessJewels = !accelerated || !previousEnv || dirtyFlags.jewels.size > 0;
+  if (shouldProcessJewels) {
+    const jewelResult = processJewels({ jewelSockets, parser });
+    passiveDB.addDB(jewelResult.jewelDB);
+  }
 
   // Build flattened playerDB
   const playerDB = rebuildPlayerDB(passiveDB, itemDBs, skillDB, configDB);
@@ -261,7 +279,9 @@ function processAccelerated(
 
       // In this branch, we know wildcard is not set (checked above), so all
       // entries in dirtyFlags.items are specific slot names that need updating.
+      // Defensively skip the wildcard marker in case it's ever mixed with slots.
       for (const slot of dirtyFlags.items) {
+        if (slot === DIRTY_WILDCARD) continue;
         const item = build.equippedItems[slot];
         updateItemSlot(itemDBs, slot, item, parser);
       }
@@ -355,6 +375,27 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
     flags.config = true;
   }
 
+  // Check jewel sockets by comparing jewelSockets maps from both environments.
+  // Jewels are stored in equippedItems with socket node IDs as keys.
+  // We compare the previous environment's jewelSockets with a freshly computed map.
+  const newJewelSockets = createJewelSocketMap(build.equippedItems);
+  const prevJewelSockets = previousEnv.jewelSockets;
+
+  // Check for changed or removed sockets
+  for (const [nodeId, prevSocket] of prevJewelSockets) {
+    const newSocket = newJewelSockets.get(nodeId);
+    if (!newSocket || newSocket.jewel?.id !== prevSocket.jewel?.id) {
+      flags.jewels.add(nodeId);
+    }
+  }
+
+  // Check for added sockets
+  for (const [nodeId, newSocket] of newJewelSockets) {
+    if (!prevJewelSockets.has(nodeId) && newSocket.jewel) {
+      flags.jewels.add(nodeId);
+    }
+  }
+
   return flags;
 }
 
@@ -398,14 +439,7 @@ function calculateAttributes(
   itemDBs: Map<string, ModDB>,
   build: Build
 ): AttributeValues {
-  // Start with class base attributes.
-  // Fallback stats used when class is unknown or not found in CLASS_STARTING_STATS.
-  // These neutral mid-range values (14 each) keep calculations stable for
-  // incomplete builds (e.g., during import or when new classes are added).
-  // They don't match any specific PoE2 class; real builds should always
-  // resolve to CLASS_STARTING_STATS entries.
-  const DEFAULT_CLASS_STATS: AttributeValues = { str: 14, dex: 14, int: 14 };
-
+  // Start with class base attributes (see DEFAULT_CLASS_STATS for fallback rationale)
   let classStats: AttributeValues = DEFAULT_CLASS_STATS;
   if (build.characterClass !== undefined) {
     const candidateKey = String(build.characterClass).toUpperCase();
@@ -454,6 +488,12 @@ function arraysEqual<T>(a: T[], b: T[]): boolean {
 
 /**
  * Check if two objects are equal (shallow comparison).
+ *
+ * NOTE: This performs shallow equality only. Nested objects or arrays are
+ * compared by reference, not by value. This is intentional for performance
+ * in hot paths like dirty flag computation. For BuildConfig, this means
+ * nested changes may not be detected if the same object reference is reused.
+ * In practice, config changes typically create new objects via proto cloning.
  */
 function objectsEqual<T extends object>(a: T, b: T): boolean {
   const keysA = Object.keys(a);
@@ -501,11 +541,19 @@ export function updatePassives(
   // Rebuild playerDB
   const playerDB = rebuildPlayerDB(passiveDB, env.itemDBs, env.skillDB, env.configDB);
 
+  // Deep clone dirtyFlags to avoid mutating the original environment's Sets
+  const dirtyFlags: DirtyFlags = {
+    ...env.dirtyFlags,
+    items: new Set(env.dirtyFlags.items),
+    jewels: new Set(env.dirtyFlags.jewels),
+    passives: true,
+  };
+
   return {
     ...env,
     passiveDB,
     playerDB,
-    dirtyFlags: { ...env.dirtyFlags, passives: true },
+    dirtyFlags,
     version: env.version + 1,
   };
 }
@@ -529,9 +577,12 @@ export function updateItem(
   // Rebuild playerDB
   const playerDB = rebuildPlayerDB(env.passiveDB, itemDBs, env.skillDB, env.configDB);
 
-  // Update dirty flags
-  const dirtyFlags = { ...env.dirtyFlags };
-  dirtyFlags.items = new Set(dirtyFlags.items);
+  // Deep clone dirtyFlags to avoid mutating the original environment's Sets
+  const dirtyFlags: DirtyFlags = {
+    ...env.dirtyFlags,
+    items: new Set(env.dirtyFlags.items),
+    jewels: new Set(env.dirtyFlags.jewels),
+  };
   dirtyFlags.items.add(slot);
 
   return {

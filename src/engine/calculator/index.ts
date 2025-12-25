@@ -5,6 +5,11 @@
  */
 
 // Types from types.ts
+// Note: AttributeValues is exported with alias StatResolverAttributeValues because
+// Environment.ts also exports an AttributeValues type. The types.ts version is used
+// by StatResolver for its attribute configuration, while the Environment.ts version
+// represents calculated character attributes. Consider consolidating these types
+// in a future refactor if they can be unified.
 export type {
   AttributeValues as StatResolverAttributeValues,
   StatResolverConfig,

@@ -193,7 +193,8 @@ function processSkillGroup(
     const context: ModParseContext = {
       source: SKILL_SOURCE,
       sourceId: `${group.id}:${activeGem.instance.id}`,
-      ...(group.slot && { slotName: group.slot }),
+      // Use explicit undefined check to allow empty string as valid slot
+      ...(group.slot !== undefined && { slotName: group.slot }),
     };
 
     // Process the active gem's own mods
@@ -207,7 +208,8 @@ function processSkillGroup(
       const supportContext: ModParseContext = {
         source: SKILL_SOURCE,
         sourceId: `${group.id}:${activeGem.instance.id}:${supportGem.instance.id}`,
-        ...(group.slot && { slotName: group.slot }),
+        // Use explicit undefined check to allow empty string as valid slot
+        ...(group.slot !== undefined && { slotName: group.slot }),
       };
 
       const supportModCount = processGemMods(supportGem, supportContext, parser, skillDB);
