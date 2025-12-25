@@ -6,3 +6,6 @@ export * from './db';
 
 // Local UI state extensions
 export * from './local';
+
+// Tree data types
+export * from './tree';
