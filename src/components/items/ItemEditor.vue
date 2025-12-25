@@ -339,7 +339,14 @@ const props = defineProps<{
   targetSlot?: ItemSlot;
 }>();
 
-// Default for item prop
+/**
+ * Normalized item reference with consistent null handling.
+ *
+ * This computed provides a stable null-coalesced reference to the item prop.
+ * It converts `undefined` to `null` for consistent nullish checks throughout
+ * the component (e.g., `if (itemToEdit.value)` vs checking both null/undefined).
+ * The watcher at line 484 uses this to trigger form reset on item changes.
+ */
 const itemToEdit = computed(() => props.item ?? null);
 
 const emit = defineEmits<{
@@ -481,6 +488,9 @@ watch(
   }
 );
 
+// Watch itemToEdit (not props.item directly) to benefit from the null-coalescing
+// normalization. This ensures the watcher triggers consistently whether the prop
+// changes from undefined→Item, null→Item, or Item→Item.
 watch(
   () => itemToEdit.value,
   () => {

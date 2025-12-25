@@ -22,7 +22,12 @@ body {
 // Scrollbar Styling (PoE2 dark theme)
 // ============================================================================
 
-// Scrollbar dimensions - standard size for thin scrollbars
+/**
+ * Scrollbar dimensions.
+ * 8px is the standard "thin" scrollbar size that balances visibility with
+ * minimal intrusion. Matches browser thin scrollbar defaults and provides
+ * consistent sizing across webkit (width/height) and Firefox (scrollbar-width: thin).
+ */
 $scrollbar-size: 8px;
 
 ::-webkit-scrollbar {
@@ -53,9 +58,20 @@ $scrollbar-size: 8px;
 // Selection Styling
 // ============================================================================
 
-// Selection highlight colors - muted blue that complements PoE2's dark theme
-$selection-color: rgb(136, 136, 255); // Soft blue, matches PoE2 accent tones
-$selection-opacity: 0.3; // Low opacity to not obscure text
+/**
+ * Selection highlight base color.
+ * Soft blue (#8888ff) chosen to complement PoE2's dark theme accent tones
+ * while providing sufficient contrast for text selection visibility.
+ */
+$selection-color: rgb(136, 136, 255);
+
+/**
+ * Selection highlight opacity.
+ * 0.3 (30%) provides visible selection highlighting while keeping text
+ * legible underneath. Lower values make selection hard to see; higher
+ * values obscure text color differences (e.g., syntax highlighting).
+ */
+$selection-opacity: 0.3;
 
 ::selection {
   background-color: rgba($selection-color, $selection-opacity);

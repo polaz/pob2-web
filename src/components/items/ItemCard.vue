@@ -398,7 +398,13 @@ const hasStatusTags = computed(() => {
 // property access (20+ times per computed block) while remaining unambiguous
 // within the clearly labeled "Weapon Stats" section.
 
-/** Physical damage display string */
+/**
+ * Physical damage display string.
+ *
+ * The falsy check `!wd.physicalMin && !wd.physicalMax` intentionally treats 0 as
+ * "no damage" - a weapon with physicalMin: 0, physicalMax: 0 has no physical damage
+ * to display. This is semantically correct: 0-0 damage means "none", not "zero".
+ */
 const physicalDamage = computed(() => {
   const wd = props.item.weaponData;
   if (!wd || (!wd.physicalMin && !wd.physicalMax)) return null;
@@ -434,6 +440,11 @@ const elementalDamage = computed(() => {
  * This is NOT the full DPS calculation from the engine (which includes modifiers,
  * skill gems, passives, etc.). This is just the base weapon DPS for display in
  * the item card, calculated as: avgDamage * attackSpeed.
+ *
+ * Quality bonuses: The weaponData values from ItemParser already include quality
+ * adjustments. Quality affects local increased physical damage which is baked into
+ * physicalMin/physicalMax during parsing. This display calculation uses those
+ * pre-computed values directly.
  */
 const totalDps = computed(() => {
   const wd = props.item.weaponData;

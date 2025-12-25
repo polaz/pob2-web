@@ -123,16 +123,19 @@
     </div>
 
     <!-- Item editor modal -->
-    <!-- Conditional v-bind pattern: When editingSlot is undefined, we pass an empty
-         object {} so the target-slot prop is omitted entirely. This is required because
-         TypeScript's exactOptionalPropertyTypes treats "prop: undefined" differently from
-         "prop not present". ItemEditor expects `targetSlot?: ItemSlot` (optional, not
-         undefined-able), so we must omit it rather than pass undefined.
+    <!-- Conditional v-bind pattern for optional prop with exactOptionalPropertyTypes:
 
-         This pattern is intentionally inline rather than using a computed property because:
-         1. The ternary directly shows the prop omission intent at the point of use
-         2. A computed would move the same logic elsewhere without simplifying it
-         3. The comment explains the TypeScript requirement right where it's applied -->
+         Why not use `:target-slot="editingSlot"`?
+         With exactOptionalPropertyTypes enabled, TypeScript distinguishes between:
+         - `{ targetSlot: undefined }` (property present with undefined value)
+         - `{ }` (property absent)
+
+         ItemEditor declares `targetSlot?: ItemSlot` (optional, not undefined-able).
+         Passing `:target-slot="undefined"` violates this - the prop is present but undefined.
+         The v-bind pattern with empty object {} properly omits the prop when undefined.
+
+         This pattern is inline (not a computed) because the ternary directly shows
+         the prop omission intent at point of use with the explanatory comment. -->
     <ItemEditor
       v-model="isEditorOpen"
       :item="editingItem"
@@ -206,12 +209,17 @@ const selectedItem = computed(() => {
 // ============================================================================
 
 /**
- * Handles slot selection from grid (event listener placeholder).
+ * Handles slot selection from grid.
  *
- * Currently a no-op: selection state is managed by itemStore.selectSlot()
- * which ItemSlotGrid calls directly. This handler exists for:
- * 1. Satisfying the @slot-select event binding in the template
- * 2. Future extensibility (e.g., analytics, side effects on selection)
+ * Currently a no-op because selection state is managed by itemStore.selectSlot()
+ * which ItemSlotGrid calls directly. This handler exists because:
+ * 1. Vue's event binding requires a handler function - removing @slot-select
+ *    would require changes to ItemSlotGrid's emit signature
+ * 2. Provides a hook for page-level side effects (analytics, telemetry)
+ *    without modifying the reusable grid component
+ *
+ * Alternative: Remove @slot-select from template and rely solely on store.
+ * Kept for explicit event flow documentation and future extensibility.
  *
  * @param _slot - The selected slot (unused - prefixed with underscore per convention)
  */

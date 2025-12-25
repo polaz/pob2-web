@@ -185,7 +185,12 @@ function handleIconError(): void {
 <style scoped>
 /* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-slot {
-  /* Component-specific layout dimensions as CSS custom properties */
+  /*
+   * Component-specific dimensions as CSS custom properties for responsive scaling.
+   * These are designed to be adjusted via media queries for different resolutions
+   * and DPI settings. Current values are base defaults for standard displays.
+   * Future: Add @media queries for high-DPI displays and mobile viewports.
+   */
   --placeholder-scale: 60%;
   --icon-scale: 90%;
   --rarity-bar-height: 3px;

@@ -153,11 +153,14 @@ const XML_ESCAPE_MAP: Record<string, string> = {
  * It is specifically designed for the getRarityPlaceholder SVG generator where
  * the input is always `letter.charAt(0)` - guaranteed to be a single character.
  *
- * Design: The length check is defensive validation, not a security boundary.
- * If a multi-character string were somehow passed, returning it unchanged is
- * safe because the SVG is encoded as a data URL for img src attributes, not
- * inline SVG in the DOM. Any unescaped special characters would cause display
- * issues (malformed SVG) rather than XSS vulnerabilities.
+ * Design: The length !== 1 check validates expected input format. If validation
+ * fails, the function returns the input unchanged rather than throwing because:
+ * 1. The SVG is encoded as a data URL for img src, not inline DOM - no XSS risk
+ * 2. Invalid input would produce malformed SVG (display issue) not security issue
+ * 3. Graceful degradation is preferred over runtime errors for display-only code
+ *
+ * The actual caller (getRarityPlaceholder) always passes `letter.charAt(0)` which
+ * is guaranteed to be a single character (or empty string for empty input).
  *
  * @param char - A single character to escape.
  * @returns The XML-escaped character (e.g., '<' becomes '&lt;') or the original.
@@ -358,7 +361,9 @@ class ItemIconLoader {
     // Evict oldest entry (first inserted) if cache is at capacity
     if (this.cache.size >= MEMORY_CACHE_MAX_SIZE) {
       // Map.keys().next() returns IteratorResult<string> where value is string | undefined.
-      // The undefined case occurs when iterator is exhausted (cache empty), guarded by size check.
+      // The undefined case only occurs when iterator is exhausted (empty Map).
+      // The size >= MAX check guarantees the Map is non-empty, but we keep the
+      // `if (oldestKey)` guard for TypeScript type narrowing and defensive coding.
       const oldestKey = this.cache.keys().next().value;
       if (oldestKey) {
         this.cache.delete(oldestKey);
