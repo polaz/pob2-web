@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/polaz/pob2-web/compare/v1.8.1...v1.9.0) (2025-12-25)
+
+
+### Features
+
+* **engine:** implement ModParser with data/logic separation ([#91](https://github.com/polaz/pob2-web/issues/91)) ([31bd3ec](https://github.com/polaz/pob2-web/commit/31bd3ec5f2180016d8b229617ed10c1b96f5db02)), closes [#12](https://github.com/polaz/pob2-web/issues/12)
+
 ## [1.8.1](https://github.com/polaz/pob2-web/compare/v1.8.0...v1.8.1) (2025-12-25)
 
 
