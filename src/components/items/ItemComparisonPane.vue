@@ -335,13 +335,18 @@ function handleClear(): void {
   --empty-min-height: 200px;
   --placeholder-min-height: 80px;
   --placeholder-padding: 16px;
+  --deltas-padding: 8px;
+  /* Subtle overlay colors for visual separation */
+  --header-gradient-color: rgba(255, 255, 255, 0.03);
+  --placeholder-border-color: rgba(255, 255, 255, 0.2);
+  --deltas-bg-color: rgba(255, 255, 255, 0.02);
 
   background-color: var(--poe2-card-bg);
   min-width: var(--pane-min-width);
 }
 
 .item-comparison-pane__header {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--header-gradient-color) 0%, transparent 100%);
 }
 
 .item-comparison-pane__empty {
@@ -349,16 +354,14 @@ function handleClear(): void {
 }
 
 .item-comparison-pane__placeholder {
-  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border: 2px dashed var(--placeholder-border-color);
   border-radius: 4px;
   padding: var(--placeholder-padding);
   min-height: var(--placeholder-min-height);
 }
 
 .item-comparison-pane__deltas {
-  --deltas-padding: 8px;
-
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: var(--deltas-bg-color);
   border-radius: 4px;
   padding: var(--deltas-padding);
 }

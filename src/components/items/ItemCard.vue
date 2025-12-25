@@ -539,7 +539,7 @@ function formatBlock(value: number): string {
   width: var(--socket-size);
   height: var(--socket-size);
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--poe2-border-subtle);
 }
 
 .item-card__socket--r {
@@ -560,11 +560,11 @@ function formatBlock(value: number): string {
 
 .item-card__socket--a {
   background: radial-gradient(circle at 30% 30%, #444444, #000000);
-  border-color: #666;
+  border-color: var(--poe2-border-muted);
 }
 
 .item-card__socket-link {
-  color: #666;
+  color: var(--poe2-border-muted);
   font-weight: bold;
   margin: 0 -2px;
 }
@@ -575,19 +575,19 @@ function formatBlock(value: number): string {
 }
 
 .item-card__mod--implicit {
-  color: #88ccff;
+  color: var(--poe2-mod-implicit);
 }
 
 .item-card__mod--explicit {
-  color: #88ffff;
+  color: var(--poe2-mod-explicit);
 }
 
 .item-card__mod--crafted {
-  color: #aaddff;
+  color: var(--poe2-mod-crafted);
   font-style: italic;
 }
 
 .item-card__mod--enchant {
-  color: #aaddff;
+  color: var(--poe2-mod-enchant);
 }
 </style>
