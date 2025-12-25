@@ -1,5 +1,6 @@
 {
   "_comment": "Maps modifier text fragments to ModFlag values. Case-insensitive matching.",
+  "_keyword_vs_stat_note": "KeywordFlags identify skill/damage keywords (e.g., 'burning' -> Ignite keyword). Stat names in stat-mappings.json identify stats for calculation (e.g., 'burning damage' -> IgniteDamage stat). Both may exist for related concepts.",
   "version": "1.0.0",
   "modFlags": {
     "attack": "Attack",

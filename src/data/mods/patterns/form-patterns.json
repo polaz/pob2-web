@@ -1,5 +1,6 @@
 {
   "_comment": "Form patterns for matching modifier text. Patterns are tried in order - first match wins.",
+  "_ordering_note": "Patterns are ordered by specificity: damage range patterns first (most specific structure), then more/less/increased/reduced (contain keywords that won't appear in damage ranges). This prevents 'Adds X to Y Fire Damage' from matching a generic 'more X' pattern.",
   "version": "1.0.0",
   "patterns": [
     {
