@@ -88,13 +88,11 @@ import { useBuildStore } from 'src/stores/buildStore';
 import { useTreeData } from 'src/composables/useTreeData';
 import { useTreeStore } from 'src/stores/treeStore';
 import { classEnumToName } from 'src/utils/characterClass';
+import { TREE_CONSTANTS } from 'src/shared/constants';
 import type { TreeAscendancy } from 'src/types/tree';
 
-/**
- * Maximum ascendancy points available per character in PoE2.
- * Players earn 2 points at each of the 4 labyrinth trials (Normal, Cruel, Merciless, Eternal).
- */
-const MAX_ASCENDANCY_POINTS = 8;
+/** Shorthand for max ascendancy points from shared constants */
+const MAX_ASCENDANCY_POINTS = TREE_CONSTANTS.MAX_ASCENDANCY_POINTS;
 
 const emit = defineEmits<{
   /** Emitted when ascendancy changes */
@@ -120,7 +118,7 @@ const currentClassName = computed(() => {
 /**
  * Available ascendancies for the current class.
  */
-const availableAscendancies = computed(() => {
+const availableAscendancies = computed((): string[] => {
   if (!currentClassName.value) return [];
 
   const classData = classes.value.get(currentClassName.value);
@@ -133,7 +131,7 @@ const availableAscendancies = computed(() => {
  * Ascendancy options for the button toggle.
  */
 const ascendancyOptions = computed(() => {
-  return availableAscendancies.value.map((name: string) => ({
+  return availableAscendancies.value.map((name) => ({
     label: name,
     value: name,
   }));
@@ -221,9 +219,12 @@ watch(
 <style scoped>
 /*
  * Ascendancy panel styling uses PoE2 theme variables.
- * Custom CSS needed for toggle button deep styling and rgba overlays.
+ * Custom CSS needed for toggle button deep styling.
  */
 .ascendancy-panel {
+  /* Component-level CSS custom properties for maintainability */
+  --ascendancy-toggle-font-size: 12px;
+
   background-color: var(--poe2-bg-overlay);
 }
 
@@ -233,7 +234,7 @@ watch(
 
 /* Deep selector needed for Quasar toggle button internals */
 .ascendancy-panel__toggle :deep(.q-btn) {
-  font-size: 12px;
+  font-size: var(--ascendancy-toggle-font-size);
 }
 
 .ascendancy-panel__info {

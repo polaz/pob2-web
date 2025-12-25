@@ -1,5 +1,5 @@
 <template>
-  <div style="min-width: 150px">
+  <div class="class-selector">
     <q-select
       v-model="selectedClass"
       :options="classOptions"
@@ -9,7 +9,7 @@
       emit-value
       map-options
       options-dense
-      style="min-width: 150px"
+      class="class-selector__select"
       @update:model-value="handleClassChange"
     >
       <template #prepend>
@@ -19,7 +19,7 @@
 
     <!-- Confirmation dialog for class change -->
     <q-dialog v-model="showConfirmDialog" persistent>
-      <q-card style="min-width: 300px">
+      <q-card class="class-selector__dialog">
         <q-card-section class="row items-center">
           <q-icon name="warning" color="warning" size="md" class="q-mr-sm" />
           <span class="text-h6">Change Class?</span>
@@ -181,3 +181,23 @@ watch(
 );
 </script>
 
+<style scoped>
+/*
+ * Component sizing uses CSS custom properties for maintainability.
+ * These could be moved to a shared theme file if reused elsewhere.
+ */
+.class-selector {
+  --class-selector-min-width: 150px;
+  --class-selector-dialog-min-width: 300px;
+
+  min-width: var(--class-selector-min-width);
+}
+
+.class-selector__select {
+  min-width: var(--class-selector-min-width);
+}
+
+.class-selector__dialog {
+  min-width: var(--class-selector-dialog-min-width);
+}
+</style>
