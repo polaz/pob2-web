@@ -117,11 +117,22 @@ function fromUrlSafeBase64(urlSafe: string): string {
 const BUILD_CODE_PATTERN = /^[A-Za-z0-9_-]+=*$/;
 
 /**
+ * Minimum length for a valid build code string.
+ *
+ * PoB2 build codes are compressed XML encoded as base64. Even the smallest
+ * valid build (empty tree, no items) produces a code of ~50+ characters.
+ * Strings shorter than 10 characters cannot possibly contain valid compressed
+ * XML data and are almost certainly user errors (partial paste, random text).
+ * We fail fast to avoid expensive decompression attempts on invalid input.
+ */
+const MIN_BUILD_CODE_LENGTH = 10;
+
+/**
  * Check if a string looks like a valid build code.
  * Does not verify the content, just the format.
  */
 export function isValidBuildCodeFormat(code: string): boolean {
-  if (!code || code.length < 10) {
+  if (!code || code.length < MIN_BUILD_CODE_LENGTH) {
     return false;
   }
   return BUILD_CODE_PATTERN.test(code);

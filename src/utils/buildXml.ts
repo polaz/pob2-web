@@ -42,6 +42,41 @@ const POE2_TREE_VERSION = '3_25';
 /** XML declaration for generated documents */
 const XML_DECLARATION = '<?xml version="1.0" encoding="UTF-8"?>';
 
+/**
+ * Default set ID for PoB2's item/skill/spec sets.
+ *
+ * PoB2 supports multiple item sets, skill sets, and tree specs per build.
+ * When exporting, we use set ID 1 as the "active" set since our data model
+ * currently represents a single configuration. PoB2 expects this value
+ * for attributes like activeItemSet, activeSkillSet, activeSpec, and id.
+ */
+const DEFAULT_SET_ID = 1;
+
+/**
+ * Default character class name for PoB2 XML export.
+ *
+ * Used when no character class is specified in the build. Warrior is chosen
+ * as it's the first class in PoE2's class list and is commonly used for
+ * placeholder/template builds.
+ */
+const DEFAULT_CLASS_NAME = 'Warrior';
+
+/**
+ * Default character level for PoB2 XML export.
+ *
+ * Level 1 represents a fresh character. Used when no level is specified
+ * in the build data being exported.
+ */
+const DEFAULT_LEVEL = 1;
+
+/**
+ * Default spec/build title for PoB2 XML export.
+ *
+ * Used as a placeholder name when the build has no name specified.
+ * PoB2 displays this in its spec dropdown menu.
+ */
+const DEFAULT_SPEC_TITLE = 'Default';
+
 // =============================================================================
 // Character Class Mapping
 // =============================================================================
@@ -278,7 +313,7 @@ function serializeItems(items: Record<string, Item>): string {
   }
 
   const content = [...itemElements, ...slotElements].join('\n');
-  return xmlElement('Items', { activeItemSet: 1 }, '\n' + content + '\n');
+  return xmlElement('Items', { activeItemSet: DEFAULT_SET_ID }, '\n' + content + '\n');
 }
 
 /**
@@ -304,7 +339,7 @@ function serializeGem(gem: GemInstance): string {
  */
 function serializeSkills(skillGroups: SkillGroup[]): string {
   if (skillGroups.length === 0) {
-    return xmlElement('Skills', { activeSkillSet: 1 }, '');
+    return xmlElement('Skills', { activeSkillSet: DEFAULT_SET_ID }, '');
   }
 
   const skillSetContent = skillGroups
@@ -316,7 +351,7 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
           enabled: group.enabled ?? true,
           slot: group.slot,
           label: group.label,
-          mainActiveSkill: index === 0 ? 1 : undefined,
+          mainActiveSkill: index === 0 ? DEFAULT_SET_ID : undefined,
           includeInFullDPS: group.includeInFullDps,
         },
         gemElements ? '\n' + gemElements + '\n' : ''
@@ -324,8 +359,8 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
     })
     .join('\n');
 
-  const skillSetElement = xmlElement('SkillSet', { id: 1 }, '\n' + skillSetContent + '\n');
-  return xmlElement('Skills', { activeSkillSet: 1 }, '\n' + skillSetElement + '\n');
+  const skillSetElement = xmlElement('SkillSet', { id: DEFAULT_SET_ID }, '\n' + skillSetContent + '\n');
+  return xmlElement('Skills', { activeSkillSet: DEFAULT_SET_ID }, '\n' + skillSetElement + '\n');
 }
 
 /**
@@ -402,13 +437,14 @@ function serializeConfig(config: BuildConfig | undefined): string {
  * Convert a Build object to PoB2-compatible XML string.
  */
 export function buildToXml(build: Build): string {
-  const className = build.characterClass !== undefined ? CLASS_TO_POB_NAME[build.characterClass] : 'Warrior';
+  const className =
+    build.characterClass !== undefined ? CLASS_TO_POB_NAME[build.characterClass] : DEFAULT_CLASS_NAME;
 
   // Build element
   const buildElement = xmlElement(
     'Build',
     {
-      level: build.level ?? 1,
+      level: build.level ?? DEFAULT_LEVEL,
       className,
       ascendClassName: build.ascendancy,
     },
@@ -422,7 +458,7 @@ export function buildToXml(build: Build): string {
   const specElement = xmlElement(
     'Spec',
     {
-      title: build.name ?? 'Default',
+      title: build.name ?? DEFAULT_SPEC_TITLE,
       treeVersion: POE2_TREE_VERSION,
       nodes,
       ...(masteryEffects && { masteryEffects }),
@@ -430,7 +466,7 @@ export function buildToXml(build: Build): string {
     '',
     true
   );
-  const treeElement = xmlElement('Tree', { activeSpec: 1 }, '\n' + specElement + '\n');
+  const treeElement = xmlElement('Tree', { activeSpec: DEFAULT_SET_ID }, '\n' + specElement + '\n');
 
   // Items element
   const itemsElement = serializeItems(build.equippedItems);
@@ -799,7 +835,7 @@ export function xmlToBuild(xml: string): Build {
   // Parse Build element
   const buildEl = root.querySelector('Build');
   const buildElOrRoot = buildEl ?? root;
-  const className = getAttr(buildElOrRoot, 'className') ?? 'Warrior';
+  const className = getAttr(buildElOrRoot, 'className') ?? DEFAULT_CLASS_NAME;
   const characterClass = POB_NAME_TO_CLASS[className] ?? CharacterClass.WARRIOR;
 
   // Parse Tree element
@@ -825,7 +861,7 @@ export function xmlToBuild(xml: string): Build {
     id: crypto.randomUUID(),
     name: getAttr(specElOrRoot, 'title') ?? getAttr(buildElOrRoot, 'buildName') ?? 'Imported Build',
     characterClass,
-    level: getNumAttr(buildElOrRoot, 'level') ?? 1,
+    level: getNumAttr(buildElOrRoot, 'level') ?? DEFAULT_LEVEL,
     allocatedNodeIds: parseNodes(nodesStr),
     masterySelections: parseMasteryEffects(masteryEffectsStr),
     equippedItems: parseItems(itemsEl),
