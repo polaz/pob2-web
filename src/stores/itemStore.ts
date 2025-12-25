@@ -165,9 +165,10 @@ export const useItemStore = defineStore('item', () => {
 
   /** Copy item to clipboard */
   function copyItem(item: Item): void {
-    const clonedItem = cloneDeep(item);
-    clonedItem.id = crypto.randomUUID();
-    clipboardItem.value = clonedItem;
+    clipboardItem.value = {
+      ...cloneDeep(item),
+      id: crypto.randomUUID(),
+    };
   }
 
   /** Clear clipboard */

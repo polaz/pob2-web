@@ -126,8 +126,8 @@ export const useTreeStore = defineStore('tree', () => {
     return Array.from(nodesById.value.keys());
   });
 
-  /** Total node count */
-  const totalNodeCount = computed(() => allNodeIds.value.length);
+  /** Total node count - uses Map.size directly for O(1) access */
+  const totalNodeCount = computed(() => nodesById.value.size);
 
   /** Has active search */
   const hasSearch = computed(() => searchQuery.value.length > 0);

@@ -240,15 +240,29 @@ export const useBuildStore = defineStore('build', () => {
     return CharacterClass.WARRIOR;
   }
 
-  /** Convert Build to StoredBuild for database */
+  /**
+   * Convert Build to StoredBuild for database.
+   *
+   * Note: passiveNodes are stored as numbers because PoE2 node IDs are numeric.
+   * Non-numeric IDs are filtered out with a warning since they indicate data issues.
+   */
   function toStoredBuild(): Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> {
+    const allocatedNodeIds = currentBuild.value.allocatedNodeIds;
+    const passiveNodes: number[] = [];
+    for (const id of allocatedNodeIds) {
+      const num = Number.parseInt(id, 10);
+      if (Number.isNaN(num)) {
+        console.warn(`toStoredBuild: Non-numeric node ID "${id}" will be skipped`);
+      } else {
+        passiveNodes.push(num);
+      }
+    }
+
     const result: Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> = {
       name: currentBuild.value.name ?? 'Unnamed Build',
       className: characterClassToString(currentBuild.value.characterClass ?? CharacterClass.WARRIOR),
       level: currentBuild.value.level ?? 1,
-      passiveNodes: currentBuild.value.allocatedNodeIds
-        .map((id) => Number.parseInt(id, 10))
-        .filter((num) => !Number.isNaN(num)),
+      passiveNodes,
       items: JSON.stringify(currentBuild.value.equippedItems),
       skills: JSON.stringify(currentBuild.value.skillGroups),
     };
