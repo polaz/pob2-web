@@ -1,23 +1,17 @@
 /**
- * Unit tests for useTreeData graph traversal algorithms.
+ * Unit tests for useTreeData composable.
  *
- * DESIGN NOTE: These tests intentionally reimplement the BFS algorithms rather
- * than testing the composable directly. This approach was chosen because:
+ * This file contains two test suites:
  *
- * 1. **Algorithm Verification**: Tests verify correctness of graph algorithms
- *    with a known, simple graph structure (7 connected + 1 isolated node).
+ * 1. **Algorithm Tests**: Reimplement BFS algorithms to verify correctness
+ *    with a known graph structure, independent of Vue lifecycle.
  *
- * 2. **Vue Lifecycle Independence**: The composable uses onMounted() which
- *    requires mounting a component. Testing algorithms directly avoids this
- *    complexity and ensures algorithm logic is correct regardless of Vue state.
- *
- * 3. **Deterministic Testing**: Using a controlled test graph with known
- *    shortest paths allows exact assertions (e.g., path 1->6 = 4 steps).
- *
- * For integration tests that verify the composable's Vue integration (loading,
- * caching, reactivity), see test/integration/composables/ (future).
+ * 2. **Composable API Tests**: Test the actual useTreeData exports by
+ *    mounting a test component that uses the composable.
  */
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
+import { mount } from '@vue/test-utils';
+import { defineComponent, h } from 'vue';
 import type { TreeNode, TreeData, TreeNodeType } from 'src/types/tree';
 
 // Mock the database module
@@ -405,5 +399,184 @@ describe('useTreeData graph traversal', () => {
       // Should not throw, null name nodes are filtered out
       expect(results.every((n) => n.name !== null)).toBe(true);
     });
+  });
+});
+
+/**
+ * Composable API Tests
+ *
+ * These tests verify the actual useTreeData composable exports work correctly
+ * by mounting a test component that uses the composable.
+ *
+ * Note: We test the composable by directly calling its methods after waiting
+ * for the async load to complete. This avoids complex mocking issues with
+ * dynamic imports.
+ */
+describe('useTreeData composable API', () => {
+  beforeEach(async () => {
+    vi.resetModules();
+    // Clear cached tree data before each test
+    const mod = await import('src/composables/useTreeData');
+    mod.resetTreeDataForTesting();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  /**
+   * Helper to mount component and wait for tree data to load.
+   * Uses a polling approach since flushPromises() may not wait for
+   * the full async chain (IndexedDB + dynamic import + conversion).
+   */
+  async function mountAndWaitForLoad() {
+    const { useTreeData } = await import('src/composables/useTreeData');
+
+    let composableResult: ReturnType<typeof useTreeData> | null = null;
+
+    const TestComponent = defineComponent({
+      setup() {
+        composableResult = useTreeData();
+        return () => h('div');
+      },
+    });
+
+    mount(TestComponent);
+
+    // Wait for loading to complete (poll for up to 5 seconds)
+    const startTime = Date.now();
+    while (composableResult!.loading.value && Date.now() - startTime < 5000) {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+
+    return composableResult!;
+  }
+
+  it('should load tree data and expose via treeData ref', async () => {
+    const result = await mountAndWaitForLoad();
+
+    expect(result.loading.value).toBe(false);
+    expect(result.error.value).toBeNull();
+    expect(result.treeData.value).not.toBeNull();
+    // Real tree has many nodes
+    expect(result.nodeCount.value).toBeGreaterThan(100);
+  });
+
+  it('should expose getNode function that returns correct node', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Get any node from the tree
+    const firstNodeId = result.treeData.value?.nodes.keys().next().value;
+    expect(firstNodeId).toBeDefined();
+
+    const node = result.getNode(firstNodeId!);
+    expect(node).toBeDefined();
+    expect(node?.id).toBe(firstNodeId);
+  });
+
+  it('should expose getNodesByType function', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Real tree should have notable nodes
+    const notables = result.getNodesByType('notable');
+    expect(notables.length).toBeGreaterThan(0);
+    expect(notables.every((n) => n.type === 'notable')).toBe(true);
+
+    // Real tree should have keystone nodes
+    const keystones = result.getNodesByType('keystone');
+    expect(keystones.length).toBeGreaterThan(0);
+    expect(keystones.every((n) => n.type === 'keystone')).toBe(true);
+  });
+
+  it('should expose findPath function that finds shortest path', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Get two connected nodes
+    const nodes = result.treeData.value?.nodes;
+    expect(nodes).toBeDefined();
+
+    // Find a node with neighbors
+    let startId: string | undefined;
+    let endId: string | undefined;
+    for (const [id, node] of nodes!) {
+      if (node.neighbors.size > 0) {
+        startId = id;
+        endId = node.neighbors.values().next().value;
+        break;
+      }
+    }
+
+    expect(startId).toBeDefined();
+    expect(endId).toBeDefined();
+
+    const pathResult = result.findPath(startId!, endId!);
+    expect(pathResult.found).toBe(true);
+    expect(pathResult.path.length).toBeGreaterThan(0);
+    expect(pathResult.path[0]).toBe(startId);
+    expect(pathResult.path[pathResult.path.length - 1]).toBe(endId);
+  });
+
+  it('should expose searchNodes function', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Search for common stat terms that should exist in the tree
+    // Empty query returns empty array
+    expect(result.searchNodes('')).toEqual([]);
+    expect(result.searchNodes('   ')).toEqual([]);
+
+    // Find a node name to search for
+    const firstNode = result.treeData.value?.nodes.values().next().value;
+    if (firstNode?.name) {
+      const searchTerm = firstNode.name.split(' ')[0]?.toLowerCase();
+      if (searchTerm && searchTerm.length > 2) {
+        const results = result.searchNodes(searchTerm);
+        expect(results.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it('should cache search results (LRU)', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Find a searchable term
+    const firstNode = result.treeData.value?.nodes.values().next().value;
+    const searchTerm = firstNode?.name?.split(' ')[0]?.toLowerCase() || 'test';
+
+    // First search
+    const results1 = result.searchNodes(searchTerm);
+
+    // Second search should return same array reference (cached)
+    const results2 = result.searchNodes(searchTerm);
+    expect(results2).toBe(results1);
+  });
+
+  it('should return empty results when tree data not loaded', async () => {
+    const { useTreeData, resetTreeDataForTesting } = await import(
+      'src/composables/useTreeData'
+    );
+    resetTreeDataForTesting();
+
+    let composableResult: ReturnType<typeof useTreeData> | null = null;
+
+    const TestComponent = defineComponent({
+      setup() {
+        composableResult = useTreeData();
+        return () => h('div');
+      },
+    });
+
+    mount(TestComponent);
+    // Don't wait - test immediate state before async load completes
+
+    // Before data loads, functions should return safe defaults
+    expect(composableResult!.loading.value).toBe(true);
+    expect(composableResult!.getNode('1')).toBeUndefined();
+    expect(composableResult!.getNodesByType('normal')).toEqual([]);
+    expect(composableResult!.findPath('1', '2')).toEqual({
+      path: [],
+      length: 0,
+      found: false,
+    });
+    expect(composableResult!.searchNodes('test')).toEqual([]);
   });
 });
