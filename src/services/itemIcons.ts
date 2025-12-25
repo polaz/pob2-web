@@ -5,7 +5,7 @@
  * Uses Service Worker for offline caching in PWA mode.
  */
 
-import type { ItemType, ItemRarity } from 'src/protos/pob2_pb';
+import type { ItemType, ItemRarity } from 'src/protos/items_pb';
 
 // ============================================================================
 // Constants

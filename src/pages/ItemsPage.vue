@@ -138,7 +138,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useQuasar } from 'quasar';
-import type { Item, ItemSlot } from 'src/protos/pob2_pb';
+import type { Item, ItemSlot } from 'src/protos/items_pb';
 import { useItemStore } from 'src/stores/itemStore';
 import { useBuildStore } from 'src/stores/buildStore';
 import { parseItem } from 'src/engine/items/ItemParser';

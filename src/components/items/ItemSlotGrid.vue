@@ -139,8 +139,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import type { Item } from 'src/protos/pob2_pb';
-import { ItemSlot as ItemSlotEnum } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
+import { ItemSlot as ItemSlotEnum } from 'src/protos/items_pb';
 import { useItemStore, EQUIPMENT_SLOTS, FLASK_SLOTS, SWAP_SLOTS, type SlotInfo } from 'src/stores/itemStore';
 import { useBuildStore } from 'src/stores/buildStore';
 import { parseItem } from 'src/engine/items/ItemParser';

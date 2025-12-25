@@ -176,7 +176,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 import { computeWeaponStats, computeArmourStats } from 'src/engine/items/types';
 import ItemCard from './ItemCard.vue';
 import StatDelta from './StatDelta.vue';

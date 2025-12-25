@@ -304,8 +304,8 @@
 import { ref, computed, watch, reactive } from 'vue';
 import { useQuasar } from 'quasar';
 import { cloneDeep } from 'lodash-es';
-import type { Item, ItemSlot } from 'src/protos/pob2_pb';
-import { ItemRarity } from 'src/protos/pob2_pb';
+import type { Item, ItemSlot } from 'src/protos/items_pb';
+import { ItemRarity } from 'src/protos/items_pb';
 import { EQUIPMENT_SLOTS, type SlotInfo } from 'src/stores/itemStore';
 import { parseItem } from 'src/engine/items/ItemParser';
 import ItemCard from './ItemCard.vue';

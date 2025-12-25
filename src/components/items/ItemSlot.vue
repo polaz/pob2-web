@@ -47,7 +47,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { SlotInfo } from 'src/stores/itemStore';
 import {
   itemIconLoader,
