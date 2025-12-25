@@ -323,10 +323,20 @@ export function useTreeData() {
   const classes = computed(() => treeData.value?.classes ?? new Map());
   const ascendancies = computed(() => treeData.value?.ascendancies ?? new Map());
 
-  // Reactive search cache - automatically cleared when treeData changes
+  /**
+   * Search cache using shallowRef for performance.
+   *
+   * NOTE: We intentionally mutate the Map directly (via .set/.delete) rather
+   * than replacing the entire Map on each update. This is safe because:
+   * 1. searchNodes() returns cached values directly, not via reactive binding
+   * 2. No components watch searchCache for changes
+   * 3. Direct mutation avoids creating new Map instances on every search
+   *
+   * The watch() below handles full cache invalidation when treeData changes.
+   */
   const searchCache = shallowRef(new Map<string, TreeNode[]>());
 
-  // Clear cache whenever treeData changes (more robust than version checking)
+  // Clear cache whenever treeData changes (replaces entire Map for reactivity)
   watch(treeData, () => {
     searchCache.value = new Map();
   });
