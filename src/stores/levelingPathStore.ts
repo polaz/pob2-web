@@ -292,9 +292,8 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
     // No-op: step is already at the clamped target position
     if (oldOrder === clampedNewOrder) return;
 
-    // Remove step from old position
-    const [step] = steps.splice(stepIndex, 1);
-    if (!step) return;
+    // Remove step from old position (stepIndex is valid, so splice always returns one element)
+    const [step] = steps.splice(stepIndex, 1) as [LevelingStep];
 
     // Insert at new position (adjust for 1-based order)
     steps.splice(clampedNewOrder - 1, 0, step);
