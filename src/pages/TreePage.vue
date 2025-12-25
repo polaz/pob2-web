@@ -66,10 +66,10 @@ function convertNodeType(type: string): NodeType {
 
 /**
  * Scale factor to convert tree coordinates to reasonable canvas units.
- * Original tree spans ~33000 units, we scale down to fit ~600-800 units
- * so the tree is viewable at zoom levels 0.5-2.0
+ * Original tree spans ~33000 units, we scale down to fit ~1650 units
+ * so nodes have adequate spacing at reasonable zoom levels.
  */
-const COORDINATE_SCALE = 0.02;
+const COORDINATE_SCALE = 0.05;
 
 /**
  * Convert TreeNode to PassiveNode proto format.

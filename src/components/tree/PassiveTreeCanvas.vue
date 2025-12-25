@@ -9,6 +9,10 @@
       style="top: 8px; right: 8px"
     >
       <div>{{ fps }} FPS | {{ rendererType.toUpperCase() }} | {{ treeRenderer.nodeCount.value }} nodes</div>
+      <div>Canvas: {{ canvasSize.width }}x{{ canvasSize.height }}</div>
+      <div>Mouse: ({{ mouseTreeCoords.x.toFixed(1) }}, {{ mouseTreeCoords.y.toFixed(1) }})</div>
+      <div>Viewport: ({{ treeStore.viewport.x.toFixed(1) }}, {{ treeStore.viewport.y.toFixed(1) }}) z={{ treeStore.viewport.zoom.toFixed(2) }}</div>
+      <div>Expected VP: ({{ (canvasSize.width / 2).toFixed(0) }}, {{ (canvasSize.height / 2).toFixed(0) }})</div>
       <div v-if="fallbackReason" class="passive-tree-canvas__fallback text-orange-4">
         {{ fallbackReason }}
       </div>
@@ -75,6 +79,15 @@ let isDragging = false;
 let lastPointerX = 0;
 let lastPointerY = 0;
 
+// Track if user has manually panned (prevents auto-recentering on resize)
+let userHasPanned = false;
+
+// Debug: mouse position in tree coordinates
+const mouseTreeCoords = shallowRef({ x: 0, y: 0 });
+
+// Debug: canvas size (updated on resize, not computed since clientWidth isn't reactive)
+const canvasSize = shallowRef({ width: 0, height: 0 });
+
 // Show FPS only in dev mode when prop is true (reactive to prop changes)
 const shouldShowFps = computed(() => import.meta.env.DEV && props.showFps);
 
@@ -137,14 +150,28 @@ function handleResize(): void {
 
 /**
  * Perform the actual resize operation.
+ * Uses getBoundingClientRect for accurate visible dimensions.
  */
 function performResize(): void {
-  if (!containerRef.value || !ready.value) return;
+  if (!canvasRef.value || !ready.value) return;
 
-  const { clientWidth, clientHeight } = containerRef.value;
-  if (clientWidth > 0 && clientHeight > 0) {
-    resize(clientWidth, clientHeight);
-    emit('resize', clientWidth, clientHeight);
+  // Use getBoundingClientRect for accurate visible dimensions
+  const rect = canvasRef.value.getBoundingClientRect();
+  const width = Math.round(rect.width);
+  const height = Math.round(rect.height);
+
+  if (width > 0 && height > 0) {
+    resize(width, height);
+    emit('resize', width, height);
+
+    // Update debug canvas size
+    canvasSize.value = { width, height };
+
+    // Center viewport if nodes are rendered and user hasn't manually panned
+    // This handles both initial centering and re-centering after layout settles
+    if (treeRenderer.nodeCount.value > 0 && !userHasPanned) {
+      treeRenderer.centerViewport(width, height);
+    }
   }
 }
 
@@ -171,9 +198,23 @@ function handlePointerDown(event: PointerEvent): void {
 }
 
 /**
- * Handle pointer move for panning.
+ * Handle pointer move for panning and coordinate tracking.
  */
 function handlePointerMove(event: PointerEvent): void {
+  // Update mouse tree coordinates for debug display
+  if (containerRef.value) {
+    const rect = containerRef.value.getBoundingClientRect();
+    const screenX = event.clientX - rect.left;
+    const screenY = event.clientY - rect.top;
+
+    // Convert screen coords to tree coords: tree = (screen - viewport) / zoom
+    const { x: vpX, y: vpY, zoom } = treeStore.viewport;
+    mouseTreeCoords.value = {
+      x: (screenX - vpX) / zoom,
+      y: (screenY - vpY) / zoom,
+    };
+  }
+
   if (!isDragging) return;
 
   const dx = event.clientX - lastPointerX;
@@ -181,6 +222,11 @@ function handlePointerMove(event: PointerEvent): void {
 
   lastPointerX = event.clientX;
   lastPointerY = event.clientY;
+
+  // Mark that user has manually panned (prevents auto-recentering on resize)
+  if (dx !== 0 || dy !== 0) {
+    userHasPanned = true;
+  }
 
   // Pan viewport
   treeStore.panViewport(dx, dy);
@@ -311,6 +357,19 @@ watch(error, (err) => {
     emit('error', err);
   }
 });
+
+// Watch for nodes to be rendered and center viewport
+watch(
+  () => treeRenderer.nodeCount.value,
+  (count) => {
+    if (count > 0 && !userHasPanned && canvasRef.value) {
+      const rect = canvasRef.value.getBoundingClientRect();
+      if (rect.width > 0 && rect.height > 0) {
+        treeRenderer.centerViewport(Math.round(rect.width), Math.round(rect.height));
+      }
+    }
+  }
+);
 
 // Expose for parent component access
 defineExpose({
