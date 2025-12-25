@@ -2,7 +2,7 @@
 // Batch renderer for tree connections
 
 import { Graphics, Container } from 'pixi.js';
-import type { PassiveNode } from 'src/protos/pob2_pb';
+import type { PassiveNode } from 'src/protos/tree_pb';
 import type {
   ConnectionData,
   ConnectionRenderConfig,

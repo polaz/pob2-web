@@ -7,7 +7,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useTreeStore } from 'src/stores/treeStore';
-import type { PassiveTree, PassiveNode } from 'src/protos/pob2_pb';
+import type { PassiveTree, PassiveNode } from 'src/protos/tree_pb';
 
 /** Create mock passive node */
 function createMockNode(

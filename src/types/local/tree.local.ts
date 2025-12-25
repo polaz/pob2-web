@@ -2,7 +2,7 @@
 // UI-only state extensions for passive tree nodes
 // These extend proto-generated types with local-only fields
 
-import type { PassiveNode, NodeGroup } from 'src/protos/pob2_pb';
+import type { PassiveNode, NodeGroup } from 'src/protos/tree_pb';
 
 /**
  * Extended PassiveNode with UI state

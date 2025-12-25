@@ -1,0 +1,81 @@
+// leveling.proto
+// Path of Building 2 - Web Edition
+// Path of Leveling types
+
+syntax = "proto3";
+
+package pob2;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+import "items.proto";
+import "skills.proto";
+
+// ============================================================================
+// PATH OF LEVELING
+// ============================================================================
+
+message LevelingPath {
+  string id = 1;                           // REQUIRED - unique identifier
+  optional string build_id = 2;            // Reference to end-game Build (optional)
+  optional string name = 3;
+  optional CharacterClass class_id = 4;
+  repeated Checkpoint checkpoints = 5;     // User-defined level milestones
+  repeated LevelingStep steps = 6;         // Ordered actions
+  optional string notes = 7;
+  optional google.protobuf.Timestamp created_at = 8;
+  optional google.protobuf.Timestamp updated_at = 9;
+}
+
+message Checkpoint {
+  int32 level = 1;                         // User-defined level milestone
+  repeated string allocated_passives = 2;  // Cumulative list of node IDs
+  map<string, Item> equipment = 3;         // Slot -> Item mapping
+  repeated SkillGroup gems = 4;            // Gem setup at this checkpoint
+  optional StatSnapshot stats = 5;         // Calculated stats at this level
+  optional string notes = 6;               // Checkpoint-specific notes
+}
+
+message LevelingStep {
+  int32 order = 1;                         // Execution order
+  optional StepTrigger trigger = 2;        // When to perform this step
+  optional StepAction action = 3;          // What to do
+  optional StatDelta stat_delta = 4;       // Impact on stats
+  optional string rationale = 5;           // Why this step matters
+}
+
+message StepTrigger {
+  StepTriggerType type = 1;
+  optional string value = 2;               // Level number, quest name, or item name
+}
+
+message StepAction {
+  StepActionType type = 1;
+  optional string target_id = 2;           // Node ID, item ID, or gem ID
+  optional string slot = 3;                // Item slot or socket position
+  optional string details = 4;             // Additional context
+}
+
+// ============================================================================
+// LEVELING ENUMS
+// ============================================================================
+
+enum StepTriggerType {
+  STEP_TRIGGER_TYPE_UNKNOWN = 0;
+  TRIGGER_LEVEL = 1;                       // Reach a certain level
+  TRIGGER_QUEST = 2;                       // Complete a quest
+  TRIGGER_ITEM = 3;                        // Acquire an item
+  TRIGGER_ZONE = 4;                        // Enter a zone
+  TRIGGER_WAYPOINT = 5;                    // Reach a waypoint
+}
+
+enum StepActionType {
+  STEP_ACTION_TYPE_UNKNOWN = 0;
+  ACTION_ALLOCATE = 1;                     // Allocate passive node
+  ACTION_EQUIP = 2;                        // Equip an item
+  ACTION_SOCKET = 3;                       // Socket a gem
+  ACTION_RESPEC = 4;                       // Respec passive nodes
+  ACTION_VENDOR = 5;                       // Buy from vendor
+  ACTION_CRAFT = 6;                        // Craft an item
+  ACTION_USE_SKILL = 7;                    // Start using a skill
+}

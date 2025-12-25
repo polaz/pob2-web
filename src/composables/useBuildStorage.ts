@@ -17,7 +17,7 @@ import {
 import type { StoredBuild } from 'src/types/db';
 import { BUILD_FORMAT_VERSION } from 'src/types/db';
 import { migrateBuild, buildNeedsMigration } from 'src/db/buildMigrations';
-import { CharacterClass } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/common_pb';
 
 /** Maximum number of recent builds to track */
 const MAX_RECENT_BUILDS = 10;

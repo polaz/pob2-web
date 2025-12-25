@@ -1,0 +1,68 @@
+// build.proto
+// Path of Building 2 - Web Edition
+// Build and configuration types
+
+syntax = "proto3";
+
+package pob2;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+import "items.proto";
+import "skills.proto";
+
+// ============================================================================
+// CHARACTER & BUILD
+// ============================================================================
+
+message Build {
+  string id = 1;  // REQUIRED - unique build identifier
+
+  optional string name = 2;
+  optional CharacterClass character_class = 3;
+  optional string ascendancy = 4;
+  optional int32 level = 5;
+
+  // Passive tree
+  repeated string allocated_node_ids = 10;
+  map<string, string> mastery_selections = 11;  // node_id -> effect_id
+
+  // Equipped items by slot
+  map<string, Item> equipped_items = 20;
+
+  // Skill configuration
+  repeated SkillGroup skill_groups = 30;
+
+  // Build configuration options
+  optional BuildConfig config = 40;
+
+  // Metadata
+  optional string notes = 50;
+  optional string build_code = 51;  // Base64 encoded for sharing
+  optional google.protobuf.Timestamp created_at = 52;
+  optional google.protobuf.Timestamp updated_at = 53;
+}
+
+message BuildConfig {
+  // Enemy configuration
+  optional int32 enemy_level = 1;
+  optional bool enemy_is_boss = 2;
+  optional string enemy_type = 3;
+
+  // Buff configuration
+  optional bool power_charges = 10;
+  optional bool frenzy_charges = 11;
+  optional bool endurance_charges = 12;
+  optional int32 power_charge_count = 13;
+  optional int32 frenzy_charge_count = 14;
+  optional int32 endurance_charge_count = 15;
+
+  // Combat state
+  optional bool is_leeching = 20;
+  optional bool is_on_low_life = 21;
+  optional bool is_on_full_life = 22;
+  optional bool enemy_is_chilled = 23;
+  optional bool enemy_is_frozen = 24;
+  optional bool enemy_is_shocked = 25;
+  optional bool enemy_is_ignited = 26;
+}

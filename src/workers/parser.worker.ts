@@ -3,7 +3,7 @@
 // Handles text parsing operations off the main thread
 
 import * as Comlink from 'comlink';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { Modifier, ModSource } from 'src/shared/modifiers';
 
 /**

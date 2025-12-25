@@ -4,7 +4,7 @@
  * Tests slot validation, category detection, and helper functions.
  */
 import { describe, it, expect } from 'vitest';
-import { ItemSlot, ItemType } from 'src/protos/pob2_pb';
+import { ItemSlot, ItemType } from 'src/protos/items_pb';
 import {
   // Slot category arrays
   MAIN_HAND_SLOTS,

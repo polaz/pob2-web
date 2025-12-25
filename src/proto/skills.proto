@@ -1,0 +1,82 @@
+// skills.proto
+// Path of Building 2 - Web Edition
+// Skills and gems types
+
+syntax = "proto3";
+
+package pob2;
+
+// ============================================================================
+// SKILLS & GEMS
+// ============================================================================
+
+message SkillGroup {
+  string id = 1;  // REQUIRED
+
+  optional string label = 2;
+  optional bool enabled = 3;
+  optional bool include_in_full_dps = 4;
+  optional string slot = 5;  // Item slot this skill group is in
+
+  repeated GemInstance gems = 10;
+}
+
+message GemInstance {
+  string id = 1;  // REQUIRED - references gem data
+
+  optional string gem_id = 2;  // Base gem ID from game data
+  optional int32 level = 3;
+  optional int32 quality = 4;
+  optional bool enabled = 5;
+  optional int32 count = 6;  // For support gems that can stack
+
+  // Quality type (PoE2 has different quality types)
+  optional GemQualityType quality_type = 10;
+}
+
+message Gem {
+  string id = 1;  // REQUIRED - base gem identifier
+
+  optional string name = 2;
+  optional GemType gem_type = 3;
+  optional string description = 4;
+
+  // Requirements per level
+  repeated GemLevel levels = 10;
+
+  // Tags
+  repeated string tags = 20;
+
+  // Base stats
+  optional int32 base_mana_cost = 30;
+  optional int32 base_cast_time = 31;  // Milliseconds
+  optional int32 base_cooldown = 32;   // Milliseconds
+}
+
+message GemLevel {
+  int32 level = 1;
+  optional int32 required_level = 2;
+  optional int32 mana_cost = 3;
+  optional int32 damage_effectiveness = 4;  // Percentage * 100
+  // Additional stats per level stored as key-value
+  map<string, int32> stats = 10;
+}
+
+// ============================================================================
+// GEM ENUMS
+// ============================================================================
+
+enum GemType {
+  GEM_TYPE_UNKNOWN = 0;
+  SKILL = 1;
+  SUPPORT = 2;
+  META = 3;  // PoE2 meta gems
+}
+
+enum GemQualityType {
+  GEM_QUALITY_TYPE_UNKNOWN = 0;
+  SUPERIOR = 1;
+  ANOMALOUS = 2;
+  DIVERGENT = 3;
+  PHANTASMAL = 4;
+}

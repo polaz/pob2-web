@@ -4,8 +4,8 @@
  * Tests item creation, property access, computed stats, and helper methods.
  */
 import { describe, it, expect } from 'vitest';
-import type { Item as ProtoItem } from 'src/protos/pob2_pb';
-import { ItemRarity, ItemType } from 'src/protos/pob2_pb';
+import type { Item as ProtoItem } from 'src/protos/items_pb';
+import { ItemRarity, ItemType } from 'src/protos/items_pb';
 import {
   createItemInstance,
   createEmptyItem,

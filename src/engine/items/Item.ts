@@ -14,7 +14,7 @@ import type {
   ArmourData,
   FlaskData,
   JewelData,
-} from 'src/protos/pob2_pb';
+} from 'src/protos/items_pb';
 import type { Mod } from 'src/engine/modifiers/types';
 import type {
   ItemBase,

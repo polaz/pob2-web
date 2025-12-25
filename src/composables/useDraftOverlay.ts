@@ -21,7 +21,7 @@ import { useDraftStore } from 'src/stores/draftStore';
 import { deepMerge } from 'src/utils/dataOverlay';
 import type { Gem } from 'src/types/gems';
 import type { TreeNode } from 'src/types/tree';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { CustomTreeNode, GemDraft, ItemDraft } from 'src/types/draft';
 import { isCustomNodeId } from 'src/types/draft';
 

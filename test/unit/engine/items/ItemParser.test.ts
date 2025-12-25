@@ -4,7 +4,7 @@
  * Tests parsing of various item formats, rarities, and edge cases.
  */
 import { describe, it, expect } from 'vitest';
-import { ItemRarity } from 'src/protos/pob2_pb';
+import { ItemRarity } from 'src/protos/items_pb';
 import { ItemParser, createItemParser, parseItem } from 'src/engine/items/ItemParser';
 
 // ============================================================================

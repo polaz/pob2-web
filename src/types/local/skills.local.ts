@@ -2,7 +2,7 @@
 // UI-only state extensions for skills and gems
 // These extend proto-generated types with local-only fields
 
-import type { SkillGroup, GemInstance, Gem } from 'src/protos/pob2_pb';
+import type { SkillGroup, GemInstance, Gem } from 'src/protos/skills_pb';
 
 /**
  * Extended SkillGroup with UI state
