@@ -4,6 +4,7 @@
 import { ref, shallowRef, onUnmounted } from 'vue';
 import type { Ref, ShallowRef } from 'vue';
 import { Application, Container } from 'pixi.js';
+import type { Ticker } from 'pixi.js';
 
 /** Renderer type names for display */
 export type RendererType = 'webgpu' | 'webgl2' | 'webgl' | 'canvas' | 'unknown';
@@ -43,7 +44,7 @@ export interface UsePixiAppResult {
 }
 
 /** Check if we're in development mode */
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = import.meta.env.DEV;
 
 /** FPS update interval in milliseconds */
 const FPS_UPDATE_INTERVAL_MS = 500;
@@ -119,6 +120,7 @@ export function usePixiApp(): UsePixiAppResult {
 
   let lastFpsUpdateTime = 0;
   let frameCount = 0;
+  let fpsTickerCallback: ((ticker: Ticker) => void) | null = null;
 
   /**
    * Initialize the PixiJS Application.
@@ -160,7 +162,7 @@ export function usePixiApp(): UsePixiAppResult {
         lastFpsUpdateTime = performance.now();
         frameCount = 0;
 
-        pixiApp.ticker.add(() => {
+        fpsTickerCallback = () => {
           frameCount++;
           const now = performance.now();
           const elapsed = now - lastFpsUpdateTime;
@@ -170,7 +172,8 @@ export function usePixiApp(): UsePixiAppResult {
             frameCount = 0;
             lastFpsUpdateTime = now;
           }
-        });
+        };
+        pixiApp.ticker.add(fpsTickerCallback);
       }
 
       ready.value = true;
@@ -200,6 +203,12 @@ export function usePixiApp(): UsePixiAppResult {
    * Destroy the application and clean up resources.
    */
   function destroy(): void {
+    // Explicitly remove FPS ticker callback before destroying app
+    if (fpsTickerCallback && app.value) {
+      app.value.ticker.remove(fpsTickerCallback);
+      fpsTickerCallback = null;
+    }
+
     if (app.value) {
       app.value.destroy(true, { children: true, texture: true });
       app.value = null;

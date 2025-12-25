@@ -23,11 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { shallowRef, onMounted, onUnmounted, watch } from 'vue';
+import { shallowRef, computed, onMounted, onUnmounted, watch } from 'vue';
 import { usePixiApp, type TreeLayers } from 'src/composables/usePixiApp';
-
-/** Check if we're in development mode */
-const isDev = process.env.NODE_ENV === 'development';
 
 const props = defineProps<{
   /** Whether to show FPS counter (only in dev mode) */
@@ -50,8 +47,8 @@ const canvasRef = shallowRef<HTMLCanvasElement | null>(null);
 // PixiJS composable
 const { ready, error, rendererType, fps, layers, init, resize } = usePixiApp();
 
-// Show FPS only in dev mode when prop is true
-const showFps = isDev && (props.showFps ?? true);
+// Show FPS only in dev mode when prop is true (reactive to prop changes)
+const showFps = computed(() => import.meta.env.DEV && (props.showFps ?? true));
 
 // ResizeObserver for responsive sizing
 let resizeObserver: ResizeObserver | null = null;

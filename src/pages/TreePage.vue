@@ -18,10 +18,10 @@ import type { TreeLayers } from 'src/composables/usePixiApp';
  * Stores reference to canvas layers for future tree rendering operations.
  * Will be used for node rendering, connections, and UI overlays.
  */
-const _canvasLayers = shallowRef<TreeLayers | null>(null);
+const canvasLayers = shallowRef<TreeLayers | null>(null);
 
 function onCanvasReady(layers: TreeLayers): void {
-  _canvasLayers.value = layers;
+  canvasLayers.value = layers;
   if (import.meta.env.DEV) {
     console.log('[TreePage] Canvas ready with layers:', Object.keys(layers));
   }
@@ -38,4 +38,9 @@ function onCanvasError(error: Error): void {
     console.error('[TreePage] Canvas error:', error);
   }
 }
+
+// Expose canvas layers for parent component or testing access
+defineExpose({
+  canvasLayers,
+});
 </script>
