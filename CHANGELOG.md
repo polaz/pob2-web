@@ -1,3 +1,24 @@
+# [1.14.0](https://github.com/polaz/pob2-web/compare/v1.13.0...v1.14.0) (2025-12-25)
+
+
+### Features
+
+* **draft:** implement draft overlay layer for user contributions ([#105](https://github.com/polaz/pob2-web/issues/105)) ([0e84dfa](https://github.com/polaz/pob2-web/commit/0e84dfa97ecc3c8d326bb32e00b30d0abd18bc10)), closes [#57](https://github.com/polaz/pob2-web/issues/57)
+
+# [1.13.0](https://github.com/polaz/pob2-web/compare/v1.12.0...v1.13.0) (2025-12-25)
+
+
+### Features
+
+* **tree:** setup PixiJS 8 canvas with WebGPU fallback ([#101](https://github.com/polaz/pob2-web/issues/101)) ([2ba2621](https://github.com/polaz/pob2-web/commit/2ba2621b91b0086681065253f2d68ee7392686df)), closes [#14](https://github.com/polaz/pob2-web/issues/14)
+
+# [1.12.0](https://github.com/polaz/pob2-web/compare/v1.11.0...v1.12.0) (2025-12-25)
+
+
+### Features
+
+* **search:** implement n-gram indexed i18n search service ([#106](https://github.com/polaz/pob2-web/issues/106)) ([f251d85](https://github.com/polaz/pob2-web/commit/f251d85d4f55b2ad6b5689058ca7b0e40bd8c906)), closes [#55](https://github.com/polaz/pob2-web/issues/55)
+
 # [1.11.0](https://github.com/polaz/pob2-web/compare/v1.10.0...v1.11.0) (2025-12-25)
 
 
