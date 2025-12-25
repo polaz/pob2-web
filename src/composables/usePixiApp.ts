@@ -136,7 +136,10 @@ export function usePixiApp(): UsePixiAppResult {
     try {
       const pixiApp = new Application();
 
-      const initOptions: Parameters<Application['init']>[0] = {
+      // Note: resizeTo is intentionally not set here.
+      // Resize is handled manually by the component via ResizeObserver
+      // to avoid conflicts and give more control over resize behavior.
+      await pixiApp.init({
         canvas,
         preference: 'webgpu',
         powerPreference: 'high-performance',
@@ -144,14 +147,7 @@ export function usePixiApp(): UsePixiAppResult {
         resolution: window.devicePixelRatio || 1,
         autoDensity: true,
         backgroundColor: 0x1a1a2e,
-      };
-
-      // Only set resizeTo if parent element exists
-      if (canvas.parentElement) {
-        initOptions.resizeTo = canvas.parentElement;
-      }
-
-      await pixiApp.init(initOptions);
+      });
 
       app.value = pixiApp;
       rendererType.value = detectRendererType(pixiApp);
