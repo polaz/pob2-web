@@ -1,7 +1,7 @@
 // src/composables/useTreeData.ts
-// Composable for loading and traversing passive tree data.
+// Composable for loading and traversing passive tree data
 
-import { ref, shallowRef, computed, onMounted } from 'vue';
+import { ref, shallowRef, computed, onMounted, watch } from 'vue';
 import type {
   RawTreeData,
   TreeData,
@@ -54,7 +54,7 @@ export function resetTreeDataForTesting(): void {
 }
 
 /**
- * Convert raw tree data to optimized format
+ * Convert raw tree data to optimized format.
  */
 function convertToTreeData(rawData: RawTreeData): TreeData {
   // Convert to optimized format with Set for neighbors
@@ -100,7 +100,7 @@ function convertToTreeData(rawData: RawTreeData): TreeData {
 }
 
 /**
- * Load tree data from IndexedDB cache or JSON file
+ * Load tree data from IndexedDB cache or JSON file.
  */
 async function loadTreeData(): Promise<TreeData> {
   if (treeDataCache) {
@@ -112,7 +112,7 @@ async function loadTreeData(): Promise<TreeData> {
   }
 
   loadingPromise = (async () => {
-    // Try to load from IndexedDB cache first (avoids loading 2.4MB bundled JSON)
+    // Try to load from IndexedDB cache first (avoids loading large bundled JSON)
     try {
       const cached = await getCachedData(TREE_CACHE_KEY);
       if (cached) {
@@ -130,7 +130,6 @@ async function loadTreeData(): Promise<TreeData> {
     const module = await import('src/data/tree/poe2-tree.json');
     const rawData = module.default as RawTreeData;
     const treeData = convertToTreeData(rawData);
-    treeDataCache = treeData;
 
     // Cache in IndexedDB for faster future loads
     try {
@@ -145,10 +144,13 @@ async function loadTreeData(): Promise<TreeData> {
       console.warn('[useTreeData] Cache write failed:', e);
     }
 
+    // Only set cache after all operations succeed (atomic success)
+    treeDataCache = treeData;
     return treeData;
   })().catch((error) => {
-    // Reset loadingPromise on failure to allow retry
+    // Reset state on failure to allow a clean retry
     loadingPromise = null;
+    treeDataCache = null;
     throw error;
   });
 
@@ -216,7 +218,7 @@ function findShortestPath(
 }
 
 /**
- * Find all nodes reachable from a set of starting nodes
+ * Find all nodes reachable from a set of starting nodes.
  */
 function findReachableNodes(
   nodes: Map<string, TreeNode>,
@@ -256,7 +258,7 @@ function findReachableNodes(
 }
 
 /**
- * Get nodes within a certain distance from starting nodes
+ * Get nodes within a certain distance from starting nodes.
  */
 function getNodesWithinDistance(
   nodes: Map<string, TreeNode>,
@@ -295,7 +297,7 @@ function getNodesWithinDistance(
 }
 
 /**
- * Composable for tree data access and graph traversal
+ * Composable for tree data access and graph traversal.
  */
 export function useTreeData() {
   const loading = ref(true);
@@ -318,21 +320,17 @@ export function useTreeData() {
   const classes = computed(() => treeData.value?.classes ?? new Map());
   const ascendancies = computed(() => treeData.value?.ascendancies ?? new Map());
 
-  // Cache for search results (cleared when tree data changes)
-  let searchCache = new Map<string, TreeNode[]>();
-  let lastTreeDataVersion: string | null = null;
+  // Reactive search cache - automatically cleared when treeData changes
+  const searchCache = shallowRef(new Map<string, TreeNode[]>());
 
-  /** Clear search cache when tree data changes */
-  function invalidateSearchCacheIfNeeded(): void {
-    const currentVersion = treeData.value?.version ?? null;
-    if (currentVersion !== lastTreeDataVersion) {
-      searchCache = new Map();
-      lastTreeDataVersion = currentVersion;
-    }
-  }
+  // Clear cache whenever treeData changes (more robust than version checking)
+  watch(treeData, () => {
+    searchCache.value = new Map();
+  });
 
   /**
    * Get a node by ID.
+   *
    * @param id - The node ID to look up
    * @returns The node if found, undefined otherwise
    */
@@ -342,6 +340,7 @@ export function useTreeData() {
 
   /**
    * Get all nodes of a specific type.
+   *
    * @param type - The node type to filter by (normal, notable, keystone, mastery)
    * @returns Array of nodes matching the type
    */
@@ -352,6 +351,7 @@ export function useTreeData() {
 
   /**
    * Get all nodes belonging to a specific ascendancy.
+   *
    * @param ascendancyName - The ascendancy name to filter by
    * @returns Array of nodes in the ascendancy
    */
@@ -364,6 +364,7 @@ export function useTreeData() {
 
   /**
    * Find the shortest path between two nodes using BFS.
+   *
    * @param startId - Starting node ID
    * @param endId - Target node ID
    * @returns PathResult with path array, length, and found flag
@@ -377,6 +378,7 @@ export function useTreeData() {
 
   /**
    * Find all nodes reachable from a set of allocated nodes.
+   *
    * @param allocatedIds - Array of currently allocated node IDs
    * @returns ReachabilityResult with reachable set and distance map
    */
@@ -389,6 +391,7 @@ export function useTreeData() {
 
   /**
    * Get all nodes within a certain distance from starting nodes.
+   *
    * @param startIds - Array of starting node IDs
    * @param maxDistance - Maximum distance (number of edges) to traverse
    * @returns Set of node IDs within the distance
@@ -400,26 +403,27 @@ export function useTreeData() {
 
   /**
    * Search nodes by name (case-insensitive, cached).
-   * Cache is automatically invalidated when tree data version changes.
+   *
+   * Cache is automatically invalidated when tree data changes via Vue's
+   * reactivity system (watch on treeData).
+   *
    * @param query - Search query string
    * @returns Array of nodes whose names contain the query
    */
   function searchNodes(query: string): TreeNode[] {
     if (!treeData.value) return [];
 
-    invalidateSearchCacheIfNeeded();
-
     const normalizedQuery = query.trim().toLowerCase();
     if (!normalizedQuery) return [];
 
-    const cached = searchCache.get(normalizedQuery);
+    const cached = searchCache.value.get(normalizedQuery);
     if (cached) return cached;
 
     const result = Array.from(treeData.value.nodes.values()).filter(
       n => n.name?.toLowerCase().includes(normalizedQuery)
     );
 
-    searchCache.set(normalizedQuery, result);
+    searchCache.value.set(normalizedQuery, result);
     return result;
   }
 
