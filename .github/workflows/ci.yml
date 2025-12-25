@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
 
+# Feature flags for CI behavior
+env:
+  # Set to 'true' to skip build job on PRs (still runs on merge to main)
+  SKIP_BUILD_ON_PR: 'true'
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -87,6 +92,8 @@ jobs:
     name: Build
     needs: lint-and-typecheck
     runs-on: ubuntu-latest
+    # Skip build on PRs when SKIP_BUILD_ON_PR is 'true' (always runs on push to main)
+    if: github.event_name == 'push' || env.SKIP_BUILD_ON_PR != 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
