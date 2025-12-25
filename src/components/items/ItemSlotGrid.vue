@@ -367,13 +367,11 @@ function handleRemoveItem(): void {
   gap: var(--slot-gap);
 }
 
-.item-slot-grid__column--center {
-  /* Center column has larger items */
-}
+/* Placeholder for center column styling - currently uses same gap as other columns.
+   Future: may add different spacing or alignment for body armour slot. */
 
-.item-slot-grid__rings {
-  /* Ring row styling handled by Quasar classes */
-}
+/* Placeholder for ring row styling - currently uses Quasar q-gutter-md class.
+   Future: may add custom ring-specific layout. */
 
 .item-slot-grid__swap {
   opacity: 0.8;

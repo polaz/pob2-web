@@ -39,7 +39,7 @@
         :item="item"
         :show-details="true"
         :hoverable="false"
-        width="260px"
+        :width="TOOLTIP_CARD_WIDTH"
       />
     </q-tooltip>
   </div>
@@ -71,6 +71,9 @@ const FLASK_SLOT_WIDTH = 40;
 
 /** Flask slot height in pixels */
 const FLASK_SLOT_HEIGHT = 64;
+
+/** Width of item tooltip card in pixels */
+const TOOLTIP_CARD_WIDTH = '260px';
 
 // ============================================================================
 // Props & Emits
@@ -243,14 +246,8 @@ function handleIconError(): void {
   height: 3px;
 }
 
-/* Size variants */
-.item-slot--small {
-  /* Small slot (rings) */
-}
-
-.item-slot--flask {
-  /* Flask slot - taller aspect ratio */
-}
+/* Size variants are handled by slotDimensions computed property (inline styles)
+   for dynamic sizing based on props.size */
 
 /* Tooltip styling */
 .item-slot__tooltip {

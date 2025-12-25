@@ -681,8 +681,11 @@ function handleClose(): void {
    Editor root - custom styling for max-width centering and full height
    Uses Quasar 'column' class for flex-direction: column */
 .item-editor {
+  /* Content max-width for large screens */
+  --editor-max-width: 1200px;
+
   background-color: var(--poe2-card-bg);
-  max-width: 1200px;
+  max-width: var(--editor-max-width);
   margin: auto;
   height: 100%;
 }
