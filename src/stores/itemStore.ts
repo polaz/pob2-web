@@ -90,14 +90,21 @@ export const useItemStore = defineStore('item', () => {
     [...EQUIPMENT_SLOTS, ...FLASK_SLOTS, ...SWAP_SLOTS].map((s) => [s.slot, s])
   );
 
-  /** Get slot display name */
+  /**
+   * Get slot display name.
+   * Returns a function to allow parameterized lookup in templates.
+   * This is a common Pinia pattern for getters that need arguments.
+   */
   const getSlotName = computed(() => {
     return (slot: ItemSlot): string => {
       return slotLookup.get(slot)?.name ?? 'Unknown';
     };
   });
 
-  /** Get slot short name */
+  /**
+   * Get slot short name.
+   * Returns a function to allow parameterized lookup in templates.
+   */
   const getSlotShortName = computed(() => {
     return (slot: ItemSlot): string => {
       return slotLookup.get(slot)?.shortName ?? '?';
@@ -163,12 +170,15 @@ export const useItemStore = defineStore('item', () => {
     isWeaponSwapActive.value = active;
   }
 
-  /** Copy item to clipboard */
+  /**
+   * Copy item to clipboard with new unique ID.
+   * Note: crypto.randomUUID() requires secure context (HTTPS/localhost).
+   * This is guaranteed for PWA deployment.
+   */
   function copyItem(item: Item): void {
-    clipboardItem.value = {
-      ...cloneDeep(item),
-      id: crypto.randomUUID(),
-    };
+    const cloned = cloneDeep(item);
+    cloned.id = crypto.randomUUID();
+    clipboardItem.value = cloned;
   }
 
   /** Clear clipboard */

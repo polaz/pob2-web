@@ -160,7 +160,11 @@ export const useUiStore = defineStore('ui', () => {
    */
   const notificationTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
-  /** Add notification */
+  /**
+   * Add notification.
+   * Note: crypto.randomUUID() requires secure context (HTTPS/localhost).
+   * This is guaranteed for PWA deployment.
+   */
   function notify(
     type: Notification['type'],
     message: string,

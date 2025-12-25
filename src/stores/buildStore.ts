@@ -9,7 +9,11 @@ import { CharacterClass } from 'src/protos/pob2_pb';
 import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
 import type { StoredBuild } from 'src/types/db';
 
-/** Create a new empty build with defaults */
+/**
+ * Create a new empty build with defaults.
+ * Note: crypto.randomUUID() requires secure context (HTTPS/localhost).
+ * This is guaranteed for PWA deployment.
+ */
 function createEmptyBuild(): Build {
   return {
     id: crypto.randomUUID(),

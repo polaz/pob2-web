@@ -208,7 +208,11 @@ export const useSkillStore = defineStore('skill', () => {
     displayMode.value = displayMode.value === 'compact' ? 'detailed' : 'compact';
   }
 
-  /** Create new skill group */
+  /**
+   * Create new skill group.
+   * Note: crypto.randomUUID() requires secure context (HTTPS/localhost).
+   * This is guaranteed for PWA deployment.
+   */
   function createSkillGroup(label?: string): SkillGroup {
     return {
       id: crypto.randomUUID(),
