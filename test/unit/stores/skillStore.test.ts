@@ -7,8 +7,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useSkillStore } from 'src/stores/skillStore';
-import type { Gem } from 'src/protos/pob2_pb';
-import { GemType } from 'src/protos/pob2_pb';
+import type { Gem } from 'src/protos/skills_pb';
+import { GemType } from 'src/protos/skills_pb';
 
 /** Create mock gem */
 function createMockGem(id: string, name: string, tags: string[] = []): Gem {

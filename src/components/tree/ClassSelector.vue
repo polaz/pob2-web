@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-import { CharacterClass } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/common_pb';
 import { useBuildStore } from 'src/stores/buildStore';
 import { useTreeData } from 'src/composables/useTreeData';
 import { useTreeStore } from 'src/stores/treeStore';

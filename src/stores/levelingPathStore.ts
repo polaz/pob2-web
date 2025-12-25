@@ -11,14 +11,13 @@ import type {
   LevelingPath,
   Checkpoint,
   LevelingStep,
-  StatDelta,
-  StatSnapshot,
   StepTrigger,
   StepAction,
-  Item,
-  SkillGroup,
-} from 'src/protos/pob2_pb';
-import { CharacterClass } from 'src/protos/pob2_pb';
+} from 'src/protos/leveling_pb';
+import type { StatDelta, StatSnapshot } from 'src/protos/common_pb';
+import { CharacterClass } from 'src/protos/common_pb';
+import type { Item } from 'src/protos/items_pb';
+import type { SkillGroup } from 'src/protos/skills_pb';
 import {
   createLevelingPath,
   updateLevelingPath,

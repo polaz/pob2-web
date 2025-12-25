@@ -10,8 +10,8 @@
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
-import type { Item } from 'src/protos/pob2_pb';
-import { ItemSlot } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
+import { ItemSlot } from 'src/protos/items_pb';
 import {
   isValidSlotForItem,
   getSlotValidationError,

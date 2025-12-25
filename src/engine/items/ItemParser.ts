@@ -11,8 +11,8 @@ import type {
   Socket,
   WeaponData,
   ArmourData,
-} from 'src/protos/pob2_pb';
-import { ItemRarity } from 'src/protos/pob2_pb';
+} from 'src/protos/items_pb';
+import { ItemRarity } from 'src/protos/items_pb';
 import type {
   ItemParseResult,
   ItemTextSection,

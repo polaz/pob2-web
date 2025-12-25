@@ -1,0 +1,69 @@
+// common.proto
+// Path of Building 2 - Web Edition
+// Common types shared across all domains
+//
+// Import hierarchy: common.proto is the base, imported by all other protos
+
+syntax = "proto3";
+
+package pob2;
+
+// ============================================================================
+// COMMON TYPES
+// ============================================================================
+
+message Position {
+  float x = 1;
+  float y = 2;
+}
+
+message StatSnapshot {
+  optional float dps = 1;                  // Damage per second
+  optional float ehp = 2;                  // Effective HP
+  optional float life = 3;                 // Maximum life
+  optional float mana = 4;                 // Maximum mana
+  optional float energy_shield = 5;        // Maximum energy shield
+  optional int32 fire_res = 6;             // Fire resistance (percentage)
+  optional int32 cold_res = 7;             // Cold resistance (percentage)
+  optional int32 lightning_res = 8;        // Lightning resistance (percentage)
+  optional int32 chaos_res = 9;            // Chaos resistance (percentage)
+  optional float attack_speed = 10;        // Attacks per second
+  optional float cast_speed = 11;          // Casts per second
+  optional float crit_chance = 12;         // Critical strike chance (percentage)
+  optional float crit_multi = 13;          // Critical strike multiplier (percentage)
+  map<string, float> other = 14;           // Additional stats
+}
+
+message StatDelta {
+  optional float dps_percent = 1;          // +/- percentage change
+  optional float ehp_percent = 2;          // +/- percentage change
+  optional float dps_absolute = 3;         // +/- absolute value
+  optional float ehp_absolute = 4;         // +/- absolute value
+  map<string, float> resistances = 5;      // Resistance changes
+  map<string, float> other_stats = 6;      // Other stat changes
+}
+
+// ============================================================================
+// CHARACTER CLASS ENUM
+// ============================================================================
+
+enum CharacterClass {
+  CHARACTER_CLASS_UNKNOWN = 0;
+
+  // PoE2 Classes (new)
+  WARRIOR = 1;
+  MONK = 2;
+  SORCERESS = 3;
+  MERCENARY = 4;
+  HUNTRESS = 5;
+  DRUID = 6;
+
+  // PoE1 Classes (for compatibility)
+  MARAUDER = 10;
+  RANGER = 11;
+  WITCH = 12;
+  DUELIST = 13;
+  TEMPLAR = 14;
+  SHADOW = 15;
+  SCION = 16;
+}

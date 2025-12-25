@@ -30,8 +30,8 @@ import PassiveTreeCanvas from 'src/components/tree/PassiveTreeCanvas.vue';
 import type { TreeLayers } from 'src/composables/usePixiApp';
 import { useTreeData } from 'src/composables/useTreeData';
 import { useTreeStore } from 'src/stores/treeStore';
-import type { PassiveTree, PassiveNode } from 'src/protos/pob2_pb';
-import { NodeType } from 'src/protos/pob2_pb';
+import type { PassiveTree, PassiveNode } from 'src/protos/tree_pb';
+import { NodeType } from 'src/protos/tree_pb';
 import type { TreeData, TreeNode } from 'src/types/tree';
 
 // Load tree data

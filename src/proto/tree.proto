@@ -1,0 +1,79 @@
+// tree.proto
+// Path of Building 2 - Web Edition
+// Passive tree types
+
+syntax = "proto3";
+
+package pob2;
+
+import "common.proto";
+
+// ============================================================================
+// PASSIVE TREE
+// ============================================================================
+
+message PassiveNode {
+  string id = 1;  // REQUIRED - node hash from GGG tree data
+
+  optional string name = 2;
+  optional NodeType node_type = 3;
+  repeated string stats = 4;  // Stat descriptions
+  repeated string linked_ids = 5;  // Connected node IDs
+
+  // Position
+  optional Position position = 6;
+  optional int32 group = 7;
+  optional int32 orbit = 8;
+  optional int32 orbit_index = 9;
+
+  // Ascendancy
+  optional string ascendancy_name = 10;
+  optional bool is_ascendancy_start = 11;
+
+  // Visual
+  optional string icon = 12;
+  optional bool is_proxy = 13;
+
+  // Class start
+  optional CharacterClass class_start_index = 14;
+}
+
+message PassiveTree {
+  string version = 1;  // Tree version/patch
+
+  repeated PassiveNode nodes = 2;
+  repeated NodeGroup groups = 3;
+
+  // Class start positions
+  map<int32, string> class_start_nodes = 10;  // class_id -> node_id
+
+  // Constants
+  optional TreeConstants constants = 20;
+}
+
+message NodeGroup {
+  int32 id = 1;
+  optional Position position = 2;
+  repeated string node_ids = 3;
+  optional bool is_proxy = 4;
+}
+
+message TreeConstants {
+  repeated int32 orbit_radii = 1;
+  repeated int32 skills_per_orbit = 2;
+}
+
+// ============================================================================
+// NODE TYPE ENUM
+// ============================================================================
+
+enum NodeType {
+  NODE_TYPE_UNKNOWN = 0;
+  NODE_NORMAL = 1;
+  NODE_NOTABLE = 2;
+  NODE_KEYSTONE = 3;
+  NODE_MASTERY = 4;
+  NODE_SOCKET = 5;
+  NODE_CLASS_START = 6;
+  NODE_ASCEND_CLASS_START = 7;
+}

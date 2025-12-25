@@ -1,7 +1,7 @@
 // src/components/tree/connectors/TreeConnector.ts
 // Tree connector data builder
 
-import type { PassiveNode } from 'src/protos/pob2_pb';
+import type { PassiveNode } from 'src/protos/tree_pb';
 import type {
   Point,
   ConnectionData,

@@ -1,7 +1,7 @@
 // src/components/tree/sprites/NodeTypes.ts
 // Constants and type definitions for passive tree node rendering
 
-import { NodeType } from 'src/protos/pob2_pb';
+import { NodeType } from 'src/protos/tree_pb';
 
 // ============================================================================
 // Node Size Constants

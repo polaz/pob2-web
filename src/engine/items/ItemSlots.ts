@@ -4,7 +4,7 @@
  * Pure TypeScript module with no Vue/Pinia dependencies.
  * Used by itemStore for slot validation and by CalcSetup for item processing.
  */
-import { ItemSlot, ItemType } from 'src/protos/pob2_pb';
+import { ItemSlot, ItemType } from 'src/protos/items_pb';
 
 // ============================================================================
 // Slot Categories

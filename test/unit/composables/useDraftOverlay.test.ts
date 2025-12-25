@@ -10,7 +10,7 @@ import { useDraftStore } from 'src/stores/draftStore';
 import { useDraftOverlay } from 'src/composables/useDraftOverlay';
 import type { Gem, GemType, GemTags } from 'src/types/gems';
 import type { TreeNode, TreeNodeType } from 'src/types/tree';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 
 // Helper to create test gems
 function createTestGem(overrides: Partial<Gem> = {}): Gem {

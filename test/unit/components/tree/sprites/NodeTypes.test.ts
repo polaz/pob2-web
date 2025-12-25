@@ -2,7 +2,7 @@
  * Unit tests for NodeTypes constants and helper functions.
  */
 import { describe, it, expect } from 'vitest';
-import { NodeType } from 'src/protos/pob2_pb';
+import { NodeType } from 'src/protos/tree_pb';
 import {
   NODE_SIZES,
   NODE_FRAME_WIDTHS,

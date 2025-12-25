@@ -2,7 +2,7 @@
 // UI-only state extensions for items
 // These extend proto-generated types with local-only fields
 
-import type { Item, Socket } from 'src/protos/pob2_pb';
+import type { Item, Socket } from 'src/protos/items_pb';
 
 /**
  * Extended Item with UI state
