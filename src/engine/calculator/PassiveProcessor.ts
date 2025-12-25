@@ -239,6 +239,13 @@ function processMasterySelection(
   // 1. Look up mastery effect by ID from raw tree data
   // 2. Parse effect stats using the parser
   // 3. Return mods with source: 'mastery', sourceId: `${nodeId}:${selectedEffectId}`
+  //
+  // Log a warning so this limitation is visible during development/debugging.
+  console.warn(
+    '[PassiveProcessor] Mastery selection found but cannot be processed: ' +
+      'masteryEffects data not available in TreeNode structure.',
+    { nodeId, selectedEffectId }
+  );
 
   return mods;
 }

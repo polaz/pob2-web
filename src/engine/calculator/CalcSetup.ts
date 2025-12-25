@@ -44,7 +44,6 @@ import {
   createFullyDirtyFlags,
   createCleanDirtyFlags,
   hasDirtyFlags,
-  isItemSlotDirty,
   resolveConfig,
 } from './Environment';
 
@@ -260,11 +259,11 @@ function processAccelerated(
       itemDBs = new Map(itemDBs);
       itemDBsSwap = new Map(itemDBsSwap);
 
+      // In this branch, we know wildcard is not set (checked above), so all
+      // entries in dirtyFlags.items are specific slot names that need updating.
       for (const slot of dirtyFlags.items) {
-        if (isItemSlotDirty(dirtyFlags, slot)) {
-          const item = build.equippedItems[slot];
-          updateItemSlot(itemDBs, slot, item, parser);
-        }
+        const item = build.equippedItems[slot];
+        updateItemSlot(itemDBs, slot, item, parser);
       }
     }
   }
@@ -289,9 +288,9 @@ function processAccelerated(
 
   // Note: Jewel modifiers are NOT processed incrementally in this function.
   // Jewel processing is always done in setupEnvironment() after all other
-  // components are processed. This is because jewels are merged into passiveDB
-  // and the order of operations matters. Any jewel change (dirty flag set)
-  // triggers full jewel reprocessing in the main setupEnvironment flow.
+  // components are processed. This is because jewel modifiers are merged into
+  // passiveDB and the order of operations matters. Any jewel change (dirty flag
+  // set) triggers full jewel reprocessing in the main setupEnvironment flow.
   // See: setupEnvironment() lines that call processJewels() and passiveDB.addDB()
 
   return { passiveDB, itemDBs, itemDBsSwap, skillDB, configDB, conditions };
@@ -336,10 +335,11 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
     }
   }
 
-  // Check skills
+  // Check skills - early exit if lengths differ or arrays are identical references
   if (build.skillGroups.length !== prevBuild.skillGroups.length) {
     flags.skills = true;
-  } else {
+  } else if (build.skillGroups !== prevBuild.skillGroups) {
+    // Only iterate if arrays are different objects
     for (let i = 0; i < build.skillGroups.length; i++) {
       const newGroup = build.skillGroups[i];
       const oldGroup = prevBuild.skillGroups[i];
@@ -398,8 +398,12 @@ function calculateAttributes(
   itemDBs: Map<string, ModDB>,
   build: Build
 ): AttributeValues {
-  // Start with class base attributes
-  // Default stats used when class is unknown or not in CLASS_STARTING_STATS
+  // Start with class base attributes.
+  // Fallback stats used when class is unknown or not found in CLASS_STARTING_STATS.
+  // These neutral mid-range values (14 each) keep calculations stable for
+  // incomplete builds (e.g., during import or when new classes are added).
+  // They don't match any specific PoE2 class; real builds should always
+  // resolve to CLASS_STARTING_STATS entries.
   const DEFAULT_CLASS_STATS: AttributeValues = { str: 14, dex: 14, int: 14 };
 
   let classStats: AttributeValues = DEFAULT_CLASS_STATS;
@@ -516,7 +520,9 @@ export function updateItem(
 ): Environment {
   const parser = env.parser;
 
-  // Clone itemDBs and update
+  // Shallow clone of the Map structure only. ModDB instances are reused;
+  // updateItemSlot replaces the slot entry with a new ModDB rather than
+  // mutating the existing one, so this is safe.
   const itemDBs = new Map(env.itemDBs);
   updateItemSlot(itemDBs, slot, item, parser);
 

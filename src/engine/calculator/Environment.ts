@@ -394,6 +394,16 @@ export function resolveConfig(
   // Enforce mutual exclusivity for resource states.
   // A character cannot be simultaneously "Low" and "Full" for the same resource.
   // "Low" takes precedence as it's the more constrained state.
+  //
+  // Valid state combinations for each resource (Life, Mana, ES):
+  // - Low=true,  Full=false  → Character is below 50% (explicit low)
+  // - Low=false, Full=true   → Character is at 100% (explicit or default full)
+  // - Low=false, Full=false  → Character is between 50-99% (in-between state)
+  //
+  // The in-between state (neither Low nor Full) is valid and represents a
+  // character whose resource is partially depleted but not critically low.
+  // By default, resolveConfig sets Full=true; callers can explicitly set both
+  // to false via overrides to represent the in-between state.
   if (resolved.isOnLowLife && resolved.isOnFullLife) {
     resolved.isOnFullLife = false;
   }

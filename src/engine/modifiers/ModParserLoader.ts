@@ -137,8 +137,9 @@ async function loadParserData(): Promise<ModParserData> {
   } catch (error: unknown) {
     // Log detailed error for debugging - these files are essential for parser
     console.error('[ModParserLoader] Failed to load data files:', error);
+    const errorDetail = error instanceof Error ? error.message : String(error);
     throw new Error(
-      'Failed to load ModParser data files. Check console for details. ' +
+      `Failed to load ModParser data files: ${errorDetail}. ` +
         'Ensure all required JSON files exist in src/data/mods/'
     );
   }

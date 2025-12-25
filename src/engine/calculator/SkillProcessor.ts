@@ -239,9 +239,11 @@ export function resetWarningFlags(): void {
 /**
  * Pattern to detect the word "support" as a separate token in a gem ID.
  *
- * This is intentionally conservative compared to a plain substring search:
- * - Matches: "Support", "Damage Support", "minion_support", "support-damage"
- * - Avoids matching: "supportive", "unsupportable" (mid-word usages)
+ * Matches when "support" appears:
+ * - At the start or end of the string
+ * - Surrounded by spaces, underscores, or hyphens
+ *
+ * Examples: "Support", "Damage Support", "minion_support", "support-damage"
  *
  * Known limitations:
  * - False negatives: Support gems without "support" in their ID (e.g. "Empower")
