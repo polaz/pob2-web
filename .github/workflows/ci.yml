@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Generate proto files
+      - name: Generate proto types
         run: yarn proto:generate
 
       - name: Lint
@@ -83,7 +83,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Generate proto files
+      - name: Generate proto types
         run: yarn proto:generate
 
       - name: Run tests
@@ -121,7 +121,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Generate proto files
+      - name: Generate proto types
         run: yarn proto:generate
 
       - name: Build SPA
