@@ -305,12 +305,8 @@ function serializeItems(items: Record<string, Item>): string {
   const slotElements: string[] = [];
   let itemId = 1;
 
-  // Map slot names to item IDs for the Slot elements
-  const slotToItemId: Record<string, number> = {};
-
   for (const [slot, item] of Object.entries(items)) {
     const currentId = itemId++;
-    slotToItemId[slot] = currentId;
 
     // Item element with text content
     const itemContent = serializeItem(item);

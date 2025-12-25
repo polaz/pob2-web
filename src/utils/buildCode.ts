@@ -71,12 +71,8 @@ export interface EncodeOptions {
  * Uses browser's btoa with proper binary handling.
  */
 function uint8ArrayToBase64(bytes: Uint8Array): string {
-  // Convert Uint8Array to binary string
-  // Note: Iterating a typed array with forEach ensures no undefined access
-  let binary = '';
-  bytes.forEach((byte) => {
-    binary += String.fromCharCode(byte);
-  });
+  // Convert Uint8Array to binary string using Array.from for better performance
+  const binary = Array.from(bytes, (byte) => String.fromCharCode(byte)).join('');
   return btoa(binary);
 }
 
