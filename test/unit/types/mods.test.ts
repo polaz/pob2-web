@@ -1,7 +1,7 @@
 /**
  * Unit tests for mod type definitions.
  *
- * Tests type structures, flag constants, and type guards.
+ * Tests type structures and flag constants.
  */
 import { describe, it, expect } from 'vitest';
 import {
