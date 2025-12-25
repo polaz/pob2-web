@@ -163,7 +163,7 @@ export class ModParser {
    */
   parseLines(text: string, context: ModParseContext): ParseResult[] {
     const lines = text
-      .split(/\n/)
+      .split(/\r?\n|\r/) // Handle CRLF, LF, and CR line endings
       .map((line) => line.trim())
       .filter((line) => line.length > 0);
 
@@ -226,8 +226,12 @@ export class ModParser {
     const rangeRegex = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)/g;
     const ranges: Array<{ min: number; max: number }> = [];
 
-    // Replace each range with a capture group and record bounds
-    const keyPattern = cacheKey.replace(
+    // Use a placeholder that won't appear in mod text
+    const PLACEHOLDER = '\x00RANGE\x00';
+    let placeholderIndex = 0;
+
+    // First, replace ranges with placeholders and record bounds
+    let escapedKey = cacheKey.replace(
       rangeRegex,
       (_match: string, minStr: string, maxStr: string): string => {
         const min = parseFloat(minStr);
@@ -238,7 +242,7 @@ export class ModParser {
         }
 
         ranges.push({ min, max });
-        return '(\\d+(?:\\.\\d+)?)';
+        return `${PLACEHOLDER}${placeholderIndex++}${PLACEHOLDER}`;
       }
     );
 
@@ -247,8 +251,19 @@ export class ModParser {
       return false;
     }
 
+    // Escape regex metacharacters in the key (except our placeholders)
+    escapedKey = escapedKey.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
+
+    // Replace placeholders with capture groups
+    for (let i = 0; i < ranges.length; i++) {
+      escapedKey = escapedKey.replace(
+        `${PLACEHOLDER}${i}${PLACEHOLDER}`,
+        '(\\d+(?:\\.\\d+)?)'
+      );
+    }
+
     try {
-      const regex = new RegExp(`^${keyPattern}$`, 'i');
+      const regex = new RegExp(`^${escapedKey}$`, 'i');
       const inputMatch = regex.exec(input);
 
       if (!inputMatch) {
@@ -575,16 +590,17 @@ export class ModParser {
   /**
    * Escape special regex characters in a string.
    *
-   * Character class breakdown: `/[.*+?^${}()|[\]\\]/g`
+   * Character class breakdown: `/[.*+?^${}()|[\]\\-]/g`
    * - `.*+?^${}()|` - standard regex metacharacters
    * - `[` - literal opening bracket
    * - `\]` - escaped closing bracket (literal `]`)
    * - `\\` - escaped backslash (literal `\`)
+   * - `-` - hyphen (at end of class, treated as literal)
    *
    * This is the standard JavaScript regex escape pattern.
    */
   private escapeRegExp(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return str.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
   }
 
   /**
