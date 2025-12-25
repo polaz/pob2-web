@@ -117,7 +117,6 @@ export function usePixiApp(): UsePixiAppResult {
   const fps = ref(0);
   const layers = shallowRef<TreeLayers | null>(null);
 
-  let fpsUpdateTimer: ReturnType<typeof setInterval> | null = null;
   let lastFpsUpdateTime = 0;
   let frameCount = 0;
 
@@ -201,11 +200,6 @@ export function usePixiApp(): UsePixiAppResult {
    * Destroy the application and clean up resources.
    */
   function destroy(): void {
-    if (fpsUpdateTimer) {
-      clearInterval(fpsUpdateTimer);
-      fpsUpdateTimer = null;
-    }
-
     if (app.value) {
       app.value.destroy(true, { children: true, texture: true });
       app.value = null;

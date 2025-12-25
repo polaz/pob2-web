@@ -1,20 +1,20 @@
 <template>
-  <div ref="containerRef" class="passive-tree-canvas">
-    <canvas ref="canvasRef" class="passive-tree-canvas__canvas" />
+  <div ref="containerRef" class="passive-tree-canvas relative full-width full-height overflow-hidden">
+    <canvas ref="canvasRef" class="block full-width full-height" />
 
     <!-- Dev mode FPS counter -->
-    <div v-if="showFps && ready" class="passive-tree-canvas__fps">
+    <div v-if="showFps && ready" class="passive-tree-canvas__fps absolute q-pa-xs text-caption">
       {{ fps }} FPS | {{ rendererType.toUpperCase() }}
     </div>
 
     <!-- Loading state -->
-    <div v-if="!ready && !error" class="passive-tree-canvas__loading">
+    <div v-if="!ready && !error" class="absolute-center column items-center text-center text-grey-6">
       <q-spinner-dots size="40px" color="primary" />
       <div class="q-mt-sm">Initializing renderer...</div>
     </div>
 
     <!-- Error state -->
-    <div v-if="error" class="passive-tree-canvas__error">
+    <div v-if="error" class="absolute-center column items-center text-center text-negative">
       <q-icon name="error" size="40px" color="negative" />
       <div class="q-mt-sm">Failed to initialize renderer</div>
       <div class="text-caption text-grey">{{ error.message }}</div>
@@ -119,49 +119,18 @@ defineExpose({
 
 <style scoped>
 .passive-tree-canvas {
-  position: relative;
-  width: 100%;
-  height: 100%;
   min-height: 200px;
-  overflow: hidden;
   background-color: #1a1a2e;
 }
 
-.passive-tree-canvas__canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .passive-tree-canvas__fps {
-  position: absolute;
   top: 8px;
   right: 8px;
-  padding: 4px 8px;
   background-color: rgba(0, 0, 0, 0.7);
   color: #4ade80;
   font-family: monospace;
-  font-size: 12px;
   border-radius: 4px;
   pointer-events: none;
   z-index: 10;
-}
-
-.passive-tree-canvas__loading,
-.passive-tree-canvas__error {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #9ca3af;
-}
-
-.passive-tree-canvas__error {
-  color: #ef4444;
 }
 </style>
