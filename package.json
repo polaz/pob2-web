@@ -30,6 +30,7 @@
   "dependencies": {
     "@protobuf-ts/runtime": "^2.11.1",
     "@quasar/extras": "^1.17.0",
+    "@vueuse/core": "^14.1.0",
     "axios": "^1.13.2",
     "comlink": "^4.4.2",
     "dexie": "4.3.0",

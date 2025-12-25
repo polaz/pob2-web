@@ -8,6 +8,7 @@ import type { Build, BuildConfig, Item, SkillGroup, ItemSlot } from 'src/protos/
 import { CharacterClass } from 'src/protos/pob2_pb';
 import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
 import type { StoredBuild } from 'src/types/db';
+import { BUILD_FORMAT_VERSION } from 'src/types/db';
 
 /**
  * Create a new empty build with defaults.
@@ -263,6 +264,7 @@ export const useBuildStore = defineStore('build', () => {
     }
 
     const result: Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> = {
+      version: BUILD_FORMAT_VERSION,
       name: currentBuild.value.name ?? 'Unnamed Build',
       className: characterClassToString(currentBuild.value.characterClass ?? CharacterClass.WARRIOR),
       level: currentBuild.value.level ?? 1,

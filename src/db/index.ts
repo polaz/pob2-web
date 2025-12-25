@@ -10,6 +10,7 @@ import type {
 } from '../types/db';
 import { DEFAULT_USER_PREFERENCES } from '../types/db';
 import { applyMigrations } from './migrations';
+import { migrationAddBuildVersion } from './buildMigrations';
 
 /** PoB2 Database class extending Dexie */
 export class PoB2Database extends Dexie {
@@ -39,6 +40,16 @@ export class PoB2Database extends Dexie {
       gameDataCache: 'key, expiresAt',
       userPreferences: 'id',
     });
+
+    // Version 3: Add version field to builds for format migrations
+    this.version(3)
+      .stores({
+        builds: '++id, name, className, ascendancy, updatedAt',
+        levelingPaths: '++id, name, buildId, className, updatedAt',
+        gameDataCache: 'key, expiresAt',
+        userPreferences: 'id',
+      })
+      .upgrade((tx) => migrationAddBuildVersion(tx));
 
     // Apply migrations for data transformations
     applyMigrations(this);
