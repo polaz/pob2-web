@@ -1,0 +1,434 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:56.257Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "quiver",
+  "meta": {
+    "totalItems": 7,
+    "itemsWithVariants": 4,
+    "totalEntries": 11,
+    "byType": {
+      "Quiver": 7
+    }
+  },
+  "uniques": {
+    "asphyxia-s-wrath-pre-0-1-1": {
+      "id": "asphyxia-s-wrath-pre-0-1-1",
+      "name": "Asphyxia's Wrath",
+      "baseType": "Broadhead Quiver",
+      "baseTypeId": "broadhead-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Adds 1 to 3 Physical Damage to Attacks",
+          "implicit": true
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(5-10)% to Cold Resistance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Enemies Chilled by your Hits increase damage taken by Chill Magnitude"
+        },
+        {
+          "text": "Attacks Gain (5-10)% of Damage as Extra Cold Damage",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "asphyxia-s-wrath",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "asphyxia-s-wrath-current": {
+      "id": "asphyxia-s-wrath-current",
+      "name": "Asphyxia's Wrath",
+      "baseType": "Broadhead Quiver",
+      "baseTypeId": "broadhead-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Adds 1 to 3 Physical Damage to Attacks",
+          "implicit": true
+        },
+        {
+          "text": "Adds (3-4) to (5-8) Cold damage to Attacks",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(5-10)% to Cold Resistance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Enemies Chilled by your Hits increase damage taken by Chill Magnitude"
+        },
+        {
+          "text": "Attacks Gain (5-10)% of Damage as Extra Cold Damage",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "asphyxia-s-wrath",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "beyond-reach": {
+      "id": "beyond-reach",
+      "name": "Beyond Reach",
+      "baseType": "Visceral Quiver",
+      "baseTypeId": "visceral-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "(20-30)% increased Critical Hit Chance for Attacks",
+          "implicit": true,
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(10-15)% reduced Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Chaos Damage from Hits also Contributes to Freeze Buildup"
+        },
+        {
+          "text": "Chaos Damage from Hits also Contributes to Electrocute Buildup"
+        },
+        {
+          "text": "Attacks Gain (10-20)% of Physical Damage as extra Chaos Damage",
+          "min": 10,
+          "max": 20
+        }
+      ]
+    },
+    "blackgleam-pre-0-1-1": {
+      "id": "blackgleam-pre-0-1-1",
+      "name": "Blackgleam",
+      "baseType": "Fire Quiver",
+      "baseTypeId": "fire-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Adds 3 to 5 Fire damage to Attacks",
+          "implicit": true
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "50% increased Flammability Magnitude",
+          "value": 50
+        },
+        {
+          "text": "Projectiles Pierce all Ignited enemies"
+        },
+        {
+          "text": "Attacks Gain (5-10)% of Damage as Extra Fire Damage",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "blackgleam",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "blackgleam-current": {
+      "id": "blackgleam-current",
+      "name": "Blackgleam",
+      "baseType": "Fire Quiver",
+      "baseTypeId": "fire-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Adds 3 to 5 Fire damage to Attacks",
+          "implicit": true
+        },
+        {
+          "text": "Adds (3-5) to (6-9) Fire damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "50% increased Flammability Magnitude",
+          "value": 50
+        },
+        {
+          "text": "Projectiles Pierce all Ignited enemies"
+        },
+        {
+          "text": "Attacks Gain (5-10)% of Damage as Extra Fire Damage",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "blackgleam",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "cadiro-s-gambit": {
+      "id": "cadiro-s-gambit",
+      "name": "Cadiro's Gambit",
+      "baseType": "Primed Quiver",
+      "baseTypeId": "primed-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(7-10)% increased Attack Speed",
+          "min": 7,
+          "max": 10
+        },
+        {
+          "text": "Each Arrow fired is a Crescendo, Splinter, Reversing, Diamond, Covetous, or Blunt Arrow"
+        }
+      ]
+    },
+    "the-lethal-draw-pre-0-4-0": {
+      "id": "the-lethal-draw-pre-0-4-0",
+      "name": "The Lethal Draw",
+      "baseType": "Sacral Quiver",
+      "baseTypeId": "sacral-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Gain (2-3) Life per Enemy Hit with Attacks",
+          "implicit": true,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Gain 5 Life per Enemy Hit with Attacks"
+        },
+        {
+          "text": "(15-25)% chance to Pierce an Enemy",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Bow Attacks consume 10% of your maximum Life Flask Charges if possible to deal added Physical damage equal to 5% of Flask's Life Recovery amount"
+        }
+      ],
+      "variantGroup": "the-lethal-draw",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-lethal-draw-current": {
+      "id": "the-lethal-draw-current",
+      "name": "The Lethal Draw",
+      "baseType": "Sacral Quiver",
+      "baseTypeId": "sacral-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Gain (2-3) Life per Enemy Hit with Attacks",
+          "implicit": true,
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Gain 5 Life per Enemy Hit with Attacks"
+        },
+        {
+          "text": "(15-25)% chance to Pierce an Enemy",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Bow Attacks consume 10% of your maximum Life Flask Charges if possible to deal added Physical damage equal to (5-10)% of Flask's Life Recovery amount",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "the-lethal-draw",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "murkshaft": {
+      "id": "murkshaft",
+      "name": "Murkshaft",
+      "baseType": "Toxic Quiver",
+      "baseTypeId": "toxic-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Bursting Fen Toad",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% chance to Poison on Hit with Attacks",
+          "implicit": true,
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Adds (6-10) to (13-17) Physical Damage to Attacks",
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "Gain (10-15) Mana per enemy killed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-20)% increased Poison Duration",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% chance to Poison on Hit with Attacks",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Blind Targets when you Poison them"
+        }
+      ]
+    },
+    "rearguard-pre-0-3-0": {
+      "id": "rearguard-pre-0-3-0",
+      "name": "Rearguard",
+      "baseType": "Blunt Quiver",
+      "baseTypeId": "blunt-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(20-30)% increased Stun Buildup",
+          "implicit": true,
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Adds (7-11) to (14-20) Physical Damage to Attacks",
+          "min": 7,
+          "max": 11
+        },
+        {
+          "text": "+(150-200) to Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "(20-30)% increased Projectile Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(15-25)% to Block chance",
+          "min": 15,
+          "max": 25
+        }
+      ],
+      "variantGroup": "rearguard",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "rearguard-current": {
+      "id": "rearguard-current",
+      "name": "Rearguard",
+      "baseType": "Blunt Quiver",
+      "baseTypeId": "blunt-quiver",
+      "itemType": "Quiver",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(25-40)% increased Stun Buildup",
+          "implicit": true,
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Adds (7-11) to (14-20) Physical Damage to Attacks",
+          "min": 7,
+          "max": 11
+        },
+        {
+          "text": "+(150-200) to Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "(20-30)% increased Projectile Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(15-25)% to Block chance",
+          "min": 15,
+          "max": 25
+        }
+      ],
+      "variantGroup": "rearguard",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    }
+  }
+}

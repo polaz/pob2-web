@@ -1,0 +1,5077 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:54.890Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "body",
+  "meta": {
+    "totalItems": 65,
+    "itemsWithVariants": 41,
+    "totalEntries": 141,
+    "byType": {
+      "Body Armour": 65
+    }
+  },
+  "uniques": {
+    "blackbraid-pre-0-1-1": {
+      "id": "blackbraid-pre-0-1-1",
+      "name": "Blackbraid",
+      "baseType": "Fur Plate",
+      "baseTypeId": "fur-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(5-15) to Strength",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15) to Intelligence",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+100% of Armour also applies to Elemental Damage",
+          "value": 100
+        },
+        {
+          "text": "+(40-60) to Stun Threshold",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "blackbraid",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "blackbraid-pre-0-3-0": {
+      "id": "blackbraid-pre-0-3-0",
+      "name": "Blackbraid",
+      "baseType": "Fur Plate",
+      "baseTypeId": "fur-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to Armour",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(5-15) to Strength",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15) to Intelligence",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "+100% of Armour also applies to Elemental Damage",
+          "value": 100
+        },
+        {
+          "text": "+(40-60) to Stun Threshold",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "blackbraid",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "blackbraid-current": {
+      "id": "blackbraid-current",
+      "name": "Blackbraid",
+      "baseType": "Fur Plate",
+      "baseTypeId": "fur-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to Armour",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(5-15) to Strength",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15) to Intelligence",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "+(100-150)% of Armour also applies to Elemental Damage",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(40-60) to Stun Threshold",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "blackbraid",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "bramblejack-pre-0-1-1": {
+      "id": "bramblejack-pre-0-1-1",
+      "name": "Bramblejack",
+      "baseType": "Rusted Cuirass",
+      "baseTypeId": "rusted-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(50-80) to maximum Life",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(60-100) to Stun Threshold",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "250% of Melee Physical Damage taken reflected to Attacker",
+          "value": 250
+        }
+      ],
+      "variantGroup": "bramblejack",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "bramblejack-current": {
+      "id": "bramblejack-current",
+      "name": "Bramblejack",
+      "baseType": "Rusted Cuirass",
+      "baseTypeId": "rusted-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(60-100) to maximum Life",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to Stun Threshold",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Cannot Evade Enemy Attacks"
+        },
+        {
+          "text": "250% of Melee Physical Damage taken reflected to Attacker",
+          "value": 250
+        },
+        {
+          "text": "Regenerate 5% of maximum Life per second while Surrounded"
+        }
+      ],
+      "variantGroup": "bramblejack",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-brass-dome-pre-0-1-1": {
+      "id": "the-brass-dome-pre-0-1-1",
+      "name": "The Brass Dome",
+      "baseType": "Champion Cuirass",
+      "baseTypeId": "champion-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(300-400)% increased Armour",
+          "min": 300,
+          "max": 400
+        },
+        {
+          "text": "+5% to all Maximum Elemental Resistances",
+          "value": 5
+        },
+        {
+          "text": "+(200-300) to Stun Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Take no Extra Damage from Critical Hits"
+        }
+      ],
+      "variantGroup": "the-brass-dome",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-brass-dome-pre-0-4-0": {
+      "id": "the-brass-dome-pre-0-4-0",
+      "name": "The Brass Dome",
+      "baseType": "Champion Cuirass",
+      "baseTypeId": "champion-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(400-500)% increased Armour",
+          "min": 400,
+          "max": 500
+        },
+        {
+          "text": "-(5-1)% to all Maximum Elemental Resistances",
+          "min": 5,
+          "max": 1
+        },
+        {
+          "text": "+(200-300) to Stun Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Take no Extra Damage from Critical Hits"
+        }
+      ],
+      "variantGroup": "the-brass-dome",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-brass-dome-current": {
+      "id": "the-brass-dome-current",
+      "name": "The Brass Dome",
+      "baseType": "Champion Cuirass",
+      "baseTypeId": "champion-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(700-800)% increased Armour",
+          "min": 700,
+          "max": 800
+        },
+        {
+          "text": "-(5-1)% to all Maximum Elemental Resistances",
+          "min": 5,
+          "max": 1
+        },
+        {
+          "text": "+(200-300) to Stun Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Take no Extra Damage from Critical Hits"
+        }
+      ],
+      "variantGroup": "the-brass-dome",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "edyrn-s-tusks-pre-0-1-1": {
+      "id": "edyrn-s-tusks-pre-0-1-1",
+      "name": "Edyrn's Tusks",
+      "baseType": "Iron Cuirass",
+      "baseTypeId": "iron-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(120-160)% increased Armour",
+          "min": 120,
+          "max": 160
+        },
+        {
+          "text": "10% chance to inflict Bleeding on Hit",
+          "value": 10
+        },
+        {
+          "text": "50% reduced Slowing Potency of Debuffs on You",
+          "value": 50
+        },
+        {
+          "text": "(15-20) to (25-30) Physical Thorns damage",
+          "min": 15,
+          "max": 20
+        }
+      ],
+      "variantGroup": "edyrn-s-tusks",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "edyrn-s-tusks-current": {
+      "id": "edyrn-s-tusks-current",
+      "name": "Edyrn's Tusks",
+      "baseType": "Iron Cuirass",
+      "baseTypeId": "iron-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(120-160)% increased Armour",
+          "min": 120,
+          "max": 160
+        },
+        {
+          "text": "50% chance to inflict Bleeding on Hit",
+          "value": 50
+        },
+        {
+          "text": "50% reduced Slowing Potency of Debuffs on You",
+          "value": 50
+        },
+        {
+          "text": "(15-20) to (25-30) Physical Thorns damage",
+          "min": 15,
+          "max": 20
+        }
+      ],
+      "variantGroup": "edyrn-s-tusks",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "greed-s-embrace": {
+      "id": "greed-s-embrace",
+      "name": "Greed's Embrace",
+      "baseType": "Vaal Cuirass",
+      "baseTypeId": "vaal-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "50% increased Strength Requirement",
+          "value": 50
+        },
+        {
+          "text": "20% reduced Movement Speed",
+          "value": 20
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(30-50)% increased Rarity of Items found",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        }
+      ]
+    },
+    "the-road-warrior-pre-0-1-1": {
+      "id": "the-road-warrior-pre-0-1-1",
+      "name": "The Road Warrior",
+      "baseType": "Raider Plate",
+      "baseTypeId": "raider-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(15-25)% to Fire Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Moving while Bleeding doesn't cause you to take extra damage"
+        }
+      ],
+      "variantGroup": "the-road-warrior",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-road-warrior-current": {
+      "id": "the-road-warrior-current",
+      "name": "The Road Warrior",
+      "baseType": "Raider Plate",
+      "baseTypeId": "raider-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(15-30)% to Fire Resistance",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "+(15-30)% to Lightning Resistance",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Moving while Bleeding doesn't cause you to take extra damage"
+        }
+      ],
+      "variantGroup": "the-road-warrior",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "kaom-s-heart-pre-0-2-1": {
+      "id": "kaom-s-heart-pre-0-2-1",
+      "name": "Kaom's Heart",
+      "baseType": "Conqueror Plate",
+      "baseTypeId": "conqueror-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-40)% increased Stun Threshold",
+          "implicit": true,
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+1000 to maximum Life",
+          "value": 1000
+        },
+        {
+          "text": "You have no Spirit"
+        }
+      ],
+      "variantGroup": "kaom-s-heart",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "kaom-s-heart-current": {
+      "id": "kaom-s-heart-current",
+      "name": "Kaom's Heart",
+      "baseType": "Conqueror Plate",
+      "baseTypeId": "conqueror-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-40)% increased Stun Threshold",
+          "implicit": true,
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+1500 to maximum Life",
+          "value": 1500
+        },
+        {
+          "text": "You have no Spirit"
+        }
+      ],
+      "variantGroup": "kaom-s-heart",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "kingsguard": {
+      "id": "kingsguard",
+      "name": "Kingsguard",
+      "baseType": "Full Plate",
+      "baseTypeId": "full-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(5-10)% to all Elemental Resistances",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% reduced Endurance Charge Duration",
+          "value": 25
+        },
+        {
+          "text": "Recover 5% of maximum Life for each Endurance Charge consumed"
+        }
+      ]
+    },
+    "titanrot-cataphract-pre-0-1-1": {
+      "id": "titanrot-cataphract-pre-0-1-1",
+      "name": "Titanrot Cataphract",
+      "baseType": "Maraketh Cuirass",
+      "baseTypeId": "maraketh-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(200-300)% increased Armour",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "(10-20)% increased Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "10% reduced Dexterity",
+          "value": 10
+        },
+        {
+          "text": "10% reduced Intelligence",
+          "value": 10
+        },
+        {
+          "text": "You have no Life Regeneration"
+        }
+      ],
+      "variantGroup": "titanrot-cataphract",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "titanrot-cataphract-current": {
+      "id": "titanrot-cataphract-current",
+      "name": "Titanrot Cataphract",
+      "baseType": "Maraketh Cuirass",
+      "baseTypeId": "maraketh-cuirass",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(400-500)% increased Armour",
+          "min": 400,
+          "max": 500
+        },
+        {
+          "text": "(15-30)% increased Strength",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "10% reduced Dexterity",
+          "value": 10
+        },
+        {
+          "text": "10% reduced Intelligence",
+          "value": 10
+        },
+        {
+          "text": "You have no Life Regeneration"
+        }
+      ],
+      "variantGroup": "titanrot-cataphract",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "wandering-reliquary-pre-0-1-1": {
+      "id": "wandering-reliquary-pre-0-1-1",
+      "name": "Wandering Reliquary",
+      "baseType": "Steel Plate",
+      "baseTypeId": "steel-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "50% of Physical Damage prevented Recouped as Life",
+          "value": 50
+        }
+      ],
+      "variantGroup": "wandering-reliquary",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "wandering-reliquary-current": {
+      "id": "wandering-reliquary-current",
+      "name": "Wandering Reliquary",
+      "baseType": "Steel Plate",
+      "baseTypeId": "steel-plate",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "50% of Physical Damage prevented Recouped as Life",
+          "value": 50
+        }
+      ],
+      "variantGroup": "wandering-reliquary",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ashrend-pre-0-1-1": {
+      "id": "ashrend-pre-0-1-1",
+      "name": "Ashrend",
+      "baseType": "Pathfinder Coat",
+      "baseTypeId": "pathfinder-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Cannot be Ignited"
+        },
+        {
+          "text": "-10 Physical Damage taken from Attack Hits",
+          "value": 10
+        }
+      ],
+      "variantGroup": "ashrend",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "ashrend-current": {
+      "id": "ashrend-current",
+      "name": "Ashrend",
+      "baseType": "Pathfinder Coat",
+      "baseTypeId": "pathfinder-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(30-40)% to Fire Resistance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Cannot be Ignited"
+        },
+        {
+          "text": "-10 Physical Damage taken from Attack Hits",
+          "value": 10
+        }
+      ],
+      "variantGroup": "ashrend",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "briskwrap-pre-0-1-1": {
+      "id": "briskwrap-pre-0-1-1",
+      "name": "Briskwrap",
+      "baseType": "Rhoahide Coat",
+      "baseTypeId": "rhoahide-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Flask Life Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(40-60)% increased Flask Mana Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "briskwrap",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "briskwrap-pre-0-3-0": {
+      "id": "briskwrap-pre-0-3-0",
+      "name": "Briskwrap",
+      "baseType": "Rhoahide Coat",
+      "baseTypeId": "rhoahide-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Evasion Rating",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(40-60)% increased Flask Life Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(40-60)% increased Flask Mana Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "briskwrap",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "briskwrap-current": {
+      "id": "briskwrap-current",
+      "name": "Briskwrap",
+      "baseType": "Rhoahide Coat",
+      "baseTypeId": "rhoahide-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Evasion Rating",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(40-60)% increased Flask Life Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(40-60)% increased Flask Mana Recovery rate",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain Deflection Rating equal to (20-30)% of Evasion Rating",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "briskwrap",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "bristleboar-pre-0-1-1": {
+      "id": "bristleboar-pre-0-1-1",
+      "name": "Bristleboar",
+      "baseType": "Leather Vest",
+      "baseTypeId": "leather-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-80)% increased Evasion Rating",
+          "min": 40,
+          "max": 80
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Gain 3 Rage when Hit by an Enemy"
+        },
+        {
+          "text": "Gain 10 Rage when Critically Hit by an Enemy"
+        }
+      ],
+      "variantGroup": "bristleboar",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "bristleboar-current": {
+      "id": "bristleboar-current",
+      "name": "Bristleboar",
+      "baseType": "Leather Vest",
+      "baseTypeId": "leather-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "50% reduced Evasion Rating",
+          "value": 50
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(3-5) Life Regeneration per second",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "Gain 5 Rage when Hit by an Enemy"
+        },
+        {
+          "text": "Gain 10 Rage when Critically Hit by an Enemy"
+        }
+      ],
+      "variantGroup": "bristleboar",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "dustbloom": {
+      "id": "dustbloom",
+      "name": "Dustbloom",
+      "baseType": "Studded Vest",
+      "baseTypeId": "studded-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Maximum 10 Fragile Regrowth"
+        },
+        {
+          "text": "0.5% of maximum Life Regenerated per second per Fragile Regrowth",
+          "value": 0.5
+        },
+        {
+          "text": "10% increased Mana Regeneration Rate per Fragile Regrowth",
+          "value": 10
+        },
+        {
+          "text": "Lose all Fragile Regrowth when Hit"
+        },
+        {
+          "text": "Gain 1 Fragile Regrowth each second"
+        }
+      ]
+    },
+    "foxshade": {
+      "id": "foxshade",
+      "name": "Foxshade",
+      "baseType": "Quilted Vest",
+      "baseTypeId": "quilted-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(50-70) to Evasion Rating",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "10% increased Movement Speed when on Full Life",
+          "value": 10
+        },
+        {
+          "text": "100% increased Evasion Rating when on Full Life",
+          "value": 100
+        }
+      ]
+    },
+    "hyrri-s-ire-pre-0-4-0": {
+      "id": "hyrri-s-ire-pre-0-4-0",
+      "name": "Hyrri's Ire",
+      "baseType": "Armoured Vest",
+      "baseTypeId": "armoured-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(30-40)% increased Elemental Ailment Threshold",
+          "implicit": true,
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(100-130)% increased Evasion Rating",
+          "min": 100,
+          "max": 130
+        },
+        {
+          "text": "Adds (13-20) to (21-31) Cold damage to Attacks",
+          "min": 13,
+          "max": 20
+        },
+        {
+          "text": "+(30-40) to Dexterity",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "25% increased Chill Duration on Enemies",
+          "value": 25
+        },
+        {
+          "text": "Evasion Rating is doubled if you have not been Hit Recently"
+        }
+      ],
+      "variantGroup": "hyrri-s-ire",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "hyrri-s-ire-current": {
+      "id": "hyrri-s-ire-current",
+      "name": "Hyrri's Ire",
+      "baseType": "Armoured Vest",
+      "baseTypeId": "armoured-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(30-40)% increased Elemental Ailment Threshold",
+          "implicit": true,
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(200-250)% increased Evasion Rating",
+          "min": 200,
+          "max": 250
+        },
+        {
+          "text": "Gain (15-25)% of Damage as Extra Cold Damage",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(30-40) to Dexterity",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "25% increased Freeze Duration on Enemies",
+          "value": 25
+        },
+        {
+          "text": "Evasion Rating is doubled if you have not been Hit Recently"
+        }
+      ],
+      "variantGroup": "hyrri-s-ire",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "quatl-s-molt-pre-0-1-1": {
+      "id": "quatl-s-molt-pre-0-1-1",
+      "name": "Quatl's Molt",
+      "baseType": "Serpentscale Coat",
+      "baseTypeId": "serpentscale-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "(10-20) Life Regeneration per second",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Cannot be Poisoned"
+        }
+      ],
+      "variantGroup": "quatl-s-molt",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "quatl-s-molt-pre-0-3-0": {
+      "id": "quatl-s-molt-pre-0-3-0",
+      "name": "Quatl's Molt",
+      "baseType": "Serpentscale Coat",
+      "baseTypeId": "serpentscale-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Evasion Rating",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "(10-20) Life Regeneration per second",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Cannot be Poisoned"
+        }
+      ],
+      "variantGroup": "quatl-s-molt",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "quatl-s-molt-current": {
+      "id": "quatl-s-molt-current",
+      "name": "Quatl's Molt",
+      "baseType": "Serpentscale Coat",
+      "baseTypeId": "serpentscale-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Evasion Rating",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Gain Deflection Rating equal to (40-60)% of Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(10-20) Life Regeneration per second",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Cannot be Poisoned"
+        }
+      ],
+      "variantGroup": "quatl-s-molt",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "queen-of-the-forest-pre-0-2-0": {
+      "id": "queen-of-the-forest-pre-0-2-0",
+      "name": "Queen of the Forest",
+      "baseType": "Smuggler Coat",
+      "baseTypeId": "smuggler-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-(15-10)% to Fire Resistance",
+          "min": 15,
+          "max": 10
+        },
+        {
+          "text": "+(25-30)% to Cold Resistance",
+          "min": 25,
+          "max": 30
+        },
+        {
+          "text": "+(10-15)% to Lightning Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Increases Movement Speed by 25%, plus 1% per 500 Evasion Rating, up to a maximum of 75%"
+        },
+        {
+          "text": "Other Modifiers to Movement Speed except for Sprinting do not apply"
+        }
+      ],
+      "variantGroup": "queen-of-the-forest",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "queen-of-the-forest-pre-0-4-0": {
+      "id": "queen-of-the-forest-pre-0-4-0",
+      "name": "Queen of the Forest",
+      "baseType": "Smuggler Coat",
+      "baseTypeId": "smuggler-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-(15-10)% to Fire Resistance",
+          "min": 15,
+          "max": 10
+        },
+        {
+          "text": "+(25-30)% to Cold Resistance",
+          "min": 25,
+          "max": 30
+        },
+        {
+          "text": "+(10-15)% to Lightning Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Increases Movement Speed by 25%, plus 1% per 800 Evasion Rating, up to a maximum of 75%"
+        },
+        {
+          "text": "Other Modifiers to Movement Speed except for Sprinting do not apply"
+        }
+      ],
+      "variantGroup": "queen-of-the-forest",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "queen-of-the-forest-current": {
+      "id": "queen-of-the-forest-current",
+      "name": "Queen of the Forest",
+      "baseType": "Smuggler Coat",
+      "baseTypeId": "smuggler-coat",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-(15-10)% to Fire Resistance",
+          "min": 15,
+          "max": 10
+        },
+        {
+          "text": "+(25-30)% to Cold Resistance",
+          "min": 25,
+          "max": 30
+        },
+        {
+          "text": "+(10-15)% to Lightning Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Increases Movement Speed by 25%, plus 1% per 600 Evasion Rating, up to a maximum of 75%"
+        },
+        {
+          "text": "Other Modifiers to Movement Speed except for Sprinting do not apply"
+        }
+      ],
+      "variantGroup": "queen-of-the-forest",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-rat-cage": {
+      "id": "the-rat-cage",
+      "name": "The Rat Cage",
+      "baseType": "Scout's Vest",
+      "baseTypeId": "scout-s-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+300 to maximum Life",
+          "value": 300
+        },
+        {
+          "text": "25% reduced Attribute Requirements",
+          "value": 25
+        },
+        {
+          "text": "100% of Fire Damage from Hits taken as Physical Damage",
+          "value": 100
+        }
+      ]
+    },
+    "sands-of-silk": {
+      "id": "sands-of-silk",
+      "name": "Sands of Silk",
+      "baseType": "Shrouded Vest",
+      "baseTypeId": "shrouded-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Blink",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(50-100)% increased Evasion Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(50-80) to maximum Mana",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-15)% to Fire Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(15-30)% increased Cooldown Recovery Rate",
+          "min": 15,
+          "max": 30
+        }
+      ]
+    },
+    "yriel-s-fostering": {
+      "id": "yriel-s-fostering",
+      "name": "Yriel's Fostering",
+      "baseType": "Strider Vest",
+      "baseTypeId": "strider-vest",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(80-120) to maximum Life",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(10-30) to Spirit",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "(40-60)% reduced Poison Duration on you",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "You can have two Companions of different types"
+        },
+        {
+          "text": "(40-60)% reduced Duration of Bleeding on You",
+          "min": 40,
+          "max": 60
+        }
+      ]
+    },
+    "bitterbloom": {
+      "id": "bitterbloom",
+      "name": "Bitterbloom",
+      "baseType": "Feathered Robe",
+      "baseTypeId": "feathered-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(50-100) to maximum Mana",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "50% increased Energy Shield Recharge Rate",
+          "value": 50
+        },
+        {
+          "text": "Energy Shield Recharge starts when you use a Mana Flask"
+        }
+      ]
+    },
+    "the-black-doubt-pre-0-1-1": {
+      "id": "the-black-doubt-pre-0-1-1",
+      "name": "The Black Doubt",
+      "baseType": "Hexer's Robe",
+      "baseTypeId": "hexer-s-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-30) to Intelligence",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "Damage over Time bypasses your Energy Shield"
+        },
+        {
+          "text": "While not on Full Life, Sacrifice 10% of maximum Mana per Second to Recover that much Life"
+        }
+      ],
+      "variantGroup": "the-black-doubt",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-black-doubt-current": {
+      "id": "the-black-doubt-current",
+      "name": "The Black Doubt",
+      "baseType": "Hexer's Robe",
+      "baseTypeId": "hexer-s-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-30) to Intelligence",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to Cold Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Damage over Time bypasses your Energy Shield"
+        },
+        {
+          "text": "While not on Full Life, Sacrifice 10% of maximum Mana per Second to Recover that much Life"
+        }
+      ],
+      "variantGroup": "the-black-doubt",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "cloak-of-defiance-pre-0-4-0": {
+      "id": "cloak-of-defiance-pre-0-4-0",
+      "name": "Cloak of Defiance",
+      "baseType": "Havoc Raiment",
+      "baseTypeId": "havoc-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(100-150) to maximum Mana",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "value": 50
+        },
+        {
+          "text": "30% of Damage is taken from Mana before Life",
+          "value": 30
+        }
+      ],
+      "variantGroup": "cloak-of-defiance",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "cloak-of-defiance-current": {
+      "id": "cloak-of-defiance-current",
+      "name": "Cloak of Defiance",
+      "baseType": "Havoc Raiment",
+      "baseTypeId": "havoc-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(100-150) to maximum Mana",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(50-100)% increased Mana Regeneration Rate",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "50% of Damage is taken from Mana before Life",
+          "value": 50
+        }
+      ],
+      "variantGroup": "cloak-of-defiance",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "cloak-of-flame-pre-0-4-0": {
+      "id": "cloak-of-flame-pre-0-4-0",
+      "name": "Cloak of Flame",
+      "baseType": "Silk Robe",
+      "baseTypeId": "silk-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50)% to Fire Resistance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% reduced Ignite Duration on you",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "40% of Physical Damage taken as Fire Damage",
+          "value": 40
+        },
+        {
+          "text": "25 to 35 Fire Thorns damage",
+          "value": 25
+        }
+      ],
+      "variantGroup": "cloak-of-flame",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "cloak-of-flame-current": {
+      "id": "cloak-of-flame-current",
+      "name": "Cloak of Flame",
+      "baseType": "Silk Robe",
+      "baseTypeId": "silk-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to maximum Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50)% to Fire Resistance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% reduced Ignite Duration on you",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "50% of Physical Damage taken as Fire Damage",
+          "value": 50
+        },
+        {
+          "text": "25 to 35 Fire Thorns damage",
+          "value": 25
+        }
+      ],
+      "variantGroup": "cloak-of-flame",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-covenant-pre-0-4-0": {
+      "id": "the-covenant-pre-0-4-0",
+      "name": "The Covenant",
+      "baseType": "Altar Robe",
+      "baseTypeId": "altar-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "5% of Spell Damage Leeched as Life",
+          "value": 5
+        },
+        {
+          "text": "Skills gain a Base Life Cost equal to 50% of Base Mana Cost"
+        }
+      ],
+      "variantGroup": "the-covenant",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-covenant-current": {
+      "id": "the-covenant-current",
+      "name": "The Covenant",
+      "baseType": "Altar Robe",
+      "baseTypeId": "altar-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level 14 Life Remnants"
+        },
+        {
+          "text": "(100-150)% increased Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "10% of Spell Damage Leeched as Life",
+          "value": 10
+        },
+        {
+          "text": "Skills gain a Base Life Cost equal to 100% of Base Mana Cost"
+        }
+      ],
+      "variantGroup": "the-covenant",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ghostwrithe-pre-0-2-0": {
+      "id": "ghostwrithe-pre-0-2-0",
+      "name": "Ghostwrithe",
+      "baseType": "Tattered Robe",
+      "baseTypeId": "tattered-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+100 to maximum Energy Shield",
+          "value": 100
+        },
+        {
+          "text": "+(29-37)% to Chaos Resistance",
+          "min": 29,
+          "max": 37
+        },
+        {
+          "text": "50% of Maximum Life Converted to Energy Shield",
+          "value": 50
+        }
+      ],
+      "variantGroup": "ghostwrithe",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "ghostwrithe-pre-0-4-0": {
+      "id": "ghostwrithe-pre-0-4-0",
+      "name": "Ghostwrithe",
+      "baseType": "Tattered Robe",
+      "baseTypeId": "tattered-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+100 to maximum Energy Shield",
+          "value": 100
+        },
+        {
+          "text": "+(29-37)% to Chaos Resistance",
+          "min": 29,
+          "max": 37
+        },
+        {
+          "text": "25% of Maximum Life Converted to Energy Shield",
+          "value": 25
+        }
+      ],
+      "variantGroup": "ghostwrithe",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "ghostwrithe-current": {
+      "id": "ghostwrithe-current",
+      "name": "Ghostwrithe",
+      "baseType": "Tattered Robe",
+      "baseTypeId": "tattered-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+100 to maximum Energy Shield",
+          "value": 100
+        },
+        {
+          "text": "+(29-37)% to Chaos Resistance",
+          "min": 29,
+          "max": 37
+        },
+        {
+          "text": "35% of Maximum Life Converted to Energy Shield",
+          "value": 35
+        }
+      ],
+      "variantGroup": "ghostwrithe",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "gloamgown": {
+      "id": "gloamgown",
+      "name": "Gloamgown",
+      "baseType": "Elementalist Robe",
+      "baseTypeId": "elementalist-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-140)% increased Energy Shield",
+          "min": 100,
+          "max": 140
+        },
+        {
+          "text": "+(30-40) to Spirit",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(25-35)% to Cold Resistance",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "1000% increased Energy Shield Recharge Rate",
+          "value": 1000
+        },
+        {
+          "text": "Your base Energy Shield Recharge Delay is 10 seconds"
+        }
+      ]
+    },
+    "necromantle-pre-0-1-1": {
+      "id": "necromantle-pre-0-1-1",
+      "name": "Necromantle",
+      "baseType": "Bone Raiment",
+      "baseTypeId": "bone-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Minions gain (20-30)% of their maximum Life as Extra maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Minions Revive 50% faster"
+        }
+      ],
+      "variantGroup": "necromantle",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "necromantle-current": {
+      "id": "necromantle-current",
+      "name": "Necromantle",
+      "baseType": "Bone Raiment",
+      "baseTypeId": "bone-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Minions have +(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Minions gain (20-30)% of their maximum Life as Extra maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Minions Revive 50% faster"
+        }
+      ],
+      "variantGroup": "necromantle",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "prayers-for-rain-pre-0-1-1": {
+      "id": "prayers-for-rain-pre-0-1-1",
+      "name": "Prayers for Rain",
+      "baseType": "Keth Raiment",
+      "baseTypeId": "keth-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "30% slower start of Energy Shield Recharge",
+          "value": 30
+        },
+        {
+          "text": "Energy Shield Recharge is not interrupted by Damage if Recharge began Recently"
+        }
+      ],
+      "variantGroup": "prayers-for-rain",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "prayers-for-rain-current": {
+      "id": "prayers-for-rain-current",
+      "name": "Prayers for Rain",
+      "baseType": "Keth Raiment",
+      "baseTypeId": "keth-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(10-20)% to Lightning Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "30% slower start of Energy Shield Recharge",
+          "value": 30
+        },
+        {
+          "text": "Energy Shield Recharge is not interrupted by Damage if Recharge began Recently"
+        }
+      ],
+      "variantGroup": "prayers-for-rain",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "silks-of-veneration-pre-0-4-0": {
+      "id": "silks-of-veneration-pre-0-4-0",
+      "name": "Silks of Veneration",
+      "baseType": "Enlightened Robe",
+      "baseTypeId": "enlightened-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(40-50)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Spirit",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(30-50)% increased Energy Shield Recharge Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Current Energy Shield also grants Elemental Damage reduction"
+        }
+      ],
+      "variantGroup": "silks-of-veneration",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "silks-of-veneration-current": {
+      "id": "silks-of-veneration-current",
+      "name": "Silks of Veneration",
+      "baseType": "Enlightened Robe",
+      "baseTypeId": "enlightened-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(40-50)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "(150-200)% increased Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(30-50) to Spirit",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(30-50)% increased Energy Shield Recharge Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Current Energy Shield also grants Elemental Damage reduction"
+        }
+      ],
+      "variantGroup": "silks-of-veneration",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "temporalis-pre-0-2-0": {
+      "id": "temporalis-pre-0-2-0",
+      "name": "Temporalis",
+      "baseType": "Silk Robe",
+      "baseTypeId": "silk-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(100-150) to maximum Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(5-30)% of Damage taken Recouped as Life",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "(5-30)% of Damage taken Recouped as Mana",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "Skills have -(4-2) seconds to Cooldown",
+          "min": 4,
+          "max": 2
+        }
+      ],
+      "variantGroup": "temporalis",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "temporalis-current": {
+      "id": "temporalis-current",
+      "name": "Temporalis",
+      "baseType": "Silk Robe",
+      "baseTypeId": "silk-robe",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(100-150) to maximum Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(5-30)% of Damage taken Recouped as Life",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "(5-30)% of Damage taken Recouped as Mana",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "Skills have -(2-1) seconds to Cooldown",
+          "min": 2,
+          "max": 1
+        }
+      ],
+      "variantGroup": "temporalis",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "tetzlapokal-s-desire-pre-0-1-1": {
+      "id": "tetzlapokal-s-desire-pre-0-1-1",
+      "name": "Tetzlapokal's Desire",
+      "baseType": "Votive Raiment",
+      "baseTypeId": "votive-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Life Recharges"
+        }
+      ],
+      "variantGroup": "tetzlapokal-s-desire",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "tetzlapokal-s-desire-current": {
+      "id": "tetzlapokal-s-desire-current",
+      "name": "Tetzlapokal's Desire",
+      "baseType": "Votive Raiment",
+      "baseTypeId": "votive-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Life Recharges"
+        }
+      ],
+      "variantGroup": "tetzlapokal-s-desire",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "vis-mortis": {
+      "id": "vis-mortis",
+      "name": "Vis Mortis",
+      "baseType": "Plated Raiment",
+      "baseTypeId": "plated-raiment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(70-100)% increased Energy Shield",
+          "min": 70,
+          "max": 100
+        },
+        {
+          "text": "+(70-100) to maximum Mana",
+          "min": 70,
+          "max": 100
+        },
+        {
+          "text": "Minions have 50% reduced maximum Life"
+        },
+        {
+          "text": "Minions have Unholy Might"
+        }
+      ]
+    },
+    "the-barrow-dweller-pre-0-1-1": {
+      "id": "the-barrow-dweller-pre-0-1-1",
+      "name": "The Barrow Dweller",
+      "baseType": "Rogue Armour",
+      "baseTypeId": "rogue-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Armour and Evasion",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "-(20-10)% to Fire Resistance",
+          "min": 20,
+          "max": 10
+        },
+        {
+          "text": "+50% to Cold Resistance",
+          "value": 50
+        },
+        {
+          "text": "50% chance to Avoid Death from Hits",
+          "value": 50
+        }
+      ],
+      "variantGroup": "the-barrow-dweller",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-barrow-dweller-current": {
+      "id": "the-barrow-dweller-current",
+      "name": "The Barrow Dweller",
+      "baseType": "Rogue Armour",
+      "baseTypeId": "rogue-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Armour and Evasion",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "-(20-10)% to Fire Resistance",
+          "min": 20,
+          "max": 10
+        },
+        {
+          "text": "+50% to Cold Resistance",
+          "value": 50
+        },
+        {
+          "text": "Damage of Enemies Hitting you is Unlucky while you are on Low Life"
+        },
+        {
+          "text": "50% chance to Avoid Death from Hits",
+          "value": 50
+        }
+      ],
+      "variantGroup": "the-barrow-dweller",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "belly-of-the-beast-pre-0-1-1": {
+      "id": "belly-of-the-beast-pre-0-1-1",
+      "name": "Belly of the Beast",
+      "baseType": "Explorer Armour",
+      "baseTypeId": "explorer-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Life Recovery from Flasks is instant"
+        }
+      ],
+      "variantGroup": "belly-of-the-beast",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "belly-of-the-beast-current": {
+      "id": "belly-of-the-beast-current",
+      "name": "Belly of the Beast",
+      "baseType": "Explorer Armour",
+      "baseTypeId": "explorer-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Life Recovery from Flasks is instant"
+        },
+        {
+          "text": "(25-30) to (35-40) Physical Thorns damage",
+          "min": 25,
+          "max": 30
+        }
+      ],
+      "variantGroup": "belly-of-the-beast",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "coat-of-red": {
+      "id": "coat-of-red",
+      "name": "Coat of Red",
+      "baseType": "Chain Mail",
+      "baseTypeId": "chain-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(80-100)% increased Armour and Evasion",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+(80-100) to maximum Life",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+(75-150) to Stun Threshold",
+          "min": 75,
+          "max": 150
+        },
+        {
+          "text": "25% chance to be inflicted with Bleeding when Hit",
+          "value": 25
+        }
+      ]
+    },
+    "the-coming-calamity-pre-0-4-0": {
+      "id": "the-coming-calamity-pre-0-4-0",
+      "name": "The Coming Calamity",
+      "baseType": "Heroic Armour",
+      "baseTypeId": "heroic-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Ash",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Thunder",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "implicit": true,
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(30-40)% to all Elemental Resistances",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Enemies in your Presence have no Elemental Resistances"
+        }
+      ],
+      "variantGroup": "the-coming-calamity",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-coming-calamity-current": {
+      "id": "the-coming-calamity-current",
+      "name": "The Coming Calamity",
+      "baseType": "Heroic Armour",
+      "baseTypeId": "heroic-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Ash",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Herald of Thunder",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "implicit": true,
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(30-40)% to all Elemental Resistances",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Herald Skills deal (50-100)% increased Damage",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "Enemies in your Presence have no Elemental Resistances"
+        }
+      ],
+      "variantGroup": "the-coming-calamity",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "doryani-s-prototype": {
+      "id": "doryani-s-prototype",
+      "name": "Doryani's Prototype",
+      "baseType": "Scale Mail",
+      "baseTypeId": "scale-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Evasion",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+100% of Armour also applies to Lightning Damage",
+          "value": 100
+        },
+        {
+          "text": "Enemies in your Presence have Lightning Resistance equal to yours"
+        },
+        {
+          "text": "Lightning Resistance does not affect Lightning damage taken"
+        }
+      ]
+    },
+    "the-fallen-formation": {
+      "id": "the-fallen-formation",
+      "name": "The Fallen Formation",
+      "baseType": "Lamellar Mail",
+      "baseTypeId": "lamellar-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt",
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(100-200)% increased Armour and Evasion",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(8-12) Life Regeneration per second",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "-20 to maximum Valour",
+          "value": 20
+        },
+        {
+          "text": "Banners always have maximum Valour"
+        }
+      ]
+    },
+    "irongrasp-pre-0-1-1": {
+      "id": "irongrasp-pre-0-1-1",
+      "name": "Irongrasp",
+      "baseType": "Vagabond Armour",
+      "baseTypeId": "vagabond-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Iron Grip"
+        },
+        {
+          "text": "Iron Will"
+        }
+      ],
+      "variantGroup": "irongrasp",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "irongrasp-current": {
+      "id": "irongrasp-current",
+      "name": "Irongrasp",
+      "baseType": "Vagabond Armour",
+      "baseTypeId": "vagabond-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Iron Grip"
+        },
+        {
+          "text": "Iron Will"
+        }
+      ],
+      "variantGroup": "irongrasp",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "lightning-coil-pre-0-4-0": {
+      "id": "lightning-coil-pre-0-4-0",
+      "name": "Lightning Coil",
+      "baseType": "Ancestral Mail",
+      "baseTypeId": "ancestral-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Valako's Charge",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Armour and Evasion",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(80-100) to maximum Life",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "-(40-30)% to Lightning Resistance",
+          "min": 40,
+          "max": 30
+        },
+        {
+          "text": "(20-40)% of Physical damage from Hits taken as Lightning damage",
+          "min": 20,
+          "max": 40
+        }
+      ],
+      "variantGroup": "lightning-coil",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "lightning-coil-current": {
+      "id": "lightning-coil-current",
+      "name": "Lightning Coil",
+      "baseType": "Ancestral Mail",
+      "baseTypeId": "ancestral-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Valako's Charge",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Armour and Evasion",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(80-100) to maximum Life",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "-(40-30)% to Lightning Resistance",
+          "min": 40,
+          "max": 30
+        },
+        {
+          "text": "(30-50)% of Physical damage from Hits taken as Lightning damage",
+          "min": 30,
+          "max": 50
+        }
+      ],
+      "variantGroup": "lightning-coil",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "pariah-s-embrace-pre-0-1-1": {
+      "id": "pariah-s-embrace-pre-0-1-1",
+      "name": "Pariah's Embrace",
+      "baseType": "Cloaked Mail",
+      "baseTypeId": "cloaked-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour and Evasion",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "20% reduced Mana Cost of Skills",
+          "value": 20
+        }
+      ],
+      "variantGroup": "pariah-s-embrace",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "pariah-s-embrace-pre-0-3-0": {
+      "id": "pariah-s-embrace-pre-0-3-0",
+      "name": "Pariah's Embrace",
+      "baseType": "Cloaked Mail",
+      "baseTypeId": "cloaked-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour and Evasion",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "20% reduced Mana Cost of Skills",
+          "value": 20
+        }
+      ],
+      "variantGroup": "pariah-s-embrace",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "pariah-s-embrace-current": {
+      "id": "pariah-s-embrace-current",
+      "name": "Pariah's Embrace",
+      "baseType": "Cloaked Mail",
+      "baseTypeId": "cloaked-mail",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour and Evasion",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(20-40)% increased Mana Cost Efficiency",
+          "min": 20,
+          "max": 40
+        }
+      ],
+      "variantGroup": "pariah-s-embrace",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "perfidy-pre-0-4-0": {
+      "id": "perfidy-pre-0-4-0",
+      "name": "Perfidy",
+      "baseType": "Knight Armour",
+      "baseTypeId": "knight-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(10-40)% chance to Avoid Physical Damage from Hits",
+          "min": 10,
+          "max": 40
+        },
+        {
+          "text": "(10-40)% chance to Avoid Chaos Damage from Hits",
+          "min": 10,
+          "max": 40
+        },
+        {
+          "text": "Enemies in your Presence are Intimidated"
+        }
+      ],
+      "variantGroup": "perfidy",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "perfidy-current": {
+      "id": "perfidy-current",
+      "name": "Perfidy",
+      "baseType": "Knight Armour",
+      "baseTypeId": "knight-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "(300-450)% increased Armour and Evasion",
+          "min": 300,
+          "max": 450
+        },
+        {
+          "text": "(10-30)% chance to Avoid Physical Damage from Hits",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "(10-30)% chance to Avoid Fire Damage from Hits",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "(10-30)% chance to Avoid Cold Damage from Hits",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "(10-30)% chance to Avoid Lightning Damage from Hits",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "(10-30)% chance to Avoid Chaos Damage from Hits",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence are Intimidated"
+        }
+      ],
+      "variantGroup": "perfidy",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "pragmatism": {
+      "id": "pragmatism",
+      "name": "Pragmatism",
+      "baseType": "Explorer Armour",
+      "baseTypeId": "explorer-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{The King in the Mists} in normal{Crux of Nothingness}"
+      },
+      "modifiers": [
+        {
+          "text": "(200-300)% increased Armour and Evasion",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "-17% to Chaos Resistance",
+          "value": 17
+        },
+        {
+          "text": "Charms use no Charges"
+        }
+      ]
+    },
+    "widow-s-reign-pre-0-4-0": {
+      "id": "widow-s-reign-pre-0-4-0",
+      "name": "Widow's Reign",
+      "baseType": "Knight Armour",
+      "baseTypeId": "knight-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "+(200-300) to Ailment Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Life that would be lost by taking Damage is instead Reserved"
+        },
+        {
+          "text": "until you take no Damage to Life for 5 seconds"
+        }
+      ],
+      "variantGroup": "widow-s-reign",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "widow-s-reign-current": {
+      "id": "widow-s-reign-current",
+      "name": "Widow's Reign",
+      "baseType": "Knight Armour",
+      "baseTypeId": "knight-armour",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to maximum Life",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "+(200-300) to Ailment Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Life that would be lost by taking Damage is instead Reserved"
+        },
+        {
+          "text": "until you take no Damage to Life for 3 seconds"
+        }
+      ],
+      "variantGroup": "widow-s-reign",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "couture-of-crimson-pre-0-4-0": {
+      "id": "couture-of-crimson-pre-0-4-0",
+      "name": "Couture of Crimson",
+      "baseType": "Gilded Vestments",
+      "baseTypeId": "gilded-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "25% reduced maximum Life",
+          "value": 25
+        },
+        {
+          "text": "Life Leech can Overflow Maximum Life"
+        },
+        {
+          "text": "(40-60)% reduced Duration of Bleeding on You",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "couture-of-crimson",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "couture-of-crimson-current": {
+      "id": "couture-of-crimson-current",
+      "name": "Couture of Crimson",
+      "baseType": "Gilded Vestments",
+      "baseTypeId": "gilded-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(10-15)% increased maximum Life",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Life Leech can Overflow Maximum Life"
+        },
+        {
+          "text": "(40-60)% reduced Duration of Bleeding on You",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "couture-of-crimson",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "enfolding-dawn": {
+      "id": "enfolding-dawn",
+      "name": "Enfolding Dawn",
+      "baseType": "Pilgrim Vestments",
+      "baseTypeId": "pilgrim-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+100 to Spirit",
+          "value": 100
+        },
+        {
+          "text": "+(5-15)% to all Elemental Resistances",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "Gain no inherent bonus from Intelligence"
+        }
+      ]
+    },
+    "husk-of-dreams-pre-0-1-1": {
+      "id": "husk-of-dreams-pre-0-1-1",
+      "name": "Husk of Dreams",
+      "baseType": "Shaman Mantle",
+      "baseTypeId": "shaman-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-10% to Fire Resistance",
+          "value": 10
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "(25-50)% increased Flask Charges gained",
+          "min": 25,
+          "max": 50
+        },
+        {
+          "text": "50% less Flask Charges used",
+          "value": 50
+        }
+      ],
+      "variantGroup": "husk-of-dreams",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "husk-of-dreams-current": {
+      "id": "husk-of-dreams-current",
+      "name": "Husk of Dreams",
+      "baseType": "Shaman Mantle",
+      "baseTypeId": "shaman-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-10% to Fire Resistance",
+          "value": 10
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "(20-30)% increased Flask Charges gained",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "50% less Flask Charges used",
+          "value": 50
+        }
+      ],
+      "variantGroup": "husk-of-dreams",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "icetomb": {
+      "id": "icetomb",
+      "name": "Icetomb",
+      "baseType": "Mail Vestments",
+      "baseTypeId": "mail-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(30-40)% to Cold Resistance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Gain Cold Thorns Damage equal to (10-18)% of your maximum Mana",
+          "min": 10,
+          "max": 18
+        }
+      ]
+    },
+    "the-mutable-star": {
+      "id": "the-mutable-star",
+      "name": "The Mutable Star",
+      "baseType": "Cleric Vestments",
+      "baseTypeId": "cleric-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(50-100)% increased Energy Shield Recharge Rate",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(25-35) Life Regeneration per second",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "(30-50)% reduced Ignite Duration on you",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Defend against Hits as though you had 1% more Armour per 1% current Energy Shield"
+        },
+        {
+          "text": "(30-50)% reduced Duration of Bleeding on You",
+          "min": 30,
+          "max": 50
+        }
+      ]
+    },
+    "sacrosanctum-pre-0-4-0": {
+      "id": "sacrosanctum-pre-0-4-0",
+      "name": "Sacrosanctum",
+      "baseType": "Corvus Mantle",
+      "baseTypeId": "corvus-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(20-30) to Spirit",
+          "implicit": true,
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(80-120)% increased Armour and Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "(5-10)% of Damage taken Recouped as Life",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Damage taken Recouped as Life is also Recouped as Energy Shield"
+        }
+      ],
+      "variantGroup": "sacrosanctum",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "sacrosanctum-current": {
+      "id": "sacrosanctum-current",
+      "name": "Sacrosanctum",
+      "baseType": "Corvus Mantle",
+      "baseTypeId": "corvus-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(20-30) to Spirit",
+          "implicit": true,
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(80-120)% increased Armour and Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "(10-20)% of Damage taken Recouped as Life",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Damage taken Recouped as Life is also Recouped as Energy Shield"
+        }
+      ],
+      "variantGroup": "sacrosanctum",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "soul-mantle": {
+      "id": "soul-mantle",
+      "name": "Soul Mantle",
+      "baseType": "Sacrificial Mantle",
+      "baseTypeId": "sacrificial-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(80-120)% increased Armour and Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+10 to Strength",
+          "value": 10
+        },
+        {
+          "text": "+15 to Intelligence",
+          "value": 15
+        },
+        {
+          "text": "(20-30)% reduced Totem Life",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+1 to maximum number of Summoned Totems",
+          "value": 1
+        },
+        {
+          "text": "Inflicts a random Curse on you when your Totems die, ignoring Curse limit"
+        }
+      ]
+    },
+    "voll-s-protector-pre-0-1-1": {
+      "id": "voll-s-protector-pre-0-1-1",
+      "name": "Voll's Protector",
+      "baseType": "{variant:1}Ironclad Vestments",
+      "baseTypeId": "variant-1-ironclad-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "25% reduced maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "25% chance to gain a Power Charge on Critical Hit",
+          "value": 25
+        }
+      ],
+      "variantGroup": "voll-s-protector",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "voll-s-protector-pre-0-4-0": {
+      "id": "voll-s-protector-pre-0-4-0",
+      "name": "Voll's Protector",
+      "baseType": "{variant:1}Ironclad Vestments",
+      "baseTypeId": "variant-1-ironclad-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Plated Vestments"
+        },
+        {
+          "text": "(150-200)% increased Armour and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "25% reduced maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "25% chance to gain a Power Charge on Critical Hit",
+          "value": 25
+        }
+      ],
+      "variantGroup": "voll-s-protector",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "voll-s-protector-current": {
+      "id": "voll-s-protector-current",
+      "name": "Voll's Protector",
+      "baseType": "{variant:1}Ironclad Vestments",
+      "baseTypeId": "variant-1-ironclad-vestments",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "25% reduced maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "25% chance to gain a Power Charge on Critical Hit",
+          "value": 25
+        }
+      ],
+      "variantGroup": "voll-s-protector",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "waveshaper": {
+      "id": "waveshaper",
+      "name": "Waveshaper",
+      "baseType": "Tideseer Mantle",
+      "baseTypeId": "tideseer-mantle",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(100-200) to maximum Energy Shield",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "text": "+(20-40) to Spirit",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "+(25-35)% to Fire Resistance",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "+(25-35)% to Cold Resistance",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "Increases and Reductions to Mana Regeneration Rate also"
+        },
+        {
+          "text": "apply to Energy Shield Recharge Rate"
+        },
+        {
+          "text": "Gain (30-50)% of Maximum Mana as Armour",
+          "min": 30,
+          "max": 50
+        }
+      ]
+    },
+    "apron-of-emiran": {
+      "id": "apron-of-emiran",
+      "name": "Apron of Emiran",
+      "baseType": "Hermit Garb",
+      "baseTypeId": "hermit-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Evasion and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Bleeding you inflict is Aggravated"
+        },
+        {
+          "text": "(40-60)% reduced Duration of Bleeding on You",
+          "min": 40,
+          "max": 60
+        }
+      ]
+    },
+    "cospri-s-will": {
+      "id": "cospri-s-will",
+      "name": "Cospri's Will",
+      "baseType": "Assassin Garb",
+      "baseTypeId": "assassin-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Withering Presence",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "5% increased Movement Speed",
+          "implicit": true,
+          "value": 5
+        },
+        {
+          "text": "(150-200)% increased Evasion and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(23-29)% to Chaos Resistance",
+          "min": 23,
+          "max": 29
+        },
+        {
+          "text": "Curses you inflict have infinite Duration"
+        },
+        {
+          "text": "Curses you inflict can affect Hexproof Enemies"
+        },
+        {
+          "text": "Withered you inflict has infinite Duration"
+        }
+      ]
+    },
+    "the-dancing-mirage-pre-0-1-1": {
+      "id": "the-dancing-mirage-pre-0-1-1",
+      "name": "The Dancing Mirage",
+      "baseType": "Wayfarer Jacket",
+      "baseTypeId": "wayfarer-jacket",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-20)% to Lightning Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "20% less Damage taken if you have not been Hit Recently",
+          "value": 20
+        },
+        {
+          "text": "100% increased Evasion Rating if you have been Hit Recently",
+          "value": 100
+        }
+      ],
+      "variantGroup": "the-dancing-mirage",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-dancing-mirage-current": {
+      "id": "the-dancing-mirage-current",
+      "name": "The Dancing Mirage",
+      "baseType": "Wayfarer Jacket",
+      "baseTypeId": "wayfarer-jacket",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Evasion and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(10-20)% to Lightning Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "20% less Damage taken if you have not been Hit Recently",
+          "value": 20
+        },
+        {
+          "text": "100% increased Evasion Rating if you have been Hit Recently",
+          "value": 100
+        }
+      ],
+      "variantGroup": "the-dancing-mirage",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "gloomform-pre-0-1-1": {
+      "id": "gloomform-pre-0-1-1",
+      "name": "Gloomform",
+      "baseType": "Waxed Jacket",
+      "baseTypeId": "waxed-jacket",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "20% reduced Light Radius",
+          "value": 20
+        },
+        {
+          "text": "You have a Smoke Cloud around you while stationary"
+        }
+      ],
+      "variantGroup": "gloomform",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "gloomform-current": {
+      "id": "gloomform-current",
+      "name": "Gloomform",
+      "baseType": "Waxed Jacket",
+      "baseTypeId": "waxed-jacket",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20)% to Fire Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "20% reduced Light Radius",
+          "value": 20
+        },
+        {
+          "text": "You have a Smoke Cloud around you while stationary"
+        }
+      ],
+      "variantGroup": "gloomform",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "redflare-conduit-pre-0-1-1": {
+      "id": "redflare-conduit-pre-0-1-1",
+      "name": "Redflare Conduit",
+      "baseType": "Anchorite Garb",
+      "baseTypeId": "anchorite-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(50-70) to maximum Mana",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "20% chance to gain a Power Charge on Hit",
+          "value": 20
+        },
+        {
+          "text": "Lose all Power Charges on reaching maximum Power Charges"
+        },
+        {
+          "text": "Shocks you when you reach maximum Power Charges"
+        }
+      ],
+      "variantGroup": "redflare-conduit",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "redflare-conduit-current": {
+      "id": "redflare-conduit-current",
+      "name": "Redflare Conduit",
+      "baseType": "Anchorite Garb",
+      "baseTypeId": "anchorite-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(50-70) to maximum Mana",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "-15% to Cold Resistance",
+          "value": 15
+        },
+        {
+          "text": "+(30-40)% to Lightning Resistance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "20% chance to gain a Power Charge on Hit",
+          "value": 20
+        },
+        {
+          "text": "Lose all Power Charges on reaching maximum Power Charges"
+        },
+        {
+          "text": "Shocks you when you reach maximum Power Charges"
+        }
+      ],
+      "variantGroup": "redflare-conduit",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "sierran-inheritance-pre-0-4-0": {
+      "id": "sierran-inheritance-pre-0-4-0",
+      "name": "Sierran Inheritance",
+      "baseType": "Marabout Garb",
+      "baseTypeId": "marabout-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Evasion and Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "(30-50)% faster start of Energy Shield Recharge",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "The Effect of Chill on you is reversed"
+        }
+      ],
+      "variantGroup": "sierran-inheritance",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "sierran-inheritance-current": {
+      "id": "sierran-inheritance-current",
+      "name": "Sierran Inheritance",
+      "baseType": "Marabout Garb",
+      "baseTypeId": "marabout-garb",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Evasion and Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "(30-50)% faster start of Energy Shield Recharge",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "All Damage taken from Hits Contributes to Magnitude of Chill inflicted on you"
+        },
+        {
+          "text": "The Effect of Chill on you is reversed"
+        }
+      ],
+      "variantGroup": "sierran-inheritance",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "zerphi-s-serape": {
+      "id": "zerphi-s-serape",
+      "name": "Zerphi's Serape",
+      "baseType": "Scalper's Jacket",
+      "baseTypeId": "scalper-s-jacket",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "50% increased Attribute Requirements",
+          "value": 50
+        },
+        {
+          "text": "(-30-30)% reduced Life Regeneration rate"
+        },
+        {
+          "text": "(-30-30)% reduced Mana Regeneration Rate"
+        },
+        {
+          "text": "Soul Eater"
+        }
+      ]
+    },
+    "morior-invictus-spirit-pre-0-2-0": {
+      "id": "morior-invictus-spirit-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+10 to Spirit per Socket filled",
+          "value": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "spirit-pre-0-2-0",
+      "variantName": "Spirit (Pre 0.2.0)"
+    },
+    "morior-invictus-spirit-pre-0-4-0": {
+      "id": "morior-invictus-spirit-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(6-10) to Spirit per Socket filled",
+          "min": 6,
+          "max": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "spirit-pre-0-4-0",
+      "variantName": "Spirit (Pre 0.4.0)"
+    },
+    "morior-invictus-spirit": {
+      "id": "morior-invictus-spirit",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(10-14) to Spirit per Socket filled",
+          "min": 10,
+          "max": 14
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "spirit",
+      "variantName": "Spirit"
+    },
+    "morior-invictus-life-pre-0-2-0": {
+      "id": "morior-invictus-life-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "5% increased Maximum Life per Socket filled",
+          "value": 5
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "life-pre-0-2-0",
+      "variantName": "Life (Pre 0.2.0)"
+    },
+    "morior-invictus-life-pre-0-4-0": {
+      "id": "morior-invictus-life-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(25-40) to maximum Life per Socket filled",
+          "min": 25,
+          "max": 40
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "life-pre-0-4-0",
+      "variantName": "Life (Pre 0.4.0)"
+    },
+    "morior-invictus-life": {
+      "id": "morior-invictus-life",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(45-60) to maximum Life per Socket filled",
+          "min": 45,
+          "max": 60
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "life",
+      "variantName": "Life"
+    },
+    "morior-invictus-mana-pre-0-2-0": {
+      "id": "morior-invictus-mana-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "5% increased Maximum Mana per Socket filled",
+          "value": 5
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "mana-pre-0-2-0",
+      "variantName": "Mana (Pre 0.2.0)"
+    },
+    "morior-invictus-mana-pre-0-4-0": {
+      "id": "morior-invictus-mana-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(20-30) to maximum Mana per Socket filled",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "mana-pre-0-4-0",
+      "variantName": "Mana (Pre 0.4.0)"
+    },
+    "morior-invictus-mana": {
+      "id": "morior-invictus-mana",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(50-60) to maximum Mana per Socket filled",
+          "min": 50,
+          "max": 60
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "mana",
+      "variantName": "Mana"
+    },
+    "morior-invictus-global-defences-pre-0-2-0": {
+      "id": "morior-invictus-global-defences-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "10% increased Global Defences per Socket filled",
+          "value": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "global-defences-pre-0-2-0",
+      "variantName": "Global Defences (Pre 0.2.0)"
+    },
+    "morior-invictus-global-defences-pre-0-4-0": {
+      "id": "morior-invictus-global-defences-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(6-10)% increased Global Defences per Socket filled",
+          "min": 6,
+          "max": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "global-defences-pre-0-4-0",
+      "variantName": "Global Defences (Pre 0.4.0)"
+    },
+    "morior-invictus-global-defences": {
+      "id": "morior-invictus-global-defences",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(9-12)% increased Global Defences per Socket filled",
+          "min": 9,
+          "max": 12
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "global-defences",
+      "variantName": "Global Defences"
+    },
+    "morior-invictus-item-rarity-pre-0-2-0": {
+      "id": "morior-invictus-item-rarity-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "10% increased Rarity of Items found per Socket filled",
+          "value": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "item-rarity-pre-0-2-0",
+      "variantName": "Item Rarity (Pre 0.2.0)"
+    },
+    "morior-invictus-all-resistances-pre-0-2-0": {
+      "id": "morior-invictus-all-resistances-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+10% to all Elemental Resistances per Socket filled",
+          "value": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "all-resistances-pre-0-2-0",
+      "variantName": "All Resistances (Pre 0.2.0)"
+    },
+    "morior-invictus-all-resistances-pre-0-4-0": {
+      "id": "morior-invictus-all-resistances-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(5-7)% to all Elemental Resistances per Socket filled",
+          "min": 5,
+          "max": 7
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "all-resistances-pre-0-4-0",
+      "variantName": "All Resistances (Pre 0.4.0)"
+    },
+    "morior-invictus-all-resistances": {
+      "id": "morior-invictus-all-resistances",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(8-10)% to all Elemental Resistances per Socket filled",
+          "min": 8,
+          "max": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "all-resistances",
+      "variantName": "All Resistances"
+    },
+    "morior-invictus-attributes-pre-0-2-0": {
+      "id": "morior-invictus-attributes-pre-0-2-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "5% increased Attributes per Socket filled",
+          "value": 5
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "attributes-pre-0-2-0",
+      "variantName": "Attributes (Pre 0.2.0)"
+    },
+    "morior-invictus-attributes-pre-0-4-0": {
+      "id": "morior-invictus-attributes-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(4-6) to all Attributes per Socket filled",
+          "min": 4,
+          "max": 6
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "attributes-pre-0-4-0",
+      "variantName": "Attributes (Pre 0.4.0)"
+    },
+    "morior-invictus-attributes": {
+      "id": "morior-invictus-attributes",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(5-7) to all Attributes per Socket filled",
+          "min": 5,
+          "max": 7
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "attributes",
+      "variantName": "Attributes"
+    },
+    "morior-invictus-chaos-resistance-pre-0-4-0": {
+      "id": "morior-invictus-chaos-resistance-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(7-10)% to Chaos Resistance per Socket filled",
+          "min": 7,
+          "max": 10
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "chaos-resistance-pre-0-4-0",
+      "variantName": "Chaos Resistance (Pre 0.4.0)"
+    },
+    "morior-invictus-chaos-resistance": {
+      "id": "morior-invictus-chaos-resistance",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(10-13)% to Chaos Resistance per Socket filled",
+          "min": 10,
+          "max": 13
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "chaos-resistance",
+      "variantName": "Chaos Resistance"
+    },
+    "morior-invictus-stun-threshold-pre-0-4-0": {
+      "id": "morior-invictus-stun-threshold-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(40-60) to Stun Threshold per Socket filled",
+          "min": 40,
+          "max": 60
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "stun-threshold-pre-0-4-0",
+      "variantName": "Stun Threshold (Pre 0.4.0)"
+    },
+    "morior-invictus-stun-threshold": {
+      "id": "morior-invictus-stun-threshold",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "+(70-90) to Stun Threshold per Socket filled",
+          "min": 70,
+          "max": 90
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "stun-threshold",
+      "variantName": "Stun Threshold"
+    },
+    "morior-invictus-life-regeneration-pre-0-4-0": {
+      "id": "morior-invictus-life-regeneration-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(4-6) Life Regeneration per second per Socket filled",
+          "min": 4,
+          "max": 6
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "life-regeneration-pre-0-4-0",
+      "variantName": "Life Regeneration (Pre 0.4.0)"
+    },
+    "morior-invictus-life-regeneration": {
+      "id": "morior-invictus-life-regeneration",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(8-12) Life Regeneration per second per Socket filled",
+          "min": 8,
+          "max": 12
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "life-regeneration",
+      "variantName": "Life Regeneration"
+    },
+    "morior-invictus-reduced-crit-damage-pre-0-4-0": {
+      "id": "morior-invictus-reduced-crit-damage-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "Hits against you have (10-15)% reduced Critical Damage Bonus per Socket filled",
+          "min": 10,
+          "max": 15
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "reduced-crit-damage-pre-0-4-0",
+      "variantName": "Reduced Crit Damage (Pre 0.4.0)"
+    },
+    "morior-invictus-reduced-crit-damage": {
+      "id": "morior-invictus-reduced-crit-damage",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "Hits against you have (15-20)% reduced Critical Damage Bonus per Socket filled",
+          "min": 15,
+          "max": 20
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "reduced-crit-damage",
+      "variantName": "Reduced Crit Damage"
+    },
+    "morior-invictus-pre-0-4-0": {
+      "id": "morior-invictus-pre-0-4-0",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(200-300)% increased Armour, Evasion and Energy Shield",
+          "min": 200,
+          "max": 300
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "morior-invictus-current": {
+      "id": "morior-invictus-current",
+      "name": "Morior Invictus",
+      "baseType": "Grand Regalia",
+      "baseTypeId": "grand-regalia",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 3"
+        },
+        {
+          "text": "Selected Alt Variant Two: 6"
+        },
+        {
+          "text": "Selected Alt Variant Three: 9"
+        },
+        {
+          "text": "Sockets: S S S S"
+        },
+        {
+          "text": "(300-400)% increased Armour, Evasion and Energy Shield",
+          "min": 300,
+          "max": 400
+        }
+      ],
+      "variantGroup": "morior-invictus",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "skin-of-the-loyal": {
+      "id": "skin-of-the-loyal",
+      "name": "Skin of the Loyal",
+      "baseType": "Garment",
+      "baseTypeId": "garment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "+(5-40)% to all Elemental Resistances",
+          "min": 5,
+          "max": 40
+        },
+        {
+          "text": "Elemental Ailment Threshold is increased by Uncapped Chaos Resistance"
+        },
+        {
+          "text": "Armour is increased by Uncapped Fire Resistance"
+        },
+        {
+          "text": "Energy Shield is increased by Uncapped Cold Resistance"
+        },
+        {
+          "text": "Evasion Rating is increased by Uncapped Lightning Resistance"
+        }
+      ]
+    },
+    "tabula-rasa": {
+      "id": "tabula-rasa",
+      "name": "Tabula Rasa",
+      "baseType": "Garment",
+      "baseTypeId": "garment",
+      "itemType": "Body Armour",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Sockets: S S S S S S"
+        },
+        {
+          "text": "Has 6 Rune Sockets"
+        }
+      ]
+    }
+  }
+}

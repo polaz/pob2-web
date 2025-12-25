@@ -1,0 +1,481 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:54.176Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "spear",
+  "meta": {
+    "totalItems": 8,
+    "itemsWithVariants": 3,
+    "totalEntries": 11,
+    "byType": {
+      "Spear": 8
+    }
+  },
+  "uniques": {
+    "chainsting": {
+      "id": "chainsting",
+      "name": "Chainsting",
+      "baseType": "Hunting Spear",
+      "baseTypeId": "hunting-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "(15-25)% chance to Maim on Hit",
+          "implicit": true,
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Adds (13-17) to (22-28) Physical Damage",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "+(100-150) to Accuracy Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "10% increased Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "All Damage from Hits with this Weapon Contributes to Pin Buildup"
+        },
+        {
+          "text": "(20-30)% increased Projectile Speed with this Weapon",
+          "min": 20,
+          "max": 30
+        }
+      ]
+    },
+    "daevata-s-wind": {
+      "id": "daevata-s-wind",
+      "name": "Daevata's Wind",
+      "baseType": "War Spear",
+      "baseTypeId": "war-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "(25-35)% increased Projectile Speed with this Weapon",
+          "implicit": true,
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "Adds (10-15) to (21-26) Physical Damage",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+100 to Evasion Rating",
+          "value": 100
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(30-60)% increased Melee Damage if you've dealt a Projectile Attack Hit in the past eight seconds",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "(30-60)% increased Projectile Damage if you've dealt a Melee Hit in the past eight seconds",
+          "min": 30,
+          "max": 60
+        }
+      ]
+    },
+    "saitha-s-spear": {
+      "id": "saitha-s-spear",
+      "name": "Saitha's Spear",
+      "baseType": "Barbed Spear",
+      "baseTypeId": "barbed-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Adds (14-26) to (27-32) Physical Damage",
+          "min": 14,
+          "max": 26
+        },
+        {
+          "text": "Adds (33-41) to (47-53) Fire Damage",
+          "min": 33,
+          "max": 41
+        },
+        {
+          "text": "(15-25)% chance to cause Bleeding on Hit",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Aggravating any Bleeding with this Weapon also Aggravates all Ignites on the target"
+        },
+        {
+          "text": "(25-40)% chance to Aggravate Bleeding on Hit",
+          "min": 25,
+          "max": 40
+        }
+      ]
+    },
+    "splinter-of-lorrata-pre-0-3-0": {
+      "id": "splinter-of-lorrata-pre-0-3-0",
+      "name": "Splinter of Lorrata",
+      "baseType": "Hardwood Spear",
+      "baseTypeId": "hardwood-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Adds (2-3) to (6-8) Physical Damage",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "20% increased Melee Strike Range with this weapon",
+          "value": 20
+        },
+        {
+          "text": "Any number of Poisons from this Weapon can affect a target at the same time"
+        },
+        {
+          "text": "Always Poison on Hit with this weapon"
+        }
+      ],
+      "variantGroup": "splinter-of-lorrata",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "splinter-of-lorrata-current": {
+      "id": "splinter-of-lorrata-current",
+      "name": "Splinter of Lorrata",
+      "baseType": "Hardwood Spear",
+      "baseTypeId": "hardwood-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Adds (2-3) to (6-8) Physical Damage",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "Deal no Elemental Damage"
+        },
+        {
+          "text": "20% increased Melee Strike Range with this weapon",
+          "value": 20
+        },
+        {
+          "text": "Any number of Poisons from this Weapon can affect a target at the same time"
+        },
+        {
+          "text": "Always Poison on Hit with this weapon"
+        }
+      ],
+      "variantGroup": "splinter-of-lorrata",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "skysliver": {
+      "id": "skysliver",
+      "name": "Skysliver",
+      "baseType": "Winged Spear",
+      "baseTypeId": "winged-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "No Physical Damage"
+        },
+        {
+          "text": "Adds 1 to (80-120) Lightning Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(15-30)% increased Attack Speed",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "(50-100)% increased chance to Shock",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "Rolls only the minimum or maximum Damage value for each Damage Type"
+        }
+      ]
+    },
+    "spire-of-ire-pre-0-2-1": {
+      "id": "spire-of-ire-pre-0-2-1",
+      "name": "Spire of Ire",
+      "baseType": "Helix Spear",
+      "baseTypeId": "helix-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Chaotic Infusion",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(15-20)% increased Attack Speed",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "Leeches (0.06-0.1)% of Physical Damage as Life",
+          "min": 0.06,
+          "max": 0.1
+        },
+        {
+          "text": "Adds (106-146) to (181-221) Chaos damage",
+          "min": 106,
+          "max": 146
+        },
+        {
+          "text": "When you Consume a Charge Trigger Chaotic Surge to gain 2 Chaos Surges"
+        },
+        {
+          "text": "Life Leech recovers based on your Chaos damage instead of Physical damage"
+        }
+      ],
+      "variantGroup": "spire-of-ire",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "spire-of-ire-current": {
+      "id": "spire-of-ire-current",
+      "name": "Spire of Ire",
+      "baseType": "Helix Spear",
+      "baseTypeId": "helix-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Chaotic Infusion",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(15-20)% increased Attack Speed",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "Leeches (10-20)% of Physical Damage as Life",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Adds (167-201) to (267-333) Chaos damage",
+          "min": 167,
+          "max": 201
+        },
+        {
+          "text": "When you Consume a Charge Trigger Chaotic Surge to gain 2 Chaos Surges"
+        },
+        {
+          "text": "Life Leech recovers based on your Chaos damage instead of Physical damage"
+        }
+      ],
+      "variantGroup": "spire-of-ire",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "tangletongue-pre-0-3-0": {
+      "id": "tangletongue-pre-0-3-0",
+      "name": "Tangletongue",
+      "baseType": "Forked Spear",
+      "baseTypeId": "forked-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Adds (14-18) to (30-36) Physical Damage",
+          "min": 14,
+          "max": 18
+        },
+        {
+          "text": "+(10-20)% to Critical Hit Chance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(15-25) to Intelligence",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Bifurcates Critical Hits"
+        },
+        {
+          "text": "10% of Skill Mana Costs Converted to Life Costs",
+          "value": 10
+        }
+      ],
+      "variantGroup": "tangletongue",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "tangletongue-current": {
+      "id": "tangletongue-current",
+      "name": "Tangletongue",
+      "baseType": "Forked Spear",
+      "baseTypeId": "forked-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "Adds (14-18) to (30-36) Physical Damage",
+          "min": 14,
+          "max": 18
+        },
+        {
+          "text": "+(5-8)% to Critical Hit Chance",
+          "min": 5,
+          "max": 8
+        },
+        {
+          "text": "+(15-25) to Intelligence",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Bifurcates Critical Hits"
+        },
+        {
+          "text": "10% of Skill Mana Costs Converted to Life Costs",
+          "value": 10
+        }
+      ],
+      "variantGroup": "tangletongue",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "tyranny-s-grip": {
+      "id": "tyranny-s-grip",
+      "name": "Tyranny's Grip",
+      "baseType": "Ironhead Spear",
+      "baseTypeId": "ironhead-spear",
+      "itemType": "Spear",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Spear Throw",
+          "implicit": true
+        },
+        {
+          "text": "(150-200)% increased Physical Damage",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "(10-15)% reduced Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(15-30) to Strength",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Strikes deal Splash Damage"
+        },
+        {
+          "text": "Knocks Back Enemies on Hit"
+        },
+        {
+          "text": "Cannot use Projectile Attacks"
+        }
+      ]
+    }
+  }
+}
