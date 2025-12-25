@@ -276,6 +276,25 @@ export const QUALITY_DEFENCE_MULTIPLIER = 0.01;
 /** Section separator in item text */
 export const ITEM_SECTION_SEPARATOR = '--------';
 
+/**
+ * Multiplier for storing percentage values as integers.
+ * Example: 5.00% is stored as 500 (5.00 * 100)
+ */
+export const PERCENTAGE_STORAGE_MULTIPLIER = 100;
+
+/**
+ * Divisor for converting stored percentage values back to decimal.
+ * Stored values are percentage * 100, so divide by 10000 to get decimal.
+ * Example: 500 (5.00%) / 10000 = 0.05
+ */
+export const PERCENTAGE_TO_DECIMAL_DIVISOR = 10000;
+
+/**
+ * Default critical strike chance value (5.00% stored as 500).
+ * Used when weapon data doesn't specify a crit chance.
+ */
+export const DEFAULT_CRIT_CHANCE = 500;
+
 /** Rarity text to enum mapping */
 export const RARITY_TEXT_MAP: Record<string, ItemRarity> = {
   Normal: 1, // RARITY_NORMAL
@@ -430,8 +449,10 @@ export function computeWeaponStats(
   const averageDamage = (totalMin + totalMax) / 2;
 
   const attackSpeed = weaponData.attackSpeed ?? 1;
-  // Crit chance stored as percentage * 100 (e.g., 650 = 6.50%)
-  const critChance = (weaponData.critChance ?? 500) / 10000;
+  // Convert crit chance from stored format to decimal
+  const critChance =
+    (weaponData.critChance ?? DEFAULT_CRIT_CHANCE) /
+    PERCENTAGE_TO_DECIMAL_DIVISOR;
 
   const physicalDps = ((physicalMin + physicalMax) / 2) * attackSpeed;
   const elementalDps =
@@ -481,6 +502,6 @@ export function computeArmourStats(
       (armourData.energyShield ?? 0) * qualityMultiplier
     ),
     ward: armourData.ward ?? 0, // Ward not affected by quality
-    block: (armourData.block ?? 0) / 10000, // Convert from percentage * 100 to decimal
+    block: (armourData.block ?? 0) / PERCENTAGE_TO_DECIMAL_DIVISOR,
   };
 }

@@ -18,7 +18,12 @@ import type {
   ItemTextSection,
   ItemBase,
 } from './types';
-import { RARITY_TEXT_MAP, ITEM_TYPE_MAP, ITEM_SECTION_SEPARATOR } from './types';
+import {
+  RARITY_TEXT_MAP,
+  ITEM_TYPE_MAP,
+  ITEM_SECTION_SEPARATOR,
+  PERCENTAGE_STORAGE_MULTIPLIER,
+} from './types';
 
 // ============================================================================
 // Helper Functions
@@ -598,8 +603,10 @@ export class ItemParser {
     const critMatch = CRIT_CHANCE_PATTERN.exec(line);
     if (critMatch && critMatch[1]) {
       const wd = ensureWeaponData();
-      // Store as percentage * 100 (e.g., 5.00% = 500)
-      wd.critChance = Math.round(safeParseFloat(critMatch[1]) * 100);
+      // Store as percentage * PERCENTAGE_STORAGE_MULTIPLIER (e.g., 5.00% = 500)
+      wd.critChance = Math.round(
+        safeParseFloat(critMatch[1]) * PERCENTAGE_STORAGE_MULTIPLIER
+      );
       return { parsed: true };
     }
 
@@ -655,8 +662,8 @@ export class ItemParser {
     const blockMatch = BLOCK_PATTERN.exec(line);
     if (blockMatch && blockMatch[1]) {
       const ad = ensureArmourData();
-      // Store as percentage * 100
-      ad.block = safeParseInt(blockMatch[1]) * 100;
+      // Store as percentage * PERCENTAGE_STORAGE_MULTIPLIER
+      ad.block = safeParseInt(blockMatch[1]) * PERCENTAGE_STORAGE_MULTIPLIER;
       return { parsed: true };
     }
 
