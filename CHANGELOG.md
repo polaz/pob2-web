@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/polaz/pob2-web/compare/v1.7.0...v1.8.0) (2025-12-25)
+
+
+### Features
+
+* **engine:** implement ModList for ordered modifier collections ([#89](https://github.com/polaz/pob2-web/issues/89)) ([6d1be6c](https://github.com/polaz/pob2-web/commit/6d1be6caee59fe382fd4a61d5ee9461c8c8f3c3e)), closes [#11](https://github.com/polaz/pob2-web/issues/11)
+
 # [1.7.0](https://github.com/polaz/pob2-web/compare/v1.6.0...v1.7.0) (2025-12-25)
 
 
