@@ -350,7 +350,7 @@ Files in `src/protos/` are auto-generated from `.proto` definitions. **NEVER man
 When UI needs extra fields not stored/transmitted:
 ```typescript
 // types/local/items.local.ts
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 
 export interface LocalItem extends Item {
   editing?: boolean;

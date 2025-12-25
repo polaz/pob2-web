@@ -3,7 +3,7 @@
 // Runs heavy calculations off the main thread
 
 import * as Comlink from 'comlink';
-import type { Build } from 'src/protos/pob2_pb';
+import type { Build } from 'src/protos/build_pb';
 import type { Modifier } from 'src/shared/modifiers';
 import {
   aggregateStat,

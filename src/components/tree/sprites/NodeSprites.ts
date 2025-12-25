@@ -3,7 +3,7 @@
 // Uses procedural generation since we don't have sprite sheets yet
 
 import { Graphics, type Texture, type Renderer, Container } from 'pixi.js';
-import { NodeType } from 'src/protos/pob2_pb';
+import { NodeType } from 'src/protos/tree_pb';
 import {
   NODE_SIZES,
   NODE_FRAME_WIDTHS,

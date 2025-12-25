@@ -5,7 +5,7 @@
  * and their display names. Handles unknown values with sensible defaults.
  */
 
-import { CharacterClass } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/common_pb';
 
 /**
  * Default class used when conversion fails.

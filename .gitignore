@@ -44,3 +44,6 @@ yarn-error.log*
 .aider*
 .continue/
 .scripts/
+
+# Generated protobuf TypeScript files
+/src/protos/*_pb.ts

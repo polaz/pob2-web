@@ -3,7 +3,7 @@
  */
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
-import type { SkillGroup, GemInstance, Gem } from 'src/protos/pob2_pb';
+import type { SkillGroup, GemInstance, Gem } from 'src/protos/skills_pb';
 import { NgramIndex } from 'src/services/search';
 import type { SearchableDocument } from 'src/services/search';
 

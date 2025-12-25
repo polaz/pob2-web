@@ -7,7 +7,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useBuildStore } from 'src/stores/buildStore';
-import { CharacterClass } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/common_pb';
 
 // Mock the database module
 vi.mock('src/db', () => ({

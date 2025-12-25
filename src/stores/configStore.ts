@@ -4,7 +4,7 @@
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
-import type { BuildConfig } from 'src/protos/pob2_pb';
+import type { BuildConfig } from 'src/protos/build_pb';
 
 /**
  * Default build configuration.

@@ -3,7 +3,7 @@
 // Handles build code parsing off the main thread
 
 import * as Comlink from 'comlink';
-import type { Build } from 'src/protos/pob2_pb';
+import type { Build } from 'src/protos/build_pb';
 
 /**
  * Import result

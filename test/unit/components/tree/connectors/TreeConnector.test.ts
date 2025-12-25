@@ -1,7 +1,7 @@
 // test/unit/components/tree/connectors/TreeConnector.test.ts
 import { describe, it, expect } from 'vitest';
-import type { PassiveNode } from 'src/protos/pob2_pb';
-import { NodeType } from 'src/protos/pob2_pb';
+import type { PassiveNode } from 'src/protos/tree_pb';
+import { NodeType } from 'src/protos/tree_pb';
 import {
   buildConnections,
   updateConnectionStates,

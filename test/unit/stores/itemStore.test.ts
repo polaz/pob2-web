@@ -13,8 +13,8 @@ import {
   SWAP_SLOTS,
 } from 'src/stores/itemStore';
 import { useBuildStore } from 'src/stores/buildStore';
-import { ItemSlot, ItemRarity, ItemType } from 'src/protos/pob2_pb';
-import type { Item } from 'src/protos/pob2_pb';
+import { ItemSlot, ItemRarity, ItemType } from 'src/protos/items_pb';
+import type { Item } from 'src/protos/items_pb';
 
 /** Create mock item with optional item type */
 function createMockItem(
