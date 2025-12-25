@@ -84,11 +84,29 @@ export interface TreeBounds {
 }
 
 /**
- * Group data for node positioning
+ * Group data for node positioning.
+ *
+ * The `nodes` array contains numeric node indices as they appear in the
+ * source tree JSON. Each numeric index corresponds to a `RawTreeNode.id`
+ * value, which is stored as a string and used as a key in `RawTreeData.nodes`.
+ *
+ * When looking up node data from a `TreeGroup`, you must convert the
+ * numeric index from `group.nodes` to a string before indexing into
+ * `RawTreeData.nodes`. For example:
+ *
+ * ```typescript
+ * const nodeId: string = String(group.nodes[0]); // matches RawTreeNode.id
+ * const node: RawTreeNode | undefined = rawTreeData.nodes[nodeId];
+ * ```
  */
 export interface TreeGroup {
   x: number;
   y: number;
+  /**
+   * Numeric node indices from the source JSON.
+   * Convert these to strings (e.g. `String(index)`) to obtain the
+   * corresponding `RawTreeNode.id` keys in `RawTreeData.nodes`.
+   */
   nodes: number[];
   orbits?: number[];
 }
@@ -138,7 +156,12 @@ export interface TreeNode {
 }
 
 /**
- * Optimized tree data for runtime operations
+ * Optimized tree data for runtime operations.
+ *
+ * Note: RawTreeData.groups and RawTreeData.constants are intentionally excluded.
+ * These fields are only needed for initial node positioning during tree rendering
+ * setup, not for runtime graph operations. The x/y coordinates are pre-computed
+ * in each TreeNode, so groups/constants become redundant after conversion.
  */
 export interface TreeData {
   version: string;
