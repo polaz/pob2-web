@@ -1,0 +1,18 @@
+{
+  "_comment": "Manual overrides for poe2-gems.json. These corrections persist across scraper updates.",
+  "_docs": {
+    "usage": "Add entries here to override or correct auto-generated gem data",
+    "keys": {
+      "_deleted": "Set to true to remove an entry from the final result",
+      "_manual": "Set to true to mark entry as fully manual (scraper skips)",
+      "_comment": "Documentation, stripped at runtime"
+    },
+    "examples": {
+      "fix_name": { "name": "Corrected Gem Name" },
+      "delete_entry": { "_deleted": true },
+      "manual_entry": { "_manual": true, "name": "Custom Gem" }
+    }
+  },
+  "gems": {
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_comment": "Manual overrides for poe2-tree.json. These corrections persist across scraper updates.",
+  "_docs": {
+    "usage": "Add entries here to override or correct auto-generated passive tree data",
+    "keys": {
+      "_deleted": "Set to true to remove an entry from the final result",
+      "_manual": "Set to true to mark entry as fully manual (scraper skips)",
+      "_comment": "Documentation, stripped at runtime"
+    },
+    "examples": {
+      "fix_node": { "name": "Corrected Node Name" },
+      "delete_entry": { "_deleted": true },
+      "manual_entry": { "_manual": true, "name": "Custom Node" }
+    }
+  },
+  "nodes": {
+  },
+  "classes": {
+  }
+}
