@@ -11,7 +11,7 @@ import type {
   ItemType,
   WeaponData,
   ArmourData,
-} from 'src/protos/pob2_pb';
+} from 'src/protos/items_pb';
 import type { Mod } from 'src/engine/modifiers/types';
 
 // ============================================================================

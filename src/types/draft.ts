@@ -3,7 +3,7 @@
 
 import type { TreeNodeType } from './tree';
 import type { Gem } from './gems';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 
 // ============================================================================
 // Custom Tree Node Types

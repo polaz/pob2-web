@@ -2,8 +2,8 @@
 // PixiJS Container class for passive tree nodes
 
 import { Container, Graphics, Text, type TextStyle } from 'pixi.js';
-import type { PassiveNode } from 'src/protos/pob2_pb';
-import { NodeType } from 'src/protos/pob2_pb';
+import type { PassiveNode } from 'src/protos/tree_pb';
+import { NodeType } from 'src/protos/tree_pb';
 import {
   NODE_COLORS,
   NODE_ANIMATION,

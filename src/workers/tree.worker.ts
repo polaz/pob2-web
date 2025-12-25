@@ -3,7 +3,7 @@
 // Handles heavy tree computations off the main thread
 
 import * as Comlink from 'comlink';
-import type { PassiveTree } from 'src/protos/pob2_pb';
+import type { PassiveTree } from 'src/protos/tree_pb';
 
 /**
  * Path result from pathfinding

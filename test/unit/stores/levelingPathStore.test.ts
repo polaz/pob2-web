@@ -7,7 +7,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useLevelingPathStore } from 'src/stores/levelingPathStore';
-import { CharacterClass, StepTriggerType, StepActionType } from 'src/protos/pob2_pb';
+import { CharacterClass } from 'src/protos/common_pb';
+import { StepTriggerType, StepActionType } from 'src/protos/leveling_pb';
 
 // Mock the database module
 vi.mock('src/db', () => ({

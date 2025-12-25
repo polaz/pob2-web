@@ -3,7 +3,7 @@
  */
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
-import type { PassiveTree, PassiveNode } from 'src/protos/pob2_pb';
+import type { PassiveTree, PassiveNode } from 'src/protos/tree_pb';
 import { NgramIndex } from 'src/services/search';
 import type { SearchableDocument } from 'src/services/search';
 

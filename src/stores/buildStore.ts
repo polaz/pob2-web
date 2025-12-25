@@ -4,8 +4,10 @@
 import { ref, computed } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
-import type { Build, BuildConfig, Item, SkillGroup, ItemSlot } from 'src/protos/pob2_pb';
-import { CharacterClass } from 'src/protos/pob2_pb';
+import type { Build, BuildConfig } from 'src/protos/build_pb';
+import { CharacterClass } from 'src/protos/common_pb';
+import type { Item, ItemSlot } from 'src/protos/items_pb';
+import type { SkillGroup } from 'src/protos/skills_pb';
 import { createBuild, updateBuild, getBuild, deleteBuild } from 'src/db';
 import type { StoredBuild } from 'src/types/db';
 import { BUILD_FORMAT_VERSION } from 'src/types/db';

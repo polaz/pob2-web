@@ -3,7 +3,7 @@
 
 import { ref, watch, onUnmounted, type Ref } from 'vue';
 import type { Application } from 'pixi.js';
-import type { PassiveNode, NodeGroup } from 'src/protos/pob2_pb';
+import type { PassiveNode, NodeGroup } from 'src/protos/tree_pb';
 import { useTreeStore } from 'src/stores/treeStore';
 import type { TreeLayers } from 'src/composables/usePixiApp';
 import { TreeNode } from 'src/components/tree/sprites/TreeNode';
