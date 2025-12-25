@@ -100,7 +100,7 @@
 
     <!-- Context menu -->
     <q-menu v-model="contextMenuVisible" :target="contextMenuTarget" context-menu>
-      <q-list dense style="min-width: 150px">
+      <q-list dense class="item-slot-grid__context-menu">
         <q-item v-if="contextMenuSlot !== null && getEquippedItem(contextMenuSlot)" clickable v-close-popup @click="handleEditItem">
           <q-item-section avatar>
             <q-icon name="edit" size="sm" />
@@ -389,5 +389,10 @@ function handleRemoveItem(): void {
 .item-slot-grid__flasks {
   padding-top: var(--slot-gap);
   border-top: 1px solid var(--poe2-border-subtle);
+}
+
+.item-slot-grid__context-menu {
+  --context-menu-min-width: 150px;
+  min-width: var(--context-menu-min-width);
 }
 </style>

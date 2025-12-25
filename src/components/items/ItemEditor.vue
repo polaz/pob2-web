@@ -92,7 +92,7 @@
                   dense
                   class="col-6 col-sm-3"
                   min="1"
-                  max="100"
+                  :max="MAX_CHARACTER_LEVEL"
                 />
                 <q-input
                   v-model.number="editedItem.quality"
@@ -102,7 +102,7 @@
                   dense
                   class="col-6 col-sm-3"
                   min="0"
-                  max="30"
+                  :max="MAX_QUALITY"
                 />
               </div>
             </q-card-section>
@@ -121,7 +121,7 @@
                   dense
                   class="col-6 col-sm-3"
                   min="1"
-                  max="100"
+                  :max="MAX_CHARACTER_LEVEL"
                 />
                 <q-input
                   v-model.number="editedItem.requiredStr"
@@ -308,6 +308,16 @@ import { ItemRarity } from 'src/protos/pob2_pb';
 import { EQUIPMENT_SLOTS, type SlotInfo } from 'src/stores/itemStore';
 import { parseItem } from 'src/engine/items/ItemParser';
 import ItemCard from './ItemCard.vue';
+
+// ============================================================================
+// Constants
+// ============================================================================
+
+/** Maximum character level in PoE2 */
+const MAX_CHARACTER_LEVEL = 100;
+
+/** Maximum quality percentage for items */
+const MAX_QUALITY = 30;
 
 // ============================================================================
 // Props & Emits

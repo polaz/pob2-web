@@ -295,6 +295,7 @@ class ItemIconLoader {
     // Evict oldest entry (first inserted) if cache is at capacity
     if (this.cache.size >= MEMORY_CACHE_MAX_SIZE) {
       // Map.keys().next() returns first inserted key due to Map's insertion order
+      // Type is inferred as string from Map<string, CacheEntry>
       const oldestKey = this.cache.keys().next().value;
       if (oldestKey) {
         this.cache.delete(oldestKey);
