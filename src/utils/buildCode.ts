@@ -69,9 +69,12 @@ export interface EncodeOptions {
 /**
  * Encode Uint8Array to base64 string.
  * Uses browser's btoa with proper binary handling.
+ *
+ * Note: Array.from with join is used for readability. For typical build codes (~10-50KB),
+ * the performance difference vs a for-loop is negligible (<1ms). If encoding very large
+ * payloads becomes a bottleneck, consider switching to a for-loop with string concatenation.
  */
 function uint8ArrayToBase64(bytes: Uint8Array): string {
-  // Convert Uint8Array to binary string using Array.from for better performance
   const binary = Array.from(bytes, (byte) => String.fromCharCode(byte)).join('');
   return btoa(binary);
 }
@@ -136,6 +139,10 @@ export function isValidBuildCodeFormat(code: string): boolean {
 
 /**
  * Check if decompressed content looks like valid PoB2 XML.
+ *
+ * We check for <PathOfBuilding as the primary indicator since it's the required root element.
+ * The <?xml declaration is optional in XML and some PoB exports may omit it, so we accept
+ * either marker to be lenient with input while still catching obviously invalid content.
  */
 function isValidPobXml(xml: string): boolean {
   return xml.includes('<PathOfBuilding') || xml.includes('<?xml');

@@ -269,7 +269,7 @@ function serializeItem(item: Item): string {
     lines.push(`Item Level: ${item.itemLevel}`);
   }
 
-  // Quality
+  // Quality - PoB2 only displays quality when > 0; 0% is the default state and is omitted
   if (item.quality !== undefined && item.quality > 0) {
     lines.push(`Quality: +${item.quality}%`);
   }
@@ -673,6 +673,11 @@ function parseItems(itemsElement: Element | null): Record<string, Item> {
 /**
  * Parse a gem instance from XML.
  * Only sets optional properties when values exist (exactOptionalPropertyTypes compatibility).
+ *
+ * Note on id vs gemId:
+ * - `id` is the unique instance identifier for this gem in the build (UUID)
+ * - `gemId` is the gem definition identifier from PoB2's gem database (e.g., "Fireball")
+ * When gemId exists in XML, we use it as the instance id for consistency with PoB2 exports.
  */
 function parseGem(gemElement: Element): GemInstance {
   const gemId = getAttr(gemElement, 'gemId');
@@ -682,6 +687,7 @@ function parseGem(gemElement: Element): GemInstance {
   const count = getNumAttr(gemElement, 'count');
 
   const gem: GemInstance = {
+    // Use gemId as instance id when available for PoB2 compatibility, else generate UUID
     id: gemId ?? crypto.randomUUID(),
   };
 
@@ -725,6 +731,8 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
       }
     }
 
+    // PoB2 treats missing 'enabled' attribute as true, so we normalize undefined to true
+    // during parsing for consistent behavior. This is intentional - skills are enabled by default.
     const group: SkillGroup = {
       id: crypto.randomUUID(),
       enabled: getBoolAttr(skillEl, 'enabled') ?? true,
