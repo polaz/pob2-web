@@ -314,6 +314,8 @@ describe('mods types', () => {
       const def: ModDefinition = {
         text: '(10-15)% increased Energy Shield',
         effects: null,
+        // Note: trailing space matches actual PoB data quirks - this is intentional.
+        // External data should NOT be "fixed" in tests. See DATA OVERLAY ARCHITECTURE in CLAUDE.md.
         displayText: '(10-15)% increased Energy Shield ',
       };
 
