@@ -447,12 +447,20 @@ const totalDps = computed(() => {
  */
 const PERCENTAGE_STORAGE_MULTIPLIER = 100;
 
-/** Format crit chance from stored value (e.g., 500 -> "5.00%") */
+/**
+ * Format crit chance from stored value (e.g., 500 -> "5.00%").
+ * Uses 2 decimal places because crit chance in PoE2 is displayed with
+ * precision (e.g., "5.50% Critical Strike Chance").
+ */
 function formatCritChance(value: number): string {
   return (value / PERCENTAGE_STORAGE_MULTIPLIER).toFixed(2);
 }
 
-/** Format block chance from stored value (e.g., 500 -> "5%") */
+/**
+ * Format block chance from stored value (e.g., 500 -> "5%").
+ * Uses 0 decimal places because block chance in PoE2 is displayed
+ * as a whole number (e.g., "25% Chance to Block").
+ */
 function formatBlock(value: number): string {
   return (value / PERCENTAGE_STORAGE_MULTIPLIER).toFixed(0);
 }

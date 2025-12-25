@@ -240,7 +240,13 @@ const contextMenuSlot = ref<ItemSlotEnum | null>(null);
 
 /**
  * Gets the enum name from ItemSlot value for filtering.
- * Uses TypeScript enum reverse mapping instead of manual lookup table.
+ *
+ * Uses TypeScript enum reverse mapping: for numeric enums, TS generates
+ * a bidirectional map where `Enum[value]` returns the key name.
+ * This avoids maintaining a separate lookup table.
+ *
+ * @param slot - ItemSlot enum value (numeric)
+ * @returns The enum key name (e.g., 'SLOT_HELMET') or 'UNKNOWN' if not found
  */
 function getSlotEnumName(slot: ItemSlotEnum): string {
   const name = ItemSlotEnum[slot];
@@ -345,12 +351,16 @@ function handleRemoveItem(): void {
 <style scoped>
 /* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-slot-grid {
+  /* Component-specific layout spacing as CSS custom properties */
+  --grid-padding: 16px;
+  --column-gap: 24px;
   --slot-gap: 8px;
-  padding: 16px;
+
+  padding: var(--grid-padding);
 }
 
 .item-slot-grid__main {
-  gap: 24px;
+  gap: var(--column-gap);
 }
 
 .item-slot-grid__column {
@@ -373,11 +383,11 @@ function handleRemoveItem(): void {
   opacity: 0.7;
   border: 1px dashed var(--poe2-border-muted);
   border-radius: 8px;
-  padding: 8px;
+  padding: var(--slot-gap);
 }
 
 .item-slot-grid__flasks {
-  padding-top: 8px;
+  padding-top: var(--slot-gap);
   border-top: 1px solid var(--poe2-border-subtle);
 }
 </style>

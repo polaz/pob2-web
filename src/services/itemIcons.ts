@@ -63,9 +63,13 @@ export const RARITY_BORDER_COLORS: Record<number, string> = {
  * Gets a CSS custom property value at runtime.
  * Useful for dynamic theming when JS needs current theme colors.
  *
- * @param name - CSS variable name (e.g., '--poe2-rarity-magic')
+ * @param name - Full CSS custom property name including the `--` prefix
+ *               (e.g., '--poe2-rarity-magic', '--poe2-bg-card')
  * @param fallback - Fallback value if variable is not defined
- * @returns The CSS variable value
+ * @returns The CSS variable value, trimmed of whitespace
+ *
+ * @example
+ * const magicColor = getCssVariable('--poe2-rarity-magic', '#8888ff');
  */
 export function getCssVariable(name: string, fallback = ''): string {
   if (typeof document === 'undefined') return fallback;

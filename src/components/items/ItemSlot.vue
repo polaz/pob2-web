@@ -215,11 +215,16 @@ function handleIconError(): void {
 }
 
 .item-slot__label {
-  font-size: 0.65rem;
-  color: #666;
-  margin-top: 2px;
+  /* Typography values that don't have Quasar equivalents */
+  --label-font-size: 0.65rem;
+  --label-spacing: 0.5px;
+  --label-margin: 2px;
+
+  font-size: var(--label-font-size);
+  color: var(--poe2-text-muted);
+  margin-top: var(--label-margin);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--label-spacing);
 }
 
 /* item-slot__item uses Quasar 'fit' class for width/height: 100% */
