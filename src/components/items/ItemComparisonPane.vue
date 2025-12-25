@@ -328,8 +328,9 @@ function handleClear(): void {
 </script>
 
 <style scoped>
+/* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-comparison-pane {
-  background-color: #0d0d14;
+  background-color: var(--poe2-card-bg);
   min-width: 280px;
 }
 

@@ -352,8 +352,9 @@ function clearComparison(): void {
   min-height: calc(100vh - var(--header-offset));
 }
 
+/* Uses global PoE2 theme variables from themes/poe2.scss */
 .items-page__card {
-  background-color: #0d0d14;
+  background-color: var(--poe2-card-bg);
 }
 
 .items-page__slots {

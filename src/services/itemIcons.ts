@@ -28,34 +28,49 @@ const MEMORY_CACHE_MAX_SIZE = 200;
 
 // ============================================================================
 // Rarity Colors (matching PoE2 game colors)
+// These values mirror the CSS custom properties in themes/poe2.scss
+// For runtime theming, use getCssVariable() or CSS var(--poe2-rarity-xxx)
 // ============================================================================
 
-/** Item rarity color mapping */
+/** Item rarity color mapping - mirrors --poe2-rarity-xxx CSS variables */
 export const RARITY_COLORS: Record<number, string> = {
-  0: '#c8c8c8', // UNKNOWN - grey
-  1: '#c8c8c8', // NORMAL - white/grey
-  2: '#8888ff', // MAGIC - blue
-  3: '#ffff77', // RARE - yellow
-  4: '#af6025', // UNIQUE - orange/brown
+  0: '#c8c8c8', // UNKNOWN - grey (--poe2-rarity-normal)
+  1: '#c8c8c8', // NORMAL - white/grey (--poe2-rarity-normal)
+  2: '#8888ff', // MAGIC - blue (--poe2-rarity-magic)
+  3: '#ffff77', // RARE - yellow (--poe2-rarity-rare)
+  4: '#af6025', // UNIQUE - orange/brown (--poe2-rarity-unique)
 };
 
-/** Item rarity background colors (darker variants) */
+/** Item rarity background colors - mirrors --poe2-rarity-xxx-bg CSS variables */
 export const RARITY_BG_COLORS: Record<number, string> = {
-  0: '#1a1a2e', // UNKNOWN
-  1: '#1a1a2e', // NORMAL
-  2: '#1a1a3e', // MAGIC - subtle blue tint
-  3: '#2a2a1e', // RARE - subtle yellow tint
-  4: '#2a1a0e', // UNIQUE - subtle orange tint
+  0: '#1a1a2e', // UNKNOWN (--poe2-rarity-normal-bg)
+  1: '#1a1a2e', // NORMAL (--poe2-rarity-normal-bg)
+  2: '#1a1a3e', // MAGIC - subtle blue tint (--poe2-rarity-magic-bg)
+  3: '#2a2a1e', // RARE - subtle yellow tint (--poe2-rarity-rare-bg)
+  4: '#2a1a0e', // UNIQUE - subtle orange tint (--poe2-rarity-unique-bg)
 };
 
-/** Item rarity border colors */
+/** Item rarity border colors - mirrors --poe2-rarity-xxx-border CSS variables */
 export const RARITY_BORDER_COLORS: Record<number, string> = {
-  0: '#3a3a4e', // UNKNOWN
-  1: '#4a4a5e', // NORMAL
-  2: '#4a4a8e', // MAGIC
-  3: '#6a6a3e', // RARE
-  4: '#5a3a1e', // UNIQUE
+  0: '#3a3a4e', // UNKNOWN (--poe2-rarity-normal-border)
+  1: '#4a4a5e', // NORMAL (--poe2-rarity-normal-border)
+  2: '#4a4a8e', // MAGIC (--poe2-rarity-magic-border)
+  3: '#6a6a3e', // RARE (--poe2-rarity-rare-border)
+  4: '#5a3a1e', // UNIQUE (--poe2-rarity-unique-border)
 };
+
+/**
+ * Gets a CSS custom property value at runtime.
+ * Useful for dynamic theming when JS needs current theme colors.
+ *
+ * @param name - CSS variable name (e.g., '--poe2-rarity-magic')
+ * @param fallback - Fallback value if variable is not defined
+ * @returns The CSS variable value
+ */
+export function getCssVariable(name: string, fallback = ''): string {
+  if (typeof document === 'undefined') return fallback;
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
 
 // ============================================================================
 // Slot Icons (for empty slots)
@@ -107,9 +122,9 @@ interface CacheEntry {
  */
 export function buildIconUrl(
   iconPath: string,
-  scale = 1,
-  w = 1,
-  h = 1
+  scale: number = 1,
+  w: number = 1,
+  h: number = 1
 ): string {
   // Handle paths that are already full URLs
   if (iconPath.startsWith('http://') || iconPath.startsWith('https://')) {

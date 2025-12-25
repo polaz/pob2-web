@@ -1,0 +1,358 @@
+/**
+ * PoE2 Theme - Dark Mode
+ *
+ * This file defines the complete PoE2 visual theme using CSS custom properties.
+ * Colors are extracted from the in-game Path of Exile 2 UI for authentic look.
+ *
+ * Usage:
+ * - Variables are globally available via :root
+ * - Components should use var(--poe2-xxx) instead of hardcoded colors
+ * - Future themes (light mode, custom) will override these variables
+ *
+ * Color Categories:
+ * - Backgrounds: Page, card, surface, overlay layers
+ * - Borders: Default, hover, active states
+ * - Text: Primary, secondary, muted hierarchy
+ * - Rarity: Normal, magic, rare, unique (text, bg, border variants)
+ * - Mods: Implicit, explicit, crafted, enchant colors
+ * - Status: Corrupted, mirrored, fractured indicators
+ * - Tree: Passive tree node states
+ * - Sockets: Skill gem socket colors
+ */
+
+// ============================================================================
+// PoE2 Dark Theme (Default)
+// ============================================================================
+
+:root {
+  // ==========================================================================
+  // Background Hierarchy (darkest to lightest)
+  // ==========================================================================
+
+  /** Darkest background - page level */
+  --poe2-bg-page: #0a0a12;
+
+  /** Card/panel backgrounds */
+  --poe2-bg-card: #0d0d14;
+
+  /** Elevated surfaces (slots, inputs, interactive areas) */
+  --poe2-bg-surface: #1a1a2e;
+
+  /** Raised surfaces (dropdowns, tooltips) */
+  --poe2-bg-elevated: #22223a;
+
+  /** Overlay backgrounds (modals, dialogs) */
+  --poe2-bg-overlay: #2a2a3e;
+
+  /** Hover state background */
+  --poe2-bg-hover: #2a2a4e;
+
+  /** Active/pressed state background */
+  --poe2-bg-active: #3a3a5e;
+
+  // ==========================================================================
+  // Border Colors
+  // ==========================================================================
+
+  /** Default border color */
+  --poe2-border-default: #3a3a4e;
+
+  /** Subtle border (dividers, separators) */
+  --poe2-border-subtle: #2a2a3e;
+
+  /** Hover state border */
+  --poe2-border-hover: #5a5a7e;
+
+  /** Active/focused border */
+  --poe2-border-active: #7a7a9e;
+
+  /** Muted/disabled border */
+  --poe2-border-muted: #252535;
+
+  // ==========================================================================
+  // Text Colors
+  // ==========================================================================
+
+  /** Primary text - high emphasis */
+  --poe2-text-primary: #e8e8e8;
+
+  /** Secondary text - medium emphasis */
+  --poe2-text-secondary: #b0b0b0;
+
+  /** Muted text - low emphasis (labels, hints) */
+  --poe2-text-muted: #707080;
+
+  /** Disabled text */
+  --poe2-text-disabled: #505060;
+
+  /** Link text */
+  --poe2-text-link: #7799ff;
+
+  // ==========================================================================
+  // Item Rarity Colors (Text)
+  // ==========================================================================
+
+  /** Normal (white) item text */
+  --poe2-rarity-normal: #c8c8c8;
+
+  /** Magic (blue) item text */
+  --poe2-rarity-magic: #8888ff;
+
+  /** Rare (yellow) item text */
+  --poe2-rarity-rare: #ffff77;
+
+  /** Unique (orange) item text */
+  --poe2-rarity-unique: #af6025;
+
+  // ==========================================================================
+  // Item Rarity Backgrounds
+  // ==========================================================================
+
+  /** Normal item background */
+  --poe2-rarity-normal-bg: #1a1a2e;
+
+  /** Magic item background - subtle blue tint */
+  --poe2-rarity-magic-bg: #1a1a3e;
+
+  /** Rare item background - subtle yellow tint */
+  --poe2-rarity-rare-bg: #2a2a1e;
+
+  /** Unique item background - subtle orange tint */
+  --poe2-rarity-unique-bg: #2a1a0e;
+
+  // ==========================================================================
+  // Item Rarity Borders
+  // ==========================================================================
+
+  /** Normal item border */
+  --poe2-rarity-normal-border: #4a4a5e;
+
+  /** Magic item border */
+  --poe2-rarity-magic-border: #4a4a8e;
+
+  /** Rare item border */
+  --poe2-rarity-rare-border: #6a6a3e;
+
+  /** Unique item border */
+  --poe2-rarity-unique-border: #5a3a1e;
+
+  // ==========================================================================
+  // Modifier Colors
+  // ==========================================================================
+
+  /** Implicit mod color (cyan) */
+  --poe2-mod-implicit: #00d0d0;
+
+  /** Explicit mod color (standard text) */
+  --poe2-mod-explicit: #8888ff;
+
+  /** Crafted mod color (light blue) */
+  --poe2-mod-crafted: #b4b4ff;
+
+  /** Enchant mod color (light blue) */
+  --poe2-mod-enchant: #b4b4ff;
+
+  /** Fractured mod color (gold/brown) */
+  --poe2-mod-fractured: #a38d6d;
+
+  // ==========================================================================
+  // Status Indicator Colors
+  // ==========================================================================
+
+  /** Corrupted item indicator */
+  --poe2-status-corrupted: #d02020;
+
+  /** Mirrored item indicator */
+  --poe2-status-mirrored: #aa44ff;
+
+  /** Fractured item indicator */
+  --poe2-status-fractured: #a38d6d;
+
+  /** Synthesised item indicator */
+  --poe2-status-synthesised: #66aaff;
+
+  // ==========================================================================
+  // Passive Tree Colors
+  // ==========================================================================
+
+  /** Tree background */
+  --poe2-tree-bg: #0a0a12;
+
+  /** Allocated node */
+  --poe2-tree-allocated: #d4af37;
+
+  /** Available (can allocate) node */
+  --poe2-tree-available: #5a5a7e;
+
+  /** Locked (cannot allocate) node */
+  --poe2-tree-locked: #2a2a3e;
+
+  /** Hovered node highlight */
+  --poe2-tree-hover: #7a7a9e;
+
+  /** Path line color */
+  --poe2-tree-path: #4a4a6e;
+
+  /** Active path line color */
+  --poe2-tree-path-active: #d4af37;
+
+  // ==========================================================================
+  // Skill Gem Socket Colors
+  // ==========================================================================
+
+  /** Strength (red) socket */
+  --poe2-socket-str: #c83030;
+
+  /** Dexterity (green) socket */
+  --poe2-socket-dex: #30c830;
+
+  /** Intelligence (blue) socket */
+  --poe2-socket-int: #3030c8;
+
+  /** White (any) socket */
+  --poe2-socket-white: #c8c8c8;
+
+  /** Abyss socket */
+  --poe2-socket-abyss: #5a5a5a;
+
+  // ==========================================================================
+  // Attribute Colors
+  // ==========================================================================
+
+  /** Strength attribute color */
+  --poe2-attr-str: #e05030;
+
+  /** Dexterity attribute color */
+  --poe2-attr-dex: #30c850;
+
+  /** Intelligence attribute color */
+  --poe2-attr-int: #5080e0;
+
+  // ==========================================================================
+  // Damage Type Colors
+  // ==========================================================================
+
+  /** Physical damage */
+  --poe2-dmg-physical: #c8c8c8;
+
+  /** Fire damage */
+  --poe2-dmg-fire: #ff6030;
+
+  /** Cold damage */
+  --poe2-dmg-cold: #30d0ff;
+
+  /** Lightning damage */
+  --poe2-dmg-lightning: #ffff60;
+
+  /** Chaos damage */
+  --poe2-dmg-chaos: #d020d0;
+
+  // ==========================================================================
+  // UI State Colors
+  // ==========================================================================
+
+  /** Positive/success state */
+  --poe2-positive: #30c050;
+
+  /** Negative/error state */
+  --poe2-negative: #c03030;
+
+  /** Warning state */
+  --poe2-warning: #d0a030;
+
+  /** Info state */
+  --poe2-info: #30a0d0;
+
+  // ==========================================================================
+  // Component-Specific Defaults
+  // ==========================================================================
+
+  /** Slot component background */
+  --poe2-slot-bg: var(--poe2-bg-surface);
+
+  /** Slot component border */
+  --poe2-slot-border: var(--poe2-border-default);
+
+  /** Slot hover border */
+  --poe2-slot-border-hover: var(--poe2-border-hover);
+
+  /** Card component background */
+  --poe2-card-bg: var(--poe2-bg-card);
+
+  /** Card component border */
+  --poe2-card-border: var(--poe2-border-default);
+
+  /** Input field background */
+  --poe2-input-bg: rgba(255, 255, 255, 0.03);
+
+  /** Input field border */
+  --poe2-input-border: rgba(255, 255, 255, 0.15);
+
+  /** Input field hover border */
+  --poe2-input-border-hover: rgba(255, 255, 255, 0.3);
+}
+
+// ============================================================================
+// Dark Mode Overrides (explicit, for future theme switching)
+// ============================================================================
+
+[data-theme="poe2-dark"],
+.theme-poe2-dark {
+  // Same as :root - this is the default theme
+  // Defined here for explicit theme switching support
+}
+
+// ============================================================================
+// Light Mode Placeholder (Future Implementation)
+// ============================================================================
+
+[data-theme="poe2-light"],
+.theme-poe2-light {
+  // TODO: Define light theme overrides
+  // This would invert the color scheme while maintaining PoE2 aesthetic
+
+  // Example overrides (not finalized):
+  // --poe2-bg-page: #f0f0f5;
+  // --poe2-bg-card: #ffffff;
+  // --poe2-bg-surface: #e8e8f0;
+  // --poe2-text-primary: #1a1a2e;
+  // --poe2-text-secondary: #4a4a5e;
+}
+
+// ============================================================================
+// Utility Mixins
+// ============================================================================
+
+/// Apply rarity-based colors to an element
+/// @param {string} $rarity - Rarity level (normal, magic, rare, unique)
+@mixin poe2-rarity($rarity) {
+  color: var(--poe2-rarity-#{$rarity});
+  background-color: var(--poe2-rarity-#{$rarity}-bg);
+  border-color: var(--poe2-rarity-#{$rarity}-border);
+}
+
+/// Apply standard card styling
+@mixin poe2-card {
+  background-color: var(--poe2-card-bg);
+  border: 1px solid var(--poe2-card-border);
+}
+
+/// Apply standard slot styling
+@mixin poe2-slot {
+  background-color: var(--poe2-slot-bg);
+  border: 2px solid var(--poe2-slot-border);
+
+  &:hover {
+    border-color: var(--poe2-slot-border-hover);
+  }
+}
+
+/// Apply standard input styling
+@mixin poe2-input {
+  background-color: var(--poe2-input-bg);
+  border-color: var(--poe2-input-border);
+
+  &:hover {
+    border-color: var(--poe2-input-border-hover);
+  }
+}

@@ -343,6 +343,7 @@ function handleRemoveItem(): void {
 </script>
 
 <style scoped>
+/* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-slot-grid {
   --slot-gap: 8px;
   padding: 16px;
@@ -370,13 +371,13 @@ function handleRemoveItem(): void {
 
 .item-slot-grid__swap-slots {
   opacity: 0.7;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border: 1px dashed var(--poe2-border-muted);
   border-radius: 8px;
   padding: 8px;
 }
 
 .item-slot-grid__flasks {
   padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--poe2-border-subtle);
 }
 </style>

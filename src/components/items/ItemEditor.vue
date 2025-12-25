@@ -667,17 +667,18 @@ function handleClose(): void {
 </script>
 
 <style scoped>
-/* Editor root - custom styling for max-width centering and full height
+/* Uses global PoE2 theme variables from themes/poe2.scss
+   Editor root - custom styling for max-width centering and full height
    Uses Quasar 'column' class for flex-direction: column */
 .item-editor {
-  background-color: #0d0d14;
+  background-color: var(--poe2-card-bg);
   max-width: 1200px;
   margin: auto;
   height: 100%;
 }
 
 .item-editor__header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--poe2-border-subtle);
 }
 
 /* Uses Quasar 'col-grow' class for flex: 1 behavior */
@@ -685,16 +686,16 @@ function handleClose(): void {
   overflow-y: auto;
 }
 
-/* Dark theme for inputs */
+/* Dark theme for inputs - uses PoE2 theme input variables */
 :deep(.q-field--outlined .q-field__control) {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--poe2-input-bg);
 }
 
 :deep(.q-field--outlined .q-field__control:before) {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--poe2-input-border);
 }
 
 :deep(.q-field--outlined:hover .q-field__control:before) {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: var(--poe2-input-border-hover);
 }
 </style>

@@ -1,1 +1,56 @@
-// app global css in SCSS form
+/**
+ * Global Application Styles
+ *
+ * This file imports the theme and defines app-wide style rules.
+ * Component-specific styles should be in their respective .vue files.
+ */
+
+// Import PoE2 theme (CSS custom properties)
+@use 'themes/poe2';
+
+// ============================================================================
+// Global Resets & Defaults
+// ============================================================================
+
+// Apply PoE2 theme to body
+body {
+  background-color: var(--poe2-bg-page);
+  color: var(--poe2-text-primary);
+}
+
+// ============================================================================
+// Scrollbar Styling (PoE2 dark theme)
+// ============================================================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--poe2-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--poe2-border-hover);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--poe2-border-active);
+  }
+}
+
+// Firefox scrollbar
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--poe2-border-hover) var(--poe2-bg-surface);
+}
+
+// ============================================================================
+// Selection Styling
+// ============================================================================
+
+::selection {
+  background-color: rgba(136, 136, 255, 0.3); // Magic blue with transparency
+  color: var(--poe2-text-primary);
+}

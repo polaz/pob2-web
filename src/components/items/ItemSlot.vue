@@ -178,14 +178,11 @@ function handleIconError(): void {
 </script>
 
 <style scoped>
+/* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-slot {
-  --slot-bg: #1a1a2e;
-  --slot-border: #3a3a4e;
-  --slot-hover-border: #5a5a7e;
-
   position: relative;
-  background-color: var(--slot-bg);
-  border: 2px solid var(--slot-border);
+  background-color: var(--poe2-slot-bg);
+  border: 2px solid var(--poe2-slot-border);
   border-radius: 4px;
   cursor: pointer;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
@@ -193,7 +190,7 @@ function handleIconError(): void {
 }
 
 .item-slot:hover {
-  border-color: var(--slot-hover-border);
+  border-color: var(--poe2-slot-border-hover);
   transform: scale(1.02);
 }
 

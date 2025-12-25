@@ -459,12 +459,12 @@ function formatBlock(value: number): string {
 </script>
 
 <style scoped>
+/* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-card {
-  --item-card-bg: #0d0d14;
-  --item-card-border: #3a3a4e;
   --socket-size: 16px;
 
-  background-color: var(--item-card-bg);
+  background-color: var(--poe2-card-bg);
+  border-color: var(--poe2-card-border);
   border-width: 2px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -483,7 +483,7 @@ function formatBlock(value: number): string {
 }
 
 .item-card--corrupted {
-  border-color: #d20000 !important;
+  border-color: var(--poe2-status-corrupted) !important;
 }
 
 .item-card__header {
