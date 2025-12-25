@@ -21,7 +21,11 @@ import { buildToXml, xmlToBuild } from './buildXml';
 // Types
 // =============================================================================
 
-/** Error types for build code operations */
+/**
+ * Error types for build code operations.
+ * Note: MISSING_REQUIRED_FIELD is reserved for future strict validation mode
+ * where missing required fields (e.g., character class) would be errors instead of defaults.
+ */
 export type BuildCodeErrorType =
   | 'INVALID_FORMAT'
   | 'DECODE_FAILED'

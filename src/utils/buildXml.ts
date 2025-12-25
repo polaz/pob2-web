@@ -202,10 +202,13 @@ function escapeAttr(value: string): string {
 /**
  * Build an XML element string with attributes.
  *
- * Attribute filtering:
- * - `undefined` and empty strings are excluded (no attribute rendered)
- * - `false` renders as "false", `0` renders as "0" (both are valid values)
- * - `true` renders as "true"
+ * Attribute filtering (via `v !== undefined && v !== ''`):
+ * - `undefined` → excluded (no attribute rendered)
+ * - `''` (empty string) → excluded (no attribute rendered)
+ * - `false` → included, renders as `attr="false"`
+ * - `0` → included, renders as `attr="0"`
+ * - `true` → included, renders as `attr="true"`
+ * - any non-empty string/number → included
  *
  * Self-closing behavior:
  * - `selfClose=true` with no content: renders `<tag/>` or `<tag attr="val"/>`
@@ -218,7 +221,7 @@ function xmlElement(
   content?: string,
   selfClose = false
 ): string {
-  // Filter out undefined and empty strings; numbers (including 0) and booleans are preserved
+  // Filter: exclude undefined and empty strings; preserve 0, false, and all other values
   const attrStr = Object.entries(attrs)
     .filter(([, v]) => v !== undefined && v !== '')
     .map(([k, v]) => `${k}="${escapeAttr(String(v))}"`)
@@ -494,7 +497,8 @@ function serializeConfig(config: BuildConfig | undefined): string {
  * Convert a Build object to PoB2-compatible XML string.
  */
 export function buildToXml(build: Build): string {
-  // Use ?? since CLASS_TO_POB_NAME[undefined] returns undefined (non-existent key)
+  // Nullish coalescing handles both undefined characterClass and unmapped enum values.
+  // CLASS_TO_POB_NAME[undefined] and CLASS_TO_POB_NAME[unknownValue] both return undefined.
   const className = CLASS_TO_POB_NAME[build.characterClass as CharacterClass] ?? DEFAULT_CLASS_NAME;
 
   // Build element
@@ -748,7 +752,9 @@ function parseGem(gemElement: Element): GemInstance {
   const count = getNumAttr(gemElement, 'count');
 
   const gem: GemInstance = {
-    // Use gemId as instance id when available for PoB2 compatibility, else generate UUID
+    // Use gemId as instance id when available for PoB2 compatibility, else generate UUID.
+    // crypto.randomUUID is supported in all modern browsers (Chrome 92+, Firefox 95+, Safari 15.4+)
+    // and Node.js 19+. For older environments, a polyfill would be needed.
     id: gemId ?? crypto.randomUUID(),
   };
 

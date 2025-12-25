@@ -682,4 +682,25 @@ describe('character class mapping', () => {
       expect(parsed.characterClass).toBe(charClass);
     });
   }
+
+  it('should handle unknown/undefined class with default fallback', () => {
+    // Test that undefined characterClass falls back to default 'Warrior'
+    const build = createMinimalBuild();
+    build.characterClass = undefined as unknown as CharacterClass;
+
+    const xml = buildToXml(build);
+    expect(xml).toContain('className="Warrior"'); // Default fallback
+
+    const parsed = xmlToBuild(xml);
+    expect(parsed.characterClass).toBe(CharacterClass.WARRIOR);
+  });
+
+  it('should handle unmapped enum value with default fallback', () => {
+    // Test that an unmapped enum value (e.g., future class) falls back to default
+    const build = createMinimalBuild();
+    build.characterClass = 999 as CharacterClass; // Unmapped value
+
+    const xml = buildToXml(build);
+    expect(xml).toContain('className="Warrior"'); // Default fallback
+  });
 });
