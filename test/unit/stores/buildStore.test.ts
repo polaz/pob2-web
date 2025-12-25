@@ -226,14 +226,20 @@ describe('buildStore', () => {
   });
 
   describe('newBuild', () => {
-    it('should reset to empty build state', () => {
+    it('should reset to empty build state', async () => {
       const store = useBuildStore();
 
+      // Modify build state through public API
       store.setName('Modified Build');
       store.setLevel(99);
       store.allocateNode('12345');
-      store['currentBuildDbId'] = 5;
-      store['isDirty'] = true;
+
+      // Save to set currentBuildDbId (uses mocked database)
+      await store.save();
+
+      // Make another change to set isDirty
+      store.setName('Another Name');
+      expect(store.isDirty).toBe(true);
 
       store.newBuild();
 

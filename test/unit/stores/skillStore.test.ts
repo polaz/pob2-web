@@ -147,7 +147,7 @@ describe('skillStore', () => {
   describe('gem selector', () => {
     it('should open gem selector and clear search', () => {
       const store = useSkillStore();
-      store['gemSearchQuery'] = 'old query';
+      store.setGemSearchQuery('old query');
 
       store.openGemSelector();
 

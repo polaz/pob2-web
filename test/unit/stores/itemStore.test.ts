@@ -4,7 +4,7 @@
  * Tests slot management, recent items handling, clipboard operations,
  * and weapon swap functionality.
  */
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import {
   useItemStore,
@@ -309,6 +309,3 @@ describe('itemStore', () => {
     });
   });
 });
-
-// Need to import vi for mocking
-import { vi } from 'vitest';
