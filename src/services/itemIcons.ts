@@ -146,30 +146,10 @@ const XML_ESCAPE_MAP: Record<string, string> = {
 };
 
 /**
- * Escapes a single character for safe use in XML/SVG content.
- * Returns the escaped version if it's a special character, otherwise the original.
- *
- * @internal This is an internal helper function, not exported for general use.
- * It is specifically designed for the getRarityPlaceholder SVG generator where
- * the input is always `letter.charAt(0)` - guaranteed to be a single character.
- *
- * Design: The length !== 1 check validates expected input format. If validation
- * fails, the function returns the input unchanged rather than throwing because:
- * 1. The SVG is encoded as a data URL for img src, not inline DOM - no XSS risk
- * 2. Invalid input would produce malformed SVG (display issue) not security issue
- * 3. Graceful degradation is preferred over runtime errors for display-only code
- *
- * The actual caller (getRarityPlaceholder) always passes `letter.charAt(0)` which
- * is guaranteed to be a single character (or empty string for empty input).
- *
- * @param char - A single character to escape.
- * @returns The XML-escaped character (e.g., '<' becomes '&lt;') or the original.
+ * Escapes a character for safe use in XML/SVG content.
+ * @internal Used by getRarityPlaceholder for single-char placeholders.
  */
 function escapeXmlChar(char: string): string {
-  // Guard: charAt(0) always returns a single char, but we validate defensively
-  if (char.length !== 1) {
-    return char;
-  }
   return XML_ESCAPE_MAP[char] ?? char;
 }
 

@@ -339,15 +339,6 @@ const props = defineProps<{
   targetSlot?: ItemSlot;
 }>();
 
-/**
- * Normalized item reference with consistent null handling.
- *
- * This computed provides a stable null-coalesced reference to the item prop.
- * It converts `undefined` to `null` for consistent nullish checks throughout
- * the component (e.g., `if (itemToEdit.value)` vs checking both null/undefined).
- * The watcher at line 484 uses this to trigger form reset on item changes.
- */
-const itemToEdit = computed(() => props.item ?? null);
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
@@ -435,8 +426,8 @@ const slotOptions = computed(() => {
 // Computed
 // ============================================================================
 
-/** Whether we're editing an existing item */
-const isEditing = computed(() => !!itemToEdit.value);
+/** Whether we're editing an existing item (vs creating new) */
+const isEditing = computed(() => !!props.item);
 
 /** Preview item for the card */
 const previewItem = computed<Item>(() => {
@@ -488,11 +479,9 @@ watch(
   }
 );
 
-// Watch itemToEdit (not props.item directly) to benefit from the null-coalescing
-// normalization. This ensures the watcher triggers consistently whether the prop
-// changes from undefined→Item, null→Item, or Item→Item.
+// Reset form when item prop changes while dialog is open
 watch(
-  () => itemToEdit.value,
+  () => props.item,
   () => {
     if (props.modelValue) {
       resetForm();
@@ -511,9 +500,9 @@ function resetForm(): void {
   pasteText.value = '';
   parseError.value = '';
 
-  if (itemToEdit.value) {
+  if (props.item) {
     // Editing existing item
-    const item = itemToEdit.value;
+    const item = props.item;
     editedItem.id = item.id;
     editedItem.name = item.name ?? '';
     editedItem.baseName = item.baseName ?? '';

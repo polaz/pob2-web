@@ -7,7 +7,6 @@
           <q-card-section class="q-pa-sm">
             <div class="text-subtitle2 q-mb-sm">Equipment</div>
             <ItemSlotGrid
-              @slot-select="handleSlotSelect"
               @edit-item="handleEditItem"
               @paste-item="handlePasteItem"
             />
@@ -208,25 +207,8 @@ const selectedItem = computed(() => {
 // Slot Event Handlers
 // ============================================================================
 
-/**
- * Handles slot selection from grid.
- *
- * Currently a no-op because selection state is managed by itemStore.selectSlot()
- * which ItemSlotGrid calls directly. This handler exists because:
- * 1. Vue's event binding requires a handler function - removing @slot-select
- *    would require changes to ItemSlotGrid's emit signature
- * 2. Provides a hook for page-level side effects (analytics, telemetry)
- *    without modifying the reusable grid component
- *
- * Alternative: Remove @slot-select from template and rely solely on store.
- * Kept for explicit event flow documentation and future extensibility.
- *
- * @param _slot - The selected slot (unused - prefixed with underscore per convention)
- */
-function handleSlotSelect(_slot: ItemSlot): void {
-  // Selection state is managed by itemStore via ItemSlotGrid.
-  // Add page-level side effects here if needed in the future.
-}
+// Note: Slot selection is handled by ItemSlotGrid updating itemStore directly.
+// No @slot-select handler needed here - the store drives the reactive UI.
 
 /**
  * Handles edit request from grid context menu.

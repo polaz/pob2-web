@@ -284,23 +284,12 @@ defineEmits<{
 // ============================================================================
 
 const iconUrl = ref<string>('');
-/**
- * Tracks icon load failures for UI feedback (e.g., showing error state).
- *
- * Currently set but not read because we use synchronous placeholders.
- * When async icon loading is implemented (item data with icon paths),
- * this will be used to conditionally render error states or retry buttons.
- * Prefixed with underscore to indicate intentional non-use for now.
- */
-const _iconError = ref(false);
 
+/**
+ * Loads the item icon. Currently uses synchronous rarity placeholders.
+ * TODO: When item data includes icon paths, implement async loading with error state.
+ */
 function loadIcon(): void {
-  // Reset error state on new load attempt
-  _iconError.value = false;
-  // For now, use rarity placeholder since items don't have icon paths yet.
-  // When icon paths are added to item data, this will become async:
-  //   iconUrl.value = await itemIconLoader.getIconUrl(props.item.iconPath);
-  // The handleIconError() and _iconError state will then handle load failures.
   iconUrl.value = itemIconLoader.getRarityPlaceholder(
     props.item.rarity ?? 0,
     props.item.baseName?.charAt(0) ?? props.item.name?.charAt(0) ?? '?'
@@ -309,10 +298,9 @@ function loadIcon(): void {
 
 /**
  * Handles icon load failure by falling back to generic placeholder.
- * Currently only triggered by img @error event (retained for future async loading).
+ * Called by img @error event for future async icon loading support.
  */
 function handleIconError(): void {
-  _iconError.value = true;
   iconUrl.value = itemIconLoader.getPlaceholder();
 }
 
