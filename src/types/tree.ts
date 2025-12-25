@@ -132,7 +132,12 @@ export interface TreeNode {
 }
 
 /**
- * Optimized tree data for runtime operations
+ * Optimized tree data for runtime operations.
+ *
+ * Note: RawTreeData.groups and RawTreeData.constants are intentionally excluded.
+ * These fields are only needed for initial node positioning during tree rendering
+ * setup, not for runtime graph operations. The x/y coordinates are pre-computed
+ * in each TreeNode, so groups/constants become redundant after conversion.
  */
 export interface TreeData {
   version: string;

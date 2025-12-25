@@ -81,28 +81,23 @@ async function loadTreeData(): Promise<TreeData> {
   }
 
   loadingPromise = (async () => {
-    // Load bundled JSON to know current version
-    const module = await import('src/data/tree/poe2-tree.json');
-    const bundledRawData = module.default as RawTreeData;
-
-    // Try to load from IndexedDB cache first
+    // Try to load from IndexedDB cache first (avoids loading 2.4MB bundled JSON)
     try {
       const cached = await getCachedData(TREE_CACHE_KEY);
       if (cached) {
         const cachedRawData = JSON.parse(cached.data) as RawTreeData;
-        // Only use cache if version matches bundled data
-        if (cachedRawData.version === bundledRawData.version) {
-          const treeData = convertToTreeData(cachedRawData);
-          treeDataCache = treeData;
-          return treeData;
-        }
+        const treeData = convertToTreeData(cachedRawData);
+        treeDataCache = treeData;
+        return treeData;
       }
     } catch (e) {
-      // Cache miss or error, continue to use bundled JSON
+      // Cache miss or error, fall back to bundled JSON
       console.warn('[useTreeData] Cache read failed:', e);
     }
 
-    // Use bundled JSON
+    // Load bundled JSON as fallback
+    const module = await import('src/data/tree/poe2-tree.json');
+    const bundledRawData = module.default as RawTreeData;
     const treeData = convertToTreeData(bundledRawData);
     treeDataCache = treeData;
 
@@ -326,13 +321,25 @@ export function useTreeData() {
     return getNodesWithinDistance(treeData.value.nodes, startIds, maxDistance);
   }
 
-  // Search nodes by name
+  // Cache for search results keyed by normalized query
+  const searchCache = new Map<string, TreeNode[]>();
+
+  // Search nodes by name (cached)
   function searchNodes(query: string): TreeNode[] {
-    if (!treeData.value || !query.trim()) return [];
-    const lowerQuery = query.toLowerCase();
-    return Array.from(treeData.value.nodes.values()).filter(
-      n => n.name?.toLowerCase().includes(lowerQuery)
+    if (!treeData.value) return [];
+
+    const normalizedQuery = query.trim().toLowerCase();
+    if (!normalizedQuery) return [];
+
+    const cached = searchCache.get(normalizedQuery);
+    if (cached) return cached;
+
+    const result = Array.from(treeData.value.nodes.values()).filter(
+      n => n.name?.toLowerCase().includes(normalizedQuery)
     );
+
+    searchCache.set(normalizedQuery, result);
+    return result;
   }
 
   return {
