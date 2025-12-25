@@ -23,6 +23,37 @@ let treeDataCache: TreeData | null = null;
 let loadingPromise: Promise<TreeData> | null = null;
 
 /**
+ * Reset module-level state for testing purposes.
+ *
+ * WARNING: This function mutates the shared singleton cache used by the tree
+ * data composable. It must only be called from test code to ensure a clean
+ * state between tests and MUST NOT be used in production/runtime code.
+ *
+ * @example
+ * ```typescript
+ * // In test setup (beforeEach or afterEach)
+ * import { resetTreeDataForTesting } from 'src/composables/useTreeData';
+ *
+ * beforeEach(() => {
+ *   resetTreeDataForTesting(); // Clear cache before each test
+ * });
+ * ```
+ *
+ * @throws {Error} If called outside of test environment (NODE_ENV !== 'test')
+ * @internal
+ */
+export function resetTreeDataForTesting(): void {
+  if (process.env.NODE_ENV !== 'test') {
+    throw new Error(
+      'resetTreeDataForTesting() can only be called in test environment. ' +
+        'This function is not meant for production use.'
+    );
+  }
+  treeDataCache = null;
+  loadingPromise = null;
+}
+
+/**
  * Convert raw tree data to optimized format
  */
 function convertToTreeData(rawData: RawTreeData): TreeData {
@@ -85,8 +116,8 @@ async function loadTreeData(): Promise<TreeData> {
     try {
       const cached = await getCachedData(TREE_CACHE_KEY);
       if (cached) {
-        const cachedRawData = JSON.parse(cached.data) as RawTreeData;
-        const treeData = convertToTreeData(cachedRawData);
+        const rawData = JSON.parse(cached.data) as RawTreeData;
+        const treeData = convertToTreeData(rawData);
         treeDataCache = treeData;
         return treeData;
       }
@@ -97,16 +128,16 @@ async function loadTreeData(): Promise<TreeData> {
 
     // Load bundled JSON as fallback
     const module = await import('src/data/tree/poe2-tree.json');
-    const bundledRawData = module.default as RawTreeData;
-    const treeData = convertToTreeData(bundledRawData);
+    const rawData = module.default as RawTreeData;
+    const treeData = convertToTreeData(rawData);
     treeDataCache = treeData;
 
     // Cache in IndexedDB for faster future loads
     try {
       await setCachedData(
         TREE_CACHE_KEY,
-        JSON.stringify(bundledRawData),
-        bundledRawData.version,
+        JSON.stringify(rawData),
+        rawData.version,
         TREE_CACHE_TTL
       );
     } catch (e) {
@@ -125,7 +156,12 @@ async function loadTreeData(): Promise<TreeData> {
 }
 
 /**
- * Find shortest path between two nodes using BFS
+ * Find shortest path between two nodes using BFS.
+ *
+ * Uses head pointer pattern for O(1) dequeue. The queue array grows but
+ * isn't trimmed during traversal. For PoE2's tree size (~1500 nodes),
+ * this is acceptable. For significantly larger graphs, consider periodic
+ * array slicing or a proper deque implementation.
  */
 function findShortestPath(
   nodes: Map<string, TreeNode>,
@@ -145,9 +181,9 @@ function findShortestPath(
 
   // BFS with O(1) dequeue using head pointer
   const queue: string[] = [startId];
-  let head = 0;
   const visited = new Set<string>([startId]);
   const parent = new Map<string, string>();
+  let head = 0;
 
   while (head < queue.length) {
     const currentId = queue[head++]!;
@@ -189,7 +225,6 @@ function findReachableNodes(
   const reachable = new Set<string>();
   const distances = new Map<string, number>();
   const queue: Array<{ id: string; distance: number }> = [];
-  let head = 0;
 
   for (const id of startIds) {
     if (nodes.has(id)) {
@@ -199,6 +234,8 @@ function findReachableNodes(
     }
   }
 
+  // BFS with O(1) dequeue using head pointer
+  let head = 0;
   while (head < queue.length) {
     const { id, distance } = queue[head++]!;
     const node = nodes.get(id);
@@ -228,7 +265,6 @@ function getNodesWithinDistance(
 ): Set<string> {
   const result = new Set<string>();
   const queue: Array<{ id: string; distance: number }> = [];
-  let head = 0;
 
   for (const id of startIds) {
     if (nodes.has(id)) {
@@ -237,6 +273,8 @@ function getNodesWithinDistance(
     }
   }
 
+  // BFS with O(1) dequeue using head pointer
+  let head = 0;
   while (head < queue.length) {
     const { id, distance } = queue[head++]!;
 

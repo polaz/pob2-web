@@ -20,6 +20,10 @@ export interface StoredBuild {
   items: string;
   /** Active skill gems configuration */
   skills: string;
+  /** Build configuration (enemy, charges, combat state) */
+  config?: string;
+  /** Mastery selections: nodeId -> effectId mapping */
+  masterySelections?: string;
   /** Build notes/description */
   notes?: string;
   /** Creation timestamp */
@@ -66,6 +70,8 @@ export interface UserPreferences {
   recentBuilds: number[];
   /** Custom keyboard shortcuts */
   keyboardShortcuts?: Record<string, string>;
+  /** Whether keyboard shortcuts are enabled */
+  keyboardShortcutsEnabled: boolean;
 }
 
 /** Default user preferences */
@@ -78,4 +84,5 @@ export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   autoSave: true,
   autoSaveInterval: 30,
   recentBuilds: [],
+  keyboardShortcutsEnabled: true,
 };
