@@ -45,6 +45,21 @@ import type {
 const NO_FLAGS = 0n;
 
 /**
+ * Regex pattern to match special regex metacharacters for escaping.
+ *
+ * Character class breakdown:
+ * - `.*+?^${}()|` - standard regex metacharacters
+ * - `[` - literal opening bracket (no escape needed inside character class)
+ * - `\]` - escaped closing bracket
+ * - `\\` - escaped backslash
+ * - `-` - hyphen at end of class (treated as literal)
+ *
+ * Used in multiple places to escape user/data-provided strings before
+ * creating RegExp patterns from them.
+ */
+const REGEX_ESCAPE_PATTERN = /[.*+?^${}()|[\]\\-]/g;
+
+/**
  * Factory for pattern used to extract numeric values from mod text.
  *
  * Returns a fresh RegExp instance on each call to avoid shared `lastIndex`
@@ -128,7 +143,7 @@ export class ModParser {
       ...this.conditionMappings.keys(),
     ];
     for (const phrase of allPhrases) {
-      const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
+      const escapedPhrase = phrase.replace(REGEX_ESCAPE_PATTERN, '\\$&');
       this.phrasePatterns.set(phrase, new RegExp(`\\b${escapedPhrase}\\b`, 'i'));
     }
 
@@ -256,11 +271,8 @@ export class ModParser {
     const rangeRegex = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)/g;
     const ranges: Array<{ min: number; max: number }> = [];
 
-    // PLACEHOLDER safety: Uses null character (\x00) which cannot appear in valid
-    // modifier text (mod text is human-readable strings). This ensures the placeholder
-    // won't conflict with actual mod content or be affected by regex escaping since
-    // \x00 is not a regex metacharacter.
-    const PLACEHOLDER = '\x00RANGE\x00';
+    // Placeholder pattern uses double underscores which won't appear in mod text.
+    // Format: __RANGE_0__, __RANGE_1__, etc.
     let placeholderIndex = 0;
 
     // First, replace ranges with placeholders and record bounds
@@ -275,7 +287,7 @@ export class ModParser {
         }
 
         ranges.push({ min, max });
-        return `${PLACEHOLDER}${placeholderIndex++}${PLACEHOLDER}`;
+        return `__RANGE_${placeholderIndex++}__`;
       }
     );
 
@@ -285,14 +297,11 @@ export class ModParser {
     }
 
     // Escape regex metacharacters in the key (except our placeholders)
-    escapedKey = escapedKey.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
+    escapedKey = escapedKey.replace(REGEX_ESCAPE_PATTERN, '\\$&');
 
     // Replace placeholders with capture groups
     for (let i = 0; i < ranges.length; i++) {
-      escapedKey = escapedKey.replace(
-        `${PLACEHOLDER}${i}${PLACEHOLDER}`,
-        '(\\d+(?:\\.\\d+)?)'
-      );
+      escapedKey = escapedKey.replace(`__RANGE_${i}__`, '(\\d+(?:\\.\\d+)?)');
     }
 
     try {
@@ -323,7 +332,8 @@ export class ModParser {
 
       return true;
     } catch {
-      // Invalid regex, skip this pattern
+      // Malformed cache key produced invalid regex - gracefully skip this pattern.
+      // This should not happen with valid mod cache data but protects against edge cases.
       return false;
     }
   }
@@ -623,17 +633,11 @@ export class ModParser {
   /**
    * Escape special regex characters in a string.
    *
-   * Character class breakdown: `/[.*+?^${}()|[\]\\-]/g`
-   * - `.*+?^${}()|` - standard regex metacharacters
-   * - `[` - literal opening bracket
-   * - `\]` - escaped closing bracket (literal `]`)
-   * - `\\` - escaped backslash (literal `\`)
-   * - `-` - hyphen (at end of class, treated as literal)
-   *
-   * This is the standard JavaScript regex escape pattern.
+   * Uses the shared REGEX_ESCAPE_PATTERN constant.
+   * @see REGEX_ESCAPE_PATTERN for character class breakdown.
    */
   private escapeRegExp(str: string): string {
-    return str.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&');
+    return str.replace(REGEX_ESCAPE_PATTERN, '\\$&');
   }
 
   /**
