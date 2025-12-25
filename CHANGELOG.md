@@ -1,3 +1,15 @@
+# [1.17.0](https://github.com/polaz/pob2-web/compare/v1.16.0...v1.17.0) (2025-12-25)
+
+
+### Bug Fixes
+
+* **tree:** improve node rendering, sizing, and viewport centering ([1dd9069](https://github.com/polaz/pob2-web/commit/1dd906971e737f517a74259f20794247ed66e6fb))
+
+
+### Features
+
+* **items:** implement item slot management with validation ([#127](https://github.com/polaz/pob2-web/issues/127)) ([9beb31e](https://github.com/polaz/pob2-web/commit/9beb31e96ef95e1cc97bd12cf2d50e4361d4c68c)), closes [#29](https://github.com/polaz/pob2-web/issues/29)
+
 # [1.16.0](https://github.com/polaz/pob2-web/compare/v1.15.0...v1.16.0) (2025-12-25)
 
 
