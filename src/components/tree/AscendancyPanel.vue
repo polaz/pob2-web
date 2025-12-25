@@ -146,21 +146,28 @@ const ascendancyInfo = computed((): TreeAscendancy | null => {
 });
 
 /**
+ * Memoized Set of ascendancy node IDs.
+ * Only rebuilds when the selected ascendancy changes, not when allocated nodes change.
+ */
+const ascendancyNodeIds = computed((): Set<string> => {
+  if (!selectedAscendancy.value) return new Set();
+  const ascNodes = getAscendancyNodes(selectedAscendancy.value);
+  return new Set(ascNodes.map((n) => n.id));
+});
+
+/**
  * Count of ascendancy points used.
  * Counts allocated nodes that belong to the current ascendancy.
  *
  * Optimized to iterate over allocated nodes (typically smaller set)
- * and check ascendancy membership via a Set lookup.
+ * and check ascendancy membership via the memoized Set lookup.
  */
 const ascendancyPointsUsed = computed(() => {
   if (!selectedAscendancy.value) return 0;
 
-  const ascNodes = getAscendancyNodes(selectedAscendancy.value);
-  const ascNodeIds = new Set(ascNodes.map((n) => n.id));
-
   let count = 0;
   for (const nodeId of buildStore.allocatedNodeIds) {
-    if (ascNodeIds.has(nodeId)) {
+    if (ascendancyNodeIds.value.has(nodeId)) {
       count++;
     }
   }
