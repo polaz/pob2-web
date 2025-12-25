@@ -85,13 +85,23 @@ export interface TreeBounds {
 
 /**
  * Group data for node positioning.
- * Note: nodes array contains numeric indices matching the source data format.
- * Convert to string IDs when looking up in TreeData.nodes Map.
+ *
+ * The `nodes` array contains numeric node indices as they appear in the
+ * source tree JSON. These indices correspond to the `RawTreeNode.id`
+ * values used as keys in `RawTreeData.nodes`.
+ *
+ * When looking up node data, convert the numeric index to a string before
+ * indexing into `RawTreeData.nodes`, for example:
+ *
+ * ```typescript
+ * const nodeId = String(group.nodes[0]);
+ * const node = rawTreeData.nodes[nodeId];
+ * ```
  */
 export interface TreeGroup {
   x: number;
   y: number;
-  /** Numeric node indices - use String(index) for TreeData.nodes lookup */
+  /** Numeric node indices corresponding to RawTreeNode.id values in RawTreeData.nodes */
   nodes: number[];
   orbits?: number[];
 }

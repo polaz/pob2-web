@@ -1,6 +1,21 @@
 /**
- * Unit tests for useTreeData composable graph traversal functions.
- * Tests the internal BFS algorithms through the public API.
+ * Unit tests for useTreeData graph traversal algorithms.
+ *
+ * DESIGN NOTE: These tests intentionally reimplement the BFS algorithms rather
+ * than testing the composable directly. This approach was chosen because:
+ *
+ * 1. **Algorithm Verification**: Tests verify correctness of graph algorithms
+ *    with a known, simple graph structure (7 connected + 1 isolated node).
+ *
+ * 2. **Vue Lifecycle Independence**: The composable uses onMounted() which
+ *    requires mounting a component. Testing algorithms directly avoids this
+ *    complexity and ensures algorithm logic is correct regardless of Vue state.
+ *
+ * 3. **Deterministic Testing**: Using a controlled test graph with known
+ *    shortest paths allows exact assertions (e.g., path 1->6 = 4 steps).
+ *
+ * For integration tests that verify the composable's Vue integration (loading,
+ * caching, reactivity), see test/integration/composables/ (future).
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { TreeNode, TreeData, TreeNodeType } from 'src/types/tree';
