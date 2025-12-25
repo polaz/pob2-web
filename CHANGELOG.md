@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/polaz/pob2-web/compare/v1.19.0...v1.19.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* **ci:** add proto generation step to all CI jobs ([452f4ec](https://github.com/polaz/pob2-web/commit/452f4ec8cffd3a23b0bd766ca4aef1e99dd0a898)), closes [#134](https://github.com/polaz/pob2-web/issues/134)
+
 # [1.19.0](https://github.com/polaz/pob2-web/compare/v1.18.0...v1.19.0) (2025-12-25)
 
 
