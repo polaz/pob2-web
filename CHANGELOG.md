@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/polaz/pob2-web/compare/v1.5.0...v1.6.0) (2025-12-25)
+
+
+### Features
+
+* **data:** convert PoB modifier data to JSON format ([#65](https://github.com/polaz/pob2-web/issues/65)) ([c5cbe7d](https://github.com/polaz/pob2-web/commit/c5cbe7d5064315b7125b0a6f9d9084795812a5b2)), closes [#8](https://github.com/polaz/pob2-web/issues/8)
+
 # [1.5.0](https://github.com/polaz/pob2-web/compare/v1.4.0...v1.5.0) (2025-12-25)
 
 
