@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/polaz/pob2-web/compare/v1.11.0...v1.12.0) (2025-12-25)
+
+
+### Features
+
+* **search:** implement n-gram indexed i18n search service ([#106](https://github.com/polaz/pob2-web/issues/106)) ([f251d85](https://github.com/polaz/pob2-web/commit/f251d85d4f55b2ad6b5689058ca7b0e40bd8c906)), closes [#55](https://github.com/polaz/pob2-web/issues/55)
+
 # [1.11.0](https://github.com/polaz/pob2-web/compare/v1.10.0...v1.11.0) (2025-12-25)
 
 
