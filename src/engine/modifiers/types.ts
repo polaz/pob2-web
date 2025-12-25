@@ -81,7 +81,7 @@ export interface StatResult {
   /** Sum of all BASE values */
   base: number;
 
-  /** Combined INC multiplier (1 + sum of INC values) */
+  /** Sum of all INC values (applied as multiplier: 1 + inc) */
   inc: number;
 
   /** Combined MORE multiplier (product of all MORE values) */

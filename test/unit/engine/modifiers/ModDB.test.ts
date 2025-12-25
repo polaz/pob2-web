@@ -603,7 +603,8 @@ describe('ModDB', () => {
     });
 
     it('should handle division by zero in PerStat condition', () => {
-      // When div is 0, the value should not be modified (guard against NaN)
+      // When div <= 0, the PerStat multiplication is skipped to avoid NaN
+      // The modifier is still included, but its value is not scaled
       db.addMod(
         createMod({
           name: 'Damage',
@@ -614,7 +615,7 @@ describe('ModDB', () => {
       );
 
       const config = { stats: { Strength: 100 } };
-      // With div=0, the condition is skipped, value remains unchanged
+      // With div=0, the PerStat scaling is skipped, original value used
       expect(db.sum('BASE', 'Damage', config)).toBe(10);
     });
 

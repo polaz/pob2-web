@@ -515,14 +515,14 @@ export class ModDB {
       }
 
       // Validate that all preceding arguments are strings
-      if (!names.every((arg) => typeof arg === 'string')) {
+      if (!names.every((arg): arg is string => typeof arg === 'string')) {
         throw new TypeError(
           'ModDB: all arguments before config must be stat name strings'
         );
       }
 
       return {
-        names: names.filter((arg): arg is string => typeof arg === 'string'),
+        names,
         config: last,
       };
     }
