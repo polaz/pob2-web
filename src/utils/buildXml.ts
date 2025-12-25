@@ -113,10 +113,13 @@ const IMPLICITS_PREFIX_LENGTH = 11;
 /**
  * Map CharacterClass enum to PoB2 class name string.
  *
- * Note: CHARACTER_CLASS_UNKNOWN maps to 'Scion' for PoB2 compatibility, but this creates
- * an asymmetric mapping since POB_NAME_TO_CLASS maps 'Scion' back to CharacterClass.SCION.
- * This is intentional: UNKNOWN is a placeholder that serializes as a valid class for PoB2,
- * but when we import 'Scion' from PoB2 XML, we correctly identify it as the Scion class.
+ * Mapping behavior:
+ * - CHARACTER_CLASS_UNKNOWN (0) → 'Scion' (valid PoB2 class, used as placeholder)
+ * - Unmapped values (e.g., undefined, future enums) → 'Warrior' (via DEFAULT_CLASS_NAME fallback)
+ *
+ * Note: This creates asymmetric round-trip for UNKNOWN: it serializes as 'Scion' but
+ * 'Scion' deserializes to CharacterClass.SCION (not UNKNOWN). This is intentional since
+ * UNKNOWN is a proto default, not a real game class.
  */
 const CLASS_TO_POB_NAME: Record<CharacterClass, string> = {
   [CharacterClass.CHARACTER_CLASS_UNKNOWN]: 'Scion',
@@ -403,7 +406,8 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
   const skillSetContent = skillGroups
     .map((group, index) => {
       const gemElements = group.gems.map(serializeGem).join('\n');
-      // Only serialize enabled="false" explicitly; missing attribute = true (PoB2 convention)
+      // PoB2 convention: missing enabled attribute means true.
+      // Only emit enabled="false" when explicitly disabled; otherwise omit the attribute.
       const enabledAttr = group.enabled === false ? false : undefined;
       return xmlElement(
         'Skill',

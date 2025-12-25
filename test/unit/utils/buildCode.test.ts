@@ -684,20 +684,17 @@ describe('character class mapping', () => {
     });
   }
 
-  it('should handle unknown/undefined class with default fallback', () => {
-    // Test that undefined characterClass falls back to default 'Warrior'
+  it('should handle CHARACTER_CLASS_UNKNOWN with Scion mapping', () => {
+    // CHARACTER_CLASS_UNKNOWN (enum value 0) maps to 'Scion' for PoB2 compatibility
     const build = createMinimalBuild();
-    build.characterClass = undefined as unknown as CharacterClass;
+    build.characterClass = CharacterClass.CHARACTER_CLASS_UNKNOWN;
 
     const xml = buildToXml(build);
-    expect(xml).toContain('className="Warrior"'); // Default fallback
-
-    const parsed = xmlToBuild(xml);
-    expect(parsed.characterClass).toBe(CharacterClass.WARRIOR);
+    expect(xml).toContain('className="Scion"');
   });
 
   it('should handle unmapped enum value with default fallback', () => {
-    // Test that an unmapped enum value (e.g., future class) falls back to default
+    // Unmapped enum values (e.g., future classes) fall back to 'Warrior' via ?? operator
     const build = createMinimalBuild();
     build.characterClass = 999 as CharacterClass; // Unmapped value
 
