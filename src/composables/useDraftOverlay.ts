@@ -110,13 +110,17 @@ export function useDraftOverlay() {
   /**
    * Apply draft edits to an item.
    *
-   * Note: Uses deepMerge for nested object handling. While Item is a protobuf
-   * type, the draft is a plain JS object (Partial<Item>) containing only
-   * modified fields. The cloneDeep guideline applies to full protobuf message
-   * instances with internal state, not partial patches applied to base data.
+   * Implementation Notes:
+   * - Uses deepMerge which creates a shallow copy at top level via spread.
+   * - Items from the data layer are plain JS objects after protobuf
+   *   deserialization (not class instances with methods/internal state).
+   * - The returned merged item shares nested references with the original
+   *   for properties NOT overridden by the draft.
+   * - This is intentional for performance - draft overlays are read-only views.
+   * - If the caller needs to mutate the result, they should use cloneDeep.
    *
-   * @param item - The base item data
-   * @returns Merged item with drafts applied
+   * @param item - The base item data (plain JS object from data layer)
+   * @returns Merged item with drafts applied (read-only, may share references)
    */
   function getItemWithDrafts(item: Item): Item {
     const draft = itemEdits.value.get(item.id);
