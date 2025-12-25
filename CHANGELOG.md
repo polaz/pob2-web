@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/polaz/pob2-web/compare/v1.9.0...v1.10.0) (2025-12-25)
+
+
+### Features
+
+* **data:** extract complete skill stats from PoB2 Skills/*.lua ([#102](https://github.com/polaz/pob2-web/issues/102)) ([f76cbbb](https://github.com/polaz/pob2-web/commit/f76cbbb9d4ffc7b2753db168c6c0f7ebd069694f)), closes [#99](https://github.com/polaz/pob2-web/issues/99)
+
 # [1.9.0](https://github.com/polaz/pob2-web/compare/v1.8.1...v1.9.0) (2025-12-25)
 
 
