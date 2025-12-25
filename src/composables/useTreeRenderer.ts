@@ -1,10 +1,9 @@
 // src/composables/useTreeRenderer.ts
-// Composable for rendering passive tree nodes
+// Composable for rendering passive tree nodes and connections
 
 import { ref, watch, onUnmounted, type Ref } from 'vue';
 import type { Application } from 'pixi.js';
-import { Graphics } from 'pixi.js';
-import type { PassiveNode } from 'src/protos/pob2_pb';
+import type { PassiveNode, NodeGroup } from 'src/protos/pob2_pb';
 import { useTreeStore } from 'src/stores/treeStore';
 import type { TreeLayers } from 'src/composables/usePixiApp';
 import { TreeNode } from 'src/components/tree/sprites/TreeNode';
@@ -12,11 +11,12 @@ import {
   getNodeSpriteManager,
   destroyNodeSpriteManager,
 } from 'src/components/tree/sprites/NodeSprites';
+import { MIN_ZOOM_FOR_CONNECTIONS } from 'src/components/tree/sprites/NodeTypes';
 import {
-  NODE_COLORS,
-  CONNECTION_ALPHAS,
-  MIN_ZOOM_FOR_CONNECTIONS,
-} from 'src/components/tree/sprites/NodeTypes';
+  ConnectorBatchRenderer,
+  type TreeConstants,
+  type ConnectionStateContext,
+} from 'src/components/tree/connectors';
 
 // ============================================================================
 // Types
@@ -28,6 +28,8 @@ export interface UseTreeRendererResult {
   readonly isInitialized: Ref<boolean>;
   /** Number of nodes currently rendered */
   readonly nodeCount: Ref<number>;
+  /** Number of connections currently rendered */
+  readonly connectionCount: Ref<number>;
   /** Initialize the renderer with layers */
   initialize: (app: Application, layers: TreeLayers) => void;
   /** Render all nodes from tree data */
@@ -42,20 +44,6 @@ export interface UseTreeRendererResult {
   destroy: () => void;
 }
 
-/** Connection line data */
-interface ConnectionLine {
-  fromId: string;
-  toId: string;
-  graphics: Graphics;
-}
-
-// ============================================================================
-// Connection Line Constants
-// ============================================================================
-
-const CONNECTION_WIDTH = 2;
-const CONNECTION_ALLOCATED_WIDTH = 3;
-
 // ============================================================================
 // Composable
 // ============================================================================
@@ -65,7 +53,7 @@ const CONNECTION_ALLOCATED_WIDTH = 3;
  *
  * Manages:
  * - Creating TreeNode instances for all passive nodes
- * - Rendering connections between nodes
+ * - Rendering connections between nodes (straight lines and arcs)
  * - Updating node states from store
  * - Viewport transformations (pan/zoom)
  * - LOD updates based on zoom level
@@ -91,12 +79,15 @@ export function useTreeRenderer(): UseTreeRendererResult {
   // State
   const isInitialized = ref(false);
   const nodeCount = ref(0);
+  const connectionCount = ref(0);
 
   // Internal references
   let app: Application | null = null;
   let layers: TreeLayers | null = null;
   const nodeMap: Map<string, TreeNode> = new Map();
-  let connectionLines: ConnectionLine[] = [];
+
+  // Connector batch renderer
+  let connectorRenderer: ConnectorBatchRenderer | null = null;
 
   // Watch cleanup functions
   const watchCleanups: Array<() => void> = [];
@@ -116,6 +107,9 @@ export function useTreeRenderer(): UseTreeRendererResult {
     // Initialize sprite manager
     const spriteManager = getNodeSpriteManager();
     spriteManager.initialize(app.renderer);
+
+    // Initialize connector batch renderer
+    connectorRenderer = new ConnectorBatchRenderer(layers.connections);
 
     // Setup store watchers
     setupWatchers();
@@ -173,11 +167,21 @@ export function useTreeRenderer(): UseTreeRendererResult {
     const unwatchPath = watch(
       () => treeStore.highlightedPath,
       (newPath) => {
-        updatePathHighlight(newPath);
+        updatePathHighlight(newPath, false);
       },
       { deep: true }
     );
     watchCleanups.push(unwatchPath);
+
+    // Watch for alternate highlighted path changes
+    const unwatchAltPath = watch(
+      () => treeStore.alternateHighlightedPath,
+      (newPath) => {
+        updatePathHighlight(newPath, true);
+      },
+      { deep: true }
+    );
+    watchCleanups.push(unwatchAltPath);
 
     // Watch for search results
     const unwatchSearch = watch(
@@ -213,8 +217,21 @@ export function useTreeRenderer(): UseTreeRendererResult {
       }
     }
 
-    // Render connections
-    renderConnections(nodes);
+    // Initialize and render connections
+    if (connectorRenderer) {
+      // Build tree constants from tree data
+      const treeConstants = buildTreeConstants(tree.groups, tree.constants);
+
+      // Initialize connector renderer with constants
+      connectorRenderer.initialize(treeConstants, (id) => treeStore.getNode(id));
+
+      // Build initial state context
+      const stateContext = buildStateContext();
+
+      // Build and render connections
+      connectorRenderer.buildConnections(nodes, stateContext);
+      connectionCount.value = connectorRenderer.getConnectionCount();
+    }
 
     nodeCount.value = nodeMap.size;
 
@@ -223,6 +240,41 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
     // Update LOD for current zoom
     updateLOD(treeStore.viewport.zoom);
+  }
+
+  /**
+   * Build tree constants from proto data.
+   */
+  function buildTreeConstants(
+    groups: NodeGroup[],
+    constants?: { orbitRadii?: number[]; skillsPerOrbit?: number[] }
+  ): TreeConstants {
+    // Convert NodeGroup[] to the format expected by connector
+    const groupData: TreeConstants['groups'] = groups.map((group) => {
+      if (!group) return null;
+      return {
+        x: group.position?.x ?? 0,
+        y: group.position?.y ?? 0,
+        nodes: group.nodeIds?.map((id) => parseInt(id, 10)) ?? [],
+        orbits: [], // Not used for arc detection
+      };
+    });
+
+    return {
+      orbitRadii: constants?.orbitRadii ?? [],
+      groups: groupData,
+    };
+  }
+
+  /**
+   * Build connection state context from current store state.
+   */
+  function buildStateContext(): ConnectionStateContext {
+    return {
+      allocatedIds: new Set<string>(), // TODO: Get from build store when implemented
+      pathIds: new Set(treeStore.highlightedPath),
+      alternatePathIds: new Set(treeStore.alternateHighlightedPath),
+    };
   }
 
   /**
@@ -255,47 +307,6 @@ export function useTreeRenderer(): UseTreeRendererResult {
   }
 
   /**
-   * Render connection lines between nodes.
-   */
-  function renderConnections(nodes: PassiveNode[]): void {
-    if (!layers) return;
-
-    // Clear existing connections
-    clearConnections();
-
-    // Build a set of rendered connections to avoid duplicates
-    const renderedConnections = new Set<string>();
-
-    for (const node of nodes) {
-      if (!node.position || !node.linkedIds) continue;
-
-      for (const linkedId of node.linkedIds) {
-        // Create unique key for this connection (sorted to avoid duplicates)
-        const connKey = [node.id, linkedId].sort().join('_');
-        if (renderedConnections.has(connKey)) continue;
-        renderedConnections.add(connKey);
-
-        // Find the linked node
-        const linkedNode = treeStore.getNode(linkedId);
-        if (!linkedNode?.position) continue;
-
-        // Create connection line
-        const line = new Graphics();
-        line.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, CONNECTION_ALPHAS.normal);
-        line.moveTo(node.position.x, node.position.y);
-        line.lineTo(linkedNode.position.x, linkedNode.position.y);
-
-        layers.connections.addChild(line);
-        connectionLines.push({
-          fromId: node.id,
-          toId: linkedId,
-          graphics: line,
-        });
-      }
-    }
-  }
-
-  /**
    * Update node states based on allocated node IDs.
    */
   function updateNodeStates(allocatedIds: Set<string>): void {
@@ -314,8 +325,15 @@ export function useTreeRenderer(): UseTreeRendererResult {
       }
     }
 
-    // Update connection colors
-    updateConnectionColors(allocatedIds);
+    // Update connection states
+    if (connectorRenderer) {
+      const stateContext: ConnectionStateContext = {
+        allocatedIds,
+        pathIds: new Set(treeStore.highlightedPath),
+        alternatePathIds: new Set(treeStore.alternateHighlightedPath),
+      };
+      connectorRenderer.updateStates(stateContext);
+    }
   }
 
   /**
@@ -339,61 +357,25 @@ export function useTreeRenderer(): UseTreeRendererResult {
   }
 
   /**
-   * Update connection line colors based on allocated state.
-   */
-  function updateConnectionColors(allocatedIds: Set<string>): void {
-    for (const conn of connectionLines) {
-      const fromAllocated = allocatedIds.has(conn.fromId);
-      const toAllocated = allocatedIds.has(conn.toId);
-
-      conn.graphics.clear();
-
-      if (fromAllocated && toAllocated) {
-        // Both nodes allocated - bright connection
-        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionAllocated, CONNECTION_ALPHAS.allocated);
-      } else {
-        // Normal connection
-        conn.graphics.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, CONNECTION_ALPHAS.normal);
-      }
-
-      // Redraw the line
-      const fromNode = treeStore.getNode(conn.fromId);
-      const toNode = treeStore.getNode(conn.toId);
-      if (fromNode?.position && toNode?.position) {
-        conn.graphics.moveTo(fromNode.position.x, fromNode.position.y);
-        conn.graphics.lineTo(toNode.position.x, toNode.position.y);
-      }
-    }
-  }
-
-  /**
    * Update path preview highlight.
    */
-  function updatePathHighlight(pathNodeIds: string[]): void {
+  function updatePathHighlight(pathNodeIds: string[], isAlternate: boolean): void {
     const pathSet = new Set(pathNodeIds);
 
     // Update node states
     for (const [nodeId, treeNode] of nodeMap) {
-      treeNode.setInPath(pathSet.has(nodeId));
+      if (isAlternate) {
+        // For alternate path, we might want a different visual
+        // For now, just use inPath state
+        treeNode.setInPath(pathSet.has(nodeId));
+      } else {
+        treeNode.setInPath(pathSet.has(nodeId));
+      }
     }
 
-    // Update connection colors for path
-    for (const conn of connectionLines) {
-      const fromInPath = pathSet.has(conn.fromId);
-      const toInPath = pathSet.has(conn.toId);
-
-      if (fromInPath && toInPath) {
-        // Both nodes in path - highlight connection
-        conn.graphics.clear();
-        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionPath, CONNECTION_ALPHAS.path);
-
-        const fromNode = treeStore.getNode(conn.fromId);
-        const toNode = treeStore.getNode(conn.toId);
-        if (fromNode?.position && toNode?.position) {
-          conn.graphics.moveTo(fromNode.position.x, fromNode.position.y);
-          conn.graphics.lineTo(toNode.position.x, toNode.position.y);
-        }
-      }
+    // Update connection states
+    if (connectorRenderer) {
+      connectorRenderer.updateStates(buildStateContext());
     }
   }
 
@@ -416,12 +398,17 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
     const { x, y, zoom } = treeStore.viewport;
 
-    // Apply transform to both nodes and connections layers
+    // Apply transform to nodes layer
     layers.nodes.position.set(x, y);
     layers.nodes.scale.set(zoom);
 
-    layers.connections.position.set(x, y);
-    layers.connections.scale.set(zoom);
+    // Apply transform to connections via batch renderer
+    if (connectorRenderer) {
+      const container = connectorRenderer.getContainer();
+      container.position.set(x, y);
+      container.scale.set(zoom);
+      connectorRenderer.updateZoom(zoom);
+    }
 
     // Update LOD based on zoom
     updateLOD(zoom);
@@ -461,16 +448,6 @@ export function useTreeRenderer(): UseTreeRendererResult {
   }
 
   /**
-   * Clear all connection lines.
-   */
-  function clearConnections(): void {
-    for (const conn of connectionLines) {
-      conn.graphics.destroy();
-    }
-    connectionLines = [];
-  }
-
-  /**
    * Destroy the renderer and clean up resources.
    */
   function destroy(): void {
@@ -480,9 +457,15 @@ export function useTreeRenderer(): UseTreeRendererResult {
     }
     watchCleanups.length = 0;
 
-    // Clear nodes and connections
+    // Clear nodes
     clearNodes();
-    clearConnections();
+
+    // Destroy connector renderer
+    if (connectorRenderer) {
+      connectorRenderer.destroy();
+      connectorRenderer = null;
+    }
+    connectionCount.value = 0;
 
     // Destroy sprite manager
     destroyNodeSpriteManager();
@@ -501,6 +484,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
   return {
     isInitialized,
     nodeCount,
+    connectionCount,
     initialize,
     renderNodes,
     updateNodeStates,

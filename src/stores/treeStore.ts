@@ -72,6 +72,9 @@ export const useTreeStore = defineStore('tree', () => {
   /** Highlighted path (for pathfinding preview) */
   const highlightedPath = shallowRef<string[]>([]);
 
+  /** Alternate highlighted path (for comparing alternative routes) */
+  const alternateHighlightedPath = shallowRef<string[]>([]);
+
   /** Comparison mode - show diff between two builds */
   const comparisonNodeIds = shallowRef<string[] | null>(null);
 
@@ -302,6 +305,16 @@ export const useTreeStore = defineStore('tree', () => {
     highlightedPath.value = [];
   }
 
+  /** Set alternate highlighted path */
+  function setAlternateHighlightedPath(path: string[]): void {
+    alternateHighlightedPath.value = path;
+  }
+
+  /** Clear alternate highlighted path */
+  function clearAlternateHighlightedPath(): void {
+    alternateHighlightedPath.value = [];
+  }
+
   /** Set comparison node IDs */
   function setComparisonNodes(nodeIds: string[] | null): void {
     comparisonNodeIds.value = nodeIds;
@@ -315,6 +328,7 @@ export const useTreeStore = defineStore('tree', () => {
     searchQuery.value = '';
     searchResults.value = [];
     highlightedPath.value = [];
+    alternateHighlightedPath.value = [];
     comparisonNodeIds.value = null;
     loadError.value = null;
   }
@@ -331,6 +345,7 @@ export const useTreeStore = defineStore('tree', () => {
     viewport,
     isDragging,
     highlightedPath,
+    alternateHighlightedPath,
     comparisonNodeIds,
 
     // Getters
@@ -362,6 +377,8 @@ export const useTreeStore = defineStore('tree', () => {
     setDragging,
     setHighlightedPath,
     clearHighlightedPath,
+    setAlternateHighlightedPath,
+    clearAlternateHighlightedPath,
     setComparisonNodes,
     clearTreeData,
   };
