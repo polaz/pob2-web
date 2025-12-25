@@ -4,6 +4,8 @@
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import type { SkillGroup, GemInstance, Gem } from 'src/protos/pob2_pb';
+import { NgramIndex } from 'src/services/search';
+import type { SearchableDocument } from 'src/services/search';
 
 /** Gem search result */
 export interface GemSearchResult {
@@ -20,6 +22,9 @@ const DEFAULT_GEM_LEVEL = 20;
 
 /** Default gem quality for new instances */
 const DEFAULT_GEM_QUALITY = 20;
+
+/** Minimum query length for n-gram search */
+const MIN_QUERY_LENGTH = 2;
 
 export const useSkillStore = defineStore('skill', () => {
   // ============================================================================
@@ -58,6 +63,12 @@ export const useSkillStore = defineStore('skill', () => {
 
   /** Skill display mode */
   const displayMode = ref<'compact' | 'detailed'>('compact');
+
+  /** N-gram search index for gems */
+  const gemSearchIndex = new NgramIndex({ ngramSize: 3, minQueryLength: MIN_QUERY_LENGTH });
+
+  /** Map of gem ID to Gem for fast lookup */
+  const gemsById = new Map<string, Gem>();
 
   // ============================================================================
   // Getters
@@ -147,45 +158,81 @@ export const useSkillStore = defineStore('skill', () => {
     gemSearchResults.value = [];
   }
 
-  /** Set gem search query and perform search by name and tags */
+  /**
+   * Set gem search query and perform n-gram indexed search.
+   *
+   * Uses fuzzy n-gram matching for better search experience.
+   * Falls back to substring matching for very short queries.
+   */
   function setGemSearchQuery(query: string): void {
     gemSearchQuery.value = query;
-    // Perform search
-    if (query.length > 0) {
+
+    if (query.length === 0) {
+      gemSearchResults.value = [];
+      return;
+    }
+
+    // For short queries (< MIN_QUERY_LENGTH), fall back to substring search
+    if (query.length < MIN_QUERY_LENGTH) {
       const lowerQuery = query.toLowerCase();
       const results: GemSearchResult[] = [];
 
       for (const gem of availableGems.value) {
-        // Check name match
-        if (gem.name?.toLowerCase().includes(lowerQuery)) {
+        if (gem.name?.toLowerCase().startsWith(lowerQuery)) {
           results.push({
             gem,
             matchType: 'name',
             matchText: gem.name,
           });
-          continue; // Skip tag check if name matches
-        }
-
-        // Check tag match
-        const matchingTag = gem.tags?.find((tag) => tag.toLowerCase().includes(lowerQuery));
-        if (matchingTag) {
-          results.push({
-            gem,
-            matchType: 'tag',
-            matchText: matchingTag,
-          });
         }
       }
 
       gemSearchResults.value = results.slice(0, MAX_SEARCH_RESULTS);
-    } else {
-      gemSearchResults.value = [];
+      return;
     }
+
+    // Use n-gram index for longer queries
+    const searchResults = gemSearchIndex.search(query, { limit: MAX_SEARCH_RESULTS });
+
+    // Convert search results to GemSearchResult format
+    const results: GemSearchResult[] = [];
+    for (const result of searchResults) {
+      const gem = gemsById.get(result.id);
+      if (!gem) continue;
+
+      results.push({
+        gem,
+        matchType: result.matchedField === 'name' ? 'name' : 'tag',
+        matchText: result.matchedText,
+      });
+    }
+
+    gemSearchResults.value = results;
   }
 
-  /** Set available gems */
+  /**
+   * Set available gems and build the search index.
+   */
   function setAvailableGems(gems: Gem[]): void {
     availableGems.value = gems;
+
+    // Build lookup map
+    gemsById.clear();
+    for (const gem of gems) {
+      gemsById.set(gem.id, gem);
+    }
+
+    // Build search index
+    const documents: SearchableDocument[] = gems.map((gem) => ({
+      id: gem.id,
+      type: 'gem' as const,
+      fields: {
+        name: gem.name ?? '',
+        tags: gem.tags?.join(' ') ?? '',
+      },
+    }));
+
+    gemSearchIndex.build(documents);
   }
 
   /** Set loading state */
