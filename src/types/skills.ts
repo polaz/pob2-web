@@ -148,8 +148,21 @@ export interface Skill {
 
   /**
    * Support gem family grouping.
-   * Note: Skills data stores this as an array, while Gem.family in gems.ts
-   * is a single string. The extraction preserves the array format from PoB.
+   *
+   * **Type Difference**: Skills data stores this as an array (string[]), while
+   * `Gem.family` in gems.ts is a single string. This difference exists because:
+   * - PoB's Lua source uses array tables for gemFamily (e.g., `{ "Damage" }`)
+   * - The extraction preserves this array format for accuracy
+   * - Most skills have 0-1 family entries, but the array allows for edge cases
+   *
+   * When comparing gem/skill families, use the `matchesGemFamily()` utility:
+   * @example
+   * ```typescript
+   * // Check if skill belongs to a gem's family
+   * const matches = matchesGemFamily(skill.gemFamily, gem.family);
+   * ```
+   *
+   * @see matchesGemFamily in src/utils/skills.ts for safe comparison
    */
   gemFamily?: string[];
 

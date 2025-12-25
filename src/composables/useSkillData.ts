@@ -340,9 +340,9 @@ export function useSkillData() {
    * Get stat values for a skill at a specific level.
    *
    * @param skill - The skill
-   * @param level - The gem level (1-40)
+   * @param level - The gem level (1-40), must be a positive integer
    * @param statSetIndex - The stat set index (0 for primary, 1+ for variants)
-   * @returns Map of stat name to value, or undefined
+   * @returns Map of stat name to value, or undefined if statSet/level invalid
    */
   function getStatValues(
     skill: Skill,
@@ -352,24 +352,49 @@ export function useSkillData() {
     const statSet = skill.statSets?.[statSetIndex];
     if (!statSet) return undefined;
 
+    // Validate level parameter
+    if (!Number.isInteger(level) || level <= 0) {
+      return undefined;
+    }
+
+    const hasLevels = !!statSet.levels && Object.keys(statSet.levels).length > 0;
+
+    // When level-based data exists, validate the requested level exists
+    if (hasLevels) {
+      const levelData = statSet.levels![String(level)];
+      if (!levelData) {
+        return undefined;
+      }
+
+      const result = new Map<string, number>();
+
+      // Add constant stats
+      if (statSet.constantStats) {
+        for (const { stat, value } of statSet.constantStats) {
+          result.set(stat, value);
+        }
+      }
+
+      // Add level-based stats
+      if (statSet.stats) {
+        for (let i = 0; i < statSet.stats.length && i < levelData.values.length; i++) {
+          const statName = statSet.stats[i];
+          const value = levelData.values[i];
+          if (statName && value !== undefined) {
+            result.set(statName, value);
+          }
+        }
+      }
+
+      return result;
+    }
+
+    // Stat set has no level-based data: return constant stats only
     const result = new Map<string, number>();
 
-    // Add constant stats
     if (statSet.constantStats) {
       for (const { stat, value } of statSet.constantStats) {
         result.set(stat, value);
-      }
-    }
-
-    // Add level-based stats
-    const levelData = statSet.levels?.[String(level)];
-    if (levelData && statSet.stats) {
-      for (let i = 0; i < statSet.stats.length && i < levelData.values.length; i++) {
-        const statName = statSet.stats[i];
-        const value = levelData.values[i];
-        if (statName && value !== undefined) {
-          result.set(statName, value);
-        }
       }
     }
 
