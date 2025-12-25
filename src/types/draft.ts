@@ -78,19 +78,6 @@ export type GemDraft = Partial<Gem>;
  */
 export type ItemDraft = Partial<Item>;
 
-/**
- * i18n edit entry.
- * Key format: dot-notation path (e.g., 'gem.fireball.name', 'item.tabula_rasa.description')
- */
-export interface I18nDraft {
-  /** Dot-notation key path */
-  key: string;
-  /** Translated/corrected value */
-  value: string;
-  /** Optional locale if different from current */
-  locale?: string;
-}
-
 // ============================================================================
 // Draft Store State Types
 // ============================================================================
@@ -132,22 +119,6 @@ export interface DraftSnapshot {
 }
 
 // ============================================================================
-// Overlay Result Types
-// ============================================================================
-
-/**
- * Result of applying draft overlay to base data.
- */
-export interface DraftOverlayResult<T> {
-  /** Merged data (base + drafts) */
-  data: T;
-  /** Whether any drafts were applied */
-  hasDrafts: boolean;
-  /** IDs of items that were modified */
-  modifiedIds: Set<string>;
-}
-
-// ============================================================================
 // Utility Types
 // ============================================================================
 
@@ -164,34 +135,4 @@ export function generateCustomNodeId(): string {
  */
 export function isCustomNodeId(id: string): boolean {
   return id.startsWith('custom_');
-}
-
-/**
- * Parse a dot-notation i18n key into its components.
- * @example parseI18nKey('gem.fireball.name') → { type: 'gem', id: 'fireball', field: 'name' }
- */
-export function parseI18nKey(key: string): {
-  type: string;
-  id: string;
-  field: string;
-  rest?: string[];
-} | null {
-  const parts = key.split('.');
-  if (parts.length < 3) {
-    return null;
-  }
-  const [type, id, field, ...rest] = parts;
-  return {
-    type: type!,
-    id: id!,
-    field: field!,
-    ...(rest.length > 0 && { rest }),
-  };
-}
-
-/**
- * Build a dot-notation i18n key from components.
- */
-export function buildI18nKey(type: string, id: string, field: string): string {
-  return `${type}.${id}.${field}`;
 }
