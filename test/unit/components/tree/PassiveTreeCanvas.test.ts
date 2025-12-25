@@ -14,6 +14,7 @@ const mockReady = ref(false);
 const mockError = shallowRef<Error | null>(null);
 const mockRendererType = ref('unknown');
 const mockFps = ref(0);
+const mockFallbackInfo = shallowRef(null);
 const mockLayers = shallowRef(null);
 const mockInit = vi.fn().mockResolvedValue(undefined);
 const mockResize = vi.fn();
@@ -26,6 +27,7 @@ vi.mock('src/composables/usePixiApp', () => ({
     error: mockError,
     rendererType: mockRendererType,
     fps: mockFps,
+    fallbackInfo: mockFallbackInfo,
     layers: mockLayers,
     init: mockInit,
     resize: mockResize,
@@ -47,6 +49,7 @@ describe('PassiveTreeCanvas', () => {
     mockError.value = null;
     mockRendererType.value = 'unknown';
     mockFps.value = 0;
+    mockFallbackInfo.value = null;
     mockLayers.value = null;
   });
 
@@ -179,6 +182,12 @@ describe('PassiveTreeCanvas', () => {
       wrapper = mountComponent();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect((wrapper.vm as any).fps).toBeDefined();
+    });
+
+    it('should expose fallbackInfo ref', () => {
+      wrapper = mountComponent();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).fallbackInfo).toBeDefined();
     });
 
     it('should expose layers ref', () => {

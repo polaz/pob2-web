@@ -2,13 +2,16 @@
   <div ref="containerRef" class="passive-tree-canvas relative full-width full-height overflow-hidden">
     <canvas ref="canvasRef" class="block full-width full-height" />
 
-    <!-- Dev mode FPS counter -->
+    <!-- Dev mode FPS counter with renderer info -->
     <div
       v-if="shouldShowFps && ready"
       class="passive-tree-canvas__fps absolute q-pa-xs text-caption"
       style="top: 8px; right: 8px"
     >
-      {{ fps }} FPS | {{ rendererType.toUpperCase() }}
+      <div>{{ fps }} FPS | {{ rendererType.toUpperCase() }}</div>
+      <div v-if="fallbackReason" class="passive-tree-canvas__fallback text-orange-4">
+        {{ fallbackReason }}
+      </div>
     </div>
 
     <!-- Loading state -->
@@ -49,10 +52,34 @@ const containerRef = shallowRef<HTMLDivElement | null>(null);
 const canvasRef = shallowRef<HTMLCanvasElement | null>(null);
 
 // PixiJS composable
-const { ready, error, rendererType, fps, layers, init, resize } = usePixiApp();
+const { ready, error, rendererType, fps, fallbackInfo, layers, init, resize } = usePixiApp();
 
 // Show FPS only in dev mode when prop is true (reactive to prop changes)
 const shouldShowFps = computed(() => import.meta.env.DEV && (props.showFps ?? true));
+
+// Compute fallback reason message for display
+const fallbackReason = computed(() => {
+  if (!fallbackInfo.value) return null;
+
+  const info = fallbackInfo.value;
+  // If we got the preferred renderer, no fallback occurred
+  if (info.actual === info.preferred) return null;
+
+  // Build a message explaining why we fell back
+  const reasons: string[] = [];
+
+  if (info.webgpuReason && info.actual !== 'webgpu') {
+    reasons.push(`WebGPU: ${info.webgpuReason}`);
+  }
+  if (info.webgl2Reason && info.actual !== 'webgl2' && info.actual !== 'webgpu') {
+    reasons.push(`WebGL2: ${info.webgl2Reason}`);
+  }
+  if (info.webglReason && info.actual === 'canvas') {
+    reasons.push(`WebGL: ${info.webglReason}`);
+  }
+
+  return reasons.length > 0 ? reasons.join(' | ') : null;
+});
 
 // ResizeObserver for responsive sizing
 let resizeObserver: ResizeObserver | null = null;
@@ -114,6 +141,7 @@ defineExpose({
   error,
   rendererType,
   fps,
+  fallbackInfo,
   layers,
 });
 </script>
@@ -132,5 +160,13 @@ defineExpose({
   border-radius: 4px;
   pointer-events: none;
   z-index: 10;
+  max-width: 400px;
+}
+
+/* Fallback reason text - smaller and orange */
+.passive-tree-canvas__fallback {
+  font-size: 10px;
+  margin-top: 2px;
+  opacity: 0.9;
 }
 </style>

@@ -78,6 +78,7 @@ describe('usePixiApp', () => {
     expect(composableResult!.app.value).toBeNull();
     expect(composableResult!.rendererType.value).toBe('unknown');
     expect(composableResult!.fps.value).toBe(0);
+    expect(composableResult!.fallbackInfo.value).toBeNull();
     expect(composableResult!.layers.value).toBeNull();
   });
 
