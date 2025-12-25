@@ -1,0 +1,376 @@
+// src/composables/usePixiApp.ts
+// Composable for PixiJS 8 Application with WebGPU fallback
+
+import { ref, shallowRef, onUnmounted } from 'vue';
+import type { Ref, ShallowRef } from 'vue';
+import { Application, Container } from 'pixi.js';
+import type { Ticker } from 'pixi.js';
+
+/** Renderer type names for display */
+export type RendererType = 'webgpu' | 'webgl2' | 'webgl' | 'canvas' | 'unknown';
+
+/** Fallback reason when preferred renderer is not available */
+export interface FallbackInfo {
+  /** The preferred renderer that was requested */
+  preferred: RendererType;
+  /** The actual renderer that was used */
+  actual: RendererType;
+  /** Reason why WebGPU is not available (if applicable) */
+  webgpuReason?: string;
+  /** Reason why WebGL2 is not available (if applicable) */
+  webgl2Reason?: string;
+  /** Reason why WebGL is not available (if applicable) */
+  webglReason?: string;
+}
+
+/** Container hierarchy for tree rendering layers */
+export interface TreeLayers {
+  /** Background layer (grid, background image) */
+  background: Container;
+  /** Connection layer (lines between nodes) */
+  connections: Container;
+  /** Node layer (passive tree nodes) */
+  nodes: Container;
+  /** UI overlay layer (hover effects, selection) */
+  ui: Container;
+}
+
+/** Result of usePixiApp composable */
+export interface UsePixiAppResult {
+  /** Whether the app is ready to use */
+  readonly ready: Ref<boolean>;
+  /** Error during initialization (if any) */
+  readonly error: ShallowRef<Error | null>;
+  /** The PixiJS Application instance */
+  readonly app: ShallowRef<Application | null>;
+  /** Current renderer type */
+  readonly rendererType: Ref<RendererType>;
+  /** Current FPS (updated each frame, dev mode only) */
+  readonly fps: Ref<number>;
+  /** Fallback info showing why preferred renderer wasn't used (dev mode only) */
+  readonly fallbackInfo: ShallowRef<FallbackInfo | null>;
+  /** Tree rendering layers */
+  readonly layers: ShallowRef<TreeLayers | null>;
+  /** Initialize the application */
+  init: (canvas: HTMLCanvasElement) => Promise<void>;
+  /** Resize the application */
+  resize: (width: number, height: number) => void;
+  /** Destroy the application */
+  destroy: () => void;
+}
+
+/** Check if we're in development mode */
+const isDev = import.meta.env.DEV;
+
+/** FPS update interval in milliseconds */
+const FPS_UPDATE_INTERVAL_MS = 500;
+
+/**
+ * Default background color for the passive tree canvas.
+ * This dark blue (#1a1a2e) matches the PoE2 visual style and provides
+ * good contrast for tree nodes and connections.
+ */
+const CANVAS_BACKGROUND_COLOR = 0x1a1a2e;
+
+/** Result of renderer availability detection */
+interface RendererAvailability {
+  webgpuAvailable: boolean;
+  webgpuReason?: string;
+  webgl2Available: boolean;
+  webgl2Reason?: string;
+  webglAvailable: boolean;
+  webglReason?: string;
+}
+
+/**
+ * Detect renderer availability and reasons for unavailability.
+ * Returns detailed info about what's available and why fallbacks might occur.
+ */
+function detectRendererAvailability(): RendererAvailability {
+  // Check WebGPU availability
+  const webgpuAvailable = typeof navigator !== 'undefined' && 'gpu' in navigator;
+  const webgpuReason = webgpuAvailable
+    ? undefined
+    : 'navigator.gpu not available (browser does not support WebGPU)';
+
+  // Check WebGL2 availability
+  let webgl2Available = false;
+  let webgl2Reason: string | undefined;
+  try {
+    const testCanvas = document.createElement('canvas');
+    const gl2 = testCanvas.getContext('webgl2');
+    if (gl2) {
+      webgl2Available = true;
+    } else {
+      webgl2Reason = 'WebGL2 context creation failed';
+    }
+  } catch (e) {
+    webgl2Reason = `WebGL2 error: ${e instanceof Error ? e.message : String(e)}`;
+  }
+
+  // Check WebGL availability
+  let webglAvailable = false;
+  let webglReason: string | undefined;
+  try {
+    const testCanvas = document.createElement('canvas');
+    const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+    if (gl) {
+      webglAvailable = true;
+    } else {
+      webglReason = 'WebGL context creation failed';
+    }
+  } catch (e) {
+    webglReason = `WebGL error: ${e instanceof Error ? e.message : String(e)}`;
+  }
+
+  return {
+    webgpuAvailable,
+    webgl2Available,
+    webglAvailable,
+    // Only include reason properties if they have values (exactOptionalPropertyTypes)
+    ...(webgpuReason && { webgpuReason }),
+    ...(webgl2Reason && { webgl2Reason }),
+    ...(webglReason && { webglReason }),
+  };
+}
+
+/**
+ * Detect the renderer type from a PixiJS Application.
+ */
+function detectRendererType(app: Application): RendererType {
+  const renderer = app.renderer;
+  // PixiJS 8 uses renderer.name or we can check the constructor name
+  const name = renderer.constructor.name.toLowerCase();
+
+  if (name.includes('webgpu')) return 'webgpu';
+  if (name.includes('webgl2') || name.includes('gl2')) return 'webgl2';
+  if (name.includes('webgl') || name.includes('gl')) return 'webgl';
+  if (name.includes('canvas')) return 'canvas';
+  return 'unknown';
+}
+
+/**
+ * Create tree rendering layers in the correct z-order.
+ * Layers are added to the stage from bottom to top.
+ */
+function createTreeLayers(stage: Container): TreeLayers {
+  const background = new Container();
+  background.label = 'background';
+
+  const connections = new Container();
+  connections.label = 'connections';
+
+  const nodes = new Container();
+  nodes.label = 'nodes';
+
+  const ui = new Container();
+  ui.label = 'ui';
+
+  // Add in z-order (first added = bottom)
+  stage.addChild(background);
+  stage.addChild(connections);
+  stage.addChild(nodes);
+  stage.addChild(ui);
+
+  return { background, connections, nodes, ui };
+}
+
+/**
+ * Composable for PixiJS Application with WebGPU fallback.
+ *
+ * Creates a PixiJS 8 Application with WebGPU as preferred renderer,
+ * falling back to WebGL2 → WebGL → Canvas as needed.
+ *
+ * @example
+ * ```typescript
+ * const { ready, app, layers, init, resize, destroy } = usePixiApp();
+ *
+ * onMounted(async () => {
+ *   await init(canvasRef.value);
+ *   // App is ready, layers are available
+ * });
+ *
+ * onUnmounted(() => {
+ *   destroy();
+ * });
+ * ```
+ */
+export function usePixiApp(): UsePixiAppResult {
+  const ready = ref(false);
+  const error = shallowRef<Error | null>(null);
+  const app = shallowRef<Application | null>(null);
+  const rendererType = ref<RendererType>('unknown');
+  const fps = ref(0);
+  const fallbackInfo = shallowRef<FallbackInfo | null>(null);
+  const layers = shallowRef<TreeLayers | null>(null);
+
+  let lastFpsUpdateTime = 0;
+  let frameCount = 0;
+  let fpsTickerCallback: ((ticker: Ticker) => void) | null = null;
+  let isInitializing = false;
+
+  /**
+   * Initialize the PixiJS Application.
+   *
+   * @param canvas - The canvas element to render to
+   * @throws Error if canvas is null or invalid
+   */
+  async function init(canvas: HTMLCanvasElement): Promise<void> {
+    // Prevent race condition: check both initialized and initializing states
+    if (app.value) {
+      console.warn('[usePixiApp] Already initialized');
+      return;
+    }
+    if (isInitializing) {
+      console.warn('[usePixiApp] Initialization already in progress');
+      return;
+    }
+
+    // Validate canvas parameter
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
+      const err = new Error('[usePixiApp] Invalid canvas element provided');
+      error.value = err;
+      console.error(err.message);
+      return;
+    }
+
+    isInitializing = true;
+
+    try {
+      const pixiApp = new Application();
+
+      // Note: resizeTo is intentionally not set here.
+      // Resize is handled manually by the component via ResizeObserver
+      // to avoid conflicts and give more control over resize behavior.
+      await pixiApp.init({
+        canvas,
+        preference: 'webgpu',
+        powerPreference: 'high-performance',
+        antialias: true,
+        resolution: window.devicePixelRatio || 1,
+        autoDensity: true,
+        backgroundColor: CANVAS_BACKGROUND_COLOR,
+      });
+
+      app.value = pixiApp;
+      rendererType.value = detectRendererType(pixiApp);
+      layers.value = createTreeLayers(pixiApp.stage);
+
+      // Build fallback info in dev mode
+      if (isDev) {
+        const availability = detectRendererAvailability();
+        const info: FallbackInfo = {
+          preferred: 'webgpu',
+          actual: rendererType.value,
+        };
+
+        // Add reasons for unavailable renderers
+        if (!availability.webgpuAvailable && availability.webgpuReason) {
+          info.webgpuReason = availability.webgpuReason;
+        }
+        if (!availability.webgl2Available && availability.webgl2Reason) {
+          info.webgl2Reason = availability.webgl2Reason;
+        }
+        if (!availability.webglAvailable && availability.webglReason) {
+          info.webglReason = availability.webglReason;
+        }
+
+        fallbackInfo.value = info;
+      }
+
+      // Setup FPS monitoring in dev mode
+      if (isDev) {
+        lastFpsUpdateTime = performance.now();
+        frameCount = 0;
+
+        fpsTickerCallback = () => {
+          frameCount++;
+          const now = performance.now();
+          const elapsed = now - lastFpsUpdateTime;
+
+          if (elapsed >= FPS_UPDATE_INTERVAL_MS) {
+            fps.value = Math.round((frameCount * 1000) / elapsed);
+            frameCount = 0;
+            lastFpsUpdateTime = now;
+          }
+        };
+        pixiApp.ticker.add(fpsTickerCallback);
+      }
+
+      ready.value = true;
+
+      if (isDev) {
+        console.log(`[usePixiApp] Initialized with ${rendererType.value} renderer`);
+      }
+    } catch (e) {
+      error.value = e instanceof Error ? e : new Error(String(e));
+      console.error('[usePixiApp] Initialization failed:', e);
+    } finally {
+      isInitializing = false;
+    }
+  }
+
+  /**
+   * Resize the application to the given dimensions.
+   *
+   * @param width - New width in CSS pixels (must be positive)
+   * @param height - New height in CSS pixels (must be positive)
+   */
+  function resize(width: number, height: number): void {
+    if (!app.value) return;
+
+    // Validate dimensions to prevent rendering issues
+    if (width <= 0 || height <= 0 || !Number.isFinite(width) || !Number.isFinite(height)) {
+      if (isDev) {
+        console.warn(`[usePixiApp] Invalid resize dimensions: ${width}x${height}`);
+      }
+      return;
+    }
+
+    app.value.renderer.resize(width, height);
+  }
+
+  /**
+   * Destroy the application and clean up resources.
+   * Resets all state to initial values for potential re-initialization.
+   */
+  function destroy(): void {
+    // Explicitly remove FPS ticker callback before destroying app
+    if (fpsTickerCallback && app.value) {
+      app.value.ticker.remove(fpsTickerCallback);
+      fpsTickerCallback = null;
+    }
+
+    if (app.value) {
+      app.value.destroy(true, { children: true, texture: true });
+      app.value = null;
+    }
+
+    // Reset all state to initial values
+    layers.value = null;
+    ready.value = false;
+    error.value = null;
+    rendererType.value = 'unknown';
+    fps.value = 0;
+    fallbackInfo.value = null;
+    isInitializing = false;
+  }
+
+  // Clean up on unmount
+  onUnmounted(() => {
+    destroy();
+  });
+
+  return {
+    ready,
+    error,
+    app,
+    rendererType,
+    fps,
+    fallbackInfo,
+    layers,
+    init,
+    resize,
+    destroy,
+  };
+}

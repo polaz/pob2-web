@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/polaz/pob2-web/compare/v1.12.0...v1.13.0) (2025-12-25)
+
+
+### Features
+
+* **tree:** setup PixiJS 8 canvas with WebGPU fallback ([#101](https://github.com/polaz/pob2-web/issues/101)) ([2ba2621](https://github.com/polaz/pob2-web/commit/2ba2621b91b0086681065253f2d68ee7392686df)), closes [#14](https://github.com/polaz/pob2-web/issues/14)
+
 # [1.12.0](https://github.com/polaz/pob2-web/compare/v1.11.0...v1.12.0) (2025-12-25)
 
 
