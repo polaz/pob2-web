@@ -1,0 +1,730 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:56.940Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "flask",
+  "meta": {
+    "totalItems": 15,
+    "itemsWithVariants": 3,
+    "totalEntries": 26,
+    "byType": {
+      "Flask": 15
+    }
+  },
+  "uniques": {
+    "blood-of-the-warrior": {
+      "id": "blood-of-the-warrior",
+      "name": "Blood of the Warrior",
+      "baseType": "Gargantuan Life Flask",
+      "baseTypeId": "gargantuan-life-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "90% less Life Recovered",
+          "value": 90
+        },
+        {
+          "text": "Effect is not removed when Unreserved Life is Filled"
+        },
+        {
+          "text": "(15-30)% of Damage taken during effect Recouped as Life",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Gain (3-5) Rage when Hit by an Enemy during effect",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "No Inherent loss of Rage during effect"
+        },
+        {
+          "text": "(25-50)% increased Duration",
+          "min": 25,
+          "max": 50
+        }
+      ]
+    },
+    "olroth-s-resolve-pre-0-4-0": {
+      "id": "olroth-s-resolve-pre-0-4-0",
+      "name": "Olroth's Resolve",
+      "baseType": "Ultimate Life Flask",
+      "baseTypeId": "ultimate-life-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Instant Recovery"
+        },
+        {
+          "text": "(100-150)% increased Charges per use",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Excess Life Recovery added as Guard for 10 seconds"
+        }
+      ],
+      "variantGroup": "olroth-s-resolve",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "olroth-s-resolve-current": {
+      "id": "olroth-s-resolve-current",
+      "name": "Olroth's Resolve",
+      "baseType": "Ultimate Life Flask",
+      "baseTypeId": "ultimate-life-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Instant Recovery"
+        },
+        {
+          "text": "(100-150)% increased Charges per use",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Excess Life Recovery added as Guard for 20 seconds"
+        }
+      ],
+      "variantGroup": "olroth-s-resolve",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "melting-maelstrom-pre-0-2-0": {
+      "id": "melting-maelstrom-pre-0-2-0",
+      "name": "Melting Maelstrom",
+      "baseType": "Ultimate Mana Flask",
+      "baseTypeId": "ultimate-mana-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "Effect is not removed when Unreserved Mana is Filled"
+        },
+        {
+          "text": "(200-250)% increased Duration",
+          "min": 200,
+          "max": 250
+        },
+        {
+          "text": "Every 3 seconds during Effect, deal 50% of Mana spent in those seconds as Chaos Damage to Enemies within 3 metres"
+        },
+        {
+          "text": "Recover all Mana when Used"
+        },
+        {
+          "text": "Deals 25% of current Mana as Chaos Damage to you when Effect ends"
+        }
+      ],
+      "variantGroup": "melting-maelstrom",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "melting-maelstrom-pre-0-4-0": {
+      "id": "melting-maelstrom-pre-0-4-0",
+      "name": "Melting Maelstrom",
+      "baseType": "Ultimate Mana Flask",
+      "baseTypeId": "ultimate-mana-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "Effect is not removed when Unreserved Mana is Filled"
+        },
+        {
+          "text": "(200-250)% increased Duration",
+          "min": 200,
+          "max": 250
+        },
+        {
+          "text": "Every 3 seconds during Effect, deal 50% of Mana spent in those seconds as Chaos Damage to Enemies within 3 metres"
+        },
+        {
+          "text": "Deals 25% of current Mana as Chaos Damage to you when Effect ends"
+        }
+      ],
+      "variantGroup": "melting-maelstrom",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "melting-maelstrom-current": {
+      "id": "melting-maelstrom-current",
+      "name": "Melting Maelstrom",
+      "baseType": "Ultimate Mana Flask",
+      "baseTypeId": "ultimate-mana-flask",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "Effect is not removed when Unreserved Mana is Filled"
+        },
+        {
+          "text": "(200-250)% increased Duration",
+          "min": 200,
+          "max": 250
+        },
+        {
+          "text": "Every 3 seconds during Effect, deal 100% of Mana spent in those seconds as Chaos Damage to Enemies within 3 metres"
+        },
+        {
+          "text": "Deals 25% of current Mana as Chaos Damage to you when Effect ends"
+        }
+      ],
+      "variantGroup": "melting-maelstrom",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "arakaali-s-gift": {
+      "id": "arakaali-s-gift",
+      "name": "Arakaali's Gift",
+      "baseType": "Antidote Charm",
+      "baseTypeId": "antidote-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you become Poisoned",
+          "implicit": true
+        },
+        {
+          "text": "Recover Life equal to (15-20)% of Mana Flask's Recovery Amount when used",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "Recover Mana equal to (15-20)% of Life Flask's Recovery Amount when used",
+          "min": 15,
+          "max": 20
+        }
+      ]
+    },
+    "beira-s-anguish": {
+      "id": "beira-s-anguish",
+      "name": "Beira's Anguish",
+      "baseType": "Dousing Charm",
+      "baseTypeId": "dousing-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you become Ignited",
+          "implicit": true
+        },
+        {
+          "text": "(20-25)% Chance to gain a Charge when you kill an enemy",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "Creates Ignited Ground for 4 seconds when used, Igniting enemies as though dealing Fire damage equal to 500% of your maximum Life"
+        }
+      ]
+    },
+    "the-black-cat": {
+      "id": "the-black-cat",
+      "name": "The Black Cat",
+      "baseType": "Grounding Charm",
+      "baseTypeId": "grounding-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you become Shocked",
+          "implicit": true
+        },
+        {
+          "text": "(10-20)% increased Duration",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Lightning Damage of Enemies Hitting you is Unlucky during effect"
+        }
+      ]
+    },
+    "breath-of-the-mountains": {
+      "id": "breath-of-the-mountains",
+      "name": "Breath of the Mountains",
+      "baseType": "Sapphire Charm",
+      "baseTypeId": "sapphire-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you take Cold damage from a Hit",
+          "implicit": true
+        },
+        {
+          "text": "(10-15)% reduced Charges per use",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Grants a Power Charge on use"
+        }
+      ]
+    },
+    "the-fall-of-the-axe": {
+      "id": "the-fall-of-the-axe",
+      "name": "The Fall of the Axe",
+      "baseType": "Silver Charm",
+      "baseTypeId": "silver-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you are affected by a Slow",
+          "implicit": true
+        },
+        {
+          "text": "Grants Onslaught during effect"
+        }
+      ]
+    },
+    "for-utopia": {
+      "id": "for-utopia",
+      "name": "For Utopia",
+      "baseType": "Stone Charm",
+      "baseTypeId": "stone-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "modifiers": [
+        {
+          "text": "Used when you become Stunned",
+          "implicit": true
+        },
+        {
+          "text": "Defend with 200% of Armour during effect"
+        }
+      ]
+    },
+    "forsaken-bangle": {
+      "id": "forsaken-bangle",
+      "name": "Forsaken Bangle",
+      "baseType": "Amethyst Charm",
+      "baseTypeId": "amethyst-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you take Chaos damage from a Hit",
+          "implicit": true
+        },
+        {
+          "text": "(15-25)% increased Duration",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "50% of Chaos damage you prevent when Hit Recouped as Life and Mana during effect",
+          "value": 50
+        }
+      ]
+    },
+    "nascent-hope": {
+      "id": "nascent-hope",
+      "name": "Nascent Hope",
+      "baseType": "Thawing Charm",
+      "baseTypeId": "thawing-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you become Frozen",
+          "implicit": true
+        },
+        {
+          "text": "(20-25)% Chance to gain a Charge when you kill an enemy",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "Energy Shield Recharge starts on use"
+        }
+      ]
+    },
+    "ngamahu-s-chosen": {
+      "id": "ngamahu-s-chosen",
+      "name": "Ngamahu's Chosen",
+      "baseType": "Ruby Charm",
+      "baseTypeId": "ruby-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you take Fire damage from a Hit",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Charges",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Grants up to your maximum Rage on use"
+        }
+      ]
+    },
+    "rite-of-passage-owl": {
+      "id": "rite-of-passage-owl",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Owl for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "owl",
+      "variantName": "Owl"
+    },
+    "rite-of-passage-serpent": {
+      "id": "rite-of-passage-serpent",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Serpent for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "serpent",
+      "variantName": "Serpent"
+    },
+    "rite-of-passage-primate": {
+      "id": "rite-of-passage-primate",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Primate for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "primate",
+      "variantName": "Primate"
+    },
+    "rite-of-passage-bear": {
+      "id": "rite-of-passage-bear",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Bear for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "bear",
+      "variantName": "Bear"
+    },
+    "rite-of-passage-boar": {
+      "id": "rite-of-passage-boar",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Boar for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "boar",
+      "variantName": "Boar"
+    },
+    "rite-of-passage-ox": {
+      "id": "rite-of-passage-ox",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Ox for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "ox",
+      "variantName": "Ox"
+    },
+    "rite-of-passage-wolf": {
+      "id": "rite-of-passage-wolf",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Wolf for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "wolf",
+      "variantName": "Wolf"
+    },
+    "rite-of-passage-stag": {
+      "id": "rite-of-passage-stag",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Stag for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "stag",
+      "variantName": "Stag"
+    },
+    "rite-of-passage-cat": {
+      "id": "rite-of-passage-cat",
+      "name": "Rite of Passage",
+      "baseType": "Golden Charm",
+      "baseTypeId": "golden-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "15% increased Rarity of Items found",
+          "implicit": true,
+          "value": 15
+        },
+        {
+          "text": "Used when you kill a Rare or Unique enemy"
+        },
+        {
+          "text": "Possessed by Spirit Of The Cat for (10-20) seconds on use",
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "rite-of-passage",
+      "variantId": "cat",
+      "variantName": "Cat",
+      "isDefaultVariant": true
+    },
+    "sanguis-heroum": {
+      "id": "sanguis-heroum",
+      "name": "Sanguis Heroum",
+      "baseType": "Staunching Charm",
+      "baseTypeId": "staunching-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you start Bleeding",
+          "implicit": true
+        },
+        {
+          "text": "Gains (0.15-0.2) Charges per Second",
+          "min": 0.15,
+          "max": 0.2
+        },
+        {
+          "text": "Creates Consecrated Ground on use"
+        }
+      ]
+    },
+    "valako-s-roar": {
+      "id": "valako-s-roar",
+      "name": "Valako's Roar",
+      "baseType": "Topaz Charm",
+      "baseTypeId": "topaz-charm",
+      "itemType": "Flask",
+      "category": "flasks",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Used when you take Lightning damage from a Hit",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Charges gained",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Grants a Frenzy Charge on use"
+        }
+      ]
+    }
+  }
+}

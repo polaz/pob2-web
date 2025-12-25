@@ -24,3 +24,6 @@ export * from './mods';
 
 // Internationalization types
 export * from './i18n';
+
+// Unique item data types
+export * from './uniques';

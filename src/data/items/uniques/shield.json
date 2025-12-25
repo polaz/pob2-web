@@ -1,0 +1,2297 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:55.561Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "shield",
+  "meta": {
+    "totalItems": 28,
+    "itemsWithVariants": 16,
+    "totalEntries": 60,
+    "byType": {
+      "Shield": 28
+    }
+  },
+  "uniques": {
+    "chernobog-s-pillar": {
+      "id": "chernobog-s-pillar",
+      "name": "Chernobog's Pillar",
+      "baseType": "Blacksteel Tower Shield",
+      "baseTypeId": "blacksteel-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(30-40)% to Fire Resistance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(23-29)% to Chaos Resistance",
+          "min": 23,
+          "max": 29
+        },
+        {
+          "text": "+(150-200) to Stun Threshold",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "Gain 1% of damage as Fire damage per 1% Chance to Block"
+        }
+      ]
+    },
+    "dionadair-pre-0-1-1": {
+      "id": "dionadair-pre-0-1-1",
+      "name": "Dionadair",
+      "baseType": "Splintered Tower Shield",
+      "baseTypeId": "splintered-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(60-80)% increased Armour",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "30% increased Stun Threshold",
+          "value": 30
+        },
+        {
+          "text": "Double Stun Threshold while Shield is Raised"
+        }
+      ],
+      "variantGroup": "dionadair",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "dionadair-current": {
+      "id": "dionadair-current",
+      "name": "Dionadair",
+      "baseType": "Splintered Tower Shield",
+      "baseTypeId": "splintered-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(60-80)% increased Armour",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(3-5) Life Regeneration per second",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "20% reduced Stun Threshold",
+          "value": 20
+        },
+        {
+          "text": "Double Stun Threshold while Shield is Raised"
+        }
+      ],
+      "variantGroup": "dionadair",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "doomgate-pre-0-1-1": {
+      "id": "doomgate-pre-0-1-1",
+      "name": "Doomgate",
+      "baseType": "Braced Tower Shield",
+      "baseTypeId": "braced-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "80% increased Block chance",
+          "value": 80
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "You take 20% of damage from Blocked Hits"
+        },
+        {
+          "text": "Enemies are Culled on Block"
+        }
+      ],
+      "variantGroup": "doomgate",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "doomgate-pre-0-3-0": {
+      "id": "doomgate-pre-0-3-0",
+      "name": "Doomgate",
+      "baseType": "Braced Tower Shield",
+      "baseTypeId": "braced-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "80% increased Block chance",
+          "value": 80
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "You take 20% of damage from Blocked Hits"
+        },
+        {
+          "text": "Enemies are Culled on Block"
+        }
+      ],
+      "variantGroup": "doomgate",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "doomgate-current": {
+      "id": "doomgate-current",
+      "name": "Doomgate",
+      "baseType": "Braced Tower Shield",
+      "baseTypeId": "braced-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(80-100)% increased Block chance",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "You take (25-40)% of damage from Blocked Hits",
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Enemies are Culled on Block"
+        }
+      ],
+      "variantGroup": "doomgate",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "lycosidae-pre-0-1-1": {
+      "id": "lycosidae-pre-0-1-1",
+      "name": "Lycosidae",
+      "baseType": "Rampart Tower Shield",
+      "baseTypeId": "rampart-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Block chance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Accuracy Rating is Doubled"
+        },
+        {
+          "text": "Blocking Damage Poisons the Enemy as though dealing 100 Base Chaos Damage"
+        }
+      ],
+      "variantGroup": "lycosidae",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "lycosidae-pre-0-3-0": {
+      "id": "lycosidae-pre-0-3-0",
+      "name": "Lycosidae",
+      "baseType": "Rampart Tower Shield",
+      "baseTypeId": "rampart-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Block chance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Accuracy Rating is Doubled"
+        },
+        {
+          "text": "Blocking Damage Poisons the Enemy as though dealing 200 Base Chaos Damage"
+        }
+      ],
+      "variantGroup": "lycosidae",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "lycosidae-current": {
+      "id": "lycosidae-current",
+      "name": "Lycosidae",
+      "baseType": "Rampart Tower Shield",
+      "baseTypeId": "rampart-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(10-15)% increased Block chance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Accuracy Rating is Doubled"
+        },
+        {
+          "text": "Blocking Damage Poisons the Enemy as though dealing 200 Base Chaos Damage"
+        }
+      ],
+      "variantGroup": "lycosidae",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "redblade-banner-pre-0-3-0": {
+      "id": "redblade-banner-pre-0-3-0",
+      "name": "Redblade Banner",
+      "baseType": "Heraldric Tower Shield",
+      "baseTypeId": "heraldric-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(20-30)% increased Block chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Enemies in your Presence count as having double Power"
+        }
+      ],
+      "variantGroup": "redblade-banner",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "redblade-banner-current": {
+      "id": "redblade-banner-current",
+      "name": "Redblade Banner",
+      "baseType": "Heraldric Tower Shield",
+      "baseTypeId": "heraldric-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(10-15)% increased Block chance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Enemies in your Presence count as having double Power"
+        }
+      ],
+      "variantGroup": "redblade-banner",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-surrender-pre-0-4-0": {
+      "id": "the-surrender-pre-0-4-0",
+      "name": "The Surrender",
+      "baseType": "{variant:1}Stone Tower Shield",
+      "baseTypeId": "variant-1-stone-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(40-60)% increased Block chance",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(150-200)% increased Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(150-200) to Stun Threshold",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "Recover 4% of maximum Life when you Block"
+        }
+      ],
+      "variantGroup": "the-surrender",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-surrender-current": {
+      "id": "the-surrender-current",
+      "name": "The Surrender",
+      "baseType": "{variant:1}Stone Tower Shield",
+      "baseTypeId": "variant-1-stone-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Vaal Tower Shield"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(40-60)% increased Block chance",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(150-200)% increased Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(150-200) to Stun Threshold",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "Recover 4% of maximum Life when you Block"
+        }
+      ],
+      "variantGroup": "the-surrender",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "svalinn-pre-0-3-0": {
+      "id": "svalinn-pre-0-3-0",
+      "name": "Svalinn",
+      "baseType": "Crucible Tower Shield",
+      "baseTypeId": "crucible-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "Grants Skill: Cast on Block",
+          "implicit": true
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "-(20-10)% to maximum Block chance",
+          "min": 20,
+          "max": 10
+        },
+        {
+          "text": "Chance to Block Damage is Lucky"
+        }
+      ],
+      "variantGroup": "svalinn",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "svalinn-pre-0-4-0": {
+      "id": "svalinn-pre-0-4-0",
+      "name": "Svalinn",
+      "baseType": "Crucible Tower Shield",
+      "baseTypeId": "crucible-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "Grants Skill: Cast on Block",
+          "implicit": true
+        },
+        {
+          "text": "(150-200)% increased Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "Chance to Block Damage is Lucky"
+        },
+        {
+          "text": "You take (15-20)% of damage from Blocked Hits",
+          "min": 15,
+          "max": 20
+        }
+      ],
+      "variantGroup": "svalinn",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "svalinn-current": {
+      "id": "svalinn-current",
+      "name": "Svalinn",
+      "baseType": "Crucible Tower Shield",
+      "baseTypeId": "crucible-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "Grants Skill: Cast on Block",
+          "implicit": true
+        },
+        {
+          "text": "(200-300)% increased Armour",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "Chance to Block Damage is Lucky"
+        },
+        {
+          "text": "You take (0-20)% of damage from Blocked Hits",
+          "min": 0,
+          "max": 20
+        }
+      ],
+      "variantGroup": "svalinn",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-wailing-wall": {
+      "id": "the-wailing-wall",
+      "name": "The Wailing Wall",
+      "baseType": "Effigial Tower Shield",
+      "baseTypeId": "effigial-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "10% reduced Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Cannot use Shield Skills"
+        }
+      ]
+    },
+    "window-to-paradise": {
+      "id": "window-to-paradise",
+      "name": "Window to Paradise",
+      "baseType": "Barricade Tower Shield",
+      "baseTypeId": "barricade-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(60-120)% increased Armour",
+          "min": 60,
+          "max": 120
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-15)% to all Elemental Resistances",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Inflict Elemental Exposure to Enemies 3 metres in front of you"
+        },
+        {
+          "text": "for 4 seconds, every 0.25 seconds while raised"
+        }
+      ]
+    },
+    "wulfsbane": {
+      "id": "wulfsbane",
+      "name": "Wulfsbane",
+      "baseType": "Painted Tower Shield",
+      "baseTypeId": "painted-tower-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Permanently Intimidate enemies on Block"
+        }
+      ]
+    },
+    "bloodbarrier-pre-0-3-0": {
+      "id": "bloodbarrier-pre-0-3-0",
+      "name": "Bloodbarrier",
+      "baseType": "Iron Buckler",
+      "baseTypeId": "iron-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(20-30)% increased Block chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "(5-10) Life Regeneration per second",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Inflict Corrupted Blood for 5 seconds on Block, dealing 50% of"
+        },
+        {
+          "text": "your maximum Life as Physical damage per second"
+        }
+      ],
+      "variantGroup": "bloodbarrier",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "bloodbarrier-current": {
+      "id": "bloodbarrier-current",
+      "name": "Bloodbarrier",
+      "baseType": "Iron Buckler",
+      "baseTypeId": "iron-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(10-15)% increased Block chance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "(5-10) Life Regeneration per second",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Inflict Corrupted Blood for 5 seconds on Block, dealing 50% of"
+        },
+        {
+          "text": "your maximum Life as Physical damage per second"
+        }
+      ],
+      "variantGroup": "bloodbarrier",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "calgyra-s-arc": {
+      "id": "calgyra-s-arc",
+      "name": "Calgyra's Arc",
+      "baseType": "Ornate Buckler",
+      "baseTypeId": "ornate-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(60-100)% increased Evasion Rating",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Infinite Parry Range"
+        },
+        {
+          "text": "50% increased Parried Debuff Duration",
+          "value": 50
+        }
+      ]
+    },
+    "dunkelhalt-pre-0-3-0": {
+      "id": "dunkelhalt-pre-0-3-0",
+      "name": "Dunkelhalt",
+      "baseType": "Leather Buckler",
+      "baseTypeId": "leather-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(30-50)% increased Block chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(20-30) to Evasion Rating",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "You take 50% of damage from Blocked Hits"
+        },
+        {
+          "text": "50% increased Parried Debuff Magnitude",
+          "value": 50
+        }
+      ],
+      "variantGroup": "dunkelhalt",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "dunkelhalt-current": {
+      "id": "dunkelhalt-current",
+      "name": "Dunkelhalt",
+      "baseType": "Leather Buckler",
+      "baseTypeId": "leather-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(20-30)% increased Block chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Evasion Rating",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "You take 50% of damage from Blocked Hits"
+        },
+        {
+          "text": "50% increased Parried Debuff Magnitude",
+          "value": 50
+        }
+      ],
+      "variantGroup": "dunkelhalt",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "kaltenhalt": {
+      "id": "kaltenhalt",
+      "name": "Kaltenhalt",
+      "baseType": "Ridged Buckler",
+      "baseTypeId": "ridged-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(80-120)% increased Evasion Rating",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+5% to Maximum Cold Resistance",
+          "value": 5
+        },
+        {
+          "text": "+40% to Cold Resistance",
+          "value": 40
+        },
+        {
+          "text": "Modifiers to Stun Buildup apply to Freeze Buildup instead for Parry"
+        },
+        {
+          "text": "100% of Parry Physical Damage Converted to Cold Damage",
+          "value": 100
+        },
+        {
+          "text": "25 to 35 Cold Thorns damage",
+          "value": 25
+        }
+      ]
+    },
+    "nocturne": {
+      "id": "nocturne",
+      "name": "Nocturne",
+      "baseType": "Wooden Buckler",
+      "baseTypeId": "wooden-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "+(60-80) to maximum Mana",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-15)% to all Elemental Resistances",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "20% increased Accuracy Rating",
+          "value": 20
+        },
+        {
+          "text": "Parried enemies take more Spell Damage instead of more Attack Damage"
+        },
+        {
+          "text": "100% increased Parried Debuff Duration",
+          "value": 100
+        }
+      ]
+    },
+    "rondel-de-ezo": {
+      "id": "rondel-de-ezo",
+      "name": "Rondel de Ezo",
+      "baseType": "Plated Buckler",
+      "baseTypeId": "plated-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(50-150)% increased Evasion Rating",
+          "min": 50,
+          "max": 150
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "5 Life Regeneration per second",
+          "value": 5
+        },
+        {
+          "text": "100% increased Block chance against Projectiles",
+          "value": 100
+        },
+        {
+          "text": "Curse Enemies with Enfeeble on Block"
+        }
+      ]
+    },
+    "silverthorne": {
+      "id": "silverthorne",
+      "name": "Silverthorne",
+      "baseType": "Spiked Buckler",
+      "baseTypeId": "spiked-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(50-80)% increased Evasion Rating",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(10-15)% to all Elemental Resistances",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Parrying applies 10 Stacks of Critical Weakness"
+        },
+        {
+          "text": "100% increased Parry Damage",
+          "value": 100
+        }
+      ]
+    },
+    "sunsplinter-max-res-1-fire-2-cold-3-lightning": {
+      "id": "sunsplinter-max-res-1-fire-2-cold-3-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+1% to Maximum Fire Resistance",
+          "value": 1
+        },
+        {
+          "text": "+2% to Maximum Cold Resistance",
+          "value": 2
+        },
+        {
+          "text": "+3% to Maximum Lightning Resistance",
+          "value": 3
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-1-fire-2-cold-3-lightning",
+      "variantName": "Max Res: 1 Fire, 2 Cold, 3 Lightning"
+    },
+    "sunsplinter-max-res-1-fire-3-cold-2-lightning": {
+      "id": "sunsplinter-max-res-1-fire-3-cold-2-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+1% to Maximum Fire Resistance",
+          "value": 1
+        },
+        {
+          "text": "+3% to Maximum Cold Resistance",
+          "value": 3
+        },
+        {
+          "text": "+2% to Maximum Lightning Resistance",
+          "value": 2
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-1-fire-3-cold-2-lightning",
+      "variantName": "Max Res: 1 Fire, 3 Cold, 2 Lightning"
+    },
+    "sunsplinter-max-res-2-fire-1-cold-3-lightning": {
+      "id": "sunsplinter-max-res-2-fire-1-cold-3-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+2% to Maximum Fire Resistance",
+          "value": 2
+        },
+        {
+          "text": "+1% to Maximum Cold Resistance",
+          "value": 1
+        },
+        {
+          "text": "+3% to Maximum Lightning Resistance",
+          "value": 3
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-2-fire-1-cold-3-lightning",
+      "variantName": "Max Res: 2 Fire, 1 Cold, 3 Lightning"
+    },
+    "sunsplinter-max-res-2-fire-3-cold-1-lightning": {
+      "id": "sunsplinter-max-res-2-fire-3-cold-1-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+2% to Maximum Fire Resistance",
+          "value": 2
+        },
+        {
+          "text": "+3% to Maximum Cold Resistance",
+          "value": 3
+        },
+        {
+          "text": "+1% to Maximum Lightning Resistance",
+          "value": 1
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-2-fire-3-cold-1-lightning",
+      "variantName": "Max Res: 2 Fire, 3 Cold, 1 Lightning"
+    },
+    "sunsplinter-max-res-3-fire-1-cold-2-lightning": {
+      "id": "sunsplinter-max-res-3-fire-1-cold-2-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+3% to Maximum Fire Resistance",
+          "value": 3
+        },
+        {
+          "text": "+1% to Maximum Cold Resistance",
+          "value": 1
+        },
+        {
+          "text": "+2% to Maximum Lightning Resistance",
+          "value": 2
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-3-fire-1-cold-2-lightning",
+      "variantName": "Max Res: 3 Fire, 1 Cold, 2 Lightning"
+    },
+    "sunsplinter-max-res-3-fire-2-cold-1-lightning": {
+      "id": "sunsplinter-max-res-3-fire-2-cold-1-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+3% to Maximum Fire Resistance",
+          "value": 3
+        },
+        {
+          "text": "+2% to Maximum Cold Resistance",
+          "value": 2
+        },
+        {
+          "text": "+1% to Maximum Lightning Resistance",
+          "value": 1
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "max-res-3-fire-2-cold-1-lightning",
+      "variantName": "Max Res: 3 Fire, 2 Cold, 1 Lightning"
+    },
+    "sunsplinter-level-2-cold-1-fire-3-lightning": {
+      "id": "sunsplinter-level-2-cold-1-fire-3-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+2 to Level of all Cold Skills",
+          "value": 2
+        },
+        {
+          "text": "+1 to Level of all Fire Skills",
+          "value": 1
+        },
+        {
+          "text": "+3 to Level of all Lightning Skills",
+          "value": 3
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-2-cold-1-fire-3-lightning",
+      "variantName": "Level: 2 Cold, 1 Fire, 3 Lightning"
+    },
+    "sunsplinter-level-3-cold-1-fire-2-lightning": {
+      "id": "sunsplinter-level-3-cold-1-fire-2-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+3 to Level of all Cold Skills",
+          "value": 3
+        },
+        {
+          "text": "+1 to Level of all Fire Skills",
+          "value": 1
+        },
+        {
+          "text": "+2 to Level of all Lightning Skills",
+          "value": 2
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-3-cold-1-fire-2-lightning",
+      "variantName": "Level: 3 Cold, 1 Fire, 2 Lightning"
+    },
+    "sunsplinter-level-1-cold-2-fire-3-lightning": {
+      "id": "sunsplinter-level-1-cold-2-fire-3-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+1 to Level of all Cold Skills",
+          "value": 1
+        },
+        {
+          "text": "+2 to Level of all Fire Skills",
+          "value": 2
+        },
+        {
+          "text": "+3 to Level of all Lightning Skills",
+          "value": 3
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-1-cold-2-fire-3-lightning",
+      "variantName": "Level: 1 Cold, 2 Fire, 3 Lightning"
+    },
+    "sunsplinter-level-3-cold-2-fire-1-lightning": {
+      "id": "sunsplinter-level-3-cold-2-fire-1-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+3 to Level of all Cold Skills",
+          "value": 3
+        },
+        {
+          "text": "+2 to Level of all Fire Skills",
+          "value": 2
+        },
+        {
+          "text": "+1 to Level of all Lightning Skills",
+          "value": 1
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-3-cold-2-fire-1-lightning",
+      "variantName": "Level: 3 Cold, 2 Fire, 1 Lightning"
+    },
+    "sunsplinter-level-1-cold-3-fire-2-lightning": {
+      "id": "sunsplinter-level-1-cold-3-fire-2-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+1 to Level of all Cold Skills",
+          "value": 1
+        },
+        {
+          "text": "+3 to Level of all Fire Skills",
+          "value": 3
+        },
+        {
+          "text": "+2 to Level of all Lightning Skills",
+          "value": 2
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-1-cold-3-fire-2-lightning",
+      "variantName": "Level: 1 Cold, 3 Fire, 2 Lightning"
+    },
+    "sunsplinter-level-2-cold-3-fire-1-lightning": {
+      "id": "sunsplinter-level-2-cold-3-fire-1-lightning",
+      "name": "Sunsplinter",
+      "baseType": "Array Buckler",
+      "baseTypeId": "array-buckler",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Selected Alt Variant: 7"
+        },
+        {
+          "text": "Grants Skill: Parry",
+          "implicit": true
+        },
+        {
+          "text": "(100-300)% increased Evasion Rating",
+          "min": 100,
+          "max": 300
+        },
+        {
+          "text": "+2 to Level of all Cold Skills",
+          "value": 2
+        },
+        {
+          "text": "+3 to Level of all Fire Skills",
+          "value": 3
+        },
+        {
+          "text": "+1 to Level of all Lightning Skills",
+          "value": 1
+        }
+      ],
+      "variantGroup": "sunsplinter",
+      "variantId": "level-2-cold-3-fire-1-lightning",
+      "variantName": "Level: 2 Cold, 3 Fire, 1 Lightning",
+      "isDefaultVariant": true
+    },
+    "arvil-s-wheel-pre-0-1-1": {
+      "id": "arvil-s-wheel-pre-0-1-1",
+      "name": "Arvil's Wheel",
+      "baseType": "Hardwood Targe",
+      "baseTypeId": "hardwood-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(40-60)% increased Block chance",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(60-100)% increased Armour and Evasion",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Lose 1% of maximum Life on Kill"
+        },
+        {
+          "text": "Lose 1% of maximum Mana on Kill"
+        },
+        {
+          "text": "(30-50)% increased Skill Effect Duration",
+          "min": 30,
+          "max": 50
+        }
+      ],
+      "variantGroup": "arvil-s-wheel",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "arvil-s-wheel-current": {
+      "id": "arvil-s-wheel-current",
+      "name": "Arvil's Wheel",
+      "baseType": "Hardwood Targe",
+      "baseTypeId": "hardwood-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(60-100)% increased Armour and Evasion",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Lose 1% of maximum Life on Kill"
+        },
+        {
+          "text": "Lose 1% of maximum Mana on Kill"
+        },
+        {
+          "text": "(30-50)% increased Skill Effect Duration",
+          "min": 30,
+          "max": 50
+        }
+      ],
+      "variantGroup": "arvil-s-wheel",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "feathered-fortress-pre-0-1-1": {
+      "id": "feathered-fortress-pre-0-1-1",
+      "name": "Feathered Fortress",
+      "baseType": "Crescent Targe",
+      "baseTypeId": "crescent-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20)% to Fire Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20)% to Cold Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "No Movement Speed Penalty while Shield is Raised"
+        }
+      ],
+      "variantGroup": "feathered-fortress",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "feathered-fortress-current": {
+      "id": "feathered-fortress-current",
+      "name": "Feathered Fortress",
+      "baseType": "Crescent Targe",
+      "baseTypeId": "crescent-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "No Movement Speed Penalty while Shield is Raised"
+        }
+      ],
+      "variantGroup": "feathered-fortress",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "merit-of-service-pre-0-3-0": {
+      "id": "merit-of-service-pre-0-3-0",
+      "name": "Merit of Service",
+      "baseType": "Pelage Targe",
+      "baseTypeId": "pelage-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(30-50)% increased Block chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(60-80)% increased Armour and Evasion",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Allies in your Presence have Block Chance equal to yours"
+        }
+      ],
+      "variantGroup": "merit-of-service",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "merit-of-service-current": {
+      "id": "merit-of-service-current",
+      "name": "Merit of Service",
+      "baseType": "Pelage Targe",
+      "baseTypeId": "pelage-targe",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(20-25)% increased Block chance",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "(60-80)% increased Armour and Evasion",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Allies in your Presence have Block Chance equal to yours"
+        }
+      ],
+      "variantGroup": "merit-of-service",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "alkem-eira-pre-0-1-1": {
+      "id": "alkem-eira-pre-0-1-1",
+      "name": "Alkem Eira",
+      "baseType": "Blazon Crest Shield",
+      "baseTypeId": "blazon-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Block chance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(30-50)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(15-30) to maximum Mana",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Damage Blocked is Recouped as Mana"
+        }
+      ],
+      "variantGroup": "alkem-eira",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "alkem-eira-pre-0-3-0": {
+      "id": "alkem-eira-pre-0-3-0",
+      "name": "Alkem Eira",
+      "baseType": "Blazon Crest Shield",
+      "baseTypeId": "blazon-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(30-40)% increased Block chance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "(30-50)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(50-70) to maximum Mana",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "Damage Blocked is Recouped as Mana"
+        }
+      ],
+      "variantGroup": "alkem-eira",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "alkem-eira-current": {
+      "id": "alkem-eira-current",
+      "name": "Alkem Eira",
+      "baseType": "Blazon Crest Shield",
+      "baseTypeId": "blazon-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(10-15)% increased Block chance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(30-50)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(50-70) to maximum Mana",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "Damage Blocked is Recouped as Mana"
+        }
+      ],
+      "variantGroup": "alkem-eira",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "crest-of-ardura": {
+      "id": "crest-of-ardura",
+      "name": "Crest of Ardura",
+      "baseType": "Jingling Crest Shield",
+      "baseTypeId": "jingling-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(60-100)% increased Armour and Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(30-50)% increased Mana Regeneration Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% increased Cooldown Recovery Rate",
+          "min": 30,
+          "max": 50
+        }
+      ]
+    },
+    "mahuxotl-s-machination-pre-0-2-0": {
+      "id": "mahuxotl-s-machination-pre-0-2-0",
+      "name": "Mahuxotl's Machination",
+      "baseType": "Omen Crest Shield",
+      "baseTypeId": "omen-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(333-666)% increased Armour and Energy Shield",
+          "min": 333,
+          "max": 666
+        },
+        {
+          "text": "(333-666)% increased effect of Socketed Soul Cores",
+          "min": 333,
+          "max": 666
+        }
+      ],
+      "variantGroup": "mahuxotl-s-machination",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "mahuxotl-s-machination-pre-0-4-0": {
+      "id": "mahuxotl-s-machination-pre-0-4-0",
+      "name": "Mahuxotl's Machination",
+      "baseType": "Omen Crest Shield",
+      "baseTypeId": "omen-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(333-666)% increased Armour and Energy Shield",
+          "min": 333,
+          "max": 666
+        },
+        {
+          "text": "100% increased effect of Socketed Soul Cores",
+          "value": 100
+        },
+        {
+          "text": "Everlasting Sacrifice"
+        }
+      ],
+      "variantGroup": "mahuxotl-s-machination",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "mahuxotl-s-machination-current": {
+      "id": "mahuxotl-s-machination-current",
+      "name": "Mahuxotl's Machination",
+      "baseType": "Omen Crest Shield",
+      "baseTypeId": "omen-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(333-666)% increased Armour and Energy Shield",
+          "min": 333,
+          "max": 666
+        },
+        {
+          "text": "(66-333)% increased effect of Socketed Soul Cores",
+          "min": 66,
+          "max": 333
+        },
+        {
+          "text": "Everlasting Sacrifice"
+        }
+      ],
+      "variantGroup": "mahuxotl-s-machination",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "oaksworn-pre-0-3-0": {
+      "id": "oaksworn-pre-0-3-0",
+      "name": "Oaksworn",
+      "baseType": "Variant: Pre 0.2.0",
+      "baseTypeId": "variant-pre-0-2-0",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Sigil Crest Shield"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(40-60)% increased Block chance",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(80-120)% increased Armour and Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        }
+      ],
+      "variantGroup": "oaksworn",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "oaksworn-current": {
+      "id": "oaksworn-current",
+      "name": "Oaksworn",
+      "baseType": "Variant: Pre 0.2.0",
+      "baseTypeId": "variant-pre-0-2-0",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Sigil Crest Shield"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(40-60)% increased Block chance",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(80-120)% increased Armour and Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "50% increased Life Regeneration rate",
+          "value": 50
+        }
+      ],
+      "variantGroup": "oaksworn",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "prism-guardian-pre-0-2-1": {
+      "id": "prism-guardian-pre-0-2-1",
+      "name": "Prism Guardian",
+      "baseType": "Sectarian Crest Shield",
+      "baseTypeId": "sectarian-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(150-200)% increased Armour and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Maximum Spirit per 50 Maximum Life",
+          "value": 1
+        }
+      ],
+      "variantGroup": "prism-guardian",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "prism-guardian-pre-0-4-0": {
+      "id": "prism-guardian-pre-0-4-0",
+      "name": "Prism Guardian",
+      "baseType": "Sectarian Crest Shield",
+      "baseTypeId": "sectarian-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(150-200)% increased Armour and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Maximum Spirit per 25 Maximum Life",
+          "value": 1
+        }
+      ],
+      "variantGroup": "prism-guardian",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "prism-guardian-current": {
+      "id": "prism-guardian-current",
+      "name": "Prism Guardian",
+      "baseType": "Sectarian Crest Shield",
+      "baseTypeId": "sectarian-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "(150-200)% increased Armour and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "1% increased Spirit Reservation Efficiency of Buff Skills per 100 Maximum Life",
+          "value": 1
+        }
+      ],
+      "variantGroup": "prism-guardian",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "rise-of-the-phoenix": {
+      "id": "rise-of-the-phoenix",
+      "name": "Rise of the Phoenix",
+      "baseType": "Omen Crest Shield",
+      "baseTypeId": "omen-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "+5% to Maximum Fire Resistance",
+          "value": 5
+        },
+        {
+          "text": "+(20-25)% to Fire Resistance",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "+25% to Fire Resistance while on Low Life",
+          "value": 25
+        },
+        {
+          "text": "Regenerate 3% of maximum Life per second"
+        },
+        {
+          "text": "Regenerate 3% of maximum Life per second while on Low Life"
+        }
+      ]
+    },
+    "saffell-s-frame": {
+      "id": "saffell-s-frame",
+      "name": "Saffell's Frame",
+      "baseType": "Emblem Crest Shield",
+      "baseTypeId": "emblem-crest-shield",
+      "itemType": "Shield",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Requires Level 16"
+        },
+        {
+          "text": "Grants Skill: Raise Shield",
+          "implicit": true
+        },
+        {
+          "text": "+(15-25)% to Fire Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(15-25)% to Cold Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Cannot Block"
+        },
+        {
+          "text": "Modifiers to Maximum Block Chance instead apply to Maximum Resistances"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:54.351Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "bow",
+  "meta": {
+    "totalItems": 9,
+    "itemsWithVariants": 5,
+    "totalEntries": 15,
+    "byType": {
+      "Bow": 9
+    }
+  },
+  "uniques": {
+    "death-s-harp-0-2-0": {
+      "id": "death-s-harp-0-2-0",
+      "name": "Death's Harp",
+      "baseType": "Dualstring Bow",
+      "baseTypeId": "dualstring-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+50% Surpassing chance to fire an additional Arrow",
+          "implicit": true,
+          "value": 50
+        },
+        {
+          "text": "+(50-70)% to Critical Damage Bonus",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "Bow Attacks fire 3 additional Arrows"
+        },
+        {
+          "text": "Gain (20-30) Life per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (12-18) Mana per enemy killed",
+          "min": 12,
+          "max": 18
+        }
+      ],
+      "variantGroup": "death-s-harp",
+      "variantId": "0-2-0",
+      "variantName": "0.2.0"
+    },
+    "death-s-harp-0-3-0": {
+      "id": "death-s-harp-0-3-0",
+      "name": "Death's Harp",
+      "baseType": "Dualstring Bow",
+      "baseTypeId": "dualstring-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+50% Surpassing chance to fire an additional Arrow",
+          "implicit": true,
+          "value": 50
+        },
+        {
+          "text": "+(30-40)% to Critical Damage Bonus",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Bow Attacks fire 3 additional Arrows"
+        },
+        {
+          "text": "Gain (20-30) Life per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (12-18) Mana per enemy killed",
+          "min": 12,
+          "max": 18
+        }
+      ],
+      "variantGroup": "death-s-harp",
+      "variantId": "0-3-0",
+      "variantName": "0.3.0"
+    },
+    "death-s-harp-current": {
+      "id": "death-s-harp-current",
+      "name": "Death's Harp",
+      "baseType": "Dualstring Bow",
+      "baseTypeId": "dualstring-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+50% Surpassing chance to fire an additional Arrow",
+          "implicit": true,
+          "value": 50
+        },
+        {
+          "text": "+(20-25)% to Critical Damage Bonus",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "Bow Attacks fire 3 additional Arrows"
+        },
+        {
+          "text": "Gain (20-30) Life per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (12-18) Mana per enemy killed",
+          "min": 12,
+          "max": 18
+        }
+      ],
+      "variantGroup": "death-s-harp",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "doomfletch-pre-0-4-0": {
+      "id": "doomfletch-pre-0-4-0",
+      "name": "Doomfletch",
+      "baseType": "Composite Bow",
+      "baseTypeId": "composite-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (5-7) to (10-12) Physical Damage",
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+10 to Dexterity",
+          "value": 10
+        },
+        {
+          "text": "(30-50)% increased Mana Regeneration Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Attacks with this Weapon gain 50% of Physical damage as Extra damage of each Element"
+        }
+      ],
+      "variantGroup": "doomfletch",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "doomfletch-current": {
+      "id": "doomfletch-current",
+      "name": "Doomfletch",
+      "baseType": "Composite Bow",
+      "baseTypeId": "composite-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (5-7) to (10-12) Physical Damage",
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+10 to Dexterity",
+          "value": 10
+        },
+        {
+          "text": "(30-50)% increased Mana Regeneration Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Attacks with this Weapon gain 100% of Physical damage as Extra damage of each Element"
+        }
+      ],
+      "variantGroup": "doomfletch",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "fairgraves-curse": {
+      "id": "fairgraves-curse",
+      "name": "Fairgraves' Curse",
+      "baseType": "Artillery Bow",
+      "baseTypeId": "artillery-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Phantasmal Arrow",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "50% reduced Projectile Range",
+          "implicit": true,
+          "value": 50
+        },
+        {
+          "text": "Adds (76-98) to (126-193) Fire Damage",
+          "min": 76,
+          "max": 98
+        },
+        {
+          "text": "(30-50)% increased Flammability Magnitude",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(10-20)% increased Ignite Magnitude",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "30% reduced Life Recovery rate",
+          "value": 30
+        },
+        {
+          "text": "-30 Physical Damage taken from Hits",
+          "value": 30
+        },
+        {
+          "text": "Attack Hits inflict Spectral Fire for 8 seconds"
+        }
+      ]
+    },
+    "lioneye-s-glare-pre-0-4-0": {
+      "id": "lioneye-s-glare-pre-0-4-0",
+      "name": "Lioneye's Glare",
+      "baseType": "Heavy Bow",
+      "baseTypeId": "heavy-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(150-240)% increased Physical Damage",
+          "min": 150,
+          "max": 240
+        },
+        {
+          "text": "+(300-500) to Accuracy Rating",
+          "min": 300,
+          "max": 500
+        },
+        {
+          "text": "10% increased Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+2 metres to Dodge Roll distance if you haven't Dodge Rolled Recently",
+          "value": 2
+        },
+        {
+          "text": "-1 metre to Dodge Roll distance if you've Dodge Rolled Recently",
+          "value": 1
+        },
+        {
+          "text": "Barrageable Attacks with this Bow Repeat +1 time if no enemies are in your Presence"
+        }
+      ],
+      "variantGroup": "lioneye-s-glare",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "lioneye-s-glare-current": {
+      "id": "lioneye-s-glare-current",
+      "name": "Lioneye's Glare",
+      "baseType": "Heavy Bow",
+      "baseTypeId": "heavy-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(150-240)% increased Physical Damage",
+          "min": 150,
+          "max": 240
+        },
+        {
+          "text": "+(300-500) to Accuracy Rating",
+          "min": 300,
+          "max": 500
+        },
+        {
+          "text": "10% increased Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+2 metres to Dodge Roll distance if you haven't Dodge Rolled Recently",
+          "value": 2
+        },
+        {
+          "text": "-1 metre to Dodge Roll distance if you've Dodge Rolled Recently",
+          "value": 1
+        },
+        {
+          "text": "Barrageable Attacks with this Bow Repeat +2 times if no enemies are in your Presence"
+        }
+      ],
+      "variantGroup": "lioneye-s-glare",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "quill-rain": {
+      "id": "quill-rain",
+      "name": "Quill Rain",
+      "baseType": "Shortbow",
+      "baseTypeId": "shortbow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "100% increased Attack Speed",
+          "value": 100
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(50-100)% increased Arrow Speed",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "40% less Attack Damage",
+          "value": 40
+        }
+      ]
+    },
+    "slivertongue": {
+      "id": "slivertongue",
+      "name": "Slivertongue",
+      "baseType": "Zealot Bow",
+      "baseTypeId": "zealot-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (40-48) to (65-72) Physical Damage",
+          "min": 40,
+          "max": 48
+        },
+        {
+          "text": "+(4-6)% to Critical Hit Chance",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "Leeches (5-8)% of Physical Damage as Life",
+          "min": 5,
+          "max": 8
+        },
+        {
+          "text": "Leeches (4-7)% of Physical Damage as Mana",
+          "min": 4,
+          "max": 7
+        },
+        {
+          "text": "Arrows Fork"
+        },
+        {
+          "text": "Arrows Pierce all targets after Forking"
+        }
+      ]
+    },
+    "splinterheart-pre-0-1-1": {
+      "id": "splinterheart-pre-0-1-1",
+      "name": "Splinterheart",
+      "baseType": "Recurve Bow",
+      "baseTypeId": "recurve-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Physical Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(50-70) to Accuracy Rating",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "(20-30)% increased Projectile Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Projectiles Split towards +2 targets"
+        }
+      ],
+      "variantGroup": "splinterheart",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "splinterheart-current": {
+      "id": "splinterheart-current",
+      "name": "Splinterheart",
+      "baseType": "Recurve Bow",
+      "baseTypeId": "recurve-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "(120-160)% increased Physical Damage",
+          "min": 120,
+          "max": 160
+        },
+        {
+          "text": "+(50-70) to Accuracy Rating",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "(20-30)% increased Projectile Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Projectiles Split towards +2 targets"
+        }
+      ],
+      "variantGroup": "splinterheart",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "voltaxic-rift-pre-0-4-0": {
+      "id": "voltaxic-rift-pre-0-4-0",
+      "name": "Voltaxic Rift",
+      "baseType": "Fanatic Bow",
+      "baseTypeId": "fanatic-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds 1 to (200-300) Lightning Damage",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "100% of Lightning Damage Converted to Chaos Damage",
+          "value": 100
+        },
+        {
+          "text": "Chaos Damage from Hits also Contributes to Shock Chance"
+        }
+      ],
+      "variantGroup": "voltaxic-rift",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "voltaxic-rift-current": {
+      "id": "voltaxic-rift-current",
+      "name": "Voltaxic Rift",
+      "baseType": "Fanatic Bow",
+      "baseTypeId": "fanatic-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds 1 to (300-500) Lightning Damage",
+          "min": 300,
+          "max": 500
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "100% of Lightning Damage Converted to Chaos Damage",
+          "value": 100
+        },
+        {
+          "text": "Chaos Damage from Hits also Contributes to Shock Chance"
+        }
+      ],
+      "variantGroup": "voltaxic-rift",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "widowhail": {
+      "id": "widowhail",
+      "name": "Widowhail",
+      "baseType": "Crude Bow",
+      "baseTypeId": "crude-bow",
+      "itemType": "Bow",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "(150-250)% increased bonuses gained from Equipped Quiver",
+          "min": 150,
+          "max": 250
+        }
+      ]
+    }
+  }
+}

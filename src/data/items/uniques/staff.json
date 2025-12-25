@@ -1,0 +1,1489 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:54.699Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "staff",
+  "meta": {
+    "totalItems": 14,
+    "itemsWithVariants": 11,
+    "totalEntries": 35,
+    "byType": {
+      "Staff": 14
+    }
+  },
+  "uniques": {
+    "the-burden-of-shadows": {
+      "id": "the-burden-of-shadows",
+      "name": "The Burden of Shadows",
+      "baseType": "Chiming Staff",
+      "baseTypeId": "chiming-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "dropSource": "Drops from unique{The King in the Mists} in normal{Crux of Nothingness}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Sigil of Power",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Cast Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Skill Mana Costs Converted to Life Costs"
+        },
+        {
+          "text": "Skills gain 1% of Damage as Chaos Damage per 3 Life Cost"
+        }
+      ]
+    },
+    "dusk-vigil-pre-0-4-0": {
+      "id": "dusk-vigil-pre-0-4-0",
+      "name": "Dusk Vigil",
+      "baseType": "Ashen Staff",
+      "baseTypeId": "ashen-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Firebolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Ember Fusillade",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Spell Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Gain (5-10) Life per enemy killed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Mana Regeneration Rate",
+          "value": 25
+        },
+        {
+          "text": "Trigger Ember Fusillade Skill on casting a Spell"
+        }
+      ],
+      "variantGroup": "dusk-vigil",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "dusk-vigil-current": {
+      "id": "dusk-vigil-current",
+      "name": "Dusk Vigil",
+      "baseType": "Ashen Staff",
+      "baseTypeId": "ashen-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Firebolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Ember Fusillade",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Gain (30-50)% of Damage as Extra Fire Damage",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(80-120)% increased Spell Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "Gain (5-10) Life per enemy killed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Mana Regeneration Rate",
+          "value": 25
+        },
+        {
+          "text": "Trigger Ember Fusillade Skill on casting a Spell"
+        }
+      ],
+      "variantGroup": "dusk-vigil",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "earthbound-pre-0-4-0": {
+      "id": "earthbound-pre-0-4-0",
+      "name": "Earthbound",
+      "baseType": "Voltaic Staff",
+      "baseTypeId": "voltaic-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Lightning Bolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Spark",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Lightning Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Trigger Spark Skill on killing a Shocked Enemy"
+        }
+      ],
+      "variantGroup": "earthbound",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "earthbound-current": {
+      "id": "earthbound-current",
+      "name": "Earthbound",
+      "baseType": "Voltaic Staff",
+      "baseTypeId": "voltaic-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Lightning Bolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Spark",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Spell Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(20-40)% increased chance to Shock",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "Trigger Spark Skill on killing a Shocked Enemy"
+        }
+      ],
+      "variantGroup": "earthbound",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-searing-touch-pre-0-4-0": {
+      "id": "the-searing-touch-pre-0-4-0",
+      "name": "The Searing Touch",
+      "baseType": "Pyrophyte Staff",
+      "baseTypeId": "pyrophyte-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Living Bomb",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Fire Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "100% increased Flammability Magnitude",
+          "value": 100
+        },
+        {
+          "text": "100% increased Ignite Magnitude",
+          "value": 100
+        }
+      ],
+      "variantGroup": "the-searing-touch",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-searing-touch-current": {
+      "id": "the-searing-touch-current",
+      "name": "The Searing Touch",
+      "baseType": "Pyrophyte Staff",
+      "baseTypeId": "pyrophyte-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Living Bomb",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Fire Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "100% increased Flammability Magnitude",
+          "value": 100
+        },
+        {
+          "text": "100% increased Ignite Magnitude",
+          "value": 100
+        },
+        {
+          "text": "Ignites you inflict spread to other Enemies that stay within 1.5 metres for 1 second"
+        }
+      ],
+      "variantGroup": "the-searing-touch",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "sire-of-shards": {
+      "id": "sire-of-shards",
+      "name": "Sire of Shards",
+      "baseType": "Chiming Staff",
+      "baseTypeId": "chiming-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Sigil of Power",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Spell Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(5-10)% to all Elemental Resistances",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "20% increased Light Radius",
+          "value": 20
+        },
+        {
+          "text": "Spells fire 4 additional Projectiles"
+        },
+        {
+          "text": "Spells fire Projectiles in a circle"
+        }
+      ]
+    },
+    "taryn-s-shiver-pre-0-4-0": {
+      "id": "taryn-s-shiver-pre-0-4-0",
+      "name": "Taryn's Shiver",
+      "baseType": "Gelid Staff",
+      "baseTypeId": "gelid-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Freezing Shards",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Cold Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "100% increased Freeze Buildup",
+          "value": 100
+        },
+        {
+          "text": "Enemies Frozen by you take 50% increased Damage"
+        }
+      ],
+      "variantGroup": "taryn-s-shiver",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "taryn-s-shiver-current": {
+      "id": "taryn-s-shiver-current",
+      "name": "Taryn's Shiver",
+      "baseType": "Gelid Staff",
+      "baseTypeId": "gelid-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Freezing Shards",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-120)% increased Spell Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "30% increased Freeze Buildup",
+          "value": 30
+        },
+        {
+          "text": "Enemies Frozen by you take 100% increased Damage"
+        }
+      ],
+      "variantGroup": "taryn-s-shiver",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-whispering-ice-pre-0-4-0": {
+      "id": "the-whispering-ice-pre-0-4-0",
+      "name": "The Whispering Ice",
+      "baseType": "Permafrost Staff",
+      "baseTypeId": "permafrost-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Heart of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Icestorm",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(2-4) to Level of all Cold Spell Skills",
+          "min": 2,
+          "max": 4
+        },
+        {
+          "text": "(10-20)% reduced Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(5-15)% increased Intelligence",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "4% increased Spell Damage per 10 Intelligence",
+          "value": 4
+        },
+        {
+          "text": "Inflict Elemental Exposure on Hit, lowering Total Elemental Resistances by (20-30)%",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "the-whispering-ice",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-whispering-ice-current": {
+      "id": "the-whispering-ice-current",
+      "name": "The Whispering Ice",
+      "baseType": "Permafrost Staff",
+      "baseTypeId": "permafrost-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Heart of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Icestorm",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(5-7) to Level of all Cold Spell Skills",
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "(10-20)% reduced Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(5-10)% increased Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "2% increased Spell Damage per 10 Intelligence",
+          "value": 2
+        },
+        {
+          "text": "Inflict Elemental Exposure on Hit, lowering Total Elemental Resistances by (50-60)%",
+          "min": 50,
+          "max": 60
+        }
+      ],
+      "variantGroup": "the-whispering-ice",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-blood-thorn-pre-0-1-1": {
+      "id": "the-blood-thorn-pre-0-1-1",
+      "name": "The Blood Thorn",
+      "baseType": "Wrapped Quarterstaff",
+      "baseTypeId": "wrapped-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (3-5) to (9-11) Physical Damage",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Causes Bleeding on Hit"
+        },
+        {
+          "text": "(4-5) to (8-10) Physical Thorns damage",
+          "min": 4,
+          "max": 5
+        }
+      ],
+      "variantGroup": "the-blood-thorn",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-blood-thorn-current": {
+      "id": "the-blood-thorn-current",
+      "name": "The Blood Thorn",
+      "baseType": "Wrapped Quarterstaff",
+      "baseTypeId": "wrapped-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (8-12) to (16-18) Physical Damage",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Causes Bleeding on Hit"
+        },
+        {
+          "text": "(4-5) to (8-10) Physical Thorns damage",
+          "min": 4,
+          "max": 5
+        }
+      ],
+      "variantGroup": "the-blood-thorn",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "collapsing-horizon": {
+      "id": "collapsing-horizon",
+      "name": "Collapsing Horizon",
+      "baseType": "Wyrm Quarterstaff",
+      "baseTypeId": "wyrm-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "100% increased Elemental Damage with Attacks",
+          "value": 100
+        },
+        {
+          "text": "+(5-10)% to Critical Hit Chance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(2-4) to Level of all Elemental Skills",
+          "min": 2,
+          "max": 4
+        },
+        {
+          "text": "Trigger skills refund half of Energy spent"
+        }
+      ]
+    },
+    "matsya-pre-0-1-1": {
+      "id": "matsya-pre-0-1-1",
+      "name": "Matsya",
+      "baseType": "Crescent Quarterstaff",
+      "baseTypeId": "crescent-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+(3-5)% to Critical Hit Chance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "(15-20)% increased Attack Speed",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Skills reserve 50% less Spirit"
+        }
+      ],
+      "variantGroup": "matsya",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "matsya-current": {
+      "id": "matsya-current",
+      "name": "Matsya",
+      "baseType": "Crescent Quarterstaff",
+      "baseTypeId": "crescent-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (6-9) to (10-15) Cold Damage",
+          "min": 6,
+          "max": 9
+        },
+        {
+          "text": "Adds 1 to (19-29) Lightning Damage",
+          "min": 19,
+          "max": 29
+        },
+        {
+          "text": "+(3-5)% to Critical Hit Chance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "(15-20)% increased Attack Speed",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Skills reserve 50% less Spirit"
+        }
+      ],
+      "variantGroup": "matsya",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "nazir-s-judgement-pre-0-1-1": {
+      "id": "nazir-s-judgement-pre-0-1-1",
+      "name": "Nazir's Judgement",
+      "baseType": "Steelpoint Quarterstaff",
+      "baseTypeId": "steelpoint-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "(80-120)% increased Physical Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(50-100) to Accuracy Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(10-20)% increased Stun Duration",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Dazes on Hit"
+        }
+      ],
+      "variantGroup": "nazir-s-judgement",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "nazir-s-judgement-pre-0-3-0": {
+      "id": "nazir-s-judgement-pre-0-3-0",
+      "name": "Nazir's Judgement",
+      "baseType": "Steelpoint Quarterstaff",
+      "baseTypeId": "steelpoint-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (30-36) to (75-81) Physical Damage",
+          "min": 30,
+          "max": 36
+        },
+        {
+          "text": "+(50-100) to Accuracy Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(10-20)% increased Stun Duration",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Dazes on Hit"
+        }
+      ],
+      "variantGroup": "nazir-s-judgement",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "nazir-s-judgement-current": {
+      "id": "nazir-s-judgement-current",
+      "name": "Nazir's Judgement",
+      "baseType": "Steelpoint Quarterstaff",
+      "baseTypeId": "steelpoint-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (30-36) to (75-81) Physical Damage",
+          "min": 30,
+          "max": 36
+        },
+        {
+          "text": "+(50-100) to Accuracy Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(10-20)% increased Stun Duration",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Dazes on Hit"
+        },
+        {
+          "text": "(35-50)% increased Melee Damage against Heavy Stunned enemies",
+          "min": 35,
+          "max": 50
+        }
+      ],
+      "variantGroup": "nazir-s-judgement",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "pillar-of-the-caged-god-current": {
+      "id": "pillar-of-the-caged-god-current",
+      "name": "Pillar of the Caged God",
+      "baseType": "Variant: Pre 0.2.0",
+      "baseTypeId": "variant-pre-0-2-0",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Long Quarterstaff"
+        },
+        {
+          "text": "16% increased Melee Strike Range with this weapon",
+          "implicit": true,
+          "value": 16
+        },
+        {
+          "text": "2% increased Area of Effect for Attacks per 10 Intelligence",
+          "value": 2
+        },
+        {
+          "text": "2% increased Attack Speed per 10 Dexterity",
+          "value": 2
+        },
+        {
+          "text": "10% increased Weapon Damage per 10 Strength",
+          "value": 10
+        }
+      ],
+      "variantGroup": "pillar-of-the-caged-god",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-sentry-pre-0-1-1": {
+      "id": "the-sentry-pre-0-1-1",
+      "name": "The Sentry",
+      "baseType": "Gothic Quarterstaff",
+      "baseTypeId": "gothic-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (8-12) to (16-20) Fire Damage",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "+20% to Fire Resistance",
+          "value": 20
+        },
+        {
+          "text": "100% increased Flammability Magnitude",
+          "value": 100
+        },
+        {
+          "text": "30% increased Light Radius",
+          "value": 30
+        }
+      ],
+      "variantGroup": "the-sentry",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-sentry-current": {
+      "id": "the-sentry-current",
+      "name": "The Sentry",
+      "baseType": "Gothic Quarterstaff",
+      "baseTypeId": "gothic-quarterstaff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "No Physical Damage"
+        },
+        {
+          "text": "Adds (25-32) to (40-50) Fire Damage",
+          "min": 25,
+          "max": 32
+        },
+        {
+          "text": "+(30-50) to Accuracy Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+20% to Fire Resistance",
+          "value": 20
+        },
+        {
+          "text": "100% increased Flammability Magnitude",
+          "value": 100
+        },
+        {
+          "text": "30% increased Light Radius",
+          "value": 30
+        }
+      ],
+      "variantGroup": "the-sentry",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-unborn-lich-his-dark-horizon": {
+      "id": "the-unborn-lich-his-dark-horizon",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Dark Horizon",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-dark-horizon",
+      "variantName": "His Dark Horizon"
+    },
+    "the-unborn-lich-his-foul-emergence": {
+      "id": "the-unborn-lich-his-foul-emergence",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Foul Emergence",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-foul-emergence",
+      "variantName": "His Foul Emergence"
+    },
+    "the-unborn-lich-his-grave-command": {
+      "id": "the-unborn-lich-his-grave-command",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Grave Command",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-grave-command",
+      "variantName": "His Grave Command"
+    },
+    "the-unborn-lich-his-scattering-calamity": {
+      "id": "the-unborn-lich-his-scattering-calamity",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Scattering Calamity",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-scattering-calamity",
+      "variantName": "His Scattering Calamity"
+    },
+    "the-unborn-lich-his-vile-intrusion": {
+      "id": "the-unborn-lich-his-vile-intrusion",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Vile Intrusion",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-vile-intrusion",
+      "variantName": "His Vile Intrusion"
+    },
+    "the-unborn-lich-his-winnowing-flame": {
+      "id": "the-unborn-lich-his-winnowing-flame",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Grants Skill: Level (1-20) His Winnowing Flame",
+          "min": 1,
+          "max": 20
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "his-winnowing-flame",
+      "variantName": "His Winnowing Flame"
+    },
+    "the-unborn-lich-elemental-damage-and-ailment-duration": {
+      "id": "the-unborn-lich-elemental-damage-and-ailment-duration",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(10-20)% increased Duration of Elemental Ailments on Enemies",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(100-160)% increased Elemental Damage",
+          "min": 100,
+          "max": 160
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "elemental-damage-and-ailment-duration",
+      "variantName": "Elemental Damage and Ailment Duration"
+    },
+    "the-unborn-lich-spirit-and-spirit-reservation-efficiency": {
+      "id": "the-unborn-lich-spirit-and-spirit-reservation-efficiency",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(40-60) to Spirit",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(6-10)% increased Spirit Reservation Efficiency of Skills",
+          "min": 6,
+          "max": 10
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "spirit-and-spirit-reservation-efficiency",
+      "variantName": "Spirit and Spirit Reservation Efficiency"
+    },
+    "the-unborn-lich-chaos-damage-and-curse": {
+      "id": "the-unborn-lich-chaos-damage-and-curse",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(100-160)% increased Chaos Damage",
+          "min": 100,
+          "max": 160
+        },
+        {
+          "text": "Enemies you Curse have -(8-5)% to Chaos Resistance",
+          "min": 8,
+          "max": 5
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "chaos-damage-and-curse",
+      "variantName": "Chaos Damage and Curse"
+    },
+    "the-unborn-lich-spell-physical-damage-and-bleed-chance": {
+      "id": "the-unborn-lich-spell-physical-damage-and-bleed-chance",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(100-160)% increased Spell Physical Damage",
+          "min": 100,
+          "max": 160
+        },
+        {
+          "text": "(20-30)% chance to inflict Bleeding on Hit",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "spell-physical-damage-and-bleed-chance",
+      "variantName": "Spell Physical Damage and Bleed Chance"
+    },
+    "the-unborn-lich-chaos-damage-and-explode": {
+      "id": "the-unborn-lich-chaos-damage-and-explode",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(100-160)% increased Chaos Damage",
+          "min": 100,
+          "max": 160
+        },
+        {
+          "text": "Enemies you kill have a (5-10)% chance to explode, dealing a quarter of their maximum Life as Chaos damage",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "chaos-damage-and-explode",
+      "variantName": "Chaos Damage and Explode"
+    },
+    "the-unborn-lich-unholy-might": {
+      "id": "the-unborn-lich-unholy-might",
+      "name": "The Unborn Lich",
+      "baseType": "Ravenous Staff",
+      "baseTypeId": "ravenous-staff",
+      "itemType": "Staff",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Has Alt Variant Two: true"
+        },
+        {
+          "text": "Has Alt Variant Three: true"
+        },
+        {
+          "text": "Selected Alt Variant: 8"
+        },
+        {
+          "text": "Selected Alt Variant Two: 9"
+        },
+        {
+          "text": "Selected Alt Variant Three: 10"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Feast of Flesh",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Desecrated Modifier magnitudes",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(28-56)% increased Magnitude of Unholy Might buffs you grant",
+          "min": 28,
+          "max": 56
+        },
+        {
+          "text": "You have Unholy Might"
+        }
+      ],
+      "variantGroup": "the-unborn-lich",
+      "variantId": "unholy-might",
+      "variantName": "Unholy Might",
+      "isDefaultVariant": true
+    }
+  }
+}
