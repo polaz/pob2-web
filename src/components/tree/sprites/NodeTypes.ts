@@ -7,16 +7,20 @@ import { NodeType } from 'src/protos/pob2_pb';
 // Node Size Constants
 // ============================================================================
 
-/** Base size in pixels for each node type at zoom level 1.0 */
+/**
+ * Base size in world units for each node type.
+ * These match the tree coordinate system spacing.
+ * Scaled by zoom and clamped to [MIN_NODE_SIZE, MAX_NODE_SIZE].
+ */
 export const NODE_SIZES: Record<NodeType, number> = {
-  [NodeType.NODE_TYPE_UNKNOWN]: 6,
-  [NodeType.NODE_NORMAL]: 6,
-  [NodeType.NODE_NOTABLE]: 10,
-  [NodeType.NODE_KEYSTONE]: 14,
-  [NodeType.NODE_MASTERY]: 10,
-  [NodeType.NODE_SOCKET]: 12,
-  [NodeType.NODE_CLASS_START]: 12,
-  [NodeType.NODE_ASCEND_CLASS_START]: 10,
+  [NodeType.NODE_TYPE_UNKNOWN]: 12,
+  [NodeType.NODE_NORMAL]: 12,
+  [NodeType.NODE_NOTABLE]: 15,
+  [NodeType.NODE_KEYSTONE]: 18,
+  [NodeType.NODE_MASTERY]: 15,
+  [NodeType.NODE_SOCKET]: 16,
+  [NodeType.NODE_CLASS_START]: 16,
+  [NodeType.NODE_ASCEND_CLASS_START]: 15,
 };
 
 /** Frame/border thickness for each node type */
@@ -167,6 +171,18 @@ export const HIGHLIGHT_CONSTANTS = {
 export const MIN_ZOOM_FOR_CONNECTIONS = 0.15;
 
 /**
+ * Minimum node size in screen pixels.
+ * Nodes cannot be smaller than this - ensures clickability and readability.
+ */
+export const MIN_NODE_SIZE = 24;
+
+/**
+ * Maximum node size in screen pixels.
+ * Prevents nodes from becoming too large on high-DPI monitors.
+ */
+export const MAX_NODE_SIZE = 64;
+
+/**
  * Small offset added to LOD minZoom when calculating node size.
  * This ensures we use the size for the current LOD level rather than
  * potentially falling into a lower LOD bracket at exact boundaries.
@@ -200,34 +216,38 @@ export interface LODLevel {
   sizeMultiplier: number;
 }
 
-/** LOD levels from low detail (zoomed out) to high detail (zoomed in) */
+/**
+ * LOD levels from low detail (zoomed out) to high detail (zoomed in).
+ * Size multipliers are close to 1.0 since zoom handles main scaling.
+ * At ZOOM_MIN (0.85), nodes are already at minimum clickable size.
+ */
 export const LOD_LEVELS: LODLevel[] = [
   {
-    // Minimal - zoomed way out, small dots
+    // Minimal - zoomed out, simple shapes only
     minZoom: 0,
-    maxZoom: 0.6,
-    showIcons: false,
-    showLabels: false,
-    showGlows: false,
-    showFrameDetails: false,
-    sizeMultiplier: 0.4,
-  },
-  {
-    // Medium - basic shapes with frames
-    minZoom: 0.6,
     maxZoom: 1.2,
     showIcons: false,
     showLabels: false,
     showGlows: false,
-    showFrameDetails: true,
-    sizeMultiplier: 0.6,
+    showFrameDetails: false,
+    sizeMultiplier: 1.0, // Full size - zoom handles scaling
   },
   {
-    // High - full detail, no labels
+    // Medium - basic shapes with frames
     minZoom: 1.2,
+    maxZoom: 2.0,
+    showIcons: false,
+    showLabels: false,
+    showGlows: false,
+    showFrameDetails: true,
+    sizeMultiplier: 1.0,
+  },
+  {
+    // High - full detail with icons and glows
+    minZoom: 2.0,
     maxZoom: Infinity,
     showIcons: true,
-    showLabels: false, // Labels disabled - too cluttered
+    showLabels: false, // Labels disabled - shown on hover only
     showGlows: true,
     showFrameDetails: true,
     sizeMultiplier: 1.0,
@@ -327,12 +347,16 @@ export const DEFAULT_RENDER_CONFIG: NodeRenderConfig = {
 // ============================================================================
 
 /**
- * Get the size for a node type at a given zoom level.
+ * Get the screen size for a node type at a given zoom level.
+ * Node size scales linearly with zoom but is clamped to [MIN_NODE_SIZE, MAX_NODE_SIZE].
+ * This ensures:
+ * - Nodes are always readable (≥24px)
+ * - Nodes don't become too large on high-DPI monitors (≤64px)
  */
 export function getNodeSize(nodeType: NodeType, zoom: number): number {
   const baseSize = NODE_SIZES[nodeType] ?? NODE_SIZES[NodeType.NODE_NORMAL];
-  const lod = getLODLevel(zoom);
-  return baseSize * lod.sizeMultiplier;
+  const scaledSize = baseSize * zoom;
+  return Math.max(MIN_NODE_SIZE, Math.min(MAX_NODE_SIZE, scaledSize));
 }
 
 /**

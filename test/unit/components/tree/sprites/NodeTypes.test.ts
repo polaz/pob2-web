@@ -10,6 +10,8 @@ import {
   NODE_ALPHAS,
   NODE_ANIMATION,
   LOD_LEVELS,
+  MIN_NODE_SIZE,
+  MAX_NODE_SIZE,
   DEFAULT_NODE_STATE,
   DEFAULT_RENDER_CONFIG,
   getLODLevel,
@@ -26,21 +28,22 @@ import {
 describe('NodeTypes', () => {
   describe('NODE_SIZES', () => {
     it('should have sizes for all node types', () => {
-      expect(NODE_SIZES[NodeType.NODE_NORMAL]).toBe(24);
-      expect(NODE_SIZES[NodeType.NODE_NOTABLE]).toBe(38);
-      expect(NODE_SIZES[NodeType.NODE_KEYSTONE]).toBe(52);
-      expect(NODE_SIZES[NodeType.NODE_MASTERY]).toBe(40);
-      expect(NODE_SIZES[NodeType.NODE_SOCKET]).toBe(44);
-      expect(NODE_SIZES[NodeType.NODE_CLASS_START]).toBe(48);
-      expect(NODE_SIZES[NodeType.NODE_ASCEND_CLASS_START]).toBe(42);
+      // Base sizes in world units (scaled by zoom, clamped to 24-64px screen)
+      expect(NODE_SIZES[NodeType.NODE_NORMAL]).toBe(12);
+      expect(NODE_SIZES[NodeType.NODE_NOTABLE]).toBe(15);
+      expect(NODE_SIZES[NodeType.NODE_KEYSTONE]).toBe(18);
+      expect(NODE_SIZES[NodeType.NODE_MASTERY]).toBe(15);
+      expect(NODE_SIZES[NodeType.NODE_SOCKET]).toBe(16);
+      expect(NODE_SIZES[NodeType.NODE_CLASS_START]).toBe(16);
+      expect(NODE_SIZES[NodeType.NODE_ASCEND_CLASS_START]).toBe(15);
     });
   });
 
   describe('NODE_FRAME_WIDTHS', () => {
     it('should have frame widths for all node types', () => {
-      expect(NODE_FRAME_WIDTHS[NodeType.NODE_NORMAL]).toBe(2);
-      expect(NODE_FRAME_WIDTHS[NodeType.NODE_NOTABLE]).toBe(3);
-      expect(NODE_FRAME_WIDTHS[NodeType.NODE_KEYSTONE]).toBe(4);
+      expect(NODE_FRAME_WIDTHS[NodeType.NODE_NORMAL]).toBe(0.5);
+      expect(NODE_FRAME_WIDTHS[NodeType.NODE_NOTABLE]).toBe(0.75);
+      expect(NODE_FRAME_WIDTHS[NodeType.NODE_KEYSTONE]).toBe(1);
     });
   });
 
@@ -99,62 +102,78 @@ describe('NodeTypes', () => {
       expect(LOD_LEVELS[0]!.showLabels).toBe(false);
       expect(LOD_LEVELS[0]!.showGlows).toBe(false);
 
-      // Highest LOD - all details
+      // Highest LOD - all details except labels (disabled for cleaner UI)
       expect(LOD_LEVELS[2]!.showIcons).toBe(true);
-      expect(LOD_LEVELS[2]!.showLabels).toBe(true);
+      expect(LOD_LEVELS[2]!.showLabels).toBe(false); // Labels disabled - shown on hover only
       expect(LOD_LEVELS[2]!.showGlows).toBe(true);
     });
   });
 
   describe('getLODLevel', () => {
-    it('should return minimal LOD for very low zoom', () => {
-      const lod = getLODLevel(0.1);
+    it('should return minimal LOD for low zoom', () => {
+      const lod = getLODLevel(1.0);
       expect(lod.showIcons).toBe(false);
       expect(lod.showLabels).toBe(false);
-      expect(lod.sizeMultiplier).toBe(0.5);
+      expect(lod.showFrameDetails).toBe(false);
+      expect(lod.sizeMultiplier).toBe(1.0); // Zoom handles scaling
     });
 
     it('should return medium LOD for medium zoom', () => {
-      const lod = getLODLevel(0.4);
+      const lod = getLODLevel(1.5);
       expect(lod.showIcons).toBe(false);
       expect(lod.showFrameDetails).toBe(true);
-      expect(lod.sizeMultiplier).toBe(0.75);
+      expect(lod.sizeMultiplier).toBe(1.0);
     });
 
     it('should return full LOD for high zoom', () => {
-      const lod = getLODLevel(1.0);
+      const lod = getLODLevel(2.5);
       expect(lod.showIcons).toBe(true);
-      expect(lod.showLabels).toBe(true);
+      expect(lod.showLabels).toBe(false); // Labels shown on hover only
       expect(lod.showGlows).toBe(true);
       expect(lod.sizeMultiplier).toBe(1.0);
     });
 
     it('should handle edge cases at boundaries', () => {
       // At exact boundary should be in the higher LOD
-      const lodAt03 = getLODLevel(0.3);
-      expect(lodAt03.minZoom).toBe(0.3);
+      const lodAt12 = getLODLevel(1.2);
+      expect(lodAt12.minZoom).toBe(1.2);
 
-      const lodAt06 = getLODLevel(0.6);
-      expect(lodAt06.minZoom).toBe(0.6);
+      const lodAt20 = getLODLevel(2.0);
+      expect(lodAt20.minZoom).toBe(2.0);
     });
   });
 
   describe('getNodeSize', () => {
-    it('should return base size at zoom 1.0', () => {
-      const size = getNodeSize(NodeType.NODE_NORMAL, 1.0);
-      expect(size).toBe(24); // Base size * 1.0 multiplier
+    it('should scale linearly with zoom', () => {
+      // base_size=12, zoom=2.0 → 12*2=24 (at minimum)
+      const size = getNodeSize(NodeType.NODE_NORMAL, 2.0);
+      expect(size).toBe(24);
     });
 
-    it('should scale size based on LOD', () => {
-      const lowZoomSize = getNodeSize(NodeType.NODE_NORMAL, 0.1);
-      const highZoomSize = getNodeSize(NodeType.NODE_NORMAL, 1.0);
-      expect(lowZoomSize).toBeLessThan(highZoomSize);
+    it('should clamp to MIN_NODE_SIZE at low zoom', () => {
+      // base_size=12, zoom=1.0 → 12*1=12, clamped to 24
+      const size = getNodeSize(NodeType.NODE_NORMAL, 1.0);
+      expect(size).toBe(MIN_NODE_SIZE); // 24
+    });
+
+    it('should clamp to MAX_NODE_SIZE at high zoom', () => {
+      // base_size=12, zoom=10 → 12*10=120, clamped to 64
+      const size = getNodeSize(NodeType.NODE_NORMAL, 10.0);
+      expect(size).toBe(MAX_NODE_SIZE); // 64
     });
 
     it('should handle different node types', () => {
-      const normalSize = getNodeSize(NodeType.NODE_NORMAL, 1.0);
-      const keystoneSize = getNodeSize(NodeType.NODE_KEYSTONE, 1.0);
+      // At zoom 3.0: normal=12*3=36, keystone=18*3=54
+      const normalSize = getNodeSize(NodeType.NODE_NORMAL, 3.0);
+      const keystoneSize = getNodeSize(NodeType.NODE_KEYSTONE, 3.0);
+      expect(normalSize).toBe(36);
+      expect(keystoneSize).toBe(54);
       expect(keystoneSize).toBeGreaterThan(normalSize);
+    });
+
+    it('should have correct min/max constants', () => {
+      expect(MIN_NODE_SIZE).toBe(24);
+      expect(MAX_NODE_SIZE).toBe(64);
     });
   });
 
@@ -278,8 +297,8 @@ describe('NodeTypes', () => {
       expect(getNodeShapeSides(NodeType.NODE_NOTABLE)).toBe(4);
     });
 
-    it('should return 8 sides for keystone (octagon)', () => {
-      expect(getNodeShapeSides(NodeType.NODE_KEYSTONE)).toBe(8);
+    it('should return 32 sides for keystone (circle)', () => {
+      expect(getNodeShapeSides(NodeType.NODE_KEYSTONE)).toBe(32);
     });
 
     it('should return 32 sides for normal (circle)', () => {

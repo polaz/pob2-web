@@ -49,7 +49,7 @@ describe('treeStore', () => {
 
       expect(store.viewport.x).toBe(0);
       expect(store.viewport.y).toBe(0);
-      expect(store.viewport.zoom).toBe(1.0);
+      expect(store.viewport.zoom).toBe(2.5); // Comfortable starting zoom
     });
   });
 
@@ -160,14 +160,14 @@ describe('treeStore', () => {
     it('should set viewport zoom with clamping', () => {
       const store = useTreeStore();
 
-      store.setViewportZoom(2.0);
+      store.setViewportZoom(3.0);
+      expect(store.viewport.zoom).toBe(3.0);
+
+      // Test lower bound (2.0) - ensures nodes are at least 24px
+      store.setViewportZoom(0.5);
       expect(store.viewport.zoom).toBe(2.0);
 
-      // Test lower bound (0.1)
-      store.setViewportZoom(0.05);
-      expect(store.viewport.zoom).toBe(0.1);
-
-      // Test upper bound (5.0)
+      // Test upper bound (5.0) - prevents nodes larger than 64px
       store.setViewportZoom(10.0);
       expect(store.viewport.zoom).toBe(5.0);
     });
@@ -185,11 +185,11 @@ describe('treeStore', () => {
     it('should zoom viewport at point', () => {
       const store = useTreeStore();
       store.setViewportPosition(0, 0);
-      store.setViewportZoom(1.0);
+      store.setViewportZoom(3.0);
 
       store.zoomViewportAt(100, 100, 0.5);
 
-      expect(store.viewport.zoom).toBe(1.5);
+      expect(store.viewport.zoom).toBe(3.5);
       // Position should adjust to zoom towards the point
       expect(store.viewport.x).not.toBe(0);
     });
@@ -197,13 +197,13 @@ describe('treeStore', () => {
     it('should reset viewport', () => {
       const store = useTreeStore();
       store.setViewportPosition(500, 500);
-      store.setViewportZoom(2.5);
+      store.setViewportZoom(4.0);
 
       store.resetViewport();
 
       expect(store.viewport.x).toBe(0);
       expect(store.viewport.y).toBe(0);
-      expect(store.viewport.zoom).toBe(1.0);
+      expect(store.viewport.zoom).toBe(2.5); // Default zoom
     });
 
     it('should center on node', () => {

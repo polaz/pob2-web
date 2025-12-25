@@ -118,9 +118,7 @@ describe('PassiveTreeCanvas', () => {
       wrapper = mountComponent();
       const container = wrapper.find('.passive-tree-canvas');
       expect(container.exists()).toBe(true);
-      expect(container.classes()).toContain('relative');
-      expect(container.classes()).toContain('full-width');
-      expect(container.classes()).toContain('full-height');
+      expect(container.classes()).toContain('absolute-full');
       expect(container.classes()).toContain('overflow-hidden');
     });
 

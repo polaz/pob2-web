@@ -1,6 +1,6 @@
 <template>
-  <div ref="containerRef" class="passive-tree-canvas">
-    <canvas ref="canvasRef" />
+  <div ref="containerRef" class="passive-tree-canvas absolute-full overflow-hidden">
+    <canvas ref="canvasRef" class="block full-width full-height" />
 
     <!-- Dev mode FPS counter with renderer info -->
     <div
@@ -398,20 +398,8 @@ defineExpose({
   --tree-fps-bg: rgba(0, 0, 0, 0.7);
   --tree-fps-color: #4ade80;
 
-  /* Ensure container fills available space and doesn't collapse based on canvas content */
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  /* Background color for canvas container */
   background-color: var(--tree-canvas-bg);
-}
-
-.passive-tree-canvas canvas {
-  /* Canvas should fill container without affecting its size */
-  display: block;
-  width: 100%;
-  height: 100%;
 }
 
 /* FPS counter visual styling - positioning via inline style */
