@@ -165,6 +165,11 @@ function escapeAttr(value: string): string {
 
 /**
  * Build an XML element string with attributes.
+ *
+ * Attribute filtering:
+ * - `undefined` and empty strings are excluded (no attribute rendered)
+ * - `false` renders as "false", `0` renders as "0" (both are valid values)
+ * - `true` renders as "true"
  */
 function xmlElement(
   tag: string,
@@ -172,6 +177,7 @@ function xmlElement(
   content?: string,
   selfClose = false
 ): string {
+  // Filter out undefined and empty strings; numbers (including 0) and booleans are preserved
   const attrStr = Object.entries(attrs)
     .filter(([, v]) => v !== undefined && v !== '')
     .map(([k, v]) => `${k}="${escapeAttr(String(v))}"`)
@@ -191,7 +197,9 @@ function xmlElement(
  */
 function getAttr(element: Element, name: string): string | undefined {
   const value = element.getAttribute(name);
-  return value ?? undefined;
+  // DOM getAttribute returns null when attribute is missing; convert to undefined for callers
+  if (value === null) return undefined;
+  return value;
 }
 
 /**
@@ -557,7 +565,10 @@ function parseItem(itemText: string, itemId: string): Item {
 
     // Parse item level
     if (line.startsWith('Item Level: ')) {
-      item.itemLevel = parseInt(line.substring(12), 10);
+      const parsedLevel = parseInt(line.substring(12), 10);
+      if (!Number.isNaN(parsedLevel)) {
+        item.itemLevel = parsedLevel;
+      }
       continue;
     }
 
@@ -566,7 +577,10 @@ function parseItem(itemText: string, itemId: string): Item {
       const qualityMatch = line.match(/Quality:\s*\+?(\d+)%?/);
       const qualityValue = qualityMatch?.[1];
       if (qualityValue) {
-        item.quality = parseInt(qualityValue, 10);
+        const parsedQuality = parseInt(qualityValue, 10);
+        if (!Number.isNaN(parsedQuality)) {
+          item.quality = parsedQuality;
+        }
       }
       continue;
     }
@@ -579,7 +593,8 @@ function parseItem(itemText: string, itemId: string): Item {
 
     // Parse implicits count
     if (line.startsWith('Implicits: ')) {
-      implicitCount = parseInt(line.substring(11), 10);
+      const parsedImplicitCount = parseInt(line.substring(11), 10);
+      implicitCount = Number.isNaN(parsedImplicitCount) ? 0 : parsedImplicitCount;
       section = 'implicits';
       continue;
     }
@@ -664,15 +679,15 @@ function parseItems(itemsElement: Element | null): Record<string, Item> {
  * Only sets optional properties when values exist (exactOptionalPropertyTypes compatibility).
  */
 function parseGem(gemElement: Element): GemInstance {
-  const gem: GemInstance = {
-    id: getAttr(gemElement, 'gemId') ?? crypto.randomUUID(),
-  };
-
   const gemId = getAttr(gemElement, 'gemId');
   const level = getNumAttr(gemElement, 'level');
   const quality = getNumAttr(gemElement, 'quality');
   const enabled = getBoolAttr(gemElement, 'enabled');
   const count = getNumAttr(gemElement, 'count');
+
+  const gem: GemInstance = {
+    id: gemId ?? crypto.randomUUID(),
+  };
 
   if (gemId) gem.gemId = gemId;
   if (level !== undefined) gem.level = level;

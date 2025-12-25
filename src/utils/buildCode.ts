@@ -72,7 +72,7 @@ export interface EncodeOptions {
  */
 function uint8ArrayToBase64(bytes: Uint8Array): string {
   // Convert Uint8Array to binary string
-  // Note: Using reduce with typed array ensures no undefined access
+  // Note: Iterating a typed array with forEach ensures no undefined access
   let binary = '';
   bytes.forEach((byte) => {
     binary += String.fromCharCode(byte);
