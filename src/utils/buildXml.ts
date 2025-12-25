@@ -465,8 +465,8 @@ function serializeConfig(config: BuildConfig | undefined): string {
  * Convert a Build object to PoB2-compatible XML string.
  */
 export function buildToXml(build: Build): string {
-  const className =
-    build.characterClass !== undefined ? CLASS_TO_POB_NAME[build.characterClass] : DEFAULT_CLASS_NAME;
+  // Use ?? since CLASS_TO_POB_NAME[undefined] returns undefined (non-existent key)
+  const className = CLASS_TO_POB_NAME[build.characterClass as CharacterClass] ?? DEFAULT_CLASS_NAME;
 
   // Build element
   const buildElement = xmlElement(
@@ -483,13 +483,14 @@ export function buildToXml(build: Build): string {
   // Tree element with Spec
   const nodes = serializeNodes(build.allocatedNodeIds);
   const masteryEffects = serializeMasteryEffects(build.masterySelections);
+  // masteryEffects passed directly - xmlElement filters empty strings (see line 177)
   const specElement = xmlElement(
     'Spec',
     {
       title: build.name ?? DEFAULT_SPEC_TITLE,
       treeVersion: POE2_TREE_VERSION,
       nodes,
-      ...(masteryEffects && { masteryEffects }),
+      masteryEffects,
     },
     '',
     true

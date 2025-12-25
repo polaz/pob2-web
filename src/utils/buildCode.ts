@@ -323,7 +323,8 @@ export function extractXmlFromBuildCode(code: string): string | null {
     const xmlBytes = inflateSync(compressed);
     const decoder = new TextDecoder('utf-8');
     return decoder.decode(xmlBytes);
-  } catch {
+  } catch (error) {
+    console.warn('extractXmlFromBuildCode: failed to extract XML', error);
     return null;
   }
 }
