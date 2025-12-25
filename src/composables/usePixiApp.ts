@@ -217,8 +217,12 @@ export function usePixiApp(): UsePixiAppResult {
    */
   async function init(canvas: HTMLCanvasElement): Promise<void> {
     // Prevent race condition: check both initialized and initializing states
-    if (app.value || isInitializing) {
-      console.warn('[usePixiApp] Already initialized or initializing');
+    if (app.value) {
+      console.warn('[usePixiApp] Already initialized');
+      return;
+    }
+    if (isInitializing) {
+      console.warn('[usePixiApp] Initialization already in progress');
       return;
     }
 
@@ -328,6 +332,7 @@ export function usePixiApp(): UsePixiAppResult {
 
   /**
    * Destroy the application and clean up resources.
+   * Resets all state to initial values for potential re-initialization.
    */
   function destroy(): void {
     // Explicitly remove FPS ticker callback before destroying app
@@ -341,11 +346,14 @@ export function usePixiApp(): UsePixiAppResult {
       app.value = null;
     }
 
+    // Reset all state to initial values
     layers.value = null;
     ready.value = false;
+    error.value = null;
     rendererType.value = 'unknown';
     fps.value = 0;
     fallbackInfo.value = null;
+    isInitializing = false;
   }
 
   // Clean up on unmount

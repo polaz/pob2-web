@@ -141,7 +141,12 @@ onMounted(async () => {
   // Initialize PixiJS
   await init(canvasRef.value);
 
-  // Setup resize observer
+  // Perform initial resize - ResizeObserver may not trigger if container already settled
+  if (ready.value) {
+    performResize();
+  }
+
+  // Setup resize observer for subsequent resizes
   resizeObserver = new ResizeObserver(() => {
     handleResize();
   });
