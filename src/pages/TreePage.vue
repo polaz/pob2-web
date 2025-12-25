@@ -1,16 +1,46 @@
 <template>
-  <div class="tree-page">
-    <div class="text-h6">Passive Tree</div>
-    <div class="text-caption text-grey">Tree visualization will be implemented here</div>
+  <div class="full-width full-height overflow-hidden">
+    <PassiveTreeCanvas
+      :show-fps="true"
+      @ready="onCanvasReady"
+      @resize="onCanvasResize"
+      @error="onCanvasError"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-// TreePage - Passive skill tree visualization
-</script>
+import { shallowRef } from 'vue';
+import PassiveTreeCanvas from 'src/components/tree/PassiveTreeCanvas.vue';
+import type { TreeLayers } from 'src/composables/usePixiApp';
 
-<style scoped>
-.tree-page {
-  padding: 16px;
+/**
+ * Stores reference to canvas layers for future tree rendering operations.
+ * Will be used for node rendering, connections, and UI overlays.
+ */
+const canvasLayers = shallowRef<TreeLayers | null>(null);
+
+function onCanvasReady(layers: TreeLayers): void {
+  canvasLayers.value = layers;
+  if (import.meta.env.DEV) {
+    console.log('[TreePage] Canvas ready with layers:', Object.keys(layers));
+  }
 }
-</style>
+
+function onCanvasResize(width: number, height: number): void {
+  if (import.meta.env.DEV) {
+    console.log(`[TreePage] Canvas resized to ${width}x${height}`);
+  }
+}
+
+function onCanvasError(error: Error): void {
+  if (import.meta.env.DEV) {
+    console.error('[TreePage] Canvas error:', error);
+  }
+}
+
+// Expose canvas layers for parent component or testing access
+defineExpose({
+  canvasLayers,
+});
+</script>
