@@ -1,0 +1,2173 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T11:44:12.615Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "category": "accessories",
+  "meta": {
+    "totalBases": 106,
+    "byType": {
+      "Ring": 19,
+      "Amulet": 16,
+      "Belt": 12,
+      "Quiver": 11,
+      "Focus": 23,
+      "Talisman": 25
+    }
+  },
+  "bases": {
+    "Golden Hoop": {
+      "name": "Golden Hoop",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "demigods": true,
+        "not_for_sale": true,
+        "ring": true
+      },
+      "implicit": "+(8-12) to all Attributes",
+      "implicitModTypes": [
+        [
+          "attribute"
+        ]
+      ],
+      "req": {
+        "level": 12
+      }
+    },
+    "Iron Ring": {
+      "name": "Iron Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "Adds 1 to 4 Physical Damage to Attacks",
+      "implicitModTypes": [
+        [
+          "physical_damage",
+          "damage",
+          "physical",
+          "attack"
+        ]
+      ],
+      "req": {}
+    },
+    "Lazuli Ring": {
+      "name": "Lazuli Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(20-30) to maximum Mana",
+      "implicitModTypes": [
+        [
+          "resource",
+          "mana"
+        ]
+      ],
+      "req": {}
+    },
+    "Ruby Ring": {
+      "name": "Ruby Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(20-30)% to Fire Resistance",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "fire",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 8
+      }
+    },
+    "Sapphire Ring": {
+      "name": "Sapphire Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(20-30)% to Cold Resistance",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "cold",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 12
+      }
+    },
+    "Topaz Ring": {
+      "name": "Topaz Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(20-30)% to Lightning Resistance",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "lightning",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 16
+      }
+    },
+    "Amethyst Ring": {
+      "name": "Amethyst Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(7-13)% to Chaos Resistance",
+      "implicitModTypes": [
+        [
+          "chaos",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 20
+      }
+    },
+    "Emerald Ring": {
+      "name": "Emerald Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(120-160) to Accuracy Rating",
+      "implicitModTypes": [
+        [
+          "attack"
+        ]
+      ],
+      "req": {
+        "level": 26
+      }
+    },
+    "Pearl Ring": {
+      "name": "Pearl Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "(7-10)% increased Cast Speed",
+      "implicitModTypes": [
+        [
+          "caster",
+          "speed"
+        ]
+      ],
+      "req": {
+        "level": 32
+      }
+    },
+    "Prismatic Ring": {
+      "name": "Prismatic Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+(7-10)% to all Elemental Resistances",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "fire",
+          "cold",
+          "lightning",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 35
+      }
+    },
+    "Gold Ring": {
+      "name": "Gold Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "(6-15)% increased Rarity of Items found",
+      "implicitModTypes": [
+        [
+          "drop"
+        ]
+      ],
+      "req": {
+        "level": 40
+      }
+    },
+    "Unset Ring": {
+      "name": "Unset Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "Grants 1 additional Skill Slot",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 44
+      }
+    },
+    "Abyssal Signet": {
+      "name": "Abyssal Signet",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "Inflict Abyssal Wasting on Hit",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {}
+    },
+    "Ring": {
+      "name": "Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Dusk Ring": {
+      "name": "Dusk Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Gloam Ring": {
+      "name": "Gloam Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "-1 Prefix Modifier allowed\\n+1 Suffix Modifier allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Penumbra Ring": {
+      "name": "Penumbra Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "+2 Prefix Modifiers allowed\\n-2 Suffix Modifiers allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Tenebrous Ring": {
+      "name": "Tenebrous Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "-2 Prefix Modifiers allowed\\n+2 Suffix Modifiers allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Breach Ring": {
+      "name": "Breach Ring",
+      "type": "Ring",
+      "tags": {
+        "default": true,
+        "ring": true
+      },
+      "implicit": "Maximum Quality is 40%",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 40
+      }
+    },
+    "Crimson Amulet": {
+      "name": "Crimson Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "(2-4) Life Regeneration per second",
+      "implicitModTypes": [
+        [
+          "flat_life_regen",
+          "resource",
+          "life"
+        ]
+      ],
+      "req": {}
+    },
+    "Azure Amulet": {
+      "name": "Azure Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Mana Regeneration Rate",
+      "implicitModTypes": [
+        [
+          "resource",
+          "mana"
+        ]
+      ],
+      "req": {}
+    },
+    "Amber Amulet": {
+      "name": "Amber Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(10-15) to Strength",
+      "implicitModTypes": [
+        [
+          "attribute"
+        ]
+      ],
+      "req": {
+        "level": 8
+      }
+    },
+    "Jade Amulet": {
+      "name": "Jade Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(10-15) to Dexterity",
+      "implicitModTypes": [
+        [
+          "attribute"
+        ]
+      ],
+      "req": {
+        "level": 8
+      }
+    },
+    "Lapis Amulet": {
+      "name": "Lapis Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(10-15) to Intelligence",
+      "implicitModTypes": [
+        [
+          "attribute"
+        ]
+      ],
+      "req": {
+        "level": 8
+      }
+    },
+    "Lunar Amulet": {
+      "name": "Lunar Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(20-30) to maximum Energy Shield",
+      "implicitModTypes": [
+        [
+          "energy_shield",
+          "defences"
+        ]
+      ],
+      "req": {
+        "level": 14
+      }
+    },
+    "Bloodstone Amulet": {
+      "name": "Bloodstone Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(30-40) to maximum Life",
+      "implicitModTypes": [
+        [
+          "resource",
+          "life"
+        ]
+      ],
+      "req": {
+        "level": 18
+      }
+    },
+    "Stellar Amulet": {
+      "name": "Stellar Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(5-7) to all Attributes",
+      "implicitModTypes": [
+        [
+          "attribute"
+        ]
+      ],
+      "req": {
+        "level": 24
+      }
+    },
+    "Solar Amulet": {
+      "name": "Solar Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(10-15) to Spirit",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 30
+      }
+    },
+    "Gold Amulet": {
+      "name": "Gold Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "(12-20)% increased Rarity of Items found",
+      "implicitModTypes": [
+        [
+          "drop"
+        ]
+      ],
+      "req": {
+        "level": 35
+      }
+    },
+    "Pearlescent Amulet": {
+      "name": "Pearlescent Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+(7-10)% to all Elemental Resistances",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "fire",
+          "cold",
+          "lightning",
+          "resistance"
+        ]
+      ],
+      "req": {
+        "level": 30
+      }
+    },
+    "Dusk Amulet": {
+      "name": "Dusk Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Gloam Amulet": {
+      "name": "Gloam Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "-1 Prefix Modifier allowed\\n+1 Suffix Modifier allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Penumbra Amulet": {
+      "name": "Penumbra Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "+2 Prefix Modifiers allowed\\n-2 Suffix Modifiers allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Tenebrous Amulet": {
+      "name": "Tenebrous Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "-2 Prefix Modifiers allowed\\n+2 Suffix Modifiers allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Distorted Amulet": {
+      "name": "Distorted Amulet",
+      "type": "Amulet",
+      "tags": {
+        "amulet": true,
+        "default": true
+      },
+      "implicit": "-1 Prefix Modifier allowed\\n-1 Suffix Modifier allowed",
+      "implicitModTypes": [
+        {},
+        {}
+      ],
+      "req": {}
+    },
+    "Golden Obi": {
+      "name": "Golden Obi",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true,
+        "demigods": true,
+        "not_for_sale": true
+      },
+      "implicit": "(20-30)% increased Rarity of Items found\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "drop"
+        ]
+      ],
+      "req": {}
+    },
+    "Rawhide Belt": {
+      "name": "Rawhide Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Life Recovery from Flasks\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "flask",
+          "resource",
+          "life"
+        ]
+      ],
+      "req": {}
+    },
+    "Linen Belt": {
+      "name": "Linen Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Mana Recovery from Flasks\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "flask",
+          "resource",
+          "mana"
+        ]
+      ],
+      "req": {}
+    },
+    "Wide Belt": {
+      "name": "Wide Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Flask Charges gained\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "flask"
+        ]
+      ],
+      "req": {
+        "level": 14
+      }
+    },
+    "Long Belt": {
+      "name": "Long Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(15-20)% increased Charm Effect Duration\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 20
+      }
+    },
+    "Plate Belt": {
+      "name": "Plate Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "+(100-140) to Armour\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "armour",
+          "defences"
+        ]
+      ],
+      "req": {
+        "level": 24
+      }
+    },
+    "Ornate Belt": {
+      "name": "Ornate Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(10-15)% reduced Charm Charges used\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 31
+      }
+    },
+    "Mail Belt": {
+      "name": "Mail Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(10-15)% reduced Flask Charges used\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        [
+          "flask"
+        ]
+      ],
+      "req": {
+        "level": 40
+      }
+    },
+    "Double Belt": {
+      "name": "Double Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Charm Charges gained\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 44
+      }
+    },
+    "Heavy Belt": {
+      "name": "Heavy Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "(20-30)% increased Stun Threshold\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 50
+      }
+    },
+    "Utility Belt": {
+      "name": "Utility Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "20% of Flask Recovery applied Instantly\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 55
+      }
+    },
+    "Fine Belt": {
+      "name": "Fine Belt",
+      "type": "Belt",
+      "tags": {
+        "belt": true,
+        "default": true
+      },
+      "implicit": "Flasks gain 0.17 charges per Second\\nHas (1-3) Charm Slots",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 62
+      }
+    },
+    "Broadhead Quiver": {
+      "name": "Broadhead Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "Adds 1 to 3 Physical Damage to Attacks",
+      "implicitModTypes": [
+        [
+          "physical_damage",
+          "damage",
+          "physical",
+          "attack"
+        ]
+      ],
+      "req": {}
+    },
+    "Fire Quiver": {
+      "name": "Fire Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "Adds 3 to 5 Fire damage to Attacks",
+      "implicitModTypes": [
+        [
+          "elemental_damage",
+          "damage",
+          "elemental",
+          "fire",
+          "attack"
+        ]
+      ],
+      "req": {
+        "level": 8
+      }
+    },
+    "Sacral Quiver": {
+      "name": "Sacral Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "Gain (2-3) Life per Enemy Hit with Attacks",
+      "implicitModTypes": [
+        [
+          "resource",
+          "life",
+          "attack"
+        ]
+      ],
+      "req": {
+        "level": 16
+      }
+    },
+    "Two-Point Quiver": {
+      "name": "Two-Point Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(20-30)% increased Accuracy Rating",
+      "implicitModTypes": [
+        [
+          "attack"
+        ]
+      ],
+      "req": {
+        "level": 24
+      }
+    },
+    "Blunt Quiver": {
+      "name": "Blunt Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(25-40)% increased Stun Buildup",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 32
+      }
+    },
+    "Toxic Quiver": {
+      "name": "Toxic Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(20-30)% chance to Poison on Hit with Attacks",
+      "implicitModTypes": [
+        [
+          "poison",
+          "chaos",
+          "attack",
+          "ailment"
+        ]
+      ],
+      "req": {
+        "level": 39
+      }
+    },
+    "Serrated Quiver": {
+      "name": "Serrated Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "Attacks have (20-30)% chance to cause Bleeding",
+      "implicitModTypes": [
+        [
+          "bleed",
+          "physical",
+          "attack",
+          "ailment"
+        ]
+      ],
+      "req": {
+        "level": 44
+      }
+    },
+    "Primed Quiver": {
+      "name": "Primed Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(7-10)% increased Attack Speed",
+      "implicitModTypes": [
+        [
+          "attack",
+          "speed"
+        ]
+      ],
+      "req": {
+        "level": 51
+      }
+    },
+    "Penetrating Quiver": {
+      "name": "Penetrating Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "100% chance to Pierce an Enemy",
+      "implicitModTypes": [
+        {}
+      ],
+      "req": {
+        "level": 55
+      }
+    },
+    "Volant Quiver": {
+      "name": "Volant Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(20-30)% increased Arrow Speed",
+      "implicitModTypes": [
+        [
+          "attack",
+          "speed"
+        ]
+      ],
+      "req": {
+        "level": 60
+      }
+    },
+    "Visceral Quiver": {
+      "name": "Visceral Quiver",
+      "type": "Quiver",
+      "tags": {
+        "default": true,
+        "quiver": true
+      },
+      "implicit": "(20-30)% increased Critical Hit Chance for Attacks",
+      "implicitModTypes": [
+        [
+          "attack",
+          "critical"
+        ]
+      ],
+      "req": {
+        "level": 64
+      }
+    },
+    "Twig Focus": {
+      "name": "Twig Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "ezomyte_basetype": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 12
+      },
+      "req": {}
+    },
+    "Woven Focus": {
+      "name": "Woven Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "ezomyte_basetype": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 15
+      },
+      "req": {
+        "level": 6,
+        "int": 11
+      }
+    },
+    "Antler Focus": {
+      "name": "Antler Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "ezomyte_basetype": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 17
+      },
+      "req": {
+        "level": 10,
+        "int": 17
+      }
+    },
+    "Engraved Focus": {
+      "name": "Engraved Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "maraketh_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 21
+      },
+      "req": {
+        "level": 16,
+        "int": 25
+      }
+    },
+    "Tonal Focus": {
+      "name": "Tonal Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "maraketh_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 25
+      },
+      "req": {
+        "level": 22,
+        "int": 33
+      }
+    },
+    "Crystal Focus": {
+      "name": "Crystal Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "maraketh_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 28
+      },
+      "req": {
+        "level": 26,
+        "int": 38
+      }
+    },
+    "Voodoo Focus": {
+      "name": "Voodoo Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "vaal_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 32
+      },
+      "req": {
+        "level": 33,
+        "int": 48
+      }
+    },
+    "Plumed Focus": {
+      "name": "Plumed Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "vaal_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 34
+      },
+      "req": {
+        "level": 36,
+        "int": 52
+      }
+    },
+    "Runed Focus": {
+      "name": "Runed Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "karui_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 40
+      },
+      "req": {
+        "level": 45,
+        "int": 64
+      }
+    },
+    "Whorl Focus": {
+      "name": "Whorl Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "karui_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 43
+      },
+      "req": {
+        "level": 51,
+        "int": 73
+      }
+    },
+    "Elegant Focus": {
+      "name": "Elegant Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 44
+      },
+      "req": {
+        "level": 52,
+        "int": 74
+      }
+    },
+    "Attuned Focus": {
+      "name": "Attuned Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 47
+      },
+      "req": {
+        "level": 57,
+        "int": 81
+      }
+    },
+    "Magus Focus": {
+      "name": "Magus Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 52
+      },
+      "req": {
+        "level": 65,
+        "int": 91
+      }
+    },
+    "Wreath Focus": {
+      "name": "Wreath Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 40
+      },
+      "req": {
+        "level": 45,
+        "int": 64
+      }
+    },
+    "Staghorn Focus": {
+      "name": "Staghorn Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 42
+      },
+      "req": {
+        "level": 48,
+        "int": 69
+      }
+    },
+    "Jingling Focus": {
+      "name": "Jingling Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 43
+      },
+      "req": {
+        "level": 51,
+        "int": 73
+      }
+    },
+    "Arrayed Focus": {
+      "name": "Arrayed Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 45
+      },
+      "req": {
+        "level": 54,
+        "int": 77
+      }
+    },
+    "Cultist Focus": {
+      "name": "Cultist Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 49
+      },
+      "req": {
+        "level": 59,
+        "int": 83
+      }
+    },
+    "Hallowed Focus": {
+      "name": "Hallowed Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 53
+      },
+      "req": {
+        "level": 61,
+        "int": 86
+      }
+    },
+    "Druidic Focus": {
+      "name": "Druidic Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 58
+      },
+      "req": {
+        "level": 65,
+        "int": 91
+      }
+    },
+    "Leyline Focus": {
+      "name": "Leyline Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 66
+      },
+      "req": {
+        "level": 70,
+        "int": 99
+      }
+    },
+    "Sacred Focus": {
+      "name": "Sacred Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 75
+      },
+      "req": {
+        "level": 75,
+        "int": 107
+      }
+    },
+    "Tasalian Focus": {
+      "name": "Tasalian Focus",
+      "type": "Focus",
+      "quality": 20,
+      "socketLimit": 3,
+      "tags": {
+        "armour": true,
+        "default": true,
+        "focus": true,
+        "int_armour": true,
+        "karui_basetype": true
+      },
+      "implicitModTypes": {},
+      "armour": {
+        "EnergyShield": 85
+      },
+      "req": {
+        "level": 80,
+        "int": 115
+      }
+    },
+    "Changeling Talisman": {
+      "name": "Changeling Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "ezomyte_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 9,
+        "PhysicalMax": 15,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {}
+    },
+    "Nettle Talisman": {
+      "name": "Nettle Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "ezomyte_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 12,
+        "PhysicalMax": 20,
+        "CritChanceBase": 11,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 5,
+        "str": 9,
+        "int": 8
+      }
+    },
+    "Cinderbark Talisman": {
+      "name": "Cinderbark Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "ezomyte_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "(50-80)% increased Flammability Magnitude",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "fire",
+          "ailment"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 12,
+        "PhysicalMax": 25,
+        "FireMin": 5,
+        "FireMax": 10,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.2,
+        "Range": 12
+      },
+      "req": {
+        "level": 10,
+        "str": 15,
+        "int": 11
+      }
+    },
+    "Familial Talisman": {
+      "name": "Familial Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "Minions deal (30-50)% increased Damage",
+      "implicitModTypes": [
+        [
+          "damage",
+          "minion"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 20,
+        "PhysicalMax": 34,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 16,
+        "str": 21,
+        "int": 16
+      }
+    },
+    "Frenzied Talisman": {
+      "name": "Frenzied Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 23,
+        "PhysicalMax": 38,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.4,
+        "Range": 12
+      },
+      "req": {
+        "level": 22,
+        "str": 28,
+        "int": 20
+      }
+    },
+    "Primal Talisman": {
+      "name": "Primal Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "+(10-15)% to Block chance",
+      "implicitModTypes": [
+        [
+          "block"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 31,
+        "PhysicalMax": 46,
+        "CritChanceBase": 9,
+        "AttackRateBase": 1.3,
+        "Range": 12
+      },
+      "req": {
+        "level": 28,
+        "str": 34,
+        "int": 25
+      }
+    },
+    "Rabid Talisman": {
+      "name": "Rabid Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicit": "+(8-12) to Maximum Rage",
+      "implicitModTypes": [
+        {}
+      ],
+      "weapon": {
+        "PhysicalMin": 31,
+        "PhysicalMax": 58,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 34,
+        "str": 40,
+        "int": 29
+      }
+    },
+    "Vicious Talisman": {
+      "name": "Vicious Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 43,
+        "PhysicalMax": 71,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 40,
+        "str": 47,
+        "int": 34
+      }
+    },
+    "Voltfang Talisman": {
+      "name": "Voltfang Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "karui_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "(15-25)% increased Magnitude of Shock you inflict",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "lightning",
+          "ailment"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 16,
+        "PhysicalMax": 91,
+        "LightningMin": 6,
+        "LightningMax": 39,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.3,
+        "Range": 12
+      },
+      "req": {
+        "level": 46,
+        "str": 53,
+        "int": 38
+      }
+    },
+    "Lumbering Talisman": {
+      "name": "Lumbering Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "karui_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 71,
+        "PhysicalMax": 107,
+        "CritChanceBase": 5,
+        "AttackRateBase": 1.1,
+        "Range": 12
+      },
+      "req": {
+        "level": 52,
+        "str": 60,
+        "int": 43
+      }
+    },
+    "Roaring Talisman": {
+      "name": "Roaring Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "+(8-12) to Maximum Rage",
+      "implicitModTypes": [
+        {}
+      ],
+      "weapon": {
+        "PhysicalMin": 57,
+        "PhysicalMax": 96,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 58,
+        "str": 66,
+        "int": 47
+      }
+    },
+    "Wingbeat Talisman": {
+      "name": "Wingbeat Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 45,
+        "PhysicalMax": 83,
+        "CritChanceBase": 7,
+        "AttackRateBase": 1.45,
+        "Range": 12
+      },
+      "req": {
+        "level": 65,
+        "str": 74,
+        "int": 52
+      }
+    },
+    "Condemned Talisman": {
+      "name": "Condemned Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "(10-20)% increased Effect of your Mark Skills",
+      "implicitModTypes": [
+        [
+          "caster",
+          "curse"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 68,
+        "PhysicalMax": 113,
+        "CritChanceBase": 9,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 65,
+        "str": 74,
+        "int": 52
+      }
+    },
+    "Howling Talisman": {
+      "name": "Howling Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "+(10-15)% to Block chance",
+      "implicitModTypes": [
+        [
+          "block"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 52,
+        "PhysicalMax": 78,
+        "CritChanceBase": 9,
+        "AttackRateBase": 1.3,
+        "Range": 12
+      },
+      "req": {
+        "level": 55,
+        "str": 63,
+        "int": 45
+      }
+    },
+    "Fury Talisman": {
+      "name": "Fury Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicit": "+(8-12) to Maximum Rage",
+      "implicitModTypes": [
+        {}
+      ],
+      "weapon": {
+        "PhysicalMin": 49,
+        "PhysicalMax": 91,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 59,
+        "str": 67,
+        "int": 48
+      }
+    },
+    "Cruel Talisman": {
+      "name": "Cruel Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 62,
+        "PhysicalMax": 103,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 63,
+        "str": 72,
+        "int": 51
+      }
+    },
+    "Spiny Talisman": {
+      "name": "Spiny Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "ezomyte_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 60,
+        "PhysicalMax": 99,
+        "CritChanceBase": 11,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 67,
+        "str": 86,
+        "int": 65
+      }
+    },
+    "Ashbark Talisman": {
+      "name": "Ashbark Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "ezomyte_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "(50-80)% increased Flammability Magnitude",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "fire",
+          "ailment"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 50,
+        "PhysicalMax": 105,
+        "FireMin": 21,
+        "FireMax": 45,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.2,
+        "Range": 12
+      },
+      "req": {
+        "level": 72,
+        "str": 94,
+        "int": 67
+      }
+    },
+    "Fang Talisman": {
+      "name": "Fang Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "Minions deal (30-50)% increased Damage",
+      "implicitModTypes": [
+        [
+          "damage",
+          "minion"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 70,
+        "PhysicalMax": 116,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 77,
+        "str": 89,
+        "int": 68
+      }
+    },
+    "Fungal Talisman": {
+      "name": "Fungal Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 59,
+        "PhysicalMax": 98,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.4,
+        "Range": 12
+      },
+      "req": {
+        "level": 78,
+        "str": 96,
+        "int": 70
+      }
+    },
+    "Alpha Talisman": {
+      "name": "Alpha Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "maraketh_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "+(10-15)% to Block chance",
+      "implicitModTypes": [
+        [
+          "block"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 63,
+        "PhysicalMax": 94,
+        "CritChanceBase": 9,
+        "AttackRateBase": 1.3,
+        "Range": 12
+      },
+      "req": {
+        "level": 75,
+        "str": 98,
+        "int": 72
+      }
+    },
+    "Maji Talisman": {
+      "name": "Maji Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicit": "+(8-12) to Maximum Rage",
+      "implicitModTypes": [
+        {}
+      ],
+      "weapon": {
+        "PhysicalMin": 61,
+        "PhysicalMax": 114,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 79,
+        "str": 100,
+        "int": 67
+      }
+    },
+    "Wildwood Talisman": {
+      "name": "Wildwood Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "vaal_basetype": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 67,
+        "PhysicalMax": 112,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.25,
+        "Range": 12
+      },
+      "req": {
+        "level": 70,
+        "str": 98,
+        "int": 72
+      }
+    },
+    "Thunder Talisman": {
+      "name": "Thunder Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "karui_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicit": "(15-25)% increased Magnitude of Shock you inflict",
+      "implicitModTypes": [
+        [
+          "elemental",
+          "lightning",
+          "ailment"
+        ]
+      ],
+      "weapon": {
+        "PhysicalMin": 23,
+        "PhysicalMax": 130,
+        "LightningMin": 9,
+        "LightningMax": 56,
+        "CritChanceBase": 8,
+        "AttackRateBase": 1.3,
+        "Range": 12
+      },
+      "req": {
+        "level": 77,
+        "str": 102,
+        "int": 72
+      }
+    },
+    "Jade Talisman": {
+      "name": "Jade Talisman",
+      "type": "Talisman",
+      "quality": 20,
+      "tags": {
+        "default": true,
+        "karui_basetype": true,
+        "talisman": true,
+        "two_hand_weapon": true,
+        "twohand": true,
+        "weapon": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 101,
+        "PhysicalMax": 151,
+        "CritChanceBase": 5,
+        "AttackRateBase": 1.1,
+        "Range": 12
+      },
+      "req": {
+        "level": 78,
+        "str": 109,
+        "int": 65
+      }
+    }
+  }
+}

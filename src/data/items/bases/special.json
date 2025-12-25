@@ -1,0 +1,1520 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T11:44:13.308Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "category": "special",
+  "meta": {
+    "totalBases": 120,
+    "byType": {
+      "SoulCore": 34,
+      "Rune": 67,
+      "Idol": 18,
+      "Fishing Rod": 1
+    }
+  },
+  "bases": {
+    "Hayoxi's Soul Core of Heatproofing": {
+      "name": "Hayoxi's Soul Core of Heatproofing",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Zalatl's Soul Core of Insulation": {
+      "name": "Zalatl's Soul Core of Insulation",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Topotante's Soul Core of Dampening": {
+      "name": "Topotante's Soul Core of Dampening",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Atmohua's Soul Core of Retreat": {
+      "name": "Atmohua's Soul Core of Retreat",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Quipolatl's Soul Core of Flow": {
+      "name": "Quipolatl's Soul Core of Flow",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Tzamoto's Soul Core of Ferocity": {
+      "name": "Tzamoto's Soul Core of Ferocity",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Uromoti's Soul Core of Attenuation": {
+      "name": "Uromoti's Soul Core of Attenuation",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Opiloti's Soul Core of Assault": {
+      "name": "Opiloti's Soul Core of Assault",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Guatelitzi's Soul Core of Endurance": {
+      "name": "Guatelitzi's Soul Core of Endurance",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Xopec's Soul Core of Power": {
+      "name": "Xopec's Soul Core of Power",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Estazunti's Soul Core of Convalescence": {
+      "name": "Estazunti's Soul Core of Convalescence",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Tacati's Soul Core of Affliction": {
+      "name": "Tacati's Soul Core of Affliction",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Cholotl's Soul Core of War": {
+      "name": "Cholotl's Soul Core of War",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Citaqualotl's Soul Core of Foulness": {
+      "name": "Citaqualotl's Soul Core of Foulness",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Xipocado's Soul Core of Dominion": {
+      "name": "Xipocado's Soul Core of Dominion",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier3": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Soul Core of Tacati": {
+      "name": "Soul Core of Tacati",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier1": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Opiloti": {
+      "name": "Soul Core of Opiloti",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier1": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Jiquani": {
+      "name": "Soul Core of Jiquani",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Zalatl": {
+      "name": "Soul Core of Zalatl",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Citaqualotl": {
+      "name": "Soul Core of Citaqualotl",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier1": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Puhuarte": {
+      "name": "Soul Core of Puhuarte",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Tzamoto": {
+      "name": "Soul Core of Tzamoto",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Xopec": {
+      "name": "Soul Core of Xopec",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Azcapa": {
+      "name": "Soul Core of Azcapa",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Topotante": {
+      "name": "Soul Core of Topotante",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier1": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Quipolatl": {
+      "name": "Soul Core of Quipolatl",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Ticaba": {
+      "name": "Soul Core of Ticaba",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Atmohua": {
+      "name": "Soul Core of Atmohua",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Cholotl": {
+      "name": "Soul Core of Cholotl",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Soul Core of Zantipi": {
+      "name": "Soul Core of Zantipi",
+      "type": "SoulCore",
+      "tags": {
+        "default": true,
+        "soul_core": true,
+        "soul_core_tier2": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 35
+      }
+    },
+    "Amanamu's Gaze": {
+      "name": "Amanamu's Gaze",
+      "type": "SoulCore",
+      "tags": {
+        "abyssal_eye": true,
+        "default": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Kurgal's Gaze": {
+      "name": "Kurgal's Gaze",
+      "type": "SoulCore",
+      "tags": {
+        "abyssal_eye": true,
+        "default": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Tecrod's Gaze": {
+      "name": "Tecrod's Gaze",
+      "type": "SoulCore",
+      "tags": {
+        "abyssal_eye": true,
+        "default": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Ulaman's Gaze": {
+      "name": "Ulaman's Gaze",
+      "type": "SoulCore",
+      "tags": {
+        "abyssal_eye": true,
+        "default": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Desert Rune": {
+      "name": "Desert Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Glacial Rune": {
+      "name": "Glacial Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Storm Rune": {
+      "name": "Storm Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Iron Rune": {
+      "name": "Iron Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Body Rune": {
+      "name": "Body Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 37
+      }
+    },
+    "Mind Rune": {
+      "name": "Mind Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 37
+      }
+    },
+    "Rebirth Rune": {
+      "name": "Rebirth Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 45
+      }
+    },
+    "Inspiration Rune": {
+      "name": "Inspiration Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 45
+      }
+    },
+    "Stone Rune": {
+      "name": "Stone Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 41
+      }
+    },
+    "Vision Rune": {
+      "name": "Vision Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 41
+      }
+    },
+    "Lesser Desert Rune": {
+      "name": "Lesser Desert Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Lesser Glacial Rune": {
+      "name": "Lesser Glacial Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Lesser Storm Rune": {
+      "name": "Lesser Storm Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Lesser Iron Rune": {
+      "name": "Lesser Iron Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Lesser Body Rune": {
+      "name": "Lesser Body Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 11
+      }
+    },
+    "Lesser Mind Rune": {
+      "name": "Lesser Mind Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 11
+      }
+    },
+    "Lesser Rebirth Rune": {
+      "name": "Lesser Rebirth Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 21
+      }
+    },
+    "Lesser Inspiration Rune": {
+      "name": "Lesser Inspiration Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 21
+      }
+    },
+    "Lesser Stone Rune": {
+      "name": "Lesser Stone Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 16
+      }
+    },
+    "Lesser Vision Rune": {
+      "name": "Lesser Vision Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 16
+      }
+    },
+    "Greater Desert Rune": {
+      "name": "Greater Desert Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Greater Glacial Rune": {
+      "name": "Greater Glacial Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Greater Storm Rune": {
+      "name": "Greater Storm Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Greater Iron Rune": {
+      "name": "Greater Iron Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Greater Body Rune": {
+      "name": "Greater Body Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 57
+      }
+    },
+    "Greater Mind Rune": {
+      "name": "Greater Mind Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 57
+      }
+    },
+    "Greater Rebirth Rune": {
+      "name": "Greater Rebirth Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 62
+      }
+    },
+    "Greater Inspiration Rune": {
+      "name": "Greater Inspiration Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 62
+      }
+    },
+    "Greater Stone Rune": {
+      "name": "Greater Stone Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 59
+      }
+    },
+    "Greater Vision Rune": {
+      "name": "Greater Vision Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 59
+      }
+    },
+    "Lesser Robust Rune": {
+      "name": "Lesser Robust Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Robust Rune": {
+      "name": "Robust Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Greater Robust Rune": {
+      "name": "Greater Robust Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Lesser Adept Rune": {
+      "name": "Lesser Adept Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Adept Rune": {
+      "name": "Adept Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Greater Adept Rune": {
+      "name": "Greater Adept Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Lesser Resolve Rune": {
+      "name": "Lesser Resolve Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Resolve Rune": {
+      "name": "Resolve Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Greater Resolve Rune": {
+      "name": "Greater Resolve Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Lesser Tempered Rune": {
+      "name": "Lesser Tempered Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_lesser": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 5
+      }
+    },
+    "Tempered Rune": {
+      "name": "Tempered Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_normal": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 31
+      }
+    },
+    "Greater Tempered Rune": {
+      "name": "Greater Tempered Rune",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true,
+        "rune_greater": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 52
+      }
+    },
+    "Greater Rune of Leadership": {
+      "name": "Greater Rune of Leadership",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Greater Rune of Tithing": {
+      "name": "Greater Rune of Tithing",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Greater Rune of Alacrity": {
+      "name": "Greater Rune of Alacrity",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Greater Rune of Nobility": {
+      "name": "Greater Rune of Nobility",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Hedgewitch Assandra's Rune of Wisdom": {
+      "name": "Hedgewitch Assandra's Rune of Wisdom",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Saqawal's Rune of the Sky": {
+      "name": "Saqawal's Rune of the Sky",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Fenumus' Rune of Agony": {
+      "name": "Fenumus' Rune of Agony",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Farrul's Rune of Grace": {
+      "name": "Farrul's Rune of Grace",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Farrul's Rune of the Chase": {
+      "name": "Farrul's Rune of the Chase",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Craiceann's Rune of Warding": {
+      "name": "Craiceann's Rune of Warding",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Saqawal's Rune of Memory": {
+      "name": "Saqawal's Rune of Memory",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Saqawal's Rune of Erosion": {
+      "name": "Saqawal's Rune of Erosion",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Farrul's Rune of the Hunt": {
+      "name": "Farrul's Rune of the Hunt",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Craiceann's Rune of Recovery": {
+      "name": "Craiceann's Rune of Recovery",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Courtesan Mannan's Rune of Cruelty": {
+      "name": "Courtesan Mannan's Rune of Cruelty",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Thane Grannell's Rune of Mastery": {
+      "name": "Thane Grannell's Rune of Mastery",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Fenumus' Rune of Spinning": {
+      "name": "Fenumus' Rune of Spinning",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Countess Seske's Rune of Archery": {
+      "name": "Countess Seske's Rune of Archery",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Thane Girt's Rune of Wildness": {
+      "name": "Thane Girt's Rune of Wildness",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Fenumus' Rune of Draining": {
+      "name": "Fenumus' Rune of Draining",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Thane Myrk's Rune of Summer": {
+      "name": "Thane Myrk's Rune of Summer",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Lady Hestra's Rune of Winter": {
+      "name": "Lady Hestra's Rune of Winter",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Thane Leld's Rune of Spring": {
+      "name": "Thane Leld's Rune of Spring",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "The Greatwolf's Rune of Claws": {
+      "name": "The Greatwolf's Rune of Claws",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "The Greatwolf's Rune of Willpower": {
+      "name": "The Greatwolf's Rune of Willpower",
+      "type": "Rune",
+      "tags": {
+        "default": true,
+        "rune": true
+      },
+      "implicitModTypes": {},
+      "req": {
+        "level": 65
+      }
+    },
+    "Idol of Sirrius": {
+      "name": "Idol of Sirrius",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Thruldana": {
+      "name": "Idol of Thruldana",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Grold": {
+      "name": "Idol of Grold",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "wild_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Eeshta": {
+      "name": "Idol of Eeshta",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Egrin": {
+      "name": "Idol of Egrin",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Maxarius": {
+      "name": "Idol of Maxarius",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Idol of Ralakesh": {
+      "name": "Idol of Ralakesh",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Snake Idol": {
+      "name": "Snake Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Primate Idol": {
+      "name": "Primate Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Owl Idol": {
+      "name": "Owl Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "primal_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Cat Idol": {
+      "name": "Cat Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Wolf Idol": {
+      "name": "Wolf Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Stag Idol": {
+      "name": "Stag Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "vivid_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Boar Idol": {
+      "name": "Boar Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "wild_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Bear Idol": {
+      "name": "Bear Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "wild_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Ox Idol": {
+      "name": "Ox Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "wild_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Rabbit Idol": {
+      "name": "Rabbit Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "sacred_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Fox Idol": {
+      "name": "Fox Idol",
+      "type": "Idol",
+      "tags": {
+        "default": true,
+        "idol": true,
+        "sacred_idol": true
+      },
+      "implicitModTypes": {},
+      "req": {}
+    },
+    "Fishing Rod": {
+      "name": "Fishing Rod",
+      "type": "Fishing Rod",
+      "quality": 20,
+      "socketLimit": 4,
+      "tags": {
+        "default": true,
+        "fishing_rod": true,
+        "not_for_sale": true,
+        "twohand": true
+      },
+      "implicitModTypes": {},
+      "weapon": {
+        "PhysicalMin": 10,
+        "PhysicalMax": 18,
+        "CritChanceBase": 5,
+        "AttackRateBase": 1.2,
+        "Range": 13
+      },
+      "req": {}
+    }
+  }
+}
