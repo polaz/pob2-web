@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/polaz/pob2-web/compare/v1.6.0...v1.7.0) (2025-12-25)
+
+
+### Features
+
+* **engine:** implement ModDB modifier database for calculations ([#66](https://github.com/polaz/pob2-web/issues/66)) ([44bea78](https://github.com/polaz/pob2-web/commit/44bea78e77ebae37de6077f2bca1aa6df948dc01)), closes [#10](https://github.com/polaz/pob2-web/issues/10)
+
 # [1.6.0](https://github.com/polaz/pob2-web/compare/v1.5.0...v1.6.0) (2025-12-25)
 
 
