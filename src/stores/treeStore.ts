@@ -179,6 +179,7 @@ export const useTreeStore = defineStore('tree', () => {
    */
   function isNodeVisible(nodeId: string): boolean {
     const node = nodesById.value.get(nodeId);
+    // Non-existent nodes are treated as not visible rather than throwing
     if (!node) return false;
 
     // Main tree nodes are always visible
@@ -193,21 +194,13 @@ export const useTreeStore = defineStore('tree', () => {
 
   /**
    * Get all visible node IDs based on current ascendancy filter.
+   * Uses isNodeVisible() for consistent visibility logic.
    */
   const visibleNodeIds = computed(() => {
     if (!treeData.value) return [];
 
     return treeData.value.nodes
-      .filter((node) => {
-        // Main tree nodes are always visible
-        if (!node.ascendancyName) return true;
-
-        // If ascendancy nodes are globally hidden
-        if (!showAscendancyNodes.value) return false;
-
-        // Check if node belongs to the visible ascendancy
-        return node.ascendancyName === visibleAscendancy.value;
-      })
+      .filter((node) => isNodeVisible(node.id))
       .map((node) => node.id);
   });
 

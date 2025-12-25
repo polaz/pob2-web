@@ -17,17 +17,14 @@ function createMockNode(
   y = 0,
   ascendancyName?: string
 ): PassiveNode {
-  const node: PassiveNode = {
+  return {
     id,
     name,
     position: { x, y },
     stats: [`+10 to ${name}`],
     linkedIds: [],
+    ...(ascendancyName && { ascendancyName }),
   };
-  if (ascendancyName !== undefined) {
-    node.ascendancyName = ascendancyName;
-  }
-  return node;
 }
 
 /** Create mock passive tree */

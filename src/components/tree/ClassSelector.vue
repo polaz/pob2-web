@@ -1,5 +1,5 @@
 <template>
-  <div class="class-selector">
+  <div style="min-width: 150px">
     <q-select
       v-model="selectedClass"
       :options="classOptions"
@@ -9,7 +9,7 @@
       emit-value
       map-options
       options-dense
-      class="class-selector__select"
+      style="min-width: 150px"
       @update:model-value="handleClassChange"
     >
       <template #prepend>
@@ -19,7 +19,7 @@
 
     <!-- Confirmation dialog for class change -->
     <q-dialog v-model="showConfirmDialog" persistent>
-      <q-card class="class-selector__dialog">
+      <q-card style="min-width: 300px">
         <q-card-section class="row items-center">
           <q-icon name="warning" color="warning" size="md" class="q-mr-sm" />
           <span class="text-h6">Change Class?</span>
@@ -45,6 +45,7 @@ import { CharacterClass } from 'src/protos/pob2_pb';
 import { useBuildStore } from 'src/stores/buildStore';
 import { useTreeData } from 'src/composables/useTreeData';
 import { useTreeStore } from 'src/stores/treeStore';
+import { classNameToEnum, classEnumToName } from 'src/utils/characterClass';
 
 const emit = defineEmits<{
   /** Emitted when class changes */
@@ -94,25 +95,6 @@ const classOptions = computed(() => {
     { label: 'Ranger', value: CharacterClass.RANGER },
   ];
 });
-
-/**
- * Convert class name string to CharacterClass enum.
- */
-function classNameToEnum(name: string): CharacterClass {
-  const nameUpper = name.toUpperCase();
-  const enumValue = CharacterClass[nameUpper as keyof typeof CharacterClass];
-  return typeof enumValue === 'number' ? enumValue : CharacterClass.WARRIOR;
-}
-
-/**
- * Convert CharacterClass enum to display name.
- */
-function enumToClassName(charClass: CharacterClass): string {
-  const name = CharacterClass[charClass];
-  if (typeof name !== 'string') return 'Warrior';
-  // Convert WARRIOR to Warrior
-  return name.charAt(0) + name.slice(1).toLowerCase();
-}
 
 /**
  * Handle class selection change.
@@ -180,7 +162,7 @@ function applyClassChange(newClass: CharacterClass): void {
 function centerOnClassStart(charClass: CharacterClass): void {
   if (!treeData.value) return;
 
-  const className = enumToClassName(charClass);
+  const className = classEnumToName(charClass);
   const classData = classes.value.get(className);
 
   if (classData?.startNodeId) {
@@ -199,16 +181,3 @@ watch(
 );
 </script>
 
-<style scoped>
-.class-selector {
-  min-width: 150px;
-}
-
-.class-selector__select {
-  min-width: 150px;
-}
-
-.class-selector__dialog {
-  min-width: 300px;
-}
-</style>
