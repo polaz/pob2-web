@@ -8,7 +8,7 @@
       class="passive-tree-canvas__fps absolute q-pa-xs text-caption"
       style="top: 8px; right: 8px"
     >
-      <div>{{ fps }} FPS | {{ rendererType.toUpperCase() }}</div>
+      <div>{{ fps }} FPS | {{ rendererType.toUpperCase() }} | {{ treeRenderer.nodeCount.value }} nodes</div>
       <div v-if="fallbackReason" class="passive-tree-canvas__fallback text-orange-4">
         {{ fallbackReason }}
       </div>
@@ -32,14 +32,19 @@
 <script setup lang="ts">
 import { shallowRef, computed, onMounted, onUnmounted, watch } from 'vue';
 import { usePixiApp, type TreeLayers } from 'src/composables/usePixiApp';
+import { useTreeRenderer } from 'src/composables/useTreeRenderer';
+import { useTreeStore } from 'src/stores/treeStore';
 
 const props = withDefaults(
   defineProps<{
     /** Whether to show FPS counter (only in dev mode) */
     showFps?: boolean;
+    /** Whether to enable node rendering */
+    enableRendering?: boolean;
   }>(),
   {
     showFps: true,
+    enableRendering: true,
   }
 );
 
@@ -52,12 +57,23 @@ const emit = defineEmits<{
   error: [error: Error];
 }>();
 
+// Stores
+const treeStore = useTreeStore();
+
 // Template refs
 const containerRef = shallowRef<HTMLDivElement | null>(null);
 const canvasRef = shallowRef<HTMLCanvasElement | null>(null);
 
 // PixiJS composable
-const { ready, error, rendererType, fps, fallbackInfo, layers, init, resize } = usePixiApp();
+const { ready, error, app, rendererType, fps, fallbackInfo, layers, init, resize } = usePixiApp();
+
+// Tree renderer composable
+const treeRenderer = useTreeRenderer();
+
+// Pan/zoom state
+let isDragging = false;
+let lastPointerX = 0;
+let lastPointerY = 0;
 
 // Show FPS only in dev mode when prop is true (reactive to prop changes)
 const shouldShowFps = computed(() => import.meta.env.DEV && props.showFps);
@@ -132,6 +148,103 @@ function performResize(): void {
   }
 }
 
+// ============================================================================
+// Pan/Zoom Handlers
+// ============================================================================
+
+/** Zoom sensitivity multiplier */
+const ZOOM_SENSITIVITY = 0.001;
+
+/**
+ * Handle pointer down for pan start.
+ */
+function handlePointerDown(event: PointerEvent): void {
+  if (event.button !== 0) return; // Only left mouse button
+
+  isDragging = true;
+  lastPointerX = event.clientX;
+  lastPointerY = event.clientY;
+  treeStore.setDragging(true);
+
+  // Capture pointer for smooth dragging outside canvas
+  (event.target as HTMLElement).setPointerCapture(event.pointerId);
+}
+
+/**
+ * Handle pointer move for panning.
+ */
+function handlePointerMove(event: PointerEvent): void {
+  if (!isDragging) return;
+
+  const dx = event.clientX - lastPointerX;
+  const dy = event.clientY - lastPointerY;
+
+  lastPointerX = event.clientX;
+  lastPointerY = event.clientY;
+
+  // Pan viewport
+  treeStore.panViewport(dx, dy);
+}
+
+/**
+ * Handle pointer up for pan end.
+ */
+function handlePointerUp(event: PointerEvent): void {
+  if (!isDragging) return;
+
+  isDragging = false;
+  treeStore.setDragging(false);
+
+  // Release pointer capture
+  (event.target as HTMLElement).releasePointerCapture(event.pointerId);
+}
+
+/**
+ * Handle wheel for zooming.
+ */
+function handleWheel(event: WheelEvent): void {
+  event.preventDefault();
+
+  if (!containerRef.value) return;
+
+  // Get mouse position relative to canvas
+  const rect = containerRef.value.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  // Calculate zoom delta
+  const zoomDelta = -event.deltaY * ZOOM_SENSITIVITY;
+
+  // Zoom at mouse position
+  treeStore.zoomViewportAt(x, y, zoomDelta);
+}
+
+/**
+ * Setup canvas event listeners.
+ */
+function setupEventListeners(): void {
+  if (!canvasRef.value) return;
+
+  canvasRef.value.addEventListener('pointerdown', handlePointerDown);
+  canvasRef.value.addEventListener('pointermove', handlePointerMove);
+  canvasRef.value.addEventListener('pointerup', handlePointerUp);
+  canvasRef.value.addEventListener('pointercancel', handlePointerUp);
+  canvasRef.value.addEventListener('wheel', handleWheel, { passive: false });
+}
+
+/**
+ * Remove canvas event listeners.
+ */
+function removeEventListeners(): void {
+  if (!canvasRef.value) return;
+
+  canvasRef.value.removeEventListener('pointerdown', handlePointerDown);
+  canvasRef.value.removeEventListener('pointermove', handlePointerMove);
+  canvasRef.value.removeEventListener('pointerup', handlePointerUp);
+  canvasRef.value.removeEventListener('pointercancel', handlePointerUp);
+  canvasRef.value.removeEventListener('wheel', handleWheel);
+}
+
 onMounted(async () => {
   if (!canvasRef.value || !containerRef.value) {
     console.error('[PassiveTreeCanvas] Canvas or container ref not available');
@@ -145,6 +258,14 @@ onMounted(async () => {
   if (ready.value) {
     performResize();
   }
+
+  // Initialize tree renderer if enabled
+  if (props.enableRendering && ready.value && app.value && layers.value) {
+    treeRenderer.initialize(app.value, layers.value);
+  }
+
+  // Setup event listeners for pan/zoom
+  setupEventListeners();
 
   // Setup resize observer for subsequent resizes
   resizeObserver = new ResizeObserver(() => {
@@ -160,16 +281,27 @@ onUnmounted(() => {
     resizeTimeoutId = null;
   }
 
+  // Remove event listeners
+  removeEventListeners();
+
   if (resizeObserver) {
     resizeObserver.disconnect();
     resizeObserver = null;
   }
+
+  // Destroy tree renderer
+  treeRenderer.destroy();
 });
 
-// Watch for ready state to emit event
+// Watch for ready state to emit event and initialize renderer
 watch(ready, (isReady) => {
   if (isReady && layers.value) {
     emit('ready', layers.value);
+
+    // Initialize tree renderer if not already initialized
+    if (props.enableRendering && app.value && !treeRenderer.isInitialized.value) {
+      treeRenderer.initialize(app.value, layers.value);
+    }
   }
 });
 
@@ -188,6 +320,7 @@ defineExpose({
   fps,
   fallbackInfo,
   layers,
+  treeRenderer,
 });
 </script>
 

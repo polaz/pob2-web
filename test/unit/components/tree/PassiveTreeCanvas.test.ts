@@ -7,11 +7,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { ref, shallowRef } from 'vue';
+import { createPinia, setActivePinia } from 'pinia';
 import { Quasar, QSpinnerDots, QIcon } from 'quasar';
 
 // Create mock refs that persist across tests
 const mockReady = ref(false);
 const mockError = shallowRef<Error | null>(null);
+const mockApp = shallowRef(null);
 const mockRendererType = ref('unknown');
 const mockFps = ref(0);
 const mockFallbackInfo = shallowRef(null);
@@ -20,11 +22,22 @@ const mockInit = vi.fn().mockResolvedValue(undefined);
 const mockResize = vi.fn();
 const mockDestroy = vi.fn();
 
+// Mock tree renderer refs
+const mockTreeRendererInitialized = ref(false);
+const mockTreeRendererNodeCount = ref(0);
+const mockTreeRendererInitialize = vi.fn();
+const mockTreeRendererRenderNodes = vi.fn();
+const mockTreeRendererUpdateNodeStates = vi.fn();
+const mockTreeRendererUpdateViewport = vi.fn();
+const mockTreeRendererGetTreeNode = vi.fn();
+const mockTreeRendererDestroy = vi.fn();
+
 // Mock the usePixiApp composable with proper Vue refs
 vi.mock('src/composables/usePixiApp', () => ({
   usePixiApp: () => ({
     ready: mockReady,
     error: mockError,
+    app: mockApp,
     rendererType: mockRendererType,
     fps: mockFps,
     fallbackInfo: mockFallbackInfo,
@@ -32,6 +45,20 @@ vi.mock('src/composables/usePixiApp', () => ({
     init: mockInit,
     resize: mockResize,
     destroy: mockDestroy,
+  }),
+}));
+
+// Mock the useTreeRenderer composable
+vi.mock('src/composables/useTreeRenderer', () => ({
+  useTreeRenderer: () => ({
+    isInitialized: mockTreeRendererInitialized,
+    nodeCount: mockTreeRendererNodeCount,
+    initialize: mockTreeRendererInitialize,
+    renderNodes: mockTreeRendererRenderNodes,
+    updateNodeStates: mockTreeRendererUpdateNodeStates,
+    updateViewport: mockTreeRendererUpdateViewport,
+    getTreeNode: mockTreeRendererGetTreeNode,
+    destroy: mockTreeRendererDestroy,
   }),
 }));
 
@@ -53,20 +80,29 @@ describe('PassiveTreeCanvas', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+
+    // Setup Pinia
+    setActivePinia(createPinia());
+
     // Reset mock state
     mockReady.value = false;
     mockError.value = null;
+    mockApp.value = null;
     mockRendererType.value = 'unknown';
     mockFps.value = 0;
     mockFallbackInfo.value = null;
     mockLayers.value = null;
+
+    // Reset tree renderer mocks
+    mockTreeRendererInitialized.value = false;
+    mockTreeRendererNodeCount.value = 0;
   });
 
   function mountComponent(props = {}) {
     return mount(PassiveTreeCanvas, {
       props,
       global: {
-        plugins: [[Quasar, {}]],
+        plugins: [createPinia(), [Quasar, {}]],
         components: { QSpinnerDots, QIcon },
       },
     });
@@ -158,6 +194,7 @@ describe('PassiveTreeCanvas', () => {
       mockReady.value = true;
       mockRendererType.value = 'webgl';
       mockFps.value = 60;
+      mockTreeRendererNodeCount.value = 100;
       wrapper = mountComponent({ showFps: true });
       await wrapper.vm.$nextTick();
 
@@ -165,6 +202,7 @@ describe('PassiveTreeCanvas', () => {
       expect(fpsCounter.exists()).toBe(true);
       expect(fpsCounter.text()).toContain('60 FPS');
       expect(fpsCounter.text()).toContain('WEBGL');
+      expect(fpsCounter.text()).toContain('100 nodes');
     });
   });
 
