@@ -14,7 +14,7 @@
  */
 
 import { deflateSync, inflateSync } from 'fflate';
-import type { Build } from 'src/protos/pob2_pb';
+import type { Build } from 'src/protos/build_pb';
 import { buildToXml, xmlToBuild } from './buildXml';
 
 // =============================================================================

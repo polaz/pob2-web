@@ -29,8 +29,11 @@
  * ```
  */
 
-import type { Build, BuildConfig, Item, SkillGroup, GemInstance } from 'src/protos/pob2_pb';
-import { CharacterClass, ItemRarity } from 'src/protos/pob2_pb';
+import type { Build, BuildConfig } from 'src/protos/build_pb';
+import type { Item } from 'src/protos/items_pb';
+import type { SkillGroup, GemInstance } from 'src/protos/skills_pb';
+import { CharacterClass } from 'src/protos/common_pb';
+import { ItemRarity } from 'src/protos/items_pb';
 
 // =============================================================================
 // Constants
