@@ -280,18 +280,43 @@ export function useTreeData() {
   const classes = computed(() => treeData.value?.classes ?? new Map());
   const ascendancies = computed(() => treeData.value?.ascendancies ?? new Map());
 
-  // Get a node by ID
+  // Cache for search results (cleared when tree data changes)
+  let searchCache = new Map<string, TreeNode[]>();
+  let lastTreeDataVersion: string | null = null;
+
+  /** Clear search cache when tree data changes */
+  function invalidateSearchCacheIfNeeded(): void {
+    const currentVersion = treeData.value?.version ?? null;
+    if (currentVersion !== lastTreeDataVersion) {
+      searchCache = new Map();
+      lastTreeDataVersion = currentVersion;
+    }
+  }
+
+  /**
+   * Get a node by ID.
+   * @param id - The node ID to look up
+   * @returns The node if found, undefined otherwise
+   */
   function getNode(id: string): TreeNode | undefined {
     return treeData.value?.nodes.get(id);
   }
 
-  // Get nodes by type
+  /**
+   * Get all nodes of a specific type.
+   * @param type - The node type to filter by (normal, notable, keystone, mastery)
+   * @returns Array of nodes matching the type
+   */
   function getNodesByType(type: TreeNodeType): TreeNode[] {
     if (!treeData.value) return [];
     return Array.from(treeData.value.nodes.values()).filter(n => n.type === type);
   }
 
-  // Get nodes for an ascendancy
+  /**
+   * Get all nodes belonging to a specific ascendancy.
+   * @param ascendancyName - The ascendancy name to filter by
+   * @returns Array of nodes in the ascendancy
+   */
   function getAscendancyNodes(ascendancyName: string): TreeNode[] {
     if (!treeData.value) return [];
     return Array.from(treeData.value.nodes.values()).filter(
@@ -299,7 +324,12 @@ export function useTreeData() {
     );
   }
 
-  // Find path between nodes
+  /**
+   * Find the shortest path between two nodes using BFS.
+   * @param startId - Starting node ID
+   * @param endId - Target node ID
+   * @returns PathResult with path array, length, and found flag
+   */
   function findPath(startId: string, endId: string): PathResult {
     if (!treeData.value) {
       return { path: [], length: 0, found: false };
@@ -307,7 +337,11 @@ export function useTreeData() {
     return findShortestPath(treeData.value.nodes, startId, endId);
   }
 
-  // Find reachable nodes from allocated nodes
+  /**
+   * Find all nodes reachable from a set of allocated nodes.
+   * @param allocatedIds - Array of currently allocated node IDs
+   * @returns ReachabilityResult with reachable set and distance map
+   */
   function getReachable(allocatedIds: string[]): ReachabilityResult {
     if (!treeData.value) {
       return { reachable: new Set(), distances: new Map() };
@@ -315,18 +349,27 @@ export function useTreeData() {
     return findReachableNodes(treeData.value.nodes, allocatedIds);
   }
 
-  // Get nodes within distance
+  /**
+   * Get all nodes within a certain distance from starting nodes.
+   * @param startIds - Array of starting node IDs
+   * @param maxDistance - Maximum distance (number of edges) to traverse
+   * @returns Set of node IDs within the distance
+   */
   function getWithinDistance(startIds: string[], maxDistance: number): Set<string> {
     if (!treeData.value) return new Set();
     return getNodesWithinDistance(treeData.value.nodes, startIds, maxDistance);
   }
 
-  // Cache for search results keyed by normalized query
-  const searchCache = new Map<string, TreeNode[]>();
-
-  // Search nodes by name (cached)
+  /**
+   * Search nodes by name (case-insensitive, cached).
+   * Cache is automatically invalidated when tree data version changes.
+   * @param query - Search query string
+   * @returns Array of nodes whose names contain the query
+   */
   function searchNodes(query: string): TreeNode[] {
     if (!treeData.value) return [];
+
+    invalidateSearchCacheIfNeeded();
 
     const normalizedQuery = query.trim().toLowerCase();
     if (!normalizedQuery) return [];
