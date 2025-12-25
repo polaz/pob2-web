@@ -295,6 +295,12 @@ export const PERCENTAGE_TO_DECIMAL_DIVISOR = 10000;
  */
 export const DEFAULT_CRIT_CHANCE = 500;
 
+/**
+ * Divisor for calculating average from min/max range.
+ * Average = (min + max) / 2
+ */
+export const AVERAGE_DIVISOR = 2;
+
 /** Rarity text to enum mapping */
 export const RARITY_TEXT_MAP: Record<string, ItemRarity> = {
   Normal: 1, // RARITY_NORMAL
@@ -446,7 +452,7 @@ export function computeWeaponStats(
     physicalMin + fireMin + coldMin + lightningMin + chaosMin;
   const totalMax =
     physicalMax + fireMax + coldMax + lightningMax + chaosMax;
-  const averageDamage = (totalMin + totalMax) / 2;
+  const averageDamage = (totalMin + totalMax) / AVERAGE_DIVISOR;
 
   const attackSpeed = weaponData.attackSpeed ?? 1;
   // Convert crit chance from stored format to decimal
@@ -454,12 +460,13 @@ export function computeWeaponStats(
     (weaponData.critChance ?? DEFAULT_CRIT_CHANCE) /
     PERCENTAGE_TO_DECIMAL_DIVISOR;
 
-  const physicalDps = ((physicalMin + physicalMax) / 2) * attackSpeed;
+  const physicalDps =
+    ((physicalMin + physicalMax) / AVERAGE_DIVISOR) * attackSpeed;
   const elementalDps =
     ((fireMin + fireMax + coldMin + coldMax + lightningMin + lightningMax) /
-      2) *
+      AVERAGE_DIVISOR) *
     attackSpeed;
-  const chaosDps = ((chaosMin + chaosMax) / 2) * attackSpeed;
+  const chaosDps = ((chaosMin + chaosMax) / AVERAGE_DIVISOR) * attackSpeed;
   const totalDps = physicalDps + elementalDps + chaosDps;
 
   return {

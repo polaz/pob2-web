@@ -26,6 +26,16 @@ import {
 } from './types';
 
 // ============================================================================
+// Helper Constants
+// ============================================================================
+
+/** Starting index for extracting random portion of base36 string */
+const RANDOM_ID_SUBSTRING_START = 2;
+
+/** Length of random suffix in fallback ID (excludes "0." prefix of toString(36)) */
+const RANDOM_ID_SUBSTRING_END = 11;
+
+// ============================================================================
 // Helper Functions
 // ============================================================================
 
@@ -38,24 +48,30 @@ function generateId(): string {
     return crypto.randomUUID();
   }
   // Fallback for environments without crypto.randomUUID
-  return `item-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+  return `item-${Date.now()}-${Math.random().toString(36).substring(RANDOM_ID_SUBSTRING_START, RANDOM_ID_SUBSTRING_END)}`;
 }
 
 /**
  * Safely parses an integer from a regex match group.
+ * Returns default value for undefined/invalid input to prevent NaN propagation.
  */
 function safeParseInt(value: string | undefined, defaultValue = 0): number {
+  // Return default for undefined - no value to parse
   if (value === undefined) return defaultValue;
   const parsed = parseInt(value, 10);
+  // Return default for NaN - prevents NaN propagation through calculations
   return Number.isNaN(parsed) ? defaultValue : parsed;
 }
 
 /**
  * Safely parses a float from a regex match group.
+ * Returns default value for undefined/invalid input to prevent NaN propagation.
  */
 function safeParseFloat(value: string | undefined, defaultValue = 0): number {
+  // Return default for undefined - no value to parse
   if (value === undefined) return defaultValue;
   const parsed = parseFloat(value);
+  // Return default for NaN - prevents NaN propagation through calculations
   return Number.isNaN(parsed) ? defaultValue : parsed;
 }
 
@@ -557,9 +573,9 @@ export class ItemParser {
     // Physical Damage
     const physMatch = PHYSICAL_DAMAGE_PATTERN.exec(line);
     if (physMatch && physMatch[1] && physMatch[2]) {
-      const wd = ensureWeaponData();
-      wd.physicalMin = safeParseInt(physMatch[1]);
-      wd.physicalMax = safeParseInt(physMatch[2]);
+      const weaponData = ensureWeaponData();
+      weaponData.physicalMin = safeParseInt(physMatch[1]);
+      weaponData.physicalMax = safeParseInt(physMatch[2]);
       return { parsed: true };
     }
 
@@ -567,24 +583,24 @@ export class ItemParser {
     const elemMatch = ELEMENTAL_DAMAGE_PATTERN.exec(line);
     if (elemMatch && elemMatch[1]) {
       const elemText = elemMatch[1];
-      const wd = ensureWeaponData();
+      const weaponData = ensureWeaponData();
 
       const fireMatch = FIRE_DAMAGE_PATTERN.exec(elemText);
       if (fireMatch && fireMatch[1] && fireMatch[2]) {
-        wd.fireMin = safeParseInt(fireMatch[1]);
-        wd.fireMax = safeParseInt(fireMatch[2]);
+        weaponData.fireMin = safeParseInt(fireMatch[1]);
+        weaponData.fireMax = safeParseInt(fireMatch[2]);
       }
 
       const coldMatch = COLD_DAMAGE_PATTERN.exec(elemText);
       if (coldMatch && coldMatch[1] && coldMatch[2]) {
-        wd.coldMin = safeParseInt(coldMatch[1]);
-        wd.coldMax = safeParseInt(coldMatch[2]);
+        weaponData.coldMin = safeParseInt(coldMatch[1]);
+        weaponData.coldMax = safeParseInt(coldMatch[2]);
       }
 
       const lightningMatch = LIGHTNING_DAMAGE_PATTERN.exec(elemText);
       if (lightningMatch && lightningMatch[1] && lightningMatch[2]) {
-        wd.lightningMin = safeParseInt(lightningMatch[1]);
-        wd.lightningMax = safeParseInt(lightningMatch[2]);
+        weaponData.lightningMin = safeParseInt(lightningMatch[1]);
+        weaponData.lightningMax = safeParseInt(lightningMatch[2]);
       }
 
       return { parsed: true };
@@ -593,18 +609,18 @@ export class ItemParser {
     // Chaos Damage
     const chaosMatch = CHAOS_DAMAGE_PATTERN.exec(line);
     if (chaosMatch && chaosMatch[1] && chaosMatch[2]) {
-      const wd = ensureWeaponData();
-      wd.chaosMin = safeParseInt(chaosMatch[1]);
-      wd.chaosMax = safeParseInt(chaosMatch[2]);
+      const weaponData = ensureWeaponData();
+      weaponData.chaosMin = safeParseInt(chaosMatch[1]);
+      weaponData.chaosMax = safeParseInt(chaosMatch[2]);
       return { parsed: true };
     }
 
     // Critical Strike Chance
     const critMatch = CRIT_CHANCE_PATTERN.exec(line);
     if (critMatch && critMatch[1]) {
-      const wd = ensureWeaponData();
+      const weaponData = ensureWeaponData();
       // Store as percentage * PERCENTAGE_STORAGE_MULTIPLIER (e.g., 5.00% = 500)
-      wd.critChance = Math.round(
+      weaponData.critChance = Math.round(
         safeParseFloat(critMatch[1]) * PERCENTAGE_STORAGE_MULTIPLIER
       );
       return { parsed: true };
@@ -613,57 +629,58 @@ export class ItemParser {
     // Attacks per Second
     const apsMatch = ATTACK_SPEED_PATTERN.exec(line);
     if (apsMatch && apsMatch[1]) {
-      const wd = ensureWeaponData();
-      wd.attackSpeed = safeParseFloat(apsMatch[1]);
+      const weaponData = ensureWeaponData();
+      weaponData.attackSpeed = safeParseFloat(apsMatch[1]);
       return { parsed: true };
     }
 
     // Weapon Range
     const rangeMatch = WEAPON_RANGE_PATTERN.exec(line);
     if (rangeMatch && rangeMatch[1]) {
-      const wd = ensureWeaponData();
-      wd.range = safeParseInt(rangeMatch[1]);
+      const weaponData = ensureWeaponData();
+      weaponData.range = safeParseInt(rangeMatch[1]);
       return { parsed: true };
     }
 
     // Armour
     const armourMatch = ARMOUR_PATTERN.exec(line);
     if (armourMatch && armourMatch[1]) {
-      const ad = ensureArmourData();
-      ad.armour = safeParseInt(armourMatch[1]);
+      const armourData = ensureArmourData();
+      armourData.armour = safeParseInt(armourMatch[1]);
       return { parsed: true };
     }
 
     // Evasion
     const evasionMatch = EVASION_PATTERN.exec(line);
     if (evasionMatch && evasionMatch[1]) {
-      const ad = ensureArmourData();
-      ad.evasion = safeParseInt(evasionMatch[1]);
+      const armourData = ensureArmourData();
+      armourData.evasion = safeParseInt(evasionMatch[1]);
       return { parsed: true };
     }
 
     // Energy Shield
     const esMatch = ENERGY_SHIELD_PATTERN.exec(line);
     if (esMatch && esMatch[1]) {
-      const ad = ensureArmourData();
-      ad.energyShield = safeParseInt(esMatch[1]);
+      const armourData = ensureArmourData();
+      armourData.energyShield = safeParseInt(esMatch[1]);
       return { parsed: true };
     }
 
     // Ward
     const wardMatch = WARD_PATTERN.exec(line);
     if (wardMatch && wardMatch[1]) {
-      const ad = ensureArmourData();
-      ad.ward = safeParseInt(wardMatch[1]);
+      const armourData = ensureArmourData();
+      armourData.ward = safeParseInt(wardMatch[1]);
       return { parsed: true };
     }
 
     // Block
     const blockMatch = BLOCK_PATTERN.exec(line);
     if (blockMatch && blockMatch[1]) {
-      const ad = ensureArmourData();
+      const armourData = ensureArmourData();
       // Store as percentage * PERCENTAGE_STORAGE_MULTIPLIER
-      ad.block = safeParseInt(blockMatch[1]) * PERCENTAGE_STORAGE_MULTIPLIER;
+      armourData.block =
+        safeParseInt(blockMatch[1]) * PERCENTAGE_STORAGE_MULTIPLIER;
       return { parsed: true };
     }
 
