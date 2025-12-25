@@ -40,10 +40,13 @@ const MEMORY_CACHE_MAX_SIZE = 200;
  * 2. Values must be available synchronously at module load time
  * 3. SSR contexts may not have document available
  *
+ * Index 0 (UNKNOWN) intentionally uses the same color as index 1 (NORMAL) for visual
+ * consistency - unrecognized items display with normal-rarity styling rather than an error state.
+ *
  * Keep in sync with themes/poe2.scss --poe2-rarity-* variables.
  */
 export const RARITY_COLORS: Record<number, string> = {
-  0: '#c8c8c8', // UNKNOWN - grey (--poe2-rarity-normal)
+  0: '#c8c8c8', // UNKNOWN - uses NORMAL color for consistency
   1: '#c8c8c8', // NORMAL - white/grey (--poe2-rarity-normal)
   2: '#8888ff', // MAGIC - blue (--poe2-rarity-magic)
   3: '#ffff77', // RARE - yellow (--poe2-rarity-rare)
@@ -65,9 +68,12 @@ export const RARITY_BG_COLORS: Record<number, string> = {
 /**
  * Item rarity border colors - mirrors --poe2-rarity-xxx-border CSS variables.
  * Static values required for SVG data URL generation. See RARITY_COLORS for rationale.
+ *
+ * Note: Index 0 (UNKNOWN) uses a slightly darker border than index 1 (NORMAL) to
+ * subtly indicate fallback/unrecognized state while maintaining visual consistency.
  */
 export const RARITY_BORDER_COLORS: Record<number, string> = {
-  0: '#3a3a4e', // UNKNOWN (--poe2-rarity-normal-border)
+  0: '#3a3a4e', // UNKNOWN - slightly darker fallback border
   1: '#4a4a5e', // NORMAL (--poe2-rarity-normal-border)
   2: '#4a4a8e', // MAGIC (--poe2-rarity-magic-border)
   3: '#6a6a3e', // RARE (--poe2-rarity-rare-border)
@@ -387,7 +393,8 @@ class ItemIconLoader {
    * @returns Data URL for colored placeholder
    */
   getRarityPlaceholder(rarity: ItemRarity | number = 0, letter = '?'): string {
-    // Default colors for unknown rarity
+    // Default colors match index 0 (UNKNOWN) values in lookup tables.
+    // Provides defense-in-depth for any rarity value not in the tables.
     const defaultBg = '#1a1a2e';
     const defaultBorder = '#3a3a4e';
     const defaultText = '#c8c8c8';
@@ -428,6 +435,11 @@ export const itemIconLoader = new ItemIconLoader();
 // ============================================================================
 // Helper Functions
 // ============================================================================
+
+// These functions provide type-safe access to rarity color tables.
+// Each has its own inline default for clarity and to avoid coupling to
+// the RARITY_*_COLORS tables' index 0 values. The pattern is intentionally
+// repeated rather than abstracted to keep each function self-contained.
 
 /**
  * Gets rarity color for an item.

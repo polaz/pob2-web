@@ -423,7 +423,13 @@ const elementalDamage = computed(() => {
   return parts.length > 0 ? parts.join(', ') : null;
 });
 
-/** Total DPS display */
+/**
+ * Total DPS display - simple tooltip/display calculation.
+ *
+ * This is NOT the full DPS calculation from the engine (which includes modifiers,
+ * skill gems, passives, etc.). This is just the base weapon DPS for display in
+ * the item card, calculated as: avgDamage * attackSpeed.
+ */
 const totalDps = computed(() => {
   const wd = props.item.weaponData;
   if (!wd || !wd.attackSpeed) return null;
