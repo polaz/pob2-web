@@ -149,10 +149,15 @@ const XML_ESCAPE_MAP: Record<string, string> = {
  * Escapes a single character for safe use in XML/SVG content.
  * Returns the escaped version if it's a special character, otherwise the original.
  *
- * Design: This function intentionally only handles single characters because
- * it's used for escaping single-letter placeholders in SVG text elements.
- * Multi-character strings pass through unchanged as a safety measure - the
- * caller (e.g., charAt(0)) should already provide a single character.
+ * @internal This is an internal helper function, not exported for general use.
+ * It is specifically designed for the getRarityPlaceholder SVG generator where
+ * the input is always `letter.charAt(0)` - guaranteed to be a single character.
+ *
+ * Design: The length check is defensive validation, not a security boundary.
+ * If a multi-character string were somehow passed, returning it unchanged is
+ * safe because the SVG is encoded as a data URL for img src attributes, not
+ * inline SVG in the DOM. Any unescaped special characters would cause display
+ * issues (malformed SVG) rather than XSS vulnerabilities.
  *
  * @param char - A single character to escape.
  * @returns The XML-escaped character (e.g., '<' becomes '&lt;') or the original.
@@ -302,20 +307,21 @@ class ItemIconLoader {
 
   /**
    * Loads a single icon URL.
+   *
+   * Uses HEAD request to check accessibility without downloading the full image.
+   * Fetch API follows redirects by default (redirect: 'follow'), so CDN redirects
+   * are handled automatically for both GET and HEAD requests.
    */
   private async loadIcon(key: string, url: string): Promise<IconLoadResult> {
-    try {
-      // Use fetch to check if image is accessible
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), LOAD_TIMEOUT_MS);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), LOAD_TIMEOUT_MS);
 
+    try {
       const response = await fetch(url, {
         method: 'HEAD',
         signal: controller.signal,
         mode: 'cors',
       });
-
-      clearTimeout(timeoutId);
 
       if (response.ok) {
         // Cache successful URL
@@ -338,6 +344,9 @@ class ItemIconLoader {
         url: PLACEHOLDER_ICON,
         error: error instanceof Error ? error.message : 'Unknown error',
       };
+    } finally {
+      // Always clear timeout to prevent memory leaks, regardless of success/failure
+      clearTimeout(timeoutId);
     }
   }
 

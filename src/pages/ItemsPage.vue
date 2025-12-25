@@ -127,7 +127,12 @@
          object {} so the target-slot prop is omitted entirely. This is required because
          TypeScript's exactOptionalPropertyTypes treats "prop: undefined" differently from
          "prop not present". ItemEditor expects `targetSlot?: ItemSlot` (optional, not
-         undefined-able), so we must omit it rather than pass undefined. -->
+         undefined-able), so we must omit it rather than pass undefined.
+
+         This pattern is intentionally inline rather than using a computed property because:
+         1. The ternary directly shows the prop omission intent at the point of use
+         2. A computed would move the same logic elsewhere without simplifying it
+         3. The comment explains the TypeScript requirement right where it's applied -->
     <ItemEditor
       v-model="isEditorOpen"
       :item="editingItem"

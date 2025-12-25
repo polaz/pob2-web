@@ -282,6 +282,12 @@
   /** Card component border */
   --poe2-card-border: var(--poe2-border-default);
 
+  // Input field colors use inline rgba() values rather than base color + opacity
+  // composition because CSS custom properties don't support dynamic opacity
+  // modification (e.g., can't do `rgba(var(--color), 0.3)`). Using complete
+  // rgba values keeps the theme self-contained and avoids SCSS preprocessing
+  // complexity while maintaining full browser compatibility.
+
   /** Input field background */
   --poe2-input-bg: rgba(255, 255, 255, 0.03);
 

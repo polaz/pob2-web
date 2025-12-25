@@ -393,6 +393,11 @@ const hasStatusTags = computed(() => {
 // Weapon Stats Formatting
 // ============================================================================
 
+// Note: `wd` is used as shorthand for `props.item.weaponData` in these computed
+// properties. The abbreviation improves readability given the high frequency of
+// property access (20+ times per computed block) while remaining unambiguous
+// within the clearly labeled "Weapon Stats" section.
+
 /** Physical damage display string */
 const physicalDamage = computed(() => {
   const wd = props.item.weaponData;
