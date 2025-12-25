@@ -84,6 +84,19 @@ export const useTreeStore = defineStore('tree', () => {
   /** Comparison mode - show diff between two builds */
   const comparisonNodeIds = shallowRef<string[] | null>(null);
 
+  /**
+   * Currently visible ascendancy name.
+   * When set, only nodes from this ascendancy (plus main tree) are visible.
+   * When null, ascendancy nodes are hidden (only main tree visible).
+   */
+  const visibleAscendancy = ref<string | null>(null);
+
+  /**
+   * Whether to show ascendancy nodes.
+   * When false, all ascendancy nodes are hidden regardless of visibleAscendancy.
+   */
+  const showAscendancyNodes = ref(true);
+
   /** N-gram search index for nodes */
   const nodeSearchIndex = new NgramIndex({ ngramSize: 3, minQueryLength: MIN_QUERY_LENGTH });
 
@@ -154,6 +167,42 @@ export const useTreeStore = defineStore('tree', () => {
 
   /** Search result count */
   const searchResultCount = computed(() => searchResults.value.length);
+
+  /**
+   * Check if a node should be visible based on ascendancy filter.
+   *
+   * Visibility rules:
+   * 1. Main tree nodes (no ascendancy) are always visible
+   * 2. If showAscendancyNodes is false, all ascendancy nodes are hidden
+   * 3. If visibleAscendancy is set, only nodes from that ascendancy are visible
+   * 4. If visibleAscendancy is null, no ascendancy nodes are visible
+   */
+  function isNodeVisible(nodeId: string): boolean {
+    const node = nodesById.value.get(nodeId);
+    // Non-existent nodes are treated as not visible rather than throwing
+    if (!node) return false;
+
+    // Main tree nodes are always visible
+    if (!node.ascendancyName) return true;
+
+    // If ascendancy nodes are globally hidden
+    if (!showAscendancyNodes.value) return false;
+
+    // Check if node belongs to the visible ascendancy
+    return node.ascendancyName === visibleAscendancy.value;
+  }
+
+  /**
+   * Get all visible node IDs based on current ascendancy filter.
+   * Uses isNodeVisible() for consistent visibility logic.
+   */
+  const visibleNodeIds = computed(() => {
+    if (!treeData.value) return [];
+
+    return treeData.value.nodes
+      .filter((node) => isNodeVisible(node.id))
+      .map((node) => node.id);
+  });
 
   // ============================================================================
   // Actions
@@ -326,6 +375,22 @@ export const useTreeStore = defineStore('tree', () => {
     comparisonNodeIds.value = nodeIds;
   }
 
+  /**
+   * Set the visible ascendancy.
+   * @param ascendancy - Ascendancy name to show, or null to hide all ascendancy nodes
+   */
+  function setVisibleAscendancy(ascendancy: string | null): void {
+    visibleAscendancy.value = ascendancy;
+  }
+
+  /**
+   * Toggle whether ascendancy nodes are shown.
+   * @param show - Whether to show ascendancy nodes
+   */
+  function setShowAscendancyNodes(show: boolean): void {
+    showAscendancyNodes.value = show;
+  }
+
   /** Clear tree data and reset all tree-related state */
   function clearTreeData(): void {
     treeData.value = null;
@@ -336,6 +401,8 @@ export const useTreeStore = defineStore('tree', () => {
     highlightedPath.value = [];
     alternateHighlightedPath.value = [];
     comparisonNodeIds.value = null;
+    visibleAscendancy.value = null;
+    showAscendancyNodes.value = true;
     loadError.value = null;
   }
 
@@ -353,6 +420,8 @@ export const useTreeStore = defineStore('tree', () => {
     highlightedPath,
     alternateHighlightedPath,
     comparisonNodeIds,
+    visibleAscendancy,
+    showAscendancyNodes,
 
     // Getters
     isLoaded,
@@ -364,6 +433,8 @@ export const useTreeStore = defineStore('tree', () => {
     totalNodeCount,
     hasSearch,
     searchResultCount,
+    isNodeVisible,
+    visibleNodeIds,
 
     // Actions
     setTreeData,
@@ -386,6 +457,8 @@ export const useTreeStore = defineStore('tree', () => {
     setAlternateHighlightedPath,
     clearAlternateHighlightedPath,
     setComparisonNodes,
+    setVisibleAscendancy,
+    setShowAscendancyNodes,
     clearTreeData,
   };
 });
