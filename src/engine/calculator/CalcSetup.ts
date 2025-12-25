@@ -53,6 +53,7 @@ import { processJewels, createJewelSocketMap } from './JewelProcessor';
 import { processSkills } from './SkillProcessor';
 import { processConfig, processEnemyConfig } from './ConfigProcessor';
 import { CLASS_STARTING_STATS } from 'src/shared/constants';
+import { CharacterClass } from 'src/protos/common_pb';
 
 // ============================================================================
 // Constants
@@ -370,7 +371,8 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
     }
   }
 
-  // Check config
+  // Check config - use ?? {} to normalize undefined to empty object for shallow comparison.
+  // objectsEqual does shallow property comparison; undefined configs become {} to match correctly.
   if (!objectsEqual(build.config ?? {}, prevBuild.config ?? {})) {
     flags.config = true;
   }
@@ -441,11 +443,17 @@ function calculateAttributes(
 ): AttributeValues {
   // Start with class base attributes (see DEFAULT_CLASS_STATS for fallback rationale)
   let classStats: AttributeValues = DEFAULT_CLASS_STATS;
-  if (build.characterClass !== undefined) {
-    const candidateKey = String(build.characterClass).toUpperCase();
-    const foundStats = CLASS_STARTING_STATS[candidateKey];
-    if (foundStats) {
-      classStats = foundStats;
+  if (
+    build.characterClass !== undefined &&
+    build.characterClass !== CharacterClass.CHARACTER_CLASS_UNKNOWN
+  ) {
+    // Convert enum value to name (e.g., CharacterClass.WARRIOR -> "WARRIOR")
+    const enumName = CharacterClass[build.characterClass];
+    if (typeof enumName === 'string') {
+      const foundStats = CLASS_STARTING_STATS[enumName];
+      if (foundStats) {
+        classStats = foundStats;
+      }
     }
   }
 

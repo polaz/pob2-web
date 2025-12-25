@@ -129,7 +129,9 @@ export interface JewelSocket {
 // Dirty Tracking Types
 // ============================================================================
 
-// Re-export AttributeValues from types for convenience
+// Re-export AttributeValues from types.ts for organizational convenience.
+// This allows consumers to import AttributeValues alongside other Environment types.
+// The canonical definition is in types.ts; this is just a pass-through re-export.
 export type { AttributeValues } from './types';
 
 /**
