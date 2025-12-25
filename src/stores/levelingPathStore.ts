@@ -173,6 +173,7 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   /** Update a checkpoint at a given level */
   function updateCheckpoint(level: number, updates: Partial<Omit<Checkpoint, 'level'>>): void {
     const index = currentPath.value.checkpoints.findIndex((cp) => cp.level === level);
+    // Silently ignore missing checkpoints - invalid levels are treated as a no-op
     if (index === -1) return;
 
     const checkpoint = currentPath.value.checkpoints[index]!;
@@ -197,6 +198,7 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   /** Remove a checkpoint at a given level */
   function removeCheckpoint(level: number): void {
     const index = currentPath.value.checkpoints.findIndex((cp) => cp.level === level);
+    // Silently ignore missing checkpoints - invalid levels are treated as a no-op
     if (index === -1) return;
 
     currentPath.value.checkpoints.splice(index, 1);
@@ -246,6 +248,7 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   /** Update a step by order */
   function updateStep(order: number, updates: Partial<Omit<LevelingStep, 'order'>>): void {
     const step = currentPath.value.steps.find((s) => s.order === order);
+    // Silently ignore invalid order values - missing steps are treated as a no-op
     if (!step) return;
 
     if (updates.trigger !== undefined) {
@@ -266,6 +269,7 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   /** Remove a step by order */
   function removeStep(order: number): void {
     const index = currentPath.value.steps.findIndex((s) => s.order === order);
+    // Silently ignore invalid order values - no step to remove
     if (index === -1) return;
 
     currentPath.value.steps.splice(index, 1);
@@ -280,10 +284,12 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   function reorderStep(oldOrder: number, newOrder: number): void {
     const steps = currentPath.value.steps;
     const stepIndex = steps.findIndex((s) => s.order === oldOrder);
+    // Silently ignore invalid oldOrder values - no matching step exists
     if (stepIndex === -1) return;
 
     // Clamp newOrder to valid range
     const clampedNewOrder = Math.max(1, Math.min(steps.length, newOrder));
+    // No-op: step is already at the clamped target position
     if (oldOrder === clampedNewOrder) return;
 
     // Remove step from old position
@@ -338,11 +344,44 @@ export const useLevelingPathStore = defineStore('levelingPath', () => {
   }
 
   /**
-   * Parse JSON safely with fallback.
+   * Determine if a value is a plain object (and not an array).
+   */
+  function isPlainObject(value: unknown): value is Record<string, unknown> {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  /**
+   * Basic structural compatibility check between a parsed value and a fallback value.
+   * Ensures that primitives, arrays, and plain objects match in kind.
+   */
+  function hasCompatibleType(value: unknown, reference: unknown): boolean {
+    if (reference === null) {
+      return value === null;
+    }
+    if (Array.isArray(reference)) {
+      return Array.isArray(value);
+    }
+    if (isPlainObject(reference)) {
+      return isPlainObject(value);
+    }
+    return typeof value === typeof reference;
+  }
+
+  /**
+   * Parse JSON safely with fallback and basic type validation.
    */
   function safeJsonParse<T>(json: string, fallback: T, fieldName?: string): T {
     try {
-      return JSON.parse(json) as T;
+      const parsed: unknown = JSON.parse(json);
+
+      if (!hasCompatibleType(parsed, fallback)) {
+        console.warn(
+          `Parsed JSON type mismatch${fieldName ? ` for field "${fieldName}"` : ''} - using fallback`
+        );
+        return fallback;
+      }
+
+      return parsed as T;
     } catch (e) {
       console.warn(
         `Failed to parse JSON${fieldName ? ` for field "${fieldName}"` : ''}:`,
