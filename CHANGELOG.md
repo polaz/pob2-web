@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/polaz/pob2-web/compare/v1.8.0...v1.8.1) (2025-12-25)
+
+
+### Performance Improvements
+
+* **engine:** optimize ModDB size getter and removeBySource ([#90](https://github.com/polaz/pob2-web/issues/90)) ([3660e14](https://github.com/polaz/pob2-web/commit/3660e1445da155f55d3e85fd0d0f02f5df8e1d30))
+
 # [1.8.0](https://github.com/polaz/pob2-web/compare/v1.7.0...v1.8.0) (2025-12-25)
 
 
