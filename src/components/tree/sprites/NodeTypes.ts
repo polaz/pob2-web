@@ -76,6 +76,75 @@ export const NODE_ALPHAS = {
   pathPreview: 0.9,
 } as const;
 
+/** Connection line alpha values */
+export const CONNECTION_ALPHAS = {
+  /** Alpha for normal (unallocated) connections */
+  normal: 0.6,
+  /** Alpha for allocated connections */
+  allocated: 1.0,
+  /** Alpha for path preview connections */
+  path: 0.9,
+} as const;
+
+// ============================================================================
+// Rendering Constants
+// ============================================================================
+
+/** Size multipliers for different texture sizes */
+export const SIZE_MULTIPLIERS = {
+  /** Size multiplier for small textures (used at low zoom) */
+  small: 0.5,
+  /** Size multiplier for medium textures (default) */
+  medium: 1.0,
+  /** Size multiplier for large textures (used at high zoom) */
+  large: 1.5,
+} as const;
+
+/** Glow effect constants */
+export const GLOW_CONSTANTS = {
+  /** Size multiplier for glow effect relative to node size */
+  sizeMultiplier: 1.5,
+  /** Number of gradient steps for glow effect */
+  gradientSteps: 5,
+  /** Maximum alpha for glow effect center */
+  maxAlpha: 0.3,
+} as const;
+
+/**
+ * Maximum polygon sides before rendering as circle.
+ * Shapes with more sides are rendered as circles for performance.
+ */
+export const MAX_POLYGON_SIDES = 8;
+
+/** Hit area constants for node interaction */
+export const HIT_AREA = {
+  /** Extra padding around nodes for easier clicking */
+  padding: 4,
+} as const;
+
+/** Node label rendering constants */
+export const LABEL_CONSTANTS = {
+  /** Font size for node labels in pixels */
+  fontSize: 10,
+  /** Maximum width for label text wrapping */
+  maxWidth: 80,
+  /** Vertical offset from node center to label */
+  verticalOffset: 4,
+} as const;
+
+/** Highlight effect constants for selected/search nodes */
+export const HIGHLIGHT_CONSTANTS = {
+  /** Line width for highlight border */
+  lineWidth: 3,
+  /** Alpha for highlight border */
+  alpha: 0.8,
+  /** Radius offset for highlight circle */
+  radiusOffset: 4,
+} as const;
+
+/** Minimum zoom level below which connections are hidden for performance */
+export const MIN_ZOOM_FOR_CONNECTIONS = 0.15;
+
 // ============================================================================
 // LOD (Level of Detail) Configuration
 // ============================================================================

@@ -1,12 +1,17 @@
 // src/components/tree/sprites/TreeNode.ts
 // PixiJS Container class for passive tree nodes
 
-import { Container, type Sprite, Graphics, Text, type TextStyle } from 'pixi.js';
+import { Container, Graphics, Text, type TextStyle } from 'pixi.js';
 import type { PassiveNode } from 'src/protos/pob2_pb';
 import { NodeType } from 'src/protos/pob2_pb';
 import {
   NODE_COLORS,
   NODE_ANIMATION,
+  GLOW_CONSTANTS,
+  LABEL_CONSTANTS,
+  HIGHLIGHT_CONSTANTS,
+  HIT_AREA,
+  MAX_POLYGON_SIDES,
   type NodeState,
   type LODLevel,
   DEFAULT_NODE_STATE,
@@ -26,11 +31,11 @@ import { getNodeSpriteManager } from './NodeSprites';
 
 const LABEL_STYLE: Partial<TextStyle> = {
   fontFamily: 'Arial, sans-serif',
-  fontSize: 10,
+  fontSize: LABEL_CONSTANTS.fontSize,
   fill: 0xffffff,
   align: 'center',
   wordWrap: true,
-  wordWrapWidth: 80,
+  wordWrapWidth: LABEL_CONSTANTS.maxWidth,
 };
 
 // ============================================================================
@@ -67,7 +72,7 @@ export class TreeNode extends Container {
   private _currentLOD: LODLevel;
 
   /** Visual elements */
-  private glowSprite: Sprite | null = null;
+  private glowGraphics: Graphics | null = null;
   private backgroundGraphics: Graphics;
   private frameGraphics: Graphics;
   private labelText: Text | null = null;
@@ -131,13 +136,14 @@ export class TreeNode extends Container {
 
   /** Update node state and re-render */
   setState(newState: Partial<NodeState>): void {
+    // Only check properties that are actually provided in newState
     const changed =
-      newState.allocated !== this._state.allocated ||
-      newState.hovered !== this._state.hovered ||
-      newState.inPath !== this._state.inPath ||
-      newState.reachable !== this._state.reachable ||
-      newState.selected !== this._state.selected ||
-      newState.searchMatch !== this._state.searchMatch;
+      ('allocated' in newState && newState.allocated !== this._state.allocated) ||
+      ('hovered' in newState && newState.hovered !== this._state.hovered) ||
+      ('inPath' in newState && newState.inPath !== this._state.inPath) ||
+      ('reachable' in newState && newState.reachable !== this._state.reachable) ||
+      ('selected' in newState && newState.selected !== this._state.selected) ||
+      ('searchMatch' in newState && newState.searchMatch !== this._state.searchMatch);
 
     if (changed) {
       this._state = { ...this._state, ...newState };
@@ -249,7 +255,7 @@ export class TreeNode extends Container {
 
     // Draw background
     this.backgroundGraphics.beginFill(bgColor);
-    if (sides <= 8) {
+    if (sides <= MAX_POLYGON_SIDES) {
       this.drawPolygon(this.backgroundGraphics, radius, sides);
     } else {
       this.backgroundGraphics.drawCircle(0, 0, radius);
@@ -261,7 +267,7 @@ export class TreeNode extends Container {
       const frameWidth = this.getFrameWidth(nodeType);
       this.frameGraphics.lineStyle(frameWidth, frameColor, 1);
 
-      if (sides <= 8) {
+      if (sides <= MAX_POLYGON_SIDES) {
         this.drawPolygon(this.frameGraphics, radius - frameWidth / 2, sides);
       } else {
         this.frameGraphics.drawCircle(0, 0, radius - frameWidth / 2);
@@ -274,8 +280,8 @@ export class TreeNode extends Container {
         ? NODE_COLORS.selectedGlow
         : NODE_COLORS.searchHighlight;
 
-      this.frameGraphics.lineStyle(3, highlightColor, 0.8);
-      this.frameGraphics.drawCircle(0, 0, radius + 4);
+      this.frameGraphics.lineStyle(HIGHLIGHT_CONSTANTS.lineWidth, highlightColor, HIGHLIGHT_CONSTANTS.alpha);
+      this.frameGraphics.drawCircle(0, 0, radius + HIGHLIGHT_CONSTANTS.radiusOffset);
     }
   }
 
@@ -302,10 +308,10 @@ export class TreeNode extends Container {
    */
   private renderGlow(size: number, lod: LODLevel): void {
     // Remove existing glow if present
-    if (this.glowSprite) {
-      this.removeChild(this.glowSprite);
-      this.glowSprite.destroy();
-      this.glowSprite = null;
+    if (this.glowGraphics) {
+      this.removeChild(this.glowGraphics);
+      this.glowGraphics.destroy();
+      this.glowGraphics = null;
     }
 
     // Only show glow for allocated nodes at high LOD
@@ -315,26 +321,24 @@ export class TreeNode extends Container {
 
     // Create procedural glow
     const glowGraphics = new Graphics();
-    const glowSize = size * 1.5;
+    const glowSize = size * GLOW_CONSTANTS.sizeMultiplier;
     const radius = size / 2;
 
-    // Radial gradient effect
-    const steps = 5;
+    // Radial gradient effect using shared constants
+    const steps = GLOW_CONSTANTS.gradientSteps;
     for (let i = steps; i >= 0; i--) {
       const ratio = i / steps;
       const currentRadius = radius + (glowSize / 2 - radius) * (1 - ratio);
-      const alpha = ratio * 0.3;
+      const alpha = ratio * GLOW_CONSTANTS.maxAlpha;
 
       glowGraphics.beginFill(NODE_COLORS.allocatedGlow, alpha);
       glowGraphics.drawCircle(0, 0, currentRadius);
       glowGraphics.endFill();
     }
 
-    // Add glow behind other elements
+    // Add glow behind other elements and store reference for cleanup
     this.addChildAt(glowGraphics, 0);
-
-    // Store reference (using Graphics instead of Sprite for procedural)
-    // Note: This is a simplified implementation
+    this.glowGraphics = glowGraphics;
   }
 
   /**
@@ -358,7 +362,7 @@ export class TreeNode extends Container {
 
     this.labelText = new Text(name, LABEL_STYLE);
     this.labelText.anchor.set(0.5, 0);
-    this.labelText.position.set(0, size / 2 + 4);
+    this.labelText.position.set(0, size / 2 + LABEL_CONSTANTS.verticalOffset);
 
     this.addChild(this.labelText);
   }
@@ -368,7 +372,7 @@ export class TreeNode extends Container {
    */
   private renderHitArea(size: number): void {
     // Make hit area slightly larger for easier interaction
-    const hitRadius = size / 2 + 4;
+    const hitRadius = size / 2 + HIT_AREA.padding;
 
     this.hitAreaGraphics.beginFill(0xffffff);
     this.hitAreaGraphics.drawCircle(0, 0, hitRadius);
@@ -477,9 +481,9 @@ export class TreeNode extends Container {
     }
 
     // Clean up glow
-    if (this.glowSprite) {
-      this.glowSprite.destroy();
-      this.glowSprite = null;
+    if (this.glowGraphics) {
+      this.glowGraphics.destroy();
+      this.glowGraphics = null;
     }
 
     // Call parent destroy

@@ -12,7 +12,11 @@ import {
   getNodeSpriteManager,
   destroyNodeSpriteManager,
 } from 'src/components/tree/sprites/NodeSprites';
-import { NODE_COLORS } from 'src/components/tree/sprites/NodeTypes';
+import {
+  NODE_COLORS,
+  CONNECTION_ALPHAS,
+  MIN_ZOOM_FOR_CONNECTIONS,
+} from 'src/components/tree/sprites/NodeTypes';
 
 // ============================================================================
 // Types
@@ -277,7 +281,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
         // Create connection line
         const line = new Graphics();
-        line.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, 0.6);
+        line.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, CONNECTION_ALPHAS.normal);
         line.moveTo(node.position.x, node.position.y);
         line.lineTo(linkedNode.position.x, linkedNode.position.y);
 
@@ -346,10 +350,10 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
       if (fromAllocated && toAllocated) {
         // Both nodes allocated - bright connection
-        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionAllocated, 1);
+        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionAllocated, CONNECTION_ALPHAS.allocated);
       } else {
         // Normal connection
-        conn.graphics.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, 0.6);
+        conn.graphics.lineStyle(CONNECTION_WIDTH, NODE_COLORS.connectionNormal, CONNECTION_ALPHAS.normal);
       }
 
       // Redraw the line
@@ -381,7 +385,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
       if (fromInPath && toInPath) {
         // Both nodes in path - highlight connection
         conn.graphics.clear();
-        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionPath, 0.9);
+        conn.graphics.lineStyle(CONNECTION_ALLOCATED_WIDTH, NODE_COLORS.connectionPath, CONNECTION_ALPHAS.path);
 
         const fromNode = treeStore.getNode(conn.fromId);
         const toNode = treeStore.getNode(conn.toId);
@@ -433,8 +437,8 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
     // Show/hide connections based on LOD
     if (layers) {
-      // Always show connections, but could hide at very low zoom
-      layers.connections.visible = zoom >= 0.15;
+      // Hide connections at very low zoom for performance
+      layers.connections.visible = zoom >= MIN_ZOOM_FOR_CONNECTIONS;
     }
   }
 

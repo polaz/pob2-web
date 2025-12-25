@@ -8,6 +8,9 @@ import {
   NODE_SIZES,
   NODE_FRAME_WIDTHS,
   NODE_COLORS,
+  SIZE_MULTIPLIERS,
+  GLOW_CONSTANTS,
+  MAX_POLYGON_SIDES,
   getNodeFrameColor,
   getNodeShapeSides,
 } from './NodeTypes';
@@ -108,7 +111,7 @@ export class NodeSpriteManager {
     size: 'small' | 'medium' | 'large'
   ): NodeTextureSet {
     const baseSize = NODE_SIZES[nodeType] ?? NODE_SIZES[NodeType.NODE_NORMAL];
-    const sizeMultiplier = size === 'small' ? 0.5 : size === 'large' ? 1.5 : 1.0;
+    const sizeMultiplier = SIZE_MULTIPLIERS[size];
     const nodeSize = baseSize * sizeMultiplier;
     const frameWidth = NODE_FRAME_WIDTHS[nodeType] ?? 2;
 
@@ -136,7 +139,7 @@ export class NodeSpriteManager {
     graphics.beginFill(color);
 
     const sides = getNodeShapeSides(nodeType);
-    if (sides <= 8) {
+    if (sides <= MAX_POLYGON_SIDES) {
       // Draw polygon for special shapes
       this.drawPolygon(graphics, 0, 0, radius, sides);
     } else {
@@ -160,7 +163,7 @@ export class NodeSpriteManager {
     graphics.lineStyle(frameWidth, color, 1);
 
     const sides = getNodeShapeSides(nodeType);
-    if (sides <= 8) {
+    if (sides <= MAX_POLYGON_SIDES) {
       // Draw polygon outline
       this.drawPolygon(graphics, 0, 0, radius - frameWidth / 2, sides);
     } else {
@@ -177,15 +180,15 @@ export class NodeSpriteManager {
    */
   private generateGlowTexture(_nodeType: NodeType, size: number): Texture {
     const graphics = new Graphics();
-    const glowSize = size * 1.5;
+    const glowSize = size * GLOW_CONSTANTS.sizeMultiplier;
     const radius = size / 2;
 
     // Create radial gradient effect using multiple circles
-    const steps = 5;
+    const steps = GLOW_CONSTANTS.gradientSteps;
     for (let i = steps; i >= 0; i--) {
       const ratio = i / steps;
       const currentRadius = radius + (glowSize / 2 - radius) * (1 - ratio);
-      const alpha = ratio * 0.3;
+      const alpha = ratio * GLOW_CONSTANTS.maxAlpha;
 
       graphics.beginFill(NODE_COLORS.allocatedGlow, alpha);
       graphics.drawCircle(0, 0, currentRadius);
