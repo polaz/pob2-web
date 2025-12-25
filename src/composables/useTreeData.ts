@@ -18,6 +18,9 @@ import { getCachedData, setCachedData } from 'src/db';
 const TREE_CACHE_KEY = 'tree:poe2';
 const TREE_CACHE_TTL = 7 * 24 * 60 * 60; // 7 days in seconds
 
+/** Maximum search cache entries to prevent unbounded memory growth */
+const SEARCH_CACHE_MAX_SIZE = 100;
+
 // Lazy-loaded tree data (shared singleton)
 let treeDataCache: TreeData | null = null;
 let loadingPromise: Promise<TreeData> | null = null;
@@ -402,10 +405,11 @@ export function useTreeData() {
   }
 
   /**
-   * Search nodes by name (case-insensitive, cached).
+   * Search nodes by name (case-insensitive, LRU cached).
    *
-   * Cache is automatically invalidated when tree data changes via Vue's
-   * reactivity system (watch on treeData).
+   * Uses an LRU cache bounded to SEARCH_CACHE_MAX_SIZE entries to prevent
+   * unbounded memory growth. Cache is automatically invalidated when tree
+   * data changes via Vue's reactivity system (watch on treeData).
    *
    * @param query - Search query string
    * @returns Array of nodes whose names contain the query
@@ -416,14 +420,28 @@ export function useTreeData() {
     const normalizedQuery = query.trim().toLowerCase();
     if (!normalizedQuery) return [];
 
-    const cached = searchCache.value.get(normalizedQuery);
-    if (cached) return cached;
+    const cache = searchCache.value;
+    const cached = cache.get(normalizedQuery);
+    if (cached) {
+      // Move to end for LRU (delete and re-add preserves Map insertion order)
+      cache.delete(normalizedQuery);
+      cache.set(normalizedQuery, cached);
+      return cached;
+    }
 
     const result = Array.from(treeData.value.nodes.values()).filter(
       n => n.name?.toLowerCase().includes(normalizedQuery)
     );
 
-    searchCache.value.set(normalizedQuery, result);
+    // Evict oldest entry if cache is full (first key in Map iteration order)
+    if (cache.size >= SEARCH_CACHE_MAX_SIZE) {
+      const oldestKey = cache.keys().next().value;
+      if (oldestKey !== undefined) {
+        cache.delete(oldestKey);
+      }
+    }
+
+    cache.set(normalizedQuery, result);
     return result;
   }
 
