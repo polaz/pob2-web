@@ -32,7 +32,16 @@ const MEMORY_CACHE_MAX_SIZE = 200;
 // For runtime theming, use getCssVariable() or CSS var(--poe2-rarity-xxx)
 // ============================================================================
 
-/** Item rarity color mapping - mirrors --poe2-rarity-xxx CSS variables */
+/**
+ * Item rarity color mapping - mirrors --poe2-rarity-xxx CSS variables.
+ *
+ * Static hex values are used instead of getCssVariable() because:
+ * 1. These values are used in SVG data URLs (getRarityPlaceholder) where CSS variables don't work
+ * 2. Values must be available synchronously at module load time
+ * 3. SSR contexts may not have document available
+ *
+ * Keep in sync with themes/poe2.scss --poe2-rarity-* variables.
+ */
 export const RARITY_COLORS: Record<number, string> = {
   0: '#c8c8c8', // UNKNOWN - grey (--poe2-rarity-normal)
   1: '#c8c8c8', // NORMAL - white/grey (--poe2-rarity-normal)
@@ -41,7 +50,10 @@ export const RARITY_COLORS: Record<number, string> = {
   4: '#af6025', // UNIQUE - orange/brown (--poe2-rarity-unique)
 };
 
-/** Item rarity background colors - mirrors --poe2-rarity-xxx-bg CSS variables */
+/**
+ * Item rarity background colors - mirrors --poe2-rarity-xxx-bg CSS variables.
+ * Static values required for SVG data URL generation. See RARITY_COLORS for rationale.
+ */
 export const RARITY_BG_COLORS: Record<number, string> = {
   0: '#1a1a2e', // UNKNOWN (--poe2-rarity-normal-bg)
   1: '#1a1a2e', // NORMAL (--poe2-rarity-normal-bg)
@@ -50,7 +62,10 @@ export const RARITY_BG_COLORS: Record<number, string> = {
   4: '#2a1a0e', // UNIQUE - subtle orange tint (--poe2-rarity-unique-bg)
 };
 
-/** Item rarity border colors - mirrors --poe2-rarity-xxx-border CSS variables */
+/**
+ * Item rarity border colors - mirrors --poe2-rarity-xxx-border CSS variables.
+ * Static values required for SVG data URL generation. See RARITY_COLORS for rationale.
+ */
 export const RARITY_BORDER_COLORS: Record<number, string> = {
   0: '#3a3a4e', // UNKNOWN (--poe2-rarity-normal-border)
   1: '#4a4a5e', // NORMAL (--poe2-rarity-normal-border)
@@ -127,8 +142,13 @@ const XML_ESCAPE_MAP: Record<string, string> = {
 /**
  * Escapes a single character for safe use in XML/SVG content.
  * Returns the escaped version if it's a special character, otherwise the original.
+ *
+ * @param char - A single character to escape. Multi-character strings are returned unchanged.
  */
 function escapeXmlChar(char: string): string {
+  if (char.length !== 1) {
+    return char;
+  }
   return XML_ESCAPE_MAP[char] ?? char;
 }
 
@@ -315,8 +335,8 @@ class ItemIconLoader {
   private addToCache(key: string, url: string): void {
     // Evict oldest entry (first inserted) if cache is at capacity
     if (this.cache.size >= MEMORY_CACHE_MAX_SIZE) {
-      // Map.keys().next() returns first inserted key due to Map's insertion order
-      // Type is inferred as string from Map<string, CacheEntry>
+      // Map.keys().next() returns IteratorResult<string> where value is string | undefined.
+      // The undefined case occurs when iterator is exhausted (cache empty), guarded by size check.
       const oldestKey = this.cache.keys().next().value;
       if (oldestKey) {
         this.cache.delete(oldestKey);

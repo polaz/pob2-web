@@ -284,18 +284,27 @@ defineEmits<{
 // ============================================================================
 
 const iconUrl = ref<string>('');
+/**
+ * Tracks icon load failures - currently unused since we use synchronous placeholders.
+ * Retained for future async icon loading when item data includes icon paths.
+ */
 const iconError = ref(false);
 
 function loadIcon(): void {
-  // For now, use rarity placeholder since items don't have icon paths yet
-  // In the future, when icon paths are added to item data, use:
-  // iconUrl.value = await itemIconLoader.getIconUrl(props.item.iconPath);
+  // For now, use rarity placeholder since items don't have icon paths yet.
+  // When icon paths are added to item data, this will become async:
+  //   iconUrl.value = await itemIconLoader.getIconUrl(props.item.iconPath);
+  // The handleIconError() and iconError state will then handle load failures.
   iconUrl.value = itemIconLoader.getRarityPlaceholder(
     props.item.rarity ?? 0,
     props.item.baseName?.charAt(0) ?? props.item.name?.charAt(0) ?? '?'
   );
 }
 
+/**
+ * Handles icon load failure by falling back to generic placeholder.
+ * Currently only triggered by img @error event (retained for future async loading).
+ */
 function handleIconError(): void {
   iconError.value = true;
   iconUrl.value = itemIconLoader.getPlaceholder();
@@ -424,7 +433,7 @@ const totalDps = computed(() => {
   const chaosMin = wd.chaosMin ?? 0;
   const chaosMax = wd.chaosMax ?? 0;
 
-  // Divide by 2 to get average of min+max for each damage type
+  // Sum all damage types then divide by 2 to convert (min+max) sum to average total damage
   const avgDamage =
     (physMin + physMax + fireMin + fireMax + coldMin + coldMax + lightningMin + lightningMax + chaosMin + chaosMax) / 2;
   const dps = avgDamage * wd.attackSpeed;
@@ -437,9 +446,10 @@ const totalDps = computed(() => {
 // ============================================================================
 
 /**
- * Percentage storage multiplier.
- * Game values are stored scaled by 100 (e.g., 500 = 5.00%).
- * Divide by this to convert to display percentage.
+ * Percentage storage multiplier used by the game data format.
+ * Game stores percentage values as integers scaled by 100
+ * (i.e., in hundredths of a percent, so 500 represents 5.00%).
+ * Divide by this constant to convert stored values to display percentages.
  */
 const PERCENTAGE_STORAGE_MULTIPLIER = 100;
 

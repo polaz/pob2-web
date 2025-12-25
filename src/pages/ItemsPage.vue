@@ -137,6 +137,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+import { useQuasar } from 'quasar';
 import type { Item, ItemSlot } from 'src/protos/pob2_pb';
 import { useItemStore } from 'src/stores/itemStore';
 import { useBuildStore } from 'src/stores/buildStore';
@@ -150,6 +151,7 @@ import ItemComparisonPane from 'src/components/items/ItemComparisonPane.vue';
 // Stores
 // ============================================================================
 
+const $q = useQuasar();
 const itemStore = useItemStore();
 const buildStore = useBuildStore();
 
@@ -309,7 +311,11 @@ async function handlePasteFromClipboard(): Promise<void> {
   try {
     const text = await navigator.clipboard.readText();
     if (!text.trim()) {
-      console.warn('Clipboard is empty');
+      $q.notify({
+        type: 'warning',
+        message: 'Clipboard is empty',
+        caption: 'Copy an item in-game first (Ctrl+C)',
+      });
       return;
     }
 
@@ -324,10 +330,18 @@ async function handlePasteFromClipboard(): Promise<void> {
       buildStore.setEquippedItem(selectedSlot.value, result.item);
       itemStore.addToRecentItems(result.item);
     } else {
-      console.warn('Failed to parse item:', result.error);
+      $q.notify({
+        type: 'negative',
+        message: 'Failed to parse item',
+        caption: result.error ?? 'Unknown error',
+      });
     }
   } catch (error) {
-    console.warn('Failed to read clipboard:', error);
+    $q.notify({
+      type: 'negative',
+      message: 'Failed to read clipboard',
+      caption: error instanceof Error ? error.message : 'Check clipboard permissions',
+    });
   }
 }
 
@@ -349,6 +363,8 @@ function clearComparison(): void {
   --comparison-panel-min-width: 280px;
   --comparison-panel-max-width: 320px;
   --empty-state-min-height: 300px;
+  /* Header offset accounts for Quasar's q-header (50px) + q-tabs (48px) + padding.
+     This ensures the items container fills remaining viewport height. */
   --header-offset: 100px;
 
   padding: var(--page-padding);

@@ -79,20 +79,26 @@ const TOOLTIP_CARD_WIDTH = '260px';
 // Props & Emits
 // ============================================================================
 
-const props = defineProps<{
-  /** Slot information */
-  slotInfo: SlotInfo;
-  /** Equipped item (if any) */
-  item?: Item | null;
-  /** Whether the slot is selected */
-  selected?: boolean;
-  /** Slot size variant */
-  size?: 'normal' | 'small' | 'flask';
-}>();
+const props = withDefaults(
+  defineProps<{
+    /** Slot information */
+    slotInfo: SlotInfo;
+    /** Equipped item (if any) */
+    item?: Item | null;
+    /** Whether the slot is selected */
+    selected?: boolean;
+    /** Slot size variant */
+    size?: 'normal' | 'small' | 'flask';
+  }>(),
+  {
+    selected: false,
+    size: 'normal',
+  }
+);
 
-// Provide defaults via computed properties to avoid exactOptionalPropertyTypes issues
-const isSelected = computed(() => props.selected ?? false);
-const slotSize = computed(() => props.size ?? 'normal');
+// Convenience aliases for cleaner template access
+const isSelected = computed(() => props.selected);
+const slotSize = computed(() => props.size);
 
 defineEmits<{
   click: [];

@@ -302,12 +302,19 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, reactive } from 'vue';
+import { useQuasar } from 'quasar';
 import { cloneDeep } from 'lodash-es';
 import type { Item, ItemSlot } from 'src/protos/pob2_pb';
 import { ItemRarity } from 'src/protos/pob2_pb';
 import { EQUIPMENT_SLOTS, type SlotInfo } from 'src/stores/itemStore';
 import { parseItem } from 'src/engine/items/ItemParser';
 import ItemCard from './ItemCard.vue';
+
+// ============================================================================
+// Quasar
+// ============================================================================
+
+const $q = useQuasar();
 
 // ============================================================================
 // Constants
@@ -552,10 +559,21 @@ async function handlePasteFromClipboard(): Promise<void> {
     if (text.trim()) {
       pasteText.value = text;
       handlePasteTextChange(text);
+    } else {
+      $q.notify({
+        type: 'warning',
+        message: 'Clipboard is empty',
+        caption: 'Copy an item in-game first (Ctrl+C)',
+      });
     }
   } catch (error) {
-    console.warn('Failed to read from clipboard:', error);
-    parseError.value = 'Failed to read clipboard. Please paste manually.';
+    const message = 'Failed to read clipboard. Please paste manually.';
+    parseError.value = message;
+    $q.notify({
+      type: 'negative',
+      message: 'Failed to read clipboard',
+      caption: error instanceof Error ? error.message : 'Check clipboard permissions',
+    });
   }
 }
 

@@ -238,16 +238,7 @@ const contextMenuSlot = ref<ItemSlotEnum | null>(null);
 // Methods
 // ============================================================================
 
-/**
- * Gets the enum name from ItemSlot value for filtering.
- *
- * Uses TypeScript enum reverse mapping: for numeric enums, TS generates
- * a bidirectional map where `Enum[value]` returns the key name.
- * This avoids maintaining a separate lookup table.
- *
- * @param slot - ItemSlot enum value (numeric)
- * @returns The enum key name (e.g., 'SLOT_HELMET') or 'UNKNOWN' if not found
- */
+/** Returns enum key name using TypeScript reverse mapping (e.g., 3 → 'SLOT_HELMET'). */
 function getSlotEnumName(slot: ItemSlotEnum): string {
   const name = ItemSlotEnum[slot];
   return typeof name === 'string' ? name : 'UNKNOWN';
@@ -367,11 +358,11 @@ function handleRemoveItem(): void {
   gap: var(--slot-gap);
 }
 
-/* Placeholder for center column styling - currently uses same gap as other columns.
-   Future: may add different spacing or alignment for body armour slot. */
+/* Center column uses same gap as other columns via Quasar classes.
+   Quasar layout utilities preferred over custom CSS per project guidelines. */
 
-/* Placeholder for ring row styling - currently uses Quasar q-gutter-md class.
-   Future: may add custom ring-specific layout. */
+/* Ring row uses Quasar q-gutter-md class for consistent spacing.
+   Quasar layout utilities preferred over custom CSS per project guidelines. */
 
 .item-slot-grid__swap {
   opacity: 0.8;
