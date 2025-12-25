@@ -282,8 +282,11 @@ export interface RawItemBase {
   /** Implicit modifier text */
   implicit?: string;
 
-  /** Implicit modifier type tags for categorization */
-  implicitModTypes?: string[][];
+  /**
+   * Implicit modifier type tags for categorization.
+   * Can be an array of tag arrays, or an empty object from PoB data.
+   */
+  implicitModTypes?: string[][] | Record<string, never>;
 
   /** Weapon stats (for weapons only) */
   weapon?: WeaponStats;
@@ -306,11 +309,6 @@ export interface RawItemBase {
    * and should be preserved during data merges
    */
   _manual?: boolean;
-
-  /**
-   * Field-level manual edit markers
-   */
-  [key: `_manual_${string}`]: boolean | undefined;
 }
 
 /**
@@ -332,11 +330,11 @@ export interface ItemBase {
   /** Subtype for armour/jewels */
   subType?: string;
 
-  /** Base quality */
-  quality: number;
+  /** Base quality (default: 20, undefined for items without quality) */
+  quality?: number;
 
-  /** Maximum socket count */
-  socketLimit: number;
+  /** Maximum socket count (undefined for items without sockets) */
+  socketLimit?: number;
 
   /** Categorization tags */
   tags: ItemBaseTags;

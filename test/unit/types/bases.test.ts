@@ -438,18 +438,16 @@ describe('bases types', () => {
       expect(base.charm?.buff).toContain('Immune to Freeze');
     });
 
-    it('should accept manual edit flags', () => {
+    it('should accept manual edit flag', () => {
       const base: RawItemBase = {
         name: 'Custom Item',
         type: 'Ring',
         tags: { default: true },
         req: {},
         _manual: true,
-        _manual_implicit: true,
       };
 
       expect(base._manual).toBe(true);
-      expect(base._manual_implicit).toBe(true);
     });
   });
 
