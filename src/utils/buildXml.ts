@@ -326,9 +326,7 @@ function serializeMasteryEffects(selections: Record<string, string>): string {
 function serializeItem(item: Item): string {
   const lines: string[] = [];
 
-  // Rarity line
-  // Explicitly check for undefined so ItemRarity.ITEM_RARITY_UNKNOWN (0) still maps via RARITY_TO_POB.
-  // Using a truthiness check (e.g. ||) would incorrectly treat 0 as "no rarity" and fallback.
+  // Rarity line - use !== undefined (not ||) to preserve ITEM_RARITY_UNKNOWN (0) as valid value
   const rarity = item.rarity !== undefined ? RARITY_TO_POB[item.rarity] : 'NORMAL';
   lines.push(`Rarity: ${rarity}`);
 
@@ -427,13 +425,11 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
   const skillSetContent = skillGroups
     .map((group, index) => {
       const gemElements = group.gems.map(serializeGem).join('\n');
-      // PoB2 convention: missing enabled attribute means true.
-      // Only emit enabled="false" when explicitly disabled; otherwise omit the attribute.
-      const enabledAttr = group.enabled === false ? false : undefined;
       return xmlElement(
         'Skill',
         {
-          enabled: enabledAttr,
+          // PoB2 convention: missing enabled attribute means true; only emit when false
+          enabled: group.enabled === false ? false : undefined,
           slot: group.slot,
           label: group.label,
           mainActiveSkill: index === FIRST_SKILL_GROUP_INDEX ? DEFAULT_SET_ID : undefined,

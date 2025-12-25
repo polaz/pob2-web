@@ -171,7 +171,7 @@ describe('buildCode', () => {
       expect(code1).toBe(code2);
     });
 
-    it('should respect compression level option', () => {
+    it('should produce smaller output with higher compression level', () => {
       const build = createFullBuild();
 
       const codeLevel1 = encodeBuildCode(build, { compressionLevel: 1 });
@@ -350,10 +350,9 @@ describe('buildCode', () => {
       }
       const elapsed = performance.now() - start;
 
-      // 100 decodes should take less than 1000ms (10ms average target)
+      // 100 decodes should complete in under 1000ms total.
+      // This is a lenient CI-friendly threshold; actual performance is typically <1ms per decode.
       expect(elapsed).toBeLessThan(1000);
-      // Average decode time should be under 100ms (lenient upper bound)
-      expect(elapsed / 100).toBeLessThan(100);
     });
   });
 });

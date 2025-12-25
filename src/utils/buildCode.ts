@@ -78,8 +78,7 @@ function uint8ArrayToBase64(bytes: Uint8Array): string {
   // Use for-loop for better performance with large arrays (vs Array.from().join())
   let binary = '';
   for (let i = 0; i < bytes.length; i++) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- index is within bounds
-    binary += String.fromCharCode(bytes[i]!);
+    binary += String.fromCharCode(bytes[i]!); // index is within bounds
   }
   return btoa(binary);
 }
