@@ -63,6 +63,7 @@ export const ModFlag = {
   Trap: 1n << 27n,
   Mine: 1n << 28n,
   Brand: 1n << 29n,
+  DualWield: 1n << 30n,
 } as const;
 
 export type ModFlagValue = (typeof ModFlag)[keyof typeof ModFlag];

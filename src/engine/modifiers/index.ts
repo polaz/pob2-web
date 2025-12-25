@@ -9,6 +9,7 @@
 // Main classes
 export { ModDB } from './ModDB';
 export { ModList } from './ModList';
+export { ModParser } from './ModParser';
 
 // Types
 export type {
@@ -18,4 +19,10 @@ export type {
   ListValue,
   ActorType,
   ModDBOptions,
+  // ModParser types
+  ModSupportLevel,
+  FormPattern,
+  ModParserData,
+  ModParseContext,
+  ParseResult,
 } from './types';

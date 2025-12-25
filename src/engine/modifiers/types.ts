@@ -5,7 +5,13 @@
  * with runtime-specific fields needed for calculation.
  */
 
-import type { ModType, ModSource, ModCondition, ModTag } from 'src/types/mods';
+import type {
+  ModType,
+  ModSource,
+  ModCondition,
+  ModTag,
+  ModDefinition,
+} from 'src/types/mods';
 
 // ============================================================================
 // Runtime Modifier Types
@@ -139,3 +145,186 @@ export interface ModDBOptions {
 
 // Forward declaration for circular reference
 import type { ModDB } from './ModDB';
+
+// ============================================================================
+// ModParser Types
+// ============================================================================
+
+/**
+ * Support level for a parsed modifier.
+ *
+ * Indicates how well the modifier can be calculated.
+ */
+export type ModSupportLevel =
+  /** Fully parsed and calculated */
+  | 'full'
+  /** Parsed but calculation incomplete (shown in UI, partial DPS) */
+  | 'partial'
+  /** Recognized but not calculated (shown as informational) */
+  | 'display_only'
+  /** Unknown mod, not in data (shown as warning) */
+  | 'unsupported';
+
+/**
+ * A pattern for matching modifier text.
+ */
+export interface FormPattern {
+  /** Unique identifier for this pattern */
+  id: string;
+
+  /** Regular expression pattern string */
+  regex: string;
+
+  /** Modifier type this pattern produces */
+  type: ModType;
+
+  /** Capture group index for the numeric value (1-indexed) */
+  valueGroup?: number;
+
+  /** Multiple capture groups for values (e.g., damage ranges) */
+  valueGroups?: number[];
+
+  /** Capture group index for the stat name (1-indexed) */
+  statGroup?: number;
+
+  /** Scale factor applied to the value (e.g., 0.01 for percentages) */
+  valueScale?: number;
+
+  /** Output stat names with template placeholders (e.g., "${stat}Min") */
+  outputStats?: string[];
+
+  /** ModFlag names to apply to mods matching this pattern */
+  flagNames?: string[];
+
+  /** KeywordFlag names to apply to mods matching this pattern */
+  keywordFlagNames?: string[];
+
+  /** Example modifier texts that match this pattern */
+  examples?: string[];
+}
+
+// ============================================================================
+// JSON File Structure Types
+// ============================================================================
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/form-patterns.json
+ */
+export interface FormPatternsJson {
+  _comment?: string;
+  version: string;
+  patterns: FormPattern[];
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/stat-mappings.json
+ */
+export interface StatMappingsJson {
+  _comment?: string;
+  version: string;
+  mappings: Record<string, string>;
+  /** Unused - reserved for future reverse lookups */
+  aliases?: Record<string, string[]>;
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/flag-mappings.json
+ */
+export interface FlagMappingsJson {
+  _comment?: string;
+  version: string;
+  modFlags: Record<string, string | string[]>;
+  keywordFlags: Record<string, string | string[]>;
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/condition-mappings.json
+ */
+export interface ConditionMappingsJson {
+  _comment?: string;
+  version: string;
+  conditions: Record<string, ModCondition>;
+}
+
+// ============================================================================
+// Runtime Parser Data
+// ============================================================================
+
+/**
+ * Flattened, runtime-ready data consumed by ModParser.
+ *
+ * NOTE: The source JSON files in src/data/mods/patterns/*.json use nested keys
+ * (e.g., `mappings`, `modFlags`, `conditions`). A loader/transformer is expected
+ * to read those JSON files and populate this flattened structure.
+ *
+ * Example loader:
+ * ```typescript
+ * const parserData: ModParserData = {
+ *   patterns: formPatternsJson.patterns,
+ *   statMappings: statMappingsJson.mappings,
+ *   flagMappings: flagMappingsJson.modFlags,
+ *   keywordMappings: flagMappingsJson.keywordFlags,
+ *   conditionMappings: conditionMappingsJson.conditions,
+ *   modCache: modCacheJson.mods,
+ * };
+ * ```
+ */
+export interface ModParserData {
+  /** Form patterns for text matching (from FormPatternsJson.patterns) */
+  patterns: FormPattern[];
+
+  /** Text to canonical stat name mappings (from StatMappingsJson.mappings) */
+  statMappings: Record<string, string>;
+
+  /** Text to ModFlag name mappings (from FlagMappingsJson.modFlags) */
+  flagMappings: Record<string, string | string[]>;
+
+  /** Text to KeywordFlag name mappings (from FlagMappingsJson.keywordFlags) */
+  keywordMappings: Record<string, string | string[]>;
+
+  /** Text to condition structure mappings (from ConditionMappingsJson.conditions) */
+  conditionMappings: Record<string, ModCondition>;
+
+  /** Pre-parsed mod cache (from mod-cache.json) */
+  modCache: Record<string, ModDefinition>;
+}
+
+/**
+ * Context for parsing a modifier.
+ */
+export interface ModParseContext {
+  /** Source of the modifier (item, passive, etc.) */
+  source: ModSource;
+
+  /** Source identifier */
+  sourceId: string;
+
+  /** Whether this is a local modifier */
+  isLocal?: boolean;
+
+  /** Item slot for local modifiers */
+  slotName?: string;
+}
+
+/**
+ * Result of parsing a modifier.
+ */
+export interface ParseResult {
+  /** Whether parsing succeeded */
+  success: boolean;
+
+  /** Parsed modifiers (may be multiple from one text line) */
+  mods: Mod[];
+
+  /** Support level achieved */
+  supportLevel: ModSupportLevel;
+
+  /** Original text that was parsed */
+  originalText: string;
+
+  /** Reason for failure (if success is false) */
+  reason?: string;
+
+  /** Warnings generated during parsing */
+  warnings?: string[];
+}

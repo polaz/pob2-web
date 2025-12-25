@@ -1,0 +1,136 @@
+{
+  "_comment": "Form patterns for matching modifier text. Patterns are tried in order - first match wins.",
+  "_ordering_note": "Patterns are ordered by specificity: damage range patterns first (most specific structure), then more/less/increased/reduced (contain keywords that won't appear in damage ranges). This prevents 'Adds X to Y Fire Damage' from matching a generic 'more X' pattern.",
+  "version": "1.0.0",
+  "patterns": [
+    {
+      "id": "adds_damage_range",
+      "regex": "^[Aa]dds (\\d+) to (\\d+) (\\w+) [Dd]amage$",
+      "type": "BASE",
+      "valueGroups": [1, 2],
+      "statGroup": 3,
+      "outputStats": ["${stat}DamageMin", "${stat}DamageMax"],
+      "examples": ["Adds 15 to 28 Physical Damage", "Adds 5 to 10 Fire Damage"]
+    },
+    {
+      "id": "adds_damage_range_to_attacks",
+      "regex": "^[Aa]dds (\\d+) to (\\d+) (\\w+) [Dd]amage to [Aa]ttacks$",
+      "type": "BASE",
+      "valueGroups": [1, 2],
+      "statGroup": 3,
+      "outputStats": ["${stat}DamageMin", "${stat}DamageMax"],
+      "flagNames": ["Attack"],
+      "examples": ["Adds 10 to 20 Physical Damage to Attacks"]
+    },
+    {
+      "id": "adds_damage_range_to_spells",
+      "regex": "^[Aa]dds (\\d+) to (\\d+) (\\w+) [Dd]amage to [Ss]pells$",
+      "type": "BASE",
+      "valueGroups": [1, 2],
+      "statGroup": 3,
+      "outputStats": ["${stat}DamageMin", "${stat}DamageMax"],
+      "flagNames": ["Spell"],
+      "examples": ["Adds 5 to 15 Fire Damage to Spells"]
+    },
+    {
+      "id": "more_percent",
+      "regex": "^(\\d+(?:\\.\\d+)?)% more (.+)$",
+      "type": "MORE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": 0.01,
+      "examples": ["40% more Spell Damage", "30% more Critical Strike Chance"]
+    },
+    {
+      "id": "less_percent",
+      "regex": "^(\\d+(?:\\.\\d+)?)% less (.+)$",
+      "type": "MORE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": -0.01,
+      "examples": ["20% less Attack Speed", "10% less Damage"]
+    },
+    {
+      "id": "increased_percent",
+      "regex": "^(\\d+(?:\\.\\d+)?)% increased (.+)$",
+      "type": "INC",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": 0.01,
+      "examples": ["15% increased Fire Damage", "20% increased Attack Speed"]
+    },
+    {
+      "id": "reduced_percent",
+      "regex": "^(\\d+(?:\\.\\d+)?)% reduced (.+)$",
+      "type": "INC",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": -0.01,
+      "examples": ["10% reduced Mana Cost", "5% reduced Enemy Stun Threshold"]
+    },
+    {
+      "id": "plus_to_stat",
+      "regex": "^\\+(\\d+) to (.+)$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "examples": ["+50 to Maximum Life", "+20 to Strength", "+1 to Level of all Skill Gems"]
+    },
+    {
+      "id": "minus_to_stat",
+      "regex": "^-(\\d+) to (.+)$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": -1,
+      "examples": ["-10 to Maximum Life"]
+    },
+    {
+      "id": "plus_percent_to_stat",
+      "regex": "^\\+(\\d+(?:\\.\\d+)?)% to (.+)$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": 0.01,
+      "examples": ["+30% to Fire Resistance", "+5% to Critical Strike Chance"]
+    },
+    {
+      "id": "minus_percent_to_stat",
+      "regex": "^-(\\d+(?:\\.\\d+)?)% to (.+)$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": -0.01,
+      "examples": ["-10% to Fire Resistance"]
+    },
+    {
+      "id": "chance_percent",
+      "regex": "^(\\d+(?:\\.\\d+)?)% chance to (.+)$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": 0.01,
+      "examples": ["25% chance to Poison on Hit", "10% chance to Freeze"]
+    },
+    {
+      "id": "regenerate_percent_per_second",
+      "regex": "^[Rr]egenerate (\\d+(?:\\.\\d+)?)% of (.+) per second$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "valueScale": 0.01,
+      "outputStats": ["${stat}RegenPercent"],
+      "examples": ["Regenerate 1.5% of Life per second"]
+    },
+    {
+      "id": "regenerate_flat_per_second",
+      "regex": "^[Rr]egenerate (\\d+(?:\\.\\d+)?) (.+) per second$",
+      "type": "BASE",
+      "valueGroup": 1,
+      "statGroup": 2,
+      "outputStats": ["${stat}Regen"],
+      "examples": ["Regenerate 50 Life per second"]
+    }
+  ],
+  "_future_patterns_comment": "Patterns requiring ${source}/${target} template support are planned for future implementation: gain_percent_as_extra, convert_percent, leech_percent"
+}

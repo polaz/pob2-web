@@ -1,0 +1,281 @@
+{
+  "_comment": "Maps modifier text fragments to condition structures. Case-insensitive matching.",
+  "version": "1.0.0",
+  "conditions": {
+    "while leeching": {
+      "type": "Condition",
+      "var": "Leeching"
+    },
+    "while leeching life": {
+      "type": "Condition",
+      "var": "LeechingLife"
+    },
+    "while leeching mana": {
+      "type": "Condition",
+      "var": "LeechingMana"
+    },
+    "while leeching energy shield": {
+      "type": "Condition",
+      "var": "LeechingEnergyShield"
+    },
+    "if you've killed recently": {
+      "type": "Condition",
+      "var": "KilledRecently"
+    },
+    "if you've killed an enemy recently": {
+      "type": "Condition",
+      "var": "KilledRecently"
+    },
+    "if you haven't killed recently": {
+      "type": "Condition",
+      "var": "KilledRecently",
+      "neg": true
+    },
+    "if you've been hit recently": {
+      "type": "Condition",
+      "var": "BeenHitRecently"
+    },
+    "if you haven't been hit recently": {
+      "type": "Condition",
+      "var": "BeenHitRecently",
+      "neg": true
+    },
+    "if you've dealt a critical strike recently": {
+      "type": "Condition",
+      "var": "CritRecently"
+    },
+    "if you've crit recently": {
+      "type": "Condition",
+      "var": "CritRecently"
+    },
+    "on low life": {
+      "type": "Condition",
+      "var": "LowLife"
+    },
+    "while on low life": {
+      "type": "Condition",
+      "var": "LowLife"
+    },
+    "on full life": {
+      "type": "Condition",
+      "var": "FullLife"
+    },
+    "while on full life": {
+      "type": "Condition",
+      "var": "FullLife"
+    },
+    "on low mana": {
+      "type": "Condition",
+      "var": "LowMana"
+    },
+    "while on low mana": {
+      "type": "Condition",
+      "var": "LowMana"
+    },
+    "on full mana": {
+      "type": "Condition",
+      "var": "FullMana"
+    },
+    "while on full mana": {
+      "type": "Condition",
+      "var": "FullMana"
+    },
+    "while moving": {
+      "type": "Condition",
+      "var": "Moving"
+    },
+    "while stationary": {
+      "type": "Condition",
+      "var": "Stationary"
+    },
+    "while holding a shield": {
+      "type": "Condition",
+      "var": "UsingShield"
+    },
+    "while dual wielding": {
+      "type": "Condition",
+      "var": "DualWielding"
+    },
+    "while wielding a staff": {
+      "type": "Condition",
+      "var": "UsingStaff"
+    },
+    "while wielding a bow": {
+      "type": "Condition",
+      "var": "UsingBow"
+    },
+    "while wielding a wand": {
+      "type": "Condition",
+      "var": "UsingWand"
+    },
+    "against enemies on full life": {
+      "type": "Condition",
+      "var": "EnemyFullLife"
+    },
+    "against enemies on low life": {
+      "type": "Condition",
+      "var": "EnemyLowLife"
+    },
+    "against burning enemies": {
+      "type": "Condition",
+      "var": "EnemyBurning"
+    },
+    "against ignited enemies": {
+      "type": "Condition",
+      "var": "EnemyIgnited"
+    },
+    "against chilled enemies": {
+      "type": "Condition",
+      "var": "EnemyChilled"
+    },
+    "against frozen enemies": {
+      "type": "Condition",
+      "var": "EnemyFrozen"
+    },
+    "against shocked enemies": {
+      "type": "Condition",
+      "var": "EnemyShocked"
+    },
+    "against poisoned enemies": {
+      "type": "Condition",
+      "var": "EnemyPoisoned"
+    },
+    "against bleeding enemies": {
+      "type": "Condition",
+      "var": "EnemyBleeding"
+    },
+    "against blinded enemies": {
+      "type": "Condition",
+      "var": "EnemyBlinded"
+    },
+    "against maimed enemies": {
+      "type": "Condition",
+      "var": "EnemyMaimed"
+    },
+    "against hindered enemies": {
+      "type": "Condition",
+      "var": "EnemyHindered"
+    },
+    "against intimidated enemies": {
+      "type": "Condition",
+      "var": "EnemyIntimidated"
+    },
+    "against taunted enemies": {
+      "type": "Condition",
+      "var": "EnemyTaunted"
+    },
+    "against rare enemies": {
+      "type": "Condition",
+      "var": "EnemyRare"
+    },
+    "against unique enemies": {
+      "type": "Condition",
+      "var": "EnemyUnique"
+    },
+    "against bosses": {
+      "type": "Condition",
+      "var": "EnemyBoss"
+    },
+    "per power charge": {
+      "type": "Multiplier",
+      "var": "PowerCharge"
+    },
+    "per frenzy charge": {
+      "type": "Multiplier",
+      "var": "FrenzyCharge"
+    },
+    "per endurance charge": {
+      "type": "Multiplier",
+      "var": "EnduranceCharge"
+    },
+    "per 10 strength": {
+      "type": "PerStat",
+      "stat": "Str",
+      "div": 10
+    },
+    "per 10 dexterity": {
+      "type": "PerStat",
+      "stat": "Dex",
+      "div": 10
+    },
+    "per 10 intelligence": {
+      "type": "PerStat",
+      "stat": "Int",
+      "div": 10
+    },
+    "per 100 strength": {
+      "type": "PerStat",
+      "stat": "Str",
+      "div": 100
+    },
+    "per 100 dexterity": {
+      "type": "PerStat",
+      "stat": "Dex",
+      "div": 100
+    },
+    "per 100 intelligence": {
+      "type": "PerStat",
+      "stat": "Int",
+      "div": 100
+    },
+    "per 1% block chance": {
+      "type": "PerStat",
+      "stat": "BlockChance",
+      "div": 1
+    },
+    "per 10 maximum life": {
+      "type": "PerStat",
+      "stat": "Life",
+      "div": 10
+    },
+    "per 100 maximum life": {
+      "type": "PerStat",
+      "stat": "Life",
+      "div": 100
+    },
+    "per 10 maximum mana": {
+      "type": "PerStat",
+      "stat": "Mana",
+      "div": 10
+    },
+    "per 100 maximum mana": {
+      "type": "PerStat",
+      "stat": "Mana",
+      "div": 100
+    },
+    "per 1 maximum energy shield": {
+      "type": "PerStat",
+      "stat": "EnergyShield",
+      "div": 1
+    },
+    "per 10 maximum energy shield": {
+      "type": "PerStat",
+      "stat": "EnergyShield",
+      "div": 10
+    },
+    "while you have fortify": {
+      "type": "Condition",
+      "var": "HaveFortify"
+    },
+    "while you have arcane surge": {
+      "type": "Condition",
+      "var": "HaveArcaneSurge"
+    },
+    "while you have onslaught": {
+      "type": "Condition",
+      "var": "HaveOnslaught"
+    },
+    "while you have phasing": {
+      "type": "Condition",
+      "var": "HavePhasing"
+    },
+    "while you have elusive": {
+      "type": "Condition",
+      "var": "HaveElusive"
+    },
+    "while affected by a herald": {
+      "type": "Condition",
+      "var": "AffectedByHerald"
+    }
+  }
+}

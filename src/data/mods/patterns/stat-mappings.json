@@ -1,0 +1,146 @@
+{
+  "_comment": "Maps modifier text fragments to canonical stat names. Case-insensitive matching.",
+  "version": "1.0.0",
+  "mappings": {
+    "maximum life": "Life",
+    "life": "Life",
+    "max life": "Life",
+    "maximum mana": "Mana",
+    "mana": "Mana",
+    "max mana": "Mana",
+    "maximum energy shield": "EnergyShield",
+    "energy shield": "EnergyShield",
+    "armour": "Armour",
+    "armor": "Armour",
+    "evasion": "Evasion",
+    "evasion rating": "Evasion",
+    "ward": "Ward",
+
+    "strength": "Str",
+    "dexterity": "Dex",
+    "intelligence": "Int",
+    "all attributes": "AllAttributes",
+
+    "fire damage": "FireDamage",
+    "cold damage": "ColdDamage",
+    "lightning damage": "LightningDamage",
+    "physical damage": "PhysicalDamage",
+    "chaos damage": "ChaosDamage",
+    "elemental damage": "ElementalDamage",
+    "damage": "Damage",
+    "spell damage": "Damage",
+
+    "attack speed": "Speed",
+    "cast speed": "Speed",
+    "movement speed": "MovementSpeed",
+    "projectile speed": "ProjectileSpeed",
+
+    "critical strike chance": "CritChance",
+    "critical strike multiplier": "CritMultiplier",
+    "critical damage bonus": "CritMultiplier",
+
+    "accuracy rating": "Accuracy",
+    "accuracy": "Accuracy",
+
+    "fire resistance": "FireResist",
+    "cold resistance": "ColdResist",
+    "lightning resistance": "LightningResist",
+    "chaos resistance": "ChaosResist",
+    "elemental resistances": "ElementalResist",
+    "all elemental resistances": "ElementalResist",
+    "all resistances": "AllResist",
+
+    "block chance": "BlockChance",
+    "attack block chance": "BlockChance",
+    "spell block chance": "SpellBlockChance",
+    "chance to block": "BlockChance",
+    "chance to block attack damage": "BlockChance",
+    "chance to block spell damage": "SpellBlockChance",
+
+    "stun threshold": "StunThreshold",
+    "stun duration": "StunDuration",
+    "chance to stun": "StunChance",
+
+    "mana cost": "ManaCost",
+    "mana cost of skills": "ManaCost",
+    "mana cost of attacks": "ManaCostAttack",
+    "mana cost of spells": "ManaCostSpell",
+    "mana regeneration rate": "ManaRegen",
+    "mana regeneration": "ManaRegen",
+
+    "life regeneration rate": "LifeRegen",
+    "life regeneration": "LifeRegen",
+
+    "flask charges gained": "FlaskChargesGained",
+    "flask charges used": "FlaskChargesUsed",
+    "flask effect duration": "FlaskDuration",
+    "flask recovery rate": "FlaskRecoveryRate",
+
+    "area of effect": "AreaOfEffect",
+    "area damage": "AreaDamage",
+
+    "projectile damage": "ProjectileDamage",
+    "projectiles": "ProjectileCount",
+
+    "duration": "Duration",
+    "skill effect duration": "Duration",
+
+    "cooldown recovery rate": "CooldownRecovery",
+    "cooldown recovery speed": "CooldownRecovery",
+
+    "minion damage": "MinionDamage",
+    "minion life": "MinionLife",
+    "minion attack speed": "MinionAttackSpeed",
+    "minion movement speed": "MinionMovementSpeed",
+
+    "totem damage": "TotemDamage",
+    "totem life": "TotemLife",
+    "totem placement speed": "TotemPlacementSpeed",
+
+    "trap damage": "TrapDamage",
+    "trap throwing speed": "TrapThrowingSpeed",
+    "mine damage": "MineDamage",
+    "mine throwing speed": "MineThrowingSpeed",
+
+    "ignite damage": "IgniteDamage",
+    "burning damage": "IgniteDamage",
+    "poison damage": "PoisonDamage",
+    "bleed damage": "BleedDamage",
+    "bleeding damage": "BleedDamage",
+    "damage over time": "DamageOverTime",
+    "damage over time multiplier": "DotMultiplier",
+
+    "chance to freeze": "FreezeChance",
+    "chance to shock": "ShockChance",
+    "chance to ignite": "IgniteChance",
+    "chance to poison": "PoisonChance",
+    "chance to bleed": "BleedChance",
+    "chance to cause bleeding": "BleedChance",
+
+    "freeze duration": "FreezeDuration",
+    "shock duration": "ShockDuration",
+    "ignite duration": "IgniteDuration",
+    "poison duration": "PoisonDuration",
+    "bleed duration": "BleedDuration",
+    "bleeding duration": "BleedDuration",
+
+    "shock effect": "ShockEffect",
+    "chill effect": "ChillEffect",
+    "freeze effect": "FreezeEffect",
+
+    "item rarity": "ItemRarity",
+    "item quantity": "ItemQuantity",
+
+    "experience gain": "ExperienceGain",
+    "light radius": "LightRadius",
+
+    "level of all skill gems": "GemLevel",
+    "level of all gems": "GemLevel",
+    "level of all fire skill gems": "FireGemLevel",
+    "level of all cold skill gems": "ColdGemLevel",
+    "level of all lightning skill gems": "LightningGemLevel",
+    "level of all chaos skill gems": "ChaosGemLevel",
+    "level of all physical skill gems": "PhysicalGemLevel",
+    "level of all spell skill gems": "SpellGemLevel"
+  }
+}
