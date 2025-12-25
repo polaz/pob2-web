@@ -66,12 +66,15 @@ const valueClasses = computed(() => {
 
 <style scoped>
 .stat-delta {
+  /* Component-specific layout dimension */
+  --label-min-width: 80px;
+
   font-size: 0.8rem;
   line-height: 1.6;
 }
 
 .stat-delta__label {
-  min-width: 80px;
+  min-width: var(--label-min-width);
 }
 
 .stat-delta__value {

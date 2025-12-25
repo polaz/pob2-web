@@ -330,8 +330,14 @@ function handleClear(): void {
 <style scoped>
 /* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-comparison-pane {
+  /* Component-specific layout dimensions */
+  --pane-min-width: 280px;
+  --empty-min-height: 200px;
+  --placeholder-min-height: 80px;
+  --placeholder-padding: 16px;
+
   background-color: var(--poe2-card-bg);
-  min-width: 280px;
+  min-width: var(--pane-min-width);
 }
 
 .item-comparison-pane__header {
@@ -339,14 +345,14 @@ function handleClear(): void {
 }
 
 .item-comparison-pane__empty {
-  min-height: 200px;
+  min-height: var(--empty-min-height);
 }
 
 .item-comparison-pane__placeholder {
   border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 4px;
-  padding: 16px;
-  min-height: 80px;
+  padding: var(--placeholder-padding);
+  min-height: var(--placeholder-min-height);
 }
 
 .item-comparison-pane__deltas {
