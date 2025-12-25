@@ -167,9 +167,9 @@ describe('treeStore', () => {
       store.setViewportZoom(0.05);
       expect(store.viewport.zoom).toBe(0.1);
 
-      // Test upper bound (3.0)
-      store.setViewportZoom(5.0);
-      expect(store.viewport.zoom).toBe(3.0);
+      // Test upper bound (5.0)
+      store.setViewportZoom(10.0);
+      expect(store.viewport.zoom).toBe(5.0);
     });
 
     it('should pan viewport', () => {
