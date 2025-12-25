@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/polaz/pob2-web/compare/v1.2.0...v1.3.0) (2025-12-25)
+
+
+### Features
+
+* **stores:** setup Pinia stores for state management ([#53](https://github.com/polaz/pob2-web/issues/53)) ([b2551d5](https://github.com/polaz/pob2-web/commit/b2551d5112cd84207187a01887d9eec0a34e26e7)), closes [#4](https://github.com/polaz/pob2-web/issues/4)
+
 # [1.2.0](https://github.com/polaz/pob2-web/compare/v1.1.0...v1.2.0) (2025-12-24)
 
 
