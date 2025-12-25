@@ -1,3 +1,16 @@
+# [1.16.0](https://github.com/polaz/pob2-web/compare/v1.15.0...v1.16.0) (2025-12-25)
+
+
+### Bug Fixes
+
+* **tree:** correct coordinate scaling and viewport centering for node visibility ([437e247](https://github.com/polaz/pob2-web/commit/437e247bdc5fb8a7764e27a55836a8101d0f24dc))
+
+
+### Features
+
+* **db:** implement build save/load with IndexedDB ([#112](https://github.com/polaz/pob2-web/issues/112)) ([64c39f1](https://github.com/polaz/pob2-web/commit/64c39f1340fc94efad556af7804992e2605df829)), closes [#35](https://github.com/polaz/pob2-web/issues/35)
+* **tree:** implement passive tree node rendering ([#115](https://github.com/polaz/pob2-web/issues/115)) ([01874a7](https://github.com/polaz/pob2-web/commit/01874a71217046b3df092cf8221f6b7c55e359a2)), closes [#15](https://github.com/polaz/pob2-web/issues/15)
+
 # [1.15.0](https://github.com/polaz/pob2-web/compare/v1.14.0...v1.15.0) (2025-12-25)
 
 
