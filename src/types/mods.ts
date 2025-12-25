@@ -10,8 +10,18 @@
 // ============================================================================
 
 /**
- * ModFlag - Damage/attack type flags (64-bit in PoB, we use bigint or split)
- * These determine what type of damage/attack a modifier applies to.
+ * ModFlag - Damage/attack type flags for targeting damage calculations.
+ *
+ * These flags determine WHAT TYPE OF DAMAGE/ATTACK a modifier applies to.
+ * Used to filter modifiers based on the damage source (attack vs spell),
+ * delivery method (melee, projectile, area), and weapon type.
+ *
+ * Note: Some flag names overlap with KeywordFlag (Attack, Spell, Hit, etc.).
+ * This is intentional - ModFlag targets damage calculations while KeywordFlag
+ * targets skill keywords. A skill can have KeywordFlag.Attack (it's an attack skill)
+ * while a modifier uses ModFlag.Attack (applies to attack damage).
+ *
+ * Uses bigint for 64-bit precision matching Path of Building's Lua implementation.
  */
 export const ModFlag = {
   // Damage modes
@@ -58,8 +68,19 @@ export const ModFlag = {
 export type ModFlagValue = (typeof ModFlag)[keyof typeof ModFlag];
 
 /**
- * KeywordFlag - Skill keyword flags
- * These determine what type of skill a modifier applies to.
+ * KeywordFlag - Skill keyword flags for targeting skill types.
+ *
+ * These flags determine WHAT TYPE OF SKILL a modifier applies to.
+ * Used to filter modifiers based on skill keywords/tags (aura, curse, vaal)
+ * and damage types (physical, fire, cold, etc.).
+ *
+ * Note: Some flag names overlap with ModFlag (Attack, Spell, Hit, Melee, etc.).
+ * This is intentional - KeywordFlag identifies skill characteristics while
+ * ModFlag targets damage types. Example: "10% increased Attack Speed" uses
+ * ModFlag.Attack, while "Supported Attack Skills deal 10% more Damage" uses
+ * KeywordFlag.Attack to identify which skills are affected.
+ *
+ * Uses bigint for 64-bit precision matching Path of Building's Lua implementation.
  */
 export const KeywordFlag = {
   Aura: 1n << 0n,
@@ -121,11 +142,23 @@ export interface ModEffect {
   /** Effect value (number for most, can be complex for LIST type) */
   value: number | string | ModEffectListValue;
 
-  /** Damage/attack type flags (0 = applies to all) */
-  flags?: number;
+  /**
+   * Damage/attack type flags (0 = applies to all).
+   *
+   * Supports both number (for JSON compatibility) and bigint (for precision
+   * with flags beyond bit 53). When combining ModFlag values with bitwise OR,
+   * the result is bigint and should be stored as-is for full precision.
+   */
+  flags?: number | bigint;
 
-  /** Skill keyword flags (0 = applies to all) */
-  keywordFlags?: number;
+  /**
+   * Skill keyword flags (0 = applies to all).
+   *
+   * Supports both number (for JSON compatibility) and bigint (for precision
+   * with flags beyond bit 53). When combining KeywordFlag values with bitwise OR,
+   * the result is bigint and should be stored as-is for full precision.
+   */
+  keywordFlags?: number | bigint;
 
   /** Optional condition for this effect */
   condition?: ModCondition;
@@ -256,11 +289,24 @@ export interface ModCache {
   /** Source (e.g., "PathOfBuilding-PoE2") */
   source: string;
 
+  /** Git branch the cache was generated from */
+  branch?: string;
+
   /** Generation timestamp */
   generatedAt: string;
 
   /** Total number of mods */
   count: number;
+
+  /** Aggregate statistics about cache contents */
+  stats?: {
+    /** Number of mods with parsed effects */
+    withEffects: number;
+    /** Number of mods that are display-only (no effects parsed) */
+    displayOnly: number;
+    /** Number of mods that failed to parse */
+    failed: number;
+  };
 
   /** Mod definitions keyed by text */
   mods: Record<string, ModDefinition>;
