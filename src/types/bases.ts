@@ -59,9 +59,12 @@ export type ItemBaseType =
   | 'Charm'
   | 'Life Flask'
   | 'Mana Flask'
-  | 'Soul Core'
   | 'Fishing Rod'
-  | 'Trap Tool';
+  | 'Trap Tool'
+  // Special (PoE2 specific)
+  | 'SoulCore'
+  | 'Rune'
+  | 'Idol';
 
 /**
  * Armour subtype for hybrid armour pieces
@@ -143,9 +146,9 @@ export interface FlaskStats {
   /** Maximum charges */
   chargesMax?: number;
   /** Life recovered (for life flasks) */
-  lifeTotal?: number;
+  life?: number;
   /** Mana recovered (for mana flasks) */
-  manaTotal?: number;
+  mana?: number;
   /** Buff effects while active */
   buff?: string[];
 }
@@ -181,7 +184,12 @@ export interface ItemRequirements {
 // ============================================================================
 
 /**
- * Tag flags for item categorization and filtering
+ * Tag flags for item categorization and filtering.
+ *
+ * Note: The index signature `[key: string]: boolean | undefined` is intentional
+ * to support future tags from PoB2 data updates without requiring type changes.
+ * Known tags are explicitly defined for autocomplete and documentation, while
+ * the index signature allows parsing of new tags added by GGG or PoB community.
  */
 export interface ItemBaseTags {
   default?: boolean;
@@ -468,8 +476,7 @@ export function getCategoryForType(type: ItemBaseType): ItemBaseCategory {
     type === 'Warstaff' ||
     type === 'Flail' ||
     type === 'Spear' ||
-    type === 'Trap Tool' ||
-    type === 'Fishing Rod'
+    type === 'Trap Tool'
   ) {
     return 'weapons';
   }
@@ -503,7 +510,12 @@ export function getCategoryForType(type: ItemBaseType): ItemBaseCategory {
   ) {
     return 'flasks';
   }
-  if (type === 'Soul Core') {
+  if (
+    type === 'SoulCore' ||
+    type === 'Rune' ||
+    type === 'Idol' ||
+    type === 'Fishing Rod'
+  ) {
     return 'special';
   }
   return 'special';

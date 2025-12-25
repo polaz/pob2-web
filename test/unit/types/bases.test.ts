@@ -101,12 +101,17 @@ describe('bases types', () => {
         'Charm',
         'Life Flask',
         'Mana Flask',
-        'Soul Core',
         'Fishing Rod',
         'Trap Tool',
       ];
 
-      expect(types).toHaveLength(8);
+      expect(types).toHaveLength(7);
+    });
+
+    it('should accept special PoE2 types', () => {
+      const types: ItemBaseType[] = ['SoulCore', 'Rune', 'Idol'];
+
+      expect(types).toHaveLength(3);
     });
   });
 
@@ -239,11 +244,11 @@ describe('bases types', () => {
         duration: 3,
         chargesUsed: 10,
         chargesMax: 30,
-        lifeTotal: 500,
+        life: 500,
       };
 
       expect(stats.duration).toBe(3);
-      expect(stats.lifeTotal).toBe(500);
+      expect(stats.life).toBe(500);
     });
 
     it('should accept mana flask stats', () => {
@@ -251,10 +256,10 @@ describe('bases types', () => {
         duration: 4,
         chargesUsed: 15,
         chargesMax: 45,
-        manaTotal: 300,
+        mana: 300,
       };
 
-      expect(stats.manaTotal).toBe(300);
+      expect(stats.mana).toBe(300);
     });
 
     it('should accept charm stats with buff', () => {
@@ -575,7 +580,10 @@ describe('bases types', () => {
     });
 
     it('should return special for special types', () => {
-      expect(getCategoryForType('Soul Core')).toBe('special');
+      expect(getCategoryForType('SoulCore')).toBe('special');
+      expect(getCategoryForType('Rune')).toBe('special');
+      expect(getCategoryForType('Idol')).toBe('special');
+      expect(getCategoryForType('Fishing Rod')).toBe('special');
     });
   });
 
