@@ -1,0 +1,119 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T11:44:12.785Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "category": "jewels",
+  "meta": {
+    "totalBases": 9,
+    "byType": {
+      "Jewel": 9
+    }
+  },
+  "bases": {
+    "Ruby": {
+      "name": "Ruby",
+      "type": "Jewel",
+      "tags": {
+        "default": true,
+        "jewel": true,
+        "strjewel": true
+      },
+      "req": {}
+    },
+    "Emerald": {
+      "name": "Emerald",
+      "type": "Jewel",
+      "tags": {
+        "default": true,
+        "dexjewel": true,
+        "jewel": true
+      },
+      "req": {}
+    },
+    "Sapphire": {
+      "name": "Sapphire",
+      "type": "Jewel",
+      "tags": {
+        "default": true,
+        "intjewel": true,
+        "jewel": true
+      },
+      "req": {}
+    },
+    "Diamond": {
+      "name": "Diamond",
+      "type": "Jewel",
+      "tags": {
+        "default": true,
+        "jewel": true,
+        "not_for_sale": true
+      },
+      "req": {}
+    },
+    "Time-Lost Ruby": {
+      "name": "Time-Lost Ruby",
+      "type": "Jewel",
+      "subType": "Radius",
+      "tags": {
+        "default": true,
+        "jewel": true,
+        "not_for_sale": true,
+        "radius_jewel": true,
+        "str_radius_jewel": true
+      },
+      "req": {}
+    },
+    "Time-Lost Emerald": {
+      "name": "Time-Lost Emerald",
+      "type": "Jewel",
+      "subType": "Radius",
+      "tags": {
+        "default": true,
+        "dex_radius_jewel": true,
+        "jewel": true,
+        "not_for_sale": true,
+        "radius_jewel": true
+      },
+      "req": {}
+    },
+    "Time-Lost Sapphire": {
+      "name": "Time-Lost Sapphire",
+      "type": "Jewel",
+      "subType": "Radius",
+      "tags": {
+        "default": true,
+        "int_radius_jewel": true,
+        "jewel": true,
+        "not_for_sale": true,
+        "radius_jewel": true
+      },
+      "req": {}
+    },
+    "Time-Lost Diamond": {
+      "name": "Time-Lost Diamond",
+      "type": "Jewel",
+      "subType": "Radius",
+      "tags": {
+        "default": true,
+        "jewel": true,
+        "not_for_sale": true,
+        "radius_jewel": true
+      },
+      "req": {}
+    },
+    "Timeless Jewel": {
+      "name": "Timeless Jewel",
+      "type": "Jewel",
+      "subType": "Timeless",
+      "tags": {
+        "default": true,
+        "dexjewel": true,
+        "intjewel": true,
+        "jewel": true,
+        "not_for_sale": true,
+        "strjewel": true
+      },
+      "req": {}
+    }
+  }
+}
