@@ -142,13 +142,5 @@
     "level of all chaos skill gems": "ChaosGemLevel",
     "level of all physical skill gems": "PhysicalGemLevel",
     "level of all spell skill gems": "SpellGemLevel"
-  },
-  "aliases": {
-    "Life": ["life", "maximum life", "max life"],
-    "Mana": ["mana", "maximum mana", "max mana"],
-    "EnergyShield": ["energy shield", "maximum energy shield"],
-    "Speed": ["attack speed", "cast speed"],
-    "ElementalResist": ["elemental resistances", "all elemental resistances"],
-    "Damage": ["damage", "spell damage"]
   }
 }

@@ -44,8 +44,14 @@ import type {
 /** Default flags value (applies to all) */
 const NO_FLAGS = 0n;
 
-/** Pattern for extracting numeric values from mod text */
-const VALUE_PATTERN = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)|(\d+(?:\.\d+)?)/g;
+/**
+ * Factory for pattern used to extract numeric values from mod text.
+ *
+ * Returns a fresh RegExp instance on each call to avoid shared `lastIndex`
+ * state from the `/g` flag causing cross-call interference.
+ */
+const createValuePattern = (): RegExp =>
+  /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)|(\d+(?:\.\d+)?)/g;
 
 // ============================================================================
 // ModParser Class
@@ -456,12 +462,10 @@ export class ModParser {
    */
   private extractValues(text: string): number[] {
     const values: number[] = [];
+    const pattern = createValuePattern();
     let match: RegExpExecArray | null;
 
-    // Reset regex state
-    VALUE_PATTERN.lastIndex = 0;
-
-    while ((match = VALUE_PATTERN.exec(text)) !== null) {
+    while ((match = pattern.exec(text)) !== null) {
       if (match[1] && match[2]) {
         // Range: (X-Y) - take average
         const min = parseFloat(match[1]);
@@ -481,16 +485,28 @@ export class ModParser {
   // ==========================================================================
 
   /**
+   * Check if text contains a phrase with word boundaries.
+   *
+   * Uses word boundary regex to avoid false positives like "fire" matching "bonfire".
+   */
+  private containsPhrase(text: string, phrase: string): boolean {
+    const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
+    return pattern.test(text);
+  }
+
+  /**
    * Extract ModFlags from text.
+   *
+   * Uses word boundary matching to avoid false positives.
    */
   private extractFlags(text: string): { flags: bigint; keywordFlags: bigint } {
-    const lowerText = text.toLowerCase();
     let flags = NO_FLAGS;
     let keywordFlags = NO_FLAGS;
 
-    // Check for mod flags
+    // Check for mod flags (use word boundary matching)
     for (const [phrase, flagName] of this.flagMappings) {
-      if (lowerText.includes(phrase)) {
+      if (this.containsPhrase(text, phrase)) {
         const flagValues = Array.isArray(flagName) ? flagName : [flagName];
         for (const name of flagValues) {
           const flag = ModFlag[name as keyof typeof ModFlag];
@@ -501,9 +517,9 @@ export class ModParser {
       }
     }
 
-    // Check for keyword flags
+    // Check for keyword flags (use word boundary matching)
     for (const [phrase, flagName] of this.keywordMappings) {
-      if (lowerText.includes(phrase)) {
+      if (this.containsPhrase(text, phrase)) {
         const flagValues = Array.isArray(flagName) ? flagName : [flagName];
         for (const name of flagValues) {
           const flag = KeywordFlag[name as keyof typeof KeywordFlag];
@@ -519,12 +535,18 @@ export class ModParser {
 
   /**
    * Extract condition from text.
+   *
+   * Matches longer/more specific phrases first by sorting entries by length.
+   * Uses word boundary matching to avoid false positives.
    */
   private extractCondition(text: string): ModCondition | undefined {
-    const lowerText = text.toLowerCase();
+    // Sort by phrase length descending to match more specific phrases first
+    const sortedConditions = [...this.conditionMappings.entries()].sort(
+      (a, b) => b[0].length - a[0].length
+    );
 
-    for (const [phrase, condition] of this.conditionMappings) {
-      if (lowerText.includes(phrase)) {
+    for (const [phrase, condition] of sortedConditions) {
+      if (this.containsPhrase(text, phrase)) {
         return condition;
       }
     }
@@ -538,21 +560,42 @@ export class ModParser {
 
   /**
    * Map raw stat text to canonical stat name.
+   *
+   * Uses word boundary matching for partial matches to avoid false positives.
+   * Prefers longer matches (more specific) when multiple patterns match.
    */
   private mapStatName(rawStat: string): string {
-    const mapped = this.statMappings.get(rawStat);
-    if (mapped) {
-      return mapped;
+    const normalized = rawStat.toLowerCase().trim();
+
+    // Fast path: exact match
+    const exact = this.statMappings.get(normalized);
+    if (exact) {
+      return exact;
     }
 
-    // Try partial match
+    // Refined partial match with word boundaries
+    // Prefer the longest matching key (more specific mapping)
+    let bestMatch: { value: string; score: number } | undefined;
+
     for (const [key, value] of this.statMappings) {
-      if (rawStat.includes(key) || key.includes(rawStat)) {
-        return value;
+      const keyLower = key.toLowerCase().trim();
+      if (!keyLower) {
+        continue;
+      }
+
+      // Use word boundary regex to avoid false positives
+      const escapedKey = keyLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const pattern = new RegExp(`\\b${escapedKey}\\b`, 'i');
+
+      if (pattern.test(normalized)) {
+        const score = keyLower.length;
+        if (!bestMatch || score > bestMatch.score) {
+          bestMatch = { value, score };
+        }
       }
     }
 
-    return '';
+    return bestMatch ? bestMatch.value : '';
   }
 
   /**
@@ -583,12 +626,12 @@ export class ModParser {
 
   /**
    * Convert keyword flags from number/bigint to bigint.
+   *
+   * Delegates to {@link convertFlags} to ensure a single source of truth
+   * for flag normalization.
    */
   private convertKeywordFlags(flags: number | bigint | undefined): bigint {
-    if (flags === undefined) {
-      return NO_FLAGS;
-    }
-    return typeof flags === 'bigint' ? flags : BigInt(flags);
+    return this.convertFlags(flags);
   }
 
   // ==========================================================================

@@ -193,30 +193,99 @@ export interface FormPattern {
   /** Output stat names with template placeholders (e.g., "${stat}Min") */
   outputStats?: string[];
 
+  /** ModFlag names to apply to mods matching this pattern */
+  flagNames?: string[];
+
+  /** KeywordFlag names to apply to mods matching this pattern */
+  keywordFlagNames?: string[];
+
   /** Example modifier texts that match this pattern */
   examples?: string[];
 }
 
+// ============================================================================
+// JSON File Structure Types
+// ============================================================================
+
 /**
- * Data files loaded by ModParser.
+ * Raw JSON structure for src/data/mods/patterns/form-patterns.json
+ */
+export interface FormPatternsJson {
+  _comment?: string;
+  version: string;
+  patterns: FormPattern[];
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/stat-mappings.json
+ */
+export interface StatMappingsJson {
+  _comment?: string;
+  version: string;
+  mappings: Record<string, string>;
+  /** Unused - reserved for future reverse lookups */
+  aliases?: Record<string, string[]>;
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/flag-mappings.json
+ */
+export interface FlagMappingsJson {
+  _comment?: string;
+  version: string;
+  modFlags: Record<string, string | string[]>;
+  keywordFlags: Record<string, string | string[]>;
+}
+
+/**
+ * Raw JSON structure for src/data/mods/patterns/condition-mappings.json
+ */
+export interface ConditionMappingsJson {
+  _comment?: string;
+  version: string;
+  conditions: Record<string, ModCondition>;
+}
+
+// ============================================================================
+// Runtime Parser Data
+// ============================================================================
+
+/**
+ * Flattened, runtime-ready data consumed by ModParser.
+ *
+ * NOTE: The source JSON files in src/data/mods/patterns/*.json use nested keys
+ * (e.g., `mappings`, `modFlags`, `conditions`). A loader/transformer is expected
+ * to read those JSON files and populate this flattened structure.
+ *
+ * Example loader:
+ * ```typescript
+ * const parserData: ModParserData = {
+ *   patterns: formPatternsJson.patterns,
+ *   statMappings: statMappingsJson.mappings,
+ *   flagMappings: flagMappingsJson.modFlags,
+ *   keywordMappings: flagMappingsJson.keywordFlags,
+ *   conditionMappings: conditionMappingsJson.conditions,
+ *   modCache: modCacheJson.mods,
+ * };
+ * ```
  */
 export interface ModParserData {
-  /** Form patterns for text matching */
+  /** Form patterns for text matching (from FormPatternsJson.patterns) */
   patterns: FormPattern[];
 
-  /** Text to canonical stat name mappings */
+  /** Text to canonical stat name mappings (from StatMappingsJson.mappings) */
   statMappings: Record<string, string>;
 
-  /** Text to ModFlag name mappings */
+  /** Text to ModFlag name mappings (from FlagMappingsJson.modFlags) */
   flagMappings: Record<string, string | string[]>;
 
-  /** Text to KeywordFlag name mappings */
+  /** Text to KeywordFlag name mappings (from FlagMappingsJson.keywordFlags) */
   keywordMappings: Record<string, string | string[]>;
 
-  /** Text to condition structure mappings */
+  /** Text to condition structure mappings (from ConditionMappingsJson.conditions) */
   conditionMappings: Record<string, ModCondition>;
 
-  /** Pre-parsed mod cache */
+  /** Pre-parsed mod cache (from mod-cache.json) */
   modCache: Record<string, ModDefinition>;
 }
 
