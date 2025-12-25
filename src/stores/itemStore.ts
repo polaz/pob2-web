@@ -155,6 +155,12 @@ export const useItemStore = defineStore('item', () => {
   /**
    * Get item in a specific slot.
    * Returns a function for parameterized lookup in templates.
+   *
+   * Note: This pattern (computed returning a function) is used consistently
+   * throughout this store (see getSlotName, getSlotShortName) for getters
+   * that need parameters. While a regular function would work, the computed
+   * wrapper ensures reactivity is properly tracked when the underlying
+   * buildStore.equippedItems changes.
    */
   const getItemInSlot = computed(() => {
     return (slot: ItemSlot): Item | undefined => {
@@ -170,6 +176,10 @@ export const useItemStore = defineStore('item', () => {
     const items = new Map<ItemSlot, Item>();
     for (const [key, item] of Object.entries(buildStore.equippedItems)) {
       const slot = Number(key) as ItemSlot;
+      // Keys in buildStore.equippedItems are produced via String(slot),
+      // so slot should always be a valid numeric ItemSlot. This NaN check
+      // exists purely as a data-integrity safeguard in case the underlying
+      // record is ever corrupted or populated from unexpected input.
       if (!Number.isNaN(slot) && item) {
         items.set(slot, item);
       }
@@ -340,6 +350,12 @@ export const useItemStore = defineStore('item', () => {
    * Equip item in slot with validation.
    * Validates item type against slot before equipping.
    *
+   * Note: This function does not automatically handle two-handed weapon
+   * slot management (e.g., clearing off-hand when equipping a 2H weapon).
+   * The caller (typically the UI layer) is responsible for managing these
+   * constraints, as the appropriate UX may vary (confirm dialog, auto-clear,
+   * or rejection). Use isTwoHandedWeaponType() from ItemSlots to check.
+   *
    * @param slot - Target slot
    * @param item - Item to equip
    * @returns Result with success/error info and replaced item
@@ -362,7 +378,7 @@ export const useItemStore = defineStore('item', () => {
 
     return {
       success: true,
-      ...(replacedItem && { replacedItem }),
+      ...(replacedItem !== undefined && { replacedItem }),
     };
   }
 

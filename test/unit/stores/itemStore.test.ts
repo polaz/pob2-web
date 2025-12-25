@@ -452,7 +452,10 @@ describe('itemStore', () => {
         const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, helmet);
 
         expect(result.success).toBe(true);
-        expect(result.error).toBeUndefined();
+        if (result.success) {
+          // Type narrowing: success=true means no error property
+          expect(result.replacedItem).toBeUndefined();
+        }
         expect(buildStore.equippedItems[String(ItemSlot.SLOT_HELMET)]).toEqual(helmet);
       });
 
@@ -465,7 +468,10 @@ describe('itemStore', () => {
         const result = itemStore.equipItem(ItemSlot.SLOT_WEAPON_1, helmet);
 
         expect(result.success).toBe(false);
-        expect(result.error).toContain('HELMET');
+        if (!result.success) {
+          // Type narrowing: success=false means error is required
+          expect(result.error).toContain('HELMET');
+        }
         expect(buildStore.equippedItems[String(ItemSlot.SLOT_WEAPON_1)]).toBeUndefined();
       });
 
@@ -479,7 +485,10 @@ describe('itemStore', () => {
         const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, newHelmet);
 
         expect(result.success).toBe(true);
-        expect(result.replacedItem).toEqual(oldHelmet);
+        if (result.success) {
+          // Type narrowing: success=true means replacedItem may be present
+          expect(result.replacedItem).toEqual(oldHelmet);
+        }
       });
 
       it('should add equipped item to recent items', () => {
@@ -499,7 +508,10 @@ describe('itemStore', () => {
         const result = itemStore.equipItem(ItemSlot.SLOT_HELMET, itemWithoutType);
 
         expect(result.success).toBe(false);
-        expect(result.error).toContain('no type');
+        if (!result.success) {
+          // Type narrowing: success=false means error is required
+          expect(result.error).toContain('no type');
+        }
       });
     });
 

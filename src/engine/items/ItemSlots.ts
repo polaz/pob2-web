@@ -324,8 +324,8 @@ export function getSlotValidationError(
     return 'Item has no type';
   }
   if (!isValidSlotForItem(slot, itemType)) {
-    const slotName = ItemSlot[slot] ?? 'Unknown slot';
-    const typeName = ItemType[itemType] ?? 'Unknown type';
+    const slotName = ItemSlot[slot] ?? `Unknown slot (${slot})`;
+    const typeName = ItemType[itemType] ?? `Unknown type (${itemType})`;
     return `Cannot equip ${typeName} in ${slotName}`;
   }
   return null;
