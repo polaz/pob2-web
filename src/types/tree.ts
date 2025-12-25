@@ -7,6 +7,55 @@
  */
 export type TreeNodeType = 'normal' | 'notable' | 'keystone' | 'mastery';
 
+// ============================================================================
+// Mastery Effect Types
+// ============================================================================
+
+/**
+ * A single mastery effect option that can be selected.
+ *
+ * When a player allocates a mastery node, they choose ONE effect from
+ * the available options. Each effect has a unique ID and stat descriptions.
+ *
+ * Example:
+ * ```
+ * {
+ *   effect: 48385,
+ *   stats: ["Exposure you inflict applies at least -18% to the affected Resistance"]
+ * }
+ * ```
+ */
+export interface MasteryEffect {
+  /** Unique effect ID used for selection tracking */
+  effect: number;
+  /** Stat description lines (parsed by ModParser for calculations) */
+  stats: string[];
+}
+
+/**
+ * Mastery effect data stored in the top-level masteryEffects map.
+ * This is the format used by PoB's tree.masteryEffects[effectId].
+ */
+export interface MasteryEffectData {
+  /** Stat description lines */
+  sd: string[];
+}
+
+/**
+ * A mastery type grouping multiple nodes and their shared effects.
+ *
+ * Example: "Life Mastery" nodes scattered across the tree all share
+ * the same pool of selectable effects.
+ */
+export interface MasteryType {
+  /** Display name (e.g., "Life Mastery", "Attack Mastery") */
+  name: string;
+  /** Node IDs that are this mastery type */
+  nodeIds: string[];
+  /** Available effects for this mastery type */
+  effects: MasteryEffect[];
+}
+
 /**
  * Raw node data from tree JSON
  */
@@ -125,6 +174,25 @@ export interface RawTreeData {
   nodes: Record<string, RawTreeNode>;
   groups: Array<TreeGroup | null>;
   constants: TreeConstants;
+  /**
+   * Top-level mastery effects map: effectId → effect data.
+   *
+   * This map is used to look up effect details when a user selects
+   * a mastery effect. The effectId comes from Build.masterySelections.
+   *
+   * NOTE: This data is currently NOT extracted by PoB2's export scripts.
+   * The map may be empty until mastery effect extraction is implemented.
+   *
+   * @see https://github.com/polaz/pob2-web/issues/109
+   */
+  masteryEffects?: Record<number, MasteryEffectData>;
+  /**
+   * Mastery types grouped by name (e.g., "Life Mastery").
+   * Provides a structured view of which nodes share which effects.
+   *
+   * NOTE: This is a derived/convenience structure, not in original PoB data.
+   */
+  masteryTypes?: Record<string, MasteryType>;
 }
 
 /**
@@ -153,6 +221,11 @@ export interface TreeNode {
   ascendancy: string | null;
   isAscendancyStart: boolean;
   isMastery: boolean;
+  /**
+   * Mastery effects available for this node (if isMastery is true).
+   * Each effect has an ID and stat descriptions.
+   */
+  masteryEffects?: MasteryEffect[];
 }
 
 /**
@@ -172,6 +245,15 @@ export interface TreeData {
   classes: Map<string, TreeClass>;
   ascendancies: Map<string, TreeAscendancy>;
   nodes: Map<string, TreeNode>;
+  /**
+   * Top-level mastery effects map: effectId → effect data.
+   * Used to look up effect stats when resolving Build.masterySelections.
+   */
+  masteryEffects: Map<number, MasteryEffectData>;
+  /**
+   * Mastery types grouped by name for UI display.
+   */
+  masteryTypes: Map<string, MasteryType>;
 }
 
 /**

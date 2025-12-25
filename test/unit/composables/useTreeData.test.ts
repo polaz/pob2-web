@@ -79,6 +79,9 @@ function createTestTreeData(): TreeData {
     classes: new Map(),
     ascendancies: new Map(),
     nodes,
+    // Mastery data (empty for basic graph tests)
+    masteryEffects: new Map(),
+    masteryTypes: new Map(),
   };
 }
 
@@ -578,5 +581,94 @@ describe('useTreeData composable API', () => {
       found: false,
     });
     expect(composableResult!.searchNodes('test')).toEqual([]);
+  });
+
+  describe('mastery effect methods', () => {
+    it('should expose masteryEffects and masteryTypes computed refs', async () => {
+      const result = await mountAndWaitForLoad();
+
+      // masteryEffects and masteryTypes should be Maps (may be empty)
+      expect(result.masteryEffects.value).toBeInstanceOf(Map);
+      expect(result.masteryTypes.value).toBeInstanceOf(Map);
+    });
+
+    it('should return undefined for non-existent mastery effect ID', async () => {
+      const result = await mountAndWaitForLoad();
+
+      const effect = result.getMasteryEffect(99999999);
+      expect(effect).toBeUndefined();
+    });
+
+    it('should return empty array for getMasteryEffectsForNode with non-mastery node', async () => {
+      const result = await mountAndWaitForLoad();
+
+      // Find a non-mastery node
+      const nodes = result.treeData.value?.nodes;
+      let nonMasteryId: string | undefined;
+      for (const [id, node] of nodes!) {
+        if (!node.isMastery) {
+          nonMasteryId = id;
+          break;
+        }
+      }
+
+      if (nonMasteryId) {
+        const effects = result.getMasteryEffectsForNode(nonMasteryId);
+        expect(effects).toEqual([]);
+      }
+    });
+
+    it('should return undefined for non-existent mastery type', async () => {
+      const result = await mountAndWaitForLoad();
+
+      const masteryType = result.getMasteryType('Non-Existent Mastery');
+      expect(masteryType).toBeUndefined();
+    });
+
+    it('should resolve empty mastery selections to empty array', async () => {
+      const result = await mountAndWaitForLoad();
+
+      // Empty map should return empty results
+      const resolved = result.resolveMasterySelections(new Map());
+      expect(resolved).toEqual([]);
+
+      // Empty object should also work
+      const resolvedObj = result.resolveMasterySelections({});
+      expect(resolvedObj).toEqual([]);
+    });
+
+    it('should handle invalid effect IDs in mastery selections gracefully', async () => {
+      const result = await mountAndWaitForLoad();
+
+      // Non-numeric effect ID should be filtered out
+      const selections = { 'node123': 'not-a-number' };
+      const resolved = result.resolveMasterySelections(selections);
+      expect(resolved).toEqual([]);
+    });
+
+    it('should return mastery methods when tree data not loaded', async () => {
+      const { useTreeData, resetTreeDataForTesting } = await import(
+        'src/composables/useTreeData'
+      );
+      resetTreeDataForTesting();
+
+      let composableResult: ReturnType<typeof useTreeData> | null = null;
+
+      const TestComponent = defineComponent({
+        setup() {
+          composableResult = useTreeData();
+          return () => h('div');
+        },
+      });
+
+      mount(TestComponent);
+      // Don't wait - test immediate state before async load completes
+
+      // Before data loads, mastery methods should return safe defaults
+      expect(composableResult!.getMasteryEffect(12345)).toBeUndefined();
+      expect(composableResult!.getMasteryEffectsForNode('123')).toEqual([]);
+      expect(composableResult!.getMasteryType('Life Mastery')).toBeUndefined();
+      expect(composableResult!.resolveMasterySelections({})).toEqual([]);
+    });
   });
 });

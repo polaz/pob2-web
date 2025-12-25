@@ -11,6 +11,9 @@ import type {
   TreeAscendancy,
   PathResult,
   ReachabilityResult,
+  MasteryEffect,
+  MasteryEffectData,
+  MasteryType,
 } from 'src/types/tree';
 import { getCachedData, setCachedData } from 'src/db';
 
@@ -64,7 +67,7 @@ function convertToTreeData(rawData: RawTreeData): TreeData {
   const nodes = new Map<string, TreeNode>();
 
   for (const [id, rawNode] of Object.entries(rawData.nodes)) {
-    nodes.set(id, {
+    const node: TreeNode = {
       id: rawNode.id,
       name: rawNode.name,
       type: rawNode.type,
@@ -76,7 +79,14 @@ function convertToTreeData(rawData: RawTreeData): TreeData {
       ascendancy: rawNode.ascendancy,
       isAscendancyStart: rawNode.isAscendancyStart,
       isMastery: rawNode.isMastery,
-    });
+    };
+
+    // Add masteryEffects only if present (satisfies exactOptionalPropertyTypes)
+    if (rawNode.masteryEffects && rawNode.masteryEffects.length > 0) {
+      node.masteryEffects = rawNode.masteryEffects;
+    }
+
+    nodes.set(id, node);
   }
 
   // Convert classes and ascendancies to Maps
@@ -90,6 +100,38 @@ function convertToTreeData(rawData: RawTreeData): TreeData {
     ascendancies.set(name, asc);
   }
 
+  // Convert mastery effects map
+  const masteryEffectsMap = new Map<number, MasteryEffectData>();
+  if (rawData.masteryEffects) {
+    for (const [effectIdStr, effectData] of Object.entries(rawData.masteryEffects)) {
+      masteryEffectsMap.set(Number(effectIdStr), effectData);
+    }
+  }
+
+  // Build mastery types map (group nodes by mastery name)
+  const masteryTypesMap = new Map<string, MasteryType>();
+  if (rawData.masteryTypes) {
+    for (const [name, masteryType] of Object.entries(rawData.masteryTypes)) {
+      masteryTypesMap.set(name, masteryType);
+    }
+  } else {
+    // Derive mastery types from nodes if not provided
+    for (const node of nodes.values()) {
+      if (node.isMastery && node.name && node.masteryEffects) {
+        const existing = masteryTypesMap.get(node.name);
+        if (existing) {
+          existing.nodeIds.push(node.id);
+        } else {
+          masteryTypesMap.set(node.name, {
+            name: node.name,
+            nodeIds: [node.id],
+            effects: node.masteryEffects,
+          });
+        }
+      }
+    }
+  }
+
   return {
     version: rawData.version,
     extractedAt: new Date(rawData.extractedAt),
@@ -99,6 +141,8 @@ function convertToTreeData(rawData: RawTreeData): TreeData {
     classes,
     ascendancies,
     nodes,
+    masteryEffects: masteryEffectsMap,
+    masteryTypes: masteryTypesMap,
   };
 }
 
@@ -322,6 +366,8 @@ export function useTreeData() {
   const nodeCount = computed(() => treeData.value?.nodes.size ?? 0);
   const classes = computed(() => treeData.value?.classes ?? new Map());
   const ascendancies = computed(() => treeData.value?.ascendancies ?? new Map());
+  const masteryEffects = computed(() => treeData.value?.masteryEffects ?? new Map());
+  const masteryTypes = computed(() => treeData.value?.masteryTypes ?? new Map());
 
   /**
    * Search cache using shallowRef for performance.
@@ -415,6 +461,88 @@ export function useTreeData() {
   }
 
   /**
+   * Get mastery effect data by effect ID.
+   *
+   * Use this to look up the stats for a selected mastery effect.
+   * The effectId comes from Build.masterySelections[nodeId].
+   *
+   * @param effectId - The effect ID to look up
+   * @returns The effect data if found, undefined otherwise
+   */
+  function getMasteryEffect(effectId: number): MasteryEffectData | undefined {
+    return treeData.value?.masteryEffects.get(effectId);
+  }
+
+  /**
+   * Get all mastery effects available for a specific node.
+   *
+   * @param nodeId - The mastery node ID
+   * @returns Array of available effects, or empty array if not a mastery node
+   */
+  function getMasteryEffectsForNode(nodeId: string): MasteryEffect[] {
+    const node = treeData.value?.nodes.get(nodeId);
+    if (!node || !node.isMastery || !node.masteryEffects) {
+      return [];
+    }
+    return node.masteryEffects;
+  }
+
+  /**
+   * Get all mastery nodes of a specific type (e.g., "Life Mastery").
+   *
+   * @param masteryName - The mastery type name
+   * @returns The mastery type info if found, undefined otherwise
+   */
+  function getMasteryType(masteryName: string): MasteryType | undefined {
+    return treeData.value?.masteryTypes.get(masteryName);
+  }
+
+  /**
+   * Resolve mastery selections from a build into stat arrays.
+   *
+   * Takes the masterySelections map from a Build and returns
+   * an array of { nodeId, effectId, stats } for each selection.
+   *
+   * @param selections - Map of nodeId → effectId from Build.masterySelections
+   * @returns Array of resolved mastery effects with their stats
+   */
+  function resolveMasterySelections(
+    selections: Map<string, string> | Record<string, string>
+  ): Array<{ nodeId: string; effectId: number; stats: string[] }> {
+    const result: Array<{ nodeId: string; effectId: number; stats: string[] }> = [];
+
+    if (!treeData.value) return result;
+
+    // Handle both Map and Record inputs
+    const entries = selections instanceof Map
+      ? selections.entries()
+      : Object.entries(selections);
+
+    for (const [nodeId, effectIdStr] of entries) {
+      const effectId = Number(effectIdStr);
+      if (Number.isNaN(effectId)) continue;
+
+      // Try top-level masteryEffects map first (PoB format)
+      const effectData = treeData.value.masteryEffects.get(effectId);
+      if (effectData) {
+        result.push({ nodeId, effectId, stats: effectData.sd });
+        continue;
+      }
+
+      // Fall back to node's masteryEffects array (GGG format)
+      const node = treeData.value.nodes.get(nodeId);
+      if (node?.masteryEffects) {
+        const effect = node.masteryEffects.find(e => e.effect === effectId);
+        if (effect) {
+          result.push({ nodeId, effectId, stats: effect.stats });
+        }
+      }
+    }
+
+    return result;
+  }
+
+  /**
    * Search nodes by name (case-insensitive, LRU cached).
    *
    * Uses an LRU cache bounded to SEARCH_CACHE_MAX_SIZE entries to prevent
@@ -465,6 +593,8 @@ export function useTreeData() {
     nodeCount,
     classes,
     ascendancies,
+    masteryEffects,
+    masteryTypes,
 
     // Methods
     getNode,
@@ -474,5 +604,11 @@ export function useTreeData() {
     getReachable,
     getWithinDistance,
     searchNodes,
+
+    // Mastery methods
+    getMasteryEffect,
+    getMasteryEffectsForNode,
+    getMasteryType,
+    resolveMasterySelections,
   };
 }
