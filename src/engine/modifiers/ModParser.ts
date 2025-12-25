@@ -218,39 +218,66 @@ export class ModParser {
   /**
    * Check if input text matches a cached range pattern.
    *
-   * E.g., "20% increased fire damage" matches "(15-25)% increased fire damage"
-   * but only if 20 is within the range 15-25.
+   * Supports multiple ranges, e.g., "Adds (10-15) to (20-30) Fire Damage"
+   * matches "Adds 12 to 25 Fire Damage" if 12 is in [10,15] and 25 is in [20,30].
    */
   private matchesRangePattern(cacheKey: string, input: string): boolean {
-    // Check if cache key has a range pattern
-    const rangeMatch = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)/.exec(cacheKey);
-    if (!rangeMatch || !rangeMatch[1] || !rangeMatch[2]) {
+    // Collect all range patterns in the cache key
+    const rangeRegex = /\((\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)\)/g;
+    const ranges: Array<{ min: number; max: number }> = [];
+
+    // Replace each range with a capture group and record bounds
+    const keyPattern = cacheKey.replace(
+      rangeRegex,
+      (_match: string, minStr: string, maxStr: string): string => {
+        const min = parseFloat(minStr);
+        const max = parseFloat(maxStr);
+
+        if (Number.isNaN(min) || Number.isNaN(max)) {
+          return _match; // Keep original if parse fails
+        }
+
+        ranges.push({ min, max });
+        return '(\\d+(?:\\.\\d+)?)';
+      }
+    );
+
+    // No valid ranges found - not a range pattern
+    if (ranges.length === 0) {
       return false;
     }
-
-    const min = parseFloat(rangeMatch[1]);
-    const max = parseFloat(rangeMatch[2]);
-
-    // Replace range in cache key with a single value placeholder
-    const keyPattern = cacheKey.replace(
-      /\(\d+(?:\.\d+)?-\d+(?:\.\d+)?\)/,
-      '(\\d+(?:\\.\\d+)?)'
-    );
 
     try {
       const regex = new RegExp(`^${keyPattern}$`, 'i');
       const inputMatch = regex.exec(input);
 
-      if (inputMatch && inputMatch[1]) {
-        const inputValue = parseFloat(inputMatch[1]);
-        // Value must be within range (inclusive)
-        return inputValue >= min && inputValue <= max;
+      if (!inputMatch) {
+        return false;
       }
+
+      // Verify each captured value is within its corresponding range
+      for (let i = 0; i < ranges.length; i++) {
+        const capture = inputMatch[i + 1];
+        if (capture == null) {
+          return false;
+        }
+
+        const value = parseFloat(capture);
+        if (Number.isNaN(value)) {
+          return false;
+        }
+
+        const { min, max } = ranges[i]!;
+        if (value < min || value > max) {
+          return false;
+        }
+      }
+
+      return true;
     } catch {
       // Invalid regex, skip this pattern
+      return false;
     }
-
-    return false;
   }
 
   /**
@@ -310,6 +337,9 @@ export class ModParser {
 
   /**
    * Build parse result from pattern match.
+   *
+   * Handles patterns with multiple outputStats (e.g., "Adds X to Y Fire Damage"
+   * produces separate FireDamageMin and FireDamageMax mods).
    */
   private buildFromPattern(
     pattern: FormPattern,
@@ -319,63 +349,87 @@ export class ModParser {
   ): ParseResult {
     const warnings: string[] = [];
 
-    // Extract value(s)
-    let value: number;
+    // Extract values from match
+    const values: number[] = [];
     if (pattern.valueGroups && pattern.valueGroups.length >= 2) {
-      // Multiple values (e.g., damage range) - use average
-      const idx1 = pattern.valueGroups[0]!;
-      const idx2 = pattern.valueGroups[1]!;
-      const val1 = parseFloat(match[idx1] ?? '0');
-      const val2 = parseFloat(match[idx2] ?? '0');
-      value = (val1 + val2) / 2; // Average for ranges
+      // Multiple values (e.g., damage range min/max)
+      for (const idx of pattern.valueGroups) {
+        const val = parseFloat(match[idx] ?? '0');
+        values.push(pattern.valueScale !== undefined ? val * pattern.valueScale : val);
+      }
     } else if (pattern.valueGroup) {
-      value = parseFloat(match[pattern.valueGroup] ?? '0');
+      let val = parseFloat(match[pattern.valueGroup] ?? '0');
+      if (pattern.valueScale !== undefined) {
+        val *= pattern.valueScale;
+      }
+      values.push(val);
     } else {
-      value = 1; // FLAG type, no value needed
+      values.push(1); // FLAG type, no value needed
     }
 
-    // Apply value scale
-    if (pattern.valueScale !== undefined) {
-      value *= pattern.valueScale;
-    }
-
-    // Extract stat name
-    let statName: string;
+    // Extract stat name from capture group if present
+    let capturedStat = '';
     if (pattern.statGroup) {
       const rawStat = match[pattern.statGroup] ?? '';
-      statName = this.mapStatName(rawStat.toLowerCase());
-      if (!statName) {
+      capturedStat = this.mapStatName(rawStat.toLowerCase());
+      if (!capturedStat) {
         warnings.push(`Unknown stat: ${rawStat}`);
-        statName = this.toCanonicalName(rawStat);
+        capturedStat = this.toCanonicalName(rawStat);
       }
-    } else if (pattern.outputStats) {
-      // Complex pattern with multiple output stats - use first for simple case
-      statName = pattern.outputStats[0] ?? 'Unknown';
-    } else {
-      statName = 'Unknown';
-      warnings.push('Pattern has no stat group');
     }
 
-    // Extract flags from remaining text
+    // Extract flags and conditions from text
     const { flags, keywordFlags } = this.extractFlags(originalText);
-
-    // Extract conditions
     const condition = this.extractCondition(originalText);
 
-    const mod: Mod = {
-      name: statName,
-      type: pattern.type,
-      value,
-      flags,
-      keywordFlags,
-      source: context.source,
-      sourceId: context.sourceId,
-      ...(condition && { condition }),
-    };
+    // Build mods based on outputStats or single stat
+    const mods: Mod[] = [];
+
+    if (pattern.outputStats && pattern.outputStats.length > 0) {
+      // Multiple output stats - create a mod for each
+      for (let i = 0; i < pattern.outputStats.length; i++) {
+        // Replace ${stat} template with captured stat name
+        let statName = pattern.outputStats[i]!;
+        if (statName.includes('${stat}')) {
+          statName = statName.replace('${stat}', capturedStat);
+        }
+
+        // Use corresponding value if available, otherwise use first/only value
+        const value = values[i] ?? values[0] ?? 0;
+
+        mods.push({
+          name: statName,
+          type: pattern.type,
+          value,
+          flags,
+          keywordFlags,
+          source: context.source,
+          sourceId: context.sourceId,
+          ...(condition && { condition }),
+        });
+      }
+    } else {
+      // Single stat output
+      const statName = capturedStat || 'Unknown';
+      if (!capturedStat) {
+        warnings.push('Pattern has no stat group');
+      }
+
+      mods.push({
+        name: statName,
+        type: pattern.type,
+        value: values[0] ?? 0,
+        flags,
+        keywordFlags,
+        source: context.source,
+        sourceId: context.sourceId,
+        ...(condition && { condition }),
+      });
+    }
 
     return {
       success: true,
-      mods: [mod],
+      mods,
       supportLevel: warnings.length > 0 ? 'partial' : 'full',
       originalText,
       ...(warnings.length > 0 && { warnings }),
@@ -389,8 +443,21 @@ export class ModParser {
   /**
    * Convert ModEffect array to Mod array.
    *
+   * Value assignment strategy:
+   * - Extracted values from original text are consumed sequentially by effects
+   * - If an extracted value is available, it overrides the effect's cached value
+   * - If no more extracted values, falls back to the effect's predefined value
+   *
+   * This sequential assignment works correctly for most mods:
+   * - Single value mods: "10% increased Life" → value 10 assigned to Life effect
+   * - Range mods with min/max effects: "Adds (10-20) Fire Damage" extracts [10, 20],
+   *   which are assigned to FireDamageMin and FireDamageMax effects respectively
+   *
+   * Note: The extractValues method returns min/max as separate values for ranges,
+   * NOT as an averaged single value. This allows proper distribution to min/max effects.
+   *
    * @param effects - Effects from cached definition
-   * @param values - Values extracted from original text
+   * @param values - Values extracted from original text (sequential assignment)
    * @param context - Parse context
    * @param textFlags - Optional flags extracted from original text
    */
@@ -403,10 +470,11 @@ export class ModParser {
     let valueIndex = 0;
 
     return effects.map((effect) => {
-      // Get value from extracted values first, then fall back to effect value
+      // Consume next extracted value if available, otherwise use effect's predefined value
       let value: number;
-      if (values.length > valueIndex) {
-        value = values[valueIndex++]!;
+      if (valueIndex < values.length) {
+        value = values[valueIndex]!;
+        valueIndex++;
       } else if (typeof effect.value === 'number') {
         value = effect.value;
       } else {
@@ -459,6 +527,9 @@ export class ModParser {
 
   /**
    * Extract numeric values from text.
+   *
+   * For ranges like "(10-20)", returns both min and max as separate values [10, 20].
+   * This allows effectsToMods to assign min to first effect and max to second effect.
    */
   private extractValues(text: string): number[] {
     const values: number[] = [];
@@ -467,10 +538,9 @@ export class ModParser {
 
     while ((match = pattern.exec(text)) !== null) {
       if (match[1] && match[2]) {
-        // Range: (X-Y) - take average
-        const min = parseFloat(match[1]);
-        const max = parseFloat(match[2]);
-        values.push((min + max) / 2);
+        // Range: (X-Y) - push both min and max as separate values
+        values.push(parseFloat(match[1]));
+        values.push(parseFloat(match[2]));
       } else if (match[3]) {
         // Single value
         values.push(parseFloat(match[3]));
@@ -485,12 +555,27 @@ export class ModParser {
   // ==========================================================================
 
   /**
+   * Escape special regex characters in a string.
+   *
+   * Character class breakdown: `/[.*+?^${}()|[\]\\]/g`
+   * - `.*+?^${}()|` - standard regex metacharacters
+   * - `[` - literal opening bracket
+   * - `\]` - escaped closing bracket (literal `]`)
+   * - `\\` - escaped backslash (literal `\`)
+   *
+   * This is the standard JavaScript regex escape pattern.
+   */
+  private escapeRegExp(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  /**
    * Check if text contains a phrase with word boundaries.
    *
    * Uses word boundary regex to avoid false positives like "fire" matching "bonfire".
    */
   private containsPhrase(text: string, phrase: string): boolean {
-    const escapedPhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const escapedPhrase = this.escapeRegExp(phrase);
     const pattern = new RegExp(`\\b${escapedPhrase}\\b`, 'i');
     return pattern.test(text);
   }
@@ -584,7 +669,7 @@ export class ModParser {
       }
 
       // Use word boundary regex to avoid false positives
-      const escapedKey = keyLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const escapedKey = this.escapeRegExp(keyLower);
       const pattern = new RegExp(`\\b${escapedKey}\\b`, 'i');
 
       if (pattern.test(normalized)) {

@@ -65,6 +65,7 @@ function createTestData(): ModParserData {
         type: 'BASE',
         valueGroups: [1, 2],
         statGroup: 3,
+        outputStats: ['${stat}DamageMin', '${stat}DamageMax'],
       },
       {
         id: 'plus_percent_to_stat',
@@ -374,9 +375,14 @@ describe('ModParser', () => {
       const result = parser.parse('Adds 10 to 20 Physical Damage', context);
 
       expect(result.success).toBe(true);
+      // Range patterns produce separate min/max mods
+      expect(result.mods).toHaveLength(2);
+      expect(result.mods[0]!.name).toBe('PhysicalDamageMin');
       expect(result.mods[0]!.type).toBe('BASE');
-      // Average of 10 and 20
-      expect(result.mods[0]!.value).toBe(15);
+      expect(result.mods[0]!.value).toBe(10);
+      expect(result.mods[1]!.name).toBe('PhysicalDamageMax');
+      expect(result.mods[1]!.type).toBe('BASE');
+      expect(result.mods[1]!.value).toBe(20);
     });
   });
 
