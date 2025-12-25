@@ -4,6 +4,7 @@
 import Dexie, { type EntityTable } from 'dexie';
 import type {
   StoredBuild,
+  StoredLevelingPath,
   GameDataCacheEntry,
   UserPreferences,
 } from '../types/db';
@@ -14,6 +15,8 @@ import { applyMigrations } from './migrations';
 export class PoB2Database extends Dexie {
   /** Builds table */
   builds!: EntityTable<StoredBuild, 'id'>;
+  /** Leveling paths table */
+  levelingPaths!: EntityTable<StoredLevelingPath, 'id'>;
   /** Game data cache table */
   gameDataCache!: EntityTable<GameDataCacheEntry, 'key'>;
   /** User preferences table */
@@ -25,6 +28,14 @@ export class PoB2Database extends Dexie {
     // Version 1: Initial schema
     this.version(1).stores({
       builds: '++id, name, className, ascendancy, updatedAt',
+      gameDataCache: 'key, expiresAt',
+      userPreferences: 'id',
+    });
+
+    // Version 2: Add leveling paths
+    this.version(2).stores({
+      builds: '++id, name, className, ascendancy, updatedAt',
+      levelingPaths: '++id, name, buildId, className, updatedAt',
       gameDataCache: 'key, expiresAt',
       userPreferences: 'id',
     });
@@ -85,6 +96,62 @@ export async function searchBuilds(query: string): Promise<StoredBuild[]> {
   const lowerQuery = query.toLowerCase();
   return db.builds
     .filter((build) => build.name.toLowerCase().includes(lowerQuery))
+    .toArray();
+}
+
+// ============================================================================
+// Leveling Paths CRUD operations
+// ============================================================================
+
+/** Create a new leveling path */
+export async function createLevelingPath(
+  path: Omit<StoredLevelingPath, 'id' | 'createdAt' | 'updatedAt'>
+): Promise<number> {
+  const now = new Date();
+  const id = await db.levelingPaths.add({
+    ...path,
+    createdAt: now,
+    updatedAt: now,
+  });
+  return id as number;
+}
+
+/** Get a leveling path by ID */
+export async function getLevelingPath(id: number): Promise<StoredLevelingPath | undefined> {
+  return db.levelingPaths.get(id);
+}
+
+/** Get all leveling paths */
+export async function getAllLevelingPaths(): Promise<StoredLevelingPath[]> {
+  return db.levelingPaths.orderBy('updatedAt').reverse().toArray();
+}
+
+/** Get leveling paths for a specific build */
+export async function getLevelingPathsByBuildId(buildId: number): Promise<StoredLevelingPath[]> {
+  return db.levelingPaths.where('buildId').equals(buildId).toArray();
+}
+
+/** Update a leveling path */
+export async function updateLevelingPath(
+  id: number,
+  changes: Partial<Omit<StoredLevelingPath, 'id' | 'createdAt'>>
+): Promise<number> {
+  return db.levelingPaths.update(id, {
+    ...changes,
+    updatedAt: new Date(),
+  });
+}
+
+/** Delete a leveling path */
+export async function deleteLevelingPath(id: number): Promise<void> {
+  await db.levelingPaths.delete(id);
+}
+
+/** Search leveling paths by name */
+export async function searchLevelingPaths(query: string): Promise<StoredLevelingPath[]> {
+  const lowerQuery = query.toLowerCase();
+  return db.levelingPaths
+    .filter((path) => path.name.toLowerCase().includes(lowerQuery))
     .toArray();
 }
 
@@ -177,43 +244,58 @@ export async function resetUserPreferences(): Promise<void> {
 
 /** Clear all data from database */
 export async function clearDatabase(): Promise<void> {
-  await db.transaction('rw', [db.builds, db.gameDataCache, db.userPreferences], async () => {
-    await db.builds.clear();
-    await db.gameDataCache.clear();
-    await db.userPreferences.clear();
-  });
+  await db.transaction(
+    'rw',
+    [db.builds, db.levelingPaths, db.gameDataCache, db.userPreferences],
+    async () => {
+      await db.builds.clear();
+      await db.levelingPaths.clear();
+      await db.gameDataCache.clear();
+      await db.userPreferences.clear();
+    }
+  );
 }
 
 /** Export database to JSON */
 export async function exportDatabase(): Promise<string> {
-  const [builds, cache, prefs] = await Promise.all([
+  const [builds, levelingPaths, cache, prefs] = await Promise.all([
     db.builds.toArray(),
+    db.levelingPaths.toArray(),
     db.gameDataCache.toArray(),
     db.userPreferences.toArray(),
   ]);
-  return JSON.stringify({ builds, cache, prefs }, null, 2);
+  return JSON.stringify({ builds, levelingPaths, cache, prefs }, null, 2);
 }
 
 /** Import database from JSON */
 export async function importDatabase(json: string): Promise<void> {
   const data = JSON.parse(json) as {
     builds?: StoredBuild[];
+    levelingPaths?: StoredLevelingPath[];
     cache?: GameDataCacheEntry[];
     prefs?: UserPreferences[];
   };
 
-  await db.transaction('rw', [db.builds, db.gameDataCache, db.userPreferences], async () => {
-    if (data.builds) {
-      await db.builds.clear();
-      await db.builds.bulkAdd(data.builds);
+  await db.transaction(
+    'rw',
+    [db.builds, db.levelingPaths, db.gameDataCache, db.userPreferences],
+    async () => {
+      if (data.builds) {
+        await db.builds.clear();
+        await db.builds.bulkAdd(data.builds);
+      }
+      if (data.levelingPaths) {
+        await db.levelingPaths.clear();
+        await db.levelingPaths.bulkAdd(data.levelingPaths);
+      }
+      if (data.cache) {
+        await db.gameDataCache.clear();
+        await db.gameDataCache.bulkAdd(data.cache);
+      }
+      if (data.prefs) {
+        await db.userPreferences.clear();
+        await db.userPreferences.bulkAdd(data.prefs);
+      }
     }
-    if (data.cache) {
-      await db.gameDataCache.clear();
-      await db.gameDataCache.bulkAdd(data.cache);
-    }
-    if (data.prefs) {
-      await db.userPreferences.clear();
-      await db.userPreferences.bulkAdd(data.prefs);
-    }
-  });
+  );
 }

@@ -741,6 +741,237 @@ export interface GemLevel {
     };
 }
 // ============================================================================
+// PATH OF LEVELING
+// ============================================================================
+
+/**
+ * @generated from protobuf message pob2.LevelingPath
+ */
+export interface LevelingPath {
+    /**
+     * @generated from protobuf field: string id = 1
+     */
+    id: string; // REQUIRED - unique identifier
+    /**
+     * @generated from protobuf field: optional string build_id = 2
+     */
+    buildId?: string; // Reference to end-game Build (optional)
+    /**
+     * @generated from protobuf field: optional string name = 3
+     */
+    name?: string;
+    /**
+     * @generated from protobuf field: optional pob2.CharacterClass class_id = 4
+     */
+    classId?: CharacterClass;
+    /**
+     * @generated from protobuf field: repeated pob2.Checkpoint checkpoints = 5
+     */
+    checkpoints: Checkpoint[]; // User-defined level milestones
+    /**
+     * @generated from protobuf field: repeated pob2.LevelingStep steps = 6
+     */
+    steps: LevelingStep[]; // Ordered actions
+    /**
+     * @generated from protobuf field: optional string notes = 7
+     */
+    notes?: string;
+    /**
+     * @generated from protobuf field: optional google.protobuf.Timestamp created_at = 8
+     */
+    createdAt?: Timestamp;
+    /**
+     * @generated from protobuf field: optional google.protobuf.Timestamp updated_at = 9
+     */
+    updatedAt?: Timestamp;
+}
+/**
+ * @generated from protobuf message pob2.Checkpoint
+ */
+export interface Checkpoint {
+    /**
+     * @generated from protobuf field: int32 level = 1
+     */
+    level: number; // User-defined level milestone
+    /**
+     * @generated from protobuf field: repeated string allocated_passives = 2
+     */
+    allocatedPassives: string[]; // Cumulative list of node IDs
+    /**
+     * @generated from protobuf field: map<string, pob2.Item> equipment = 3
+     */
+    equipment: {
+        [key: string]: Item;
+    }; // Slot -> Item mapping
+    /**
+     * @generated from protobuf field: repeated pob2.SkillGroup gems = 4
+     */
+    gems: SkillGroup[]; // Gem setup at this checkpoint
+    /**
+     * @generated from protobuf field: optional pob2.StatSnapshot stats = 5
+     */
+    stats?: StatSnapshot; // Calculated stats at this level
+    /**
+     * @generated from protobuf field: optional string notes = 6
+     */
+    notes?: string; // Checkpoint-specific notes
+}
+/**
+ * @generated from protobuf message pob2.LevelingStep
+ */
+export interface LevelingStep {
+    /**
+     * @generated from protobuf field: int32 order = 1
+     */
+    order: number; // Execution order
+    /**
+     * @generated from protobuf field: optional pob2.StepTrigger trigger = 2
+     */
+    trigger?: StepTrigger; // When to perform this step
+    /**
+     * @generated from protobuf field: optional pob2.StepAction action = 3
+     */
+    action?: StepAction; // What to do
+    /**
+     * @generated from protobuf field: optional pob2.StatDelta stat_delta = 4
+     */
+    statDelta?: StatDelta; // Impact on stats
+    /**
+     * @generated from protobuf field: optional string rationale = 5
+     */
+    rationale?: string; // Why this step matters
+}
+/**
+ * @generated from protobuf message pob2.StepTrigger
+ */
+export interface StepTrigger {
+    /**
+     * @generated from protobuf field: pob2.StepTriggerType type = 1
+     */
+    type: StepTriggerType;
+    /**
+     * @generated from protobuf field: optional string value = 2
+     */
+    value?: string; // Level number, quest name, or item name
+}
+/**
+ * @generated from protobuf message pob2.StepAction
+ */
+export interface StepAction {
+    /**
+     * @generated from protobuf field: pob2.StepActionType type = 1
+     */
+    type: StepActionType;
+    /**
+     * @generated from protobuf field: optional string target_id = 2
+     */
+    targetId?: string; // Node ID, item ID, or gem ID
+    /**
+     * @generated from protobuf field: optional string slot = 3
+     */
+    slot?: string; // Item slot or socket position
+    /**
+     * @generated from protobuf field: optional string details = 4
+     */
+    details?: string; // Additional context
+}
+/**
+ * @generated from protobuf message pob2.StatDelta
+ */
+export interface StatDelta {
+    /**
+     * @generated from protobuf field: optional float dps_percent = 1
+     */
+    dpsPercent?: number; // +/- percentage change
+    /**
+     * @generated from protobuf field: optional float ehp_percent = 2
+     */
+    ehpPercent?: number; // +/- percentage change
+    /**
+     * @generated from protobuf field: optional float dps_absolute = 3
+     */
+    dpsAbsolute?: number; // +/- absolute value
+    /**
+     * @generated from protobuf field: optional float ehp_absolute = 4
+     */
+    ehpAbsolute?: number; // +/- absolute value
+    /**
+     * @generated from protobuf field: map<string, float> resistances = 5
+     */
+    resistances: {
+        [key: string]: number;
+    }; // Resistance changes
+    /**
+     * @generated from protobuf field: map<string, float> other_stats = 6
+     */
+    otherStats: {
+        [key: string]: number;
+    }; // Other stat changes
+}
+/**
+ * @generated from protobuf message pob2.StatSnapshot
+ */
+export interface StatSnapshot {
+    /**
+     * @generated from protobuf field: optional float dps = 1
+     */
+    dps?: number; // Damage per second
+    /**
+     * @generated from protobuf field: optional float ehp = 2
+     */
+    ehp?: number; // Effective HP
+    /**
+     * @generated from protobuf field: optional float life = 3
+     */
+    life?: number; // Maximum life
+    /**
+     * @generated from protobuf field: optional float mana = 4
+     */
+    mana?: number; // Maximum mana
+    /**
+     * @generated from protobuf field: optional float energy_shield = 5
+     */
+    energyShield?: number; // Maximum energy shield
+    /**
+     * @generated from protobuf field: optional int32 fire_res = 6
+     */
+    fireRes?: number; // Fire resistance (percentage)
+    /**
+     * @generated from protobuf field: optional int32 cold_res = 7
+     */
+    coldRes?: number; // Cold resistance (percentage)
+    /**
+     * @generated from protobuf field: optional int32 lightning_res = 8
+     */
+    lightningRes?: number; // Lightning resistance (percentage)
+    /**
+     * @generated from protobuf field: optional int32 chaos_res = 9
+     */
+    chaosRes?: number; // Chaos resistance (percentage)
+    /**
+     * @generated from protobuf field: optional float attack_speed = 10
+     */
+    attackSpeed?: number; // Attacks per second
+    /**
+     * @generated from protobuf field: optional float cast_speed = 11
+     */
+    castSpeed?: number; // Casts per second
+    /**
+     * @generated from protobuf field: optional float crit_chance = 12
+     */
+    critChance?: number; // Critical strike chance (percentage)
+    /**
+     * @generated from protobuf field: optional float crit_multi = 13
+     */
+    critMulti?: number; // Critical strike multiplier (percentage)
+    /**
+     * @generated from protobuf field: map<string, float> other = 14
+     */
+    other: {
+        [key: string]: number;
+    }; // Additional stats
+}
+// ============================================================================
 // ENUMS
 // ============================================================================
 
@@ -1154,6 +1385,96 @@ export enum ItemSlot {
      * @generated from protobuf enum value: SLOT_JEWEL_2 = 41;
      */
     SLOT_JEWEL_2 = 41
+}
+/**
+ * @generated from protobuf enum pob2.StepTriggerType
+ */
+export enum StepTriggerType {
+    /**
+     * @generated from protobuf enum value: STEP_TRIGGER_TYPE_UNKNOWN = 0;
+     */
+    STEP_TRIGGER_TYPE_UNKNOWN = 0,
+    /**
+     * Reach a certain level
+     *
+     * @generated from protobuf enum value: TRIGGER_LEVEL = 1;
+     */
+    TRIGGER_LEVEL = 1,
+    /**
+     * Complete a quest
+     *
+     * @generated from protobuf enum value: TRIGGER_QUEST = 2;
+     */
+    TRIGGER_QUEST = 2,
+    /**
+     * Acquire an item
+     *
+     * @generated from protobuf enum value: TRIGGER_ITEM = 3;
+     */
+    TRIGGER_ITEM = 3,
+    /**
+     * Enter a zone
+     *
+     * @generated from protobuf enum value: TRIGGER_ZONE = 4;
+     */
+    TRIGGER_ZONE = 4,
+    /**
+     * Reach a waypoint
+     *
+     * @generated from protobuf enum value: TRIGGER_WAYPOINT = 5;
+     */
+    TRIGGER_WAYPOINT = 5
+}
+/**
+ * @generated from protobuf enum pob2.StepActionType
+ */
+export enum StepActionType {
+    /**
+     * @generated from protobuf enum value: STEP_ACTION_TYPE_UNKNOWN = 0;
+     */
+    STEP_ACTION_TYPE_UNKNOWN = 0,
+    /**
+     * Allocate passive node
+     *
+     * @generated from protobuf enum value: ACTION_ALLOCATE = 1;
+     */
+    ACTION_ALLOCATE = 1,
+    /**
+     * Equip an item
+     *
+     * @generated from protobuf enum value: ACTION_EQUIP = 2;
+     */
+    ACTION_EQUIP = 2,
+    /**
+     * Socket a gem
+     *
+     * @generated from protobuf enum value: ACTION_SOCKET = 3;
+     */
+    ACTION_SOCKET = 3,
+    /**
+     * Respec passive nodes
+     *
+     * @generated from protobuf enum value: ACTION_RESPEC = 4;
+     */
+    ACTION_RESPEC = 4,
+    /**
+     * Buy from vendor
+     *
+     * @generated from protobuf enum value: ACTION_VENDOR = 5;
+     */
+    ACTION_VENDOR = 5,
+    /**
+     * Craft an item
+     *
+     * @generated from protobuf enum value: ACTION_CRAFT = 6;
+     */
+    ACTION_CRAFT = 6,
+    /**
+     * Start using a skill
+     *
+     * @generated from protobuf enum value: ACTION_USE_SKILL = 7;
+     */
+    ACTION_USE_SKILL = 7
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Build$Type extends MessageType<Build> {
@@ -2909,3 +3230,679 @@ class GemLevel$Type extends MessageType<GemLevel> {
  * @generated MessageType for protobuf message pob2.GemLevel
  */
 export const GemLevel = new GemLevel$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class LevelingPath$Type extends MessageType<LevelingPath> {
+    constructor() {
+        super("pob2.LevelingPath", [
+            { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "build_id", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "name", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "class_id", kind: "enum", opt: true, T: () => ["pob2.CharacterClass", CharacterClass] },
+            { no: 5, name: "checkpoints", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Checkpoint },
+            { no: 6, name: "steps", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => LevelingStep },
+            { no: 7, name: "notes", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 8, name: "created_at", kind: "message", T: () => Timestamp },
+            { no: 9, name: "updated_at", kind: "message", T: () => Timestamp }
+        ]);
+    }
+    create(value?: PartialMessage<LevelingPath>): LevelingPath {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = "";
+        message.checkpoints = [];
+        message.steps = [];
+        if (value !== undefined)
+            reflectionMergePartial<LevelingPath>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LevelingPath): LevelingPath {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string id */ 1:
+                    message.id = reader.string();
+                    break;
+                case /* optional string build_id */ 2:
+                    message.buildId = reader.string();
+                    break;
+                case /* optional string name */ 3:
+                    message.name = reader.string();
+                    break;
+                case /* optional pob2.CharacterClass class_id */ 4:
+                    message.classId = reader.int32();
+                    break;
+                case /* repeated pob2.Checkpoint checkpoints */ 5:
+                    message.checkpoints.push(Checkpoint.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* repeated pob2.LevelingStep steps */ 6:
+                    message.steps.push(LevelingStep.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional string notes */ 7:
+                    message.notes = reader.string();
+                    break;
+                case /* optional google.protobuf.Timestamp created_at */ 8:
+                    message.createdAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.createdAt);
+                    break;
+                case /* optional google.protobuf.Timestamp updated_at */ 9:
+                    message.updatedAt = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.updatedAt);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: LevelingPath, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string id = 1; */
+        if (message.id !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.id);
+        /* optional string build_id = 2; */
+        if (message.buildId !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.buildId);
+        /* optional string name = 3; */
+        if (message.name !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.name);
+        /* optional pob2.CharacterClass class_id = 4; */
+        if (message.classId !== undefined)
+            writer.tag(4, WireType.Varint).int32(message.classId);
+        /* repeated pob2.Checkpoint checkpoints = 5; */
+        for (let i = 0; i < message.checkpoints.length; i++)
+            Checkpoint.internalBinaryWrite(message.checkpoints[i], writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* repeated pob2.LevelingStep steps = 6; */
+        for (let i = 0; i < message.steps.length; i++)
+            LevelingStep.internalBinaryWrite(message.steps[i], writer.tag(6, WireType.LengthDelimited).fork(), options).join();
+        /* optional string notes = 7; */
+        if (message.notes !== undefined)
+            writer.tag(7, WireType.LengthDelimited).string(message.notes);
+        /* optional google.protobuf.Timestamp created_at = 8; */
+        if (message.createdAt)
+            Timestamp.internalBinaryWrite(message.createdAt, writer.tag(8, WireType.LengthDelimited).fork(), options).join();
+        /* optional google.protobuf.Timestamp updated_at = 9; */
+        if (message.updatedAt)
+            Timestamp.internalBinaryWrite(message.updatedAt, writer.tag(9, WireType.LengthDelimited).fork(), options).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.LevelingPath
+ */
+export const LevelingPath = new LevelingPath$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class Checkpoint$Type extends MessageType<Checkpoint> {
+    constructor() {
+        super("pob2.Checkpoint", [
+            { no: 1, name: "level", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "allocated_passives", kind: "scalar", repeat: 2 /*RepeatType.UNPACKED*/, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "equipment", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "message", T: () => Item } },
+            { no: 4, name: "gems", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => SkillGroup },
+            { no: 5, name: "stats", kind: "message", T: () => StatSnapshot },
+            { no: 6, name: "notes", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<Checkpoint>): Checkpoint {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.level = 0;
+        message.allocatedPassives = [];
+        message.equipment = {};
+        message.gems = [];
+        if (value !== undefined)
+            reflectionMergePartial<Checkpoint>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: Checkpoint): Checkpoint {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 level */ 1:
+                    message.level = reader.int32();
+                    break;
+                case /* repeated string allocated_passives */ 2:
+                    message.allocatedPassives.push(reader.string());
+                    break;
+                case /* map<string, pob2.Item> equipment */ 3:
+                    this.binaryReadMap3(message.equipment, reader, options);
+                    break;
+                case /* repeated pob2.SkillGroup gems */ 4:
+                    message.gems.push(SkillGroup.internalBinaryRead(reader, reader.uint32(), options));
+                    break;
+                case /* optional pob2.StatSnapshot stats */ 5:
+                    message.stats = StatSnapshot.internalBinaryRead(reader, reader.uint32(), options, message.stats);
+                    break;
+                case /* optional string notes */ 6:
+                    message.notes = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap3(map: Checkpoint["equipment"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof Checkpoint["equipment"] | undefined, val: Checkpoint["equipment"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = Item.internalBinaryRead(reader, reader.uint32(), options);
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for pob2.Checkpoint.equipment");
+            }
+        }
+        map[key ?? ""] = val ?? Item.create();
+    }
+    internalBinaryWrite(message: Checkpoint, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 level = 1; */
+        if (message.level !== 0)
+            writer.tag(1, WireType.Varint).int32(message.level);
+        /* repeated string allocated_passives = 2; */
+        for (let i = 0; i < message.allocatedPassives.length; i++)
+            writer.tag(2, WireType.LengthDelimited).string(message.allocatedPassives[i]);
+        /* map<string, pob2.Item> equipment = 3; */
+        for (let k of globalThis.Object.keys(message.equipment)) {
+            writer.tag(3, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k);
+            writer.tag(2, WireType.LengthDelimited).fork();
+            Item.internalBinaryWrite(message.equipment[k], writer, options);
+            writer.join().join();
+        }
+        /* repeated pob2.SkillGroup gems = 4; */
+        for (let i = 0; i < message.gems.length; i++)
+            SkillGroup.internalBinaryWrite(message.gems[i], writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional pob2.StatSnapshot stats = 5; */
+        if (message.stats)
+            StatSnapshot.internalBinaryWrite(message.stats, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
+        /* optional string notes = 6; */
+        if (message.notes !== undefined)
+            writer.tag(6, WireType.LengthDelimited).string(message.notes);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.Checkpoint
+ */
+export const Checkpoint = new Checkpoint$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class LevelingStep$Type extends MessageType<LevelingStep> {
+    constructor() {
+        super("pob2.LevelingStep", [
+            { no: 1, name: "order", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "trigger", kind: "message", T: () => StepTrigger },
+            { no: 3, name: "action", kind: "message", T: () => StepAction },
+            { no: 4, name: "stat_delta", kind: "message", T: () => StatDelta },
+            { no: 5, name: "rationale", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<LevelingStep>): LevelingStep {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.order = 0;
+        if (value !== undefined)
+            reflectionMergePartial<LevelingStep>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LevelingStep): LevelingStep {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* int32 order */ 1:
+                    message.order = reader.int32();
+                    break;
+                case /* optional pob2.StepTrigger trigger */ 2:
+                    message.trigger = StepTrigger.internalBinaryRead(reader, reader.uint32(), options, message.trigger);
+                    break;
+                case /* optional pob2.StepAction action */ 3:
+                    message.action = StepAction.internalBinaryRead(reader, reader.uint32(), options, message.action);
+                    break;
+                case /* optional pob2.StatDelta stat_delta */ 4:
+                    message.statDelta = StatDelta.internalBinaryRead(reader, reader.uint32(), options, message.statDelta);
+                    break;
+                case /* optional string rationale */ 5:
+                    message.rationale = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: LevelingStep, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* int32 order = 1; */
+        if (message.order !== 0)
+            writer.tag(1, WireType.Varint).int32(message.order);
+        /* optional pob2.StepTrigger trigger = 2; */
+        if (message.trigger)
+            StepTrigger.internalBinaryWrite(message.trigger, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* optional pob2.StepAction action = 3; */
+        if (message.action)
+            StepAction.internalBinaryWrite(message.action, writer.tag(3, WireType.LengthDelimited).fork(), options).join();
+        /* optional pob2.StatDelta stat_delta = 4; */
+        if (message.statDelta)
+            StatDelta.internalBinaryWrite(message.statDelta, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+        /* optional string rationale = 5; */
+        if (message.rationale !== undefined)
+            writer.tag(5, WireType.LengthDelimited).string(message.rationale);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.LevelingStep
+ */
+export const LevelingStep = new LevelingStep$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class StepTrigger$Type extends MessageType<StepTrigger> {
+    constructor() {
+        super("pob2.StepTrigger", [
+            { no: 1, name: "type", kind: "enum", T: () => ["pob2.StepTriggerType", StepTriggerType] },
+            { no: 2, name: "value", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<StepTrigger>): StepTrigger {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.type = 0;
+        if (value !== undefined)
+            reflectionMergePartial<StepTrigger>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: StepTrigger): StepTrigger {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* pob2.StepTriggerType type */ 1:
+                    message.type = reader.int32();
+                    break;
+                case /* optional string value */ 2:
+                    message.value = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: StepTrigger, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* pob2.StepTriggerType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* optional string value = 2; */
+        if (message.value !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.value);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.StepTrigger
+ */
+export const StepTrigger = new StepTrigger$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class StepAction$Type extends MessageType<StepAction> {
+    constructor() {
+        super("pob2.StepAction", [
+            { no: 1, name: "type", kind: "enum", T: () => ["pob2.StepActionType", StepActionType] },
+            { no: 2, name: "target_id", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "slot", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ },
+            { no: 4, name: "details", kind: "scalar", opt: true, T: 9 /*ScalarType.STRING*/ }
+        ]);
+    }
+    create(value?: PartialMessage<StepAction>): StepAction {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.type = 0;
+        if (value !== undefined)
+            reflectionMergePartial<StepAction>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: StepAction): StepAction {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* pob2.StepActionType type */ 1:
+                    message.type = reader.int32();
+                    break;
+                case /* optional string target_id */ 2:
+                    message.targetId = reader.string();
+                    break;
+                case /* optional string slot */ 3:
+                    message.slot = reader.string();
+                    break;
+                case /* optional string details */ 4:
+                    message.details = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    internalBinaryWrite(message: StepAction, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* pob2.StepActionType type = 1; */
+        if (message.type !== 0)
+            writer.tag(1, WireType.Varint).int32(message.type);
+        /* optional string target_id = 2; */
+        if (message.targetId !== undefined)
+            writer.tag(2, WireType.LengthDelimited).string(message.targetId);
+        /* optional string slot = 3; */
+        if (message.slot !== undefined)
+            writer.tag(3, WireType.LengthDelimited).string(message.slot);
+        /* optional string details = 4; */
+        if (message.details !== undefined)
+            writer.tag(4, WireType.LengthDelimited).string(message.details);
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.StepAction
+ */
+export const StepAction = new StepAction$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class StatDelta$Type extends MessageType<StatDelta> {
+    constructor() {
+        super("pob2.StatDelta", [
+            { no: 1, name: "dps_percent", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 2, name: "ehp_percent", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 3, name: "dps_absolute", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 4, name: "ehp_absolute", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 5, name: "resistances", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 2 /*ScalarType.FLOAT*/ } },
+            { no: 6, name: "other_stats", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 2 /*ScalarType.FLOAT*/ } }
+        ]);
+    }
+    create(value?: PartialMessage<StatDelta>): StatDelta {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.resistances = {};
+        message.otherStats = {};
+        if (value !== undefined)
+            reflectionMergePartial<StatDelta>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: StatDelta): StatDelta {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional float dps_percent */ 1:
+                    message.dpsPercent = reader.float();
+                    break;
+                case /* optional float ehp_percent */ 2:
+                    message.ehpPercent = reader.float();
+                    break;
+                case /* optional float dps_absolute */ 3:
+                    message.dpsAbsolute = reader.float();
+                    break;
+                case /* optional float ehp_absolute */ 4:
+                    message.ehpAbsolute = reader.float();
+                    break;
+                case /* map<string, float> resistances */ 5:
+                    this.binaryReadMap5(message.resistances, reader, options);
+                    break;
+                case /* map<string, float> other_stats */ 6:
+                    this.binaryReadMap6(message.otherStats, reader, options);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap5(map: StatDelta["resistances"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof StatDelta["resistances"] | undefined, val: StatDelta["resistances"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = reader.float();
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for pob2.StatDelta.resistances");
+            }
+        }
+        map[key ?? ""] = val ?? 0;
+    }
+    private binaryReadMap6(map: StatDelta["otherStats"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof StatDelta["otherStats"] | undefined, val: StatDelta["otherStats"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = reader.float();
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for pob2.StatDelta.other_stats");
+            }
+        }
+        map[key ?? ""] = val ?? 0;
+    }
+    internalBinaryWrite(message: StatDelta, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional float dps_percent = 1; */
+        if (message.dpsPercent !== undefined)
+            writer.tag(1, WireType.Bit32).float(message.dpsPercent);
+        /* optional float ehp_percent = 2; */
+        if (message.ehpPercent !== undefined)
+            writer.tag(2, WireType.Bit32).float(message.ehpPercent);
+        /* optional float dps_absolute = 3; */
+        if (message.dpsAbsolute !== undefined)
+            writer.tag(3, WireType.Bit32).float(message.dpsAbsolute);
+        /* optional float ehp_absolute = 4; */
+        if (message.ehpAbsolute !== undefined)
+            writer.tag(4, WireType.Bit32).float(message.ehpAbsolute);
+        /* map<string, float> resistances = 5; */
+        for (let k of globalThis.Object.keys(message.resistances))
+            writer.tag(5, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.Bit32).float(message.resistances[k]).join();
+        /* map<string, float> other_stats = 6; */
+        for (let k of globalThis.Object.keys(message.otherStats))
+            writer.tag(6, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.Bit32).float(message.otherStats[k]).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.StatDelta
+ */
+export const StatDelta = new StatDelta$Type();
+// @generated message type with reflection information, may provide speed optimized methods
+class StatSnapshot$Type extends MessageType<StatSnapshot> {
+    constructor() {
+        super("pob2.StatSnapshot", [
+            { no: 1, name: "dps", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 2, name: "ehp", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 3, name: "life", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 4, name: "mana", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 5, name: "energy_shield", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 6, name: "fire_res", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 7, name: "cold_res", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 8, name: "lightning_res", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 9, name: "chaos_res", kind: "scalar", opt: true, T: 5 /*ScalarType.INT32*/ },
+            { no: 10, name: "attack_speed", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 11, name: "cast_speed", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 12, name: "crit_chance", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 13, name: "crit_multi", kind: "scalar", opt: true, T: 2 /*ScalarType.FLOAT*/ },
+            { no: 14, name: "other", kind: "map", K: 9 /*ScalarType.STRING*/, V: { kind: "scalar", T: 2 /*ScalarType.FLOAT*/ } }
+        ]);
+    }
+    create(value?: PartialMessage<StatSnapshot>): StatSnapshot {
+        const message = globalThis.Object.create((this.messagePrototype!));
+        message.other = {};
+        if (value !== undefined)
+            reflectionMergePartial<StatSnapshot>(this, message, value);
+        return message;
+    }
+    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: StatSnapshot): StatSnapshot {
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* optional float dps */ 1:
+                    message.dps = reader.float();
+                    break;
+                case /* optional float ehp */ 2:
+                    message.ehp = reader.float();
+                    break;
+                case /* optional float life */ 3:
+                    message.life = reader.float();
+                    break;
+                case /* optional float mana */ 4:
+                    message.mana = reader.float();
+                    break;
+                case /* optional float energy_shield */ 5:
+                    message.energyShield = reader.float();
+                    break;
+                case /* optional int32 fire_res */ 6:
+                    message.fireRes = reader.int32();
+                    break;
+                case /* optional int32 cold_res */ 7:
+                    message.coldRes = reader.int32();
+                    break;
+                case /* optional int32 lightning_res */ 8:
+                    message.lightningRes = reader.int32();
+                    break;
+                case /* optional int32 chaos_res */ 9:
+                    message.chaosRes = reader.int32();
+                    break;
+                case /* optional float attack_speed */ 10:
+                    message.attackSpeed = reader.float();
+                    break;
+                case /* optional float cast_speed */ 11:
+                    message.castSpeed = reader.float();
+                    break;
+                case /* optional float crit_chance */ 12:
+                    message.critChance = reader.float();
+                    break;
+                case /* optional float crit_multi */ 13:
+                    message.critMulti = reader.float();
+                    break;
+                case /* map<string, float> other */ 14:
+                    this.binaryReadMap14(message.other, reader, options);
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
+    }
+    private binaryReadMap14(map: StatSnapshot["other"], reader: IBinaryReader, options: BinaryReadOptions): void {
+        let len = reader.uint32(), end = reader.pos + len, key: keyof StatSnapshot["other"] | undefined, val: StatSnapshot["other"][any] | undefined;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case 1:
+                    key = reader.string();
+                    break;
+                case 2:
+                    val = reader.float();
+                    break;
+                default: throw new globalThis.Error("unknown map entry field for pob2.StatSnapshot.other");
+            }
+        }
+        map[key ?? ""] = val ?? 0;
+    }
+    internalBinaryWrite(message: StatSnapshot, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* optional float dps = 1; */
+        if (message.dps !== undefined)
+            writer.tag(1, WireType.Bit32).float(message.dps);
+        /* optional float ehp = 2; */
+        if (message.ehp !== undefined)
+            writer.tag(2, WireType.Bit32).float(message.ehp);
+        /* optional float life = 3; */
+        if (message.life !== undefined)
+            writer.tag(3, WireType.Bit32).float(message.life);
+        /* optional float mana = 4; */
+        if (message.mana !== undefined)
+            writer.tag(4, WireType.Bit32).float(message.mana);
+        /* optional float energy_shield = 5; */
+        if (message.energyShield !== undefined)
+            writer.tag(5, WireType.Bit32).float(message.energyShield);
+        /* optional int32 fire_res = 6; */
+        if (message.fireRes !== undefined)
+            writer.tag(6, WireType.Varint).int32(message.fireRes);
+        /* optional int32 cold_res = 7; */
+        if (message.coldRes !== undefined)
+            writer.tag(7, WireType.Varint).int32(message.coldRes);
+        /* optional int32 lightning_res = 8; */
+        if (message.lightningRes !== undefined)
+            writer.tag(8, WireType.Varint).int32(message.lightningRes);
+        /* optional int32 chaos_res = 9; */
+        if (message.chaosRes !== undefined)
+            writer.tag(9, WireType.Varint).int32(message.chaosRes);
+        /* optional float attack_speed = 10; */
+        if (message.attackSpeed !== undefined)
+            writer.tag(10, WireType.Bit32).float(message.attackSpeed);
+        /* optional float cast_speed = 11; */
+        if (message.castSpeed !== undefined)
+            writer.tag(11, WireType.Bit32).float(message.castSpeed);
+        /* optional float crit_chance = 12; */
+        if (message.critChance !== undefined)
+            writer.tag(12, WireType.Bit32).float(message.critChance);
+        /* optional float crit_multi = 13; */
+        if (message.critMulti !== undefined)
+            writer.tag(13, WireType.Bit32).float(message.critMulti);
+        /* map<string, float> other = 14; */
+        for (let k of globalThis.Object.keys(message.other))
+            writer.tag(14, WireType.LengthDelimited).fork().tag(1, WireType.LengthDelimited).string(k).tag(2, WireType.Bit32).float(message.other[k]).join();
+        let u = options.writeUnknownFields;
+        if (u !== false)
+            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
+        return writer;
+    }
+}
+/**
+ * @generated MessageType for protobuf message pob2.StatSnapshot
+ */
+export const StatSnapshot = new StatSnapshot$Type();
