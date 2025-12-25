@@ -132,7 +132,7 @@ describe('buildCode', () => {
     it('should return false for empty or short strings', () => {
       expect(isValidBuildCodeFormat('')).toBe(false);
       expect(isValidBuildCodeFormat('abc')).toBe(false);
-      expect(isValidBuildCodeFormat('123456789')).toBe(false); // exactly 9 chars, need 10+
+      expect(isValidBuildCodeFormat('123456789')).toBe(false); // 9 chars < MIN_BUILD_CODE_LENGTH (10)
     });
 
     it('should return false for strings with invalid characters', () => {
@@ -254,7 +254,7 @@ describe('buildCode', () => {
     });
 
     it('should return error for non-zlib data', () => {
-      // Valid base64 but not zlib-compressed
+      // Valid base64 (ASCII string safe for btoa) but not zlib-compressed
       const notCompressed = btoa('This is not compressed XML')
         .replace(/\+/g, '-')
         .replace(/\//g, '_');
@@ -333,9 +333,9 @@ describe('buildCode', () => {
       }
       const elapsed = performance.now() - start;
 
-      // 100 encodes should take less than 1000ms (10ms each on average)
+      // 100 encodes should take less than 1000ms (10ms average target)
       expect(elapsed).toBeLessThan(1000);
-      // Single encode should be well under 100ms
+      // Average encode time should be under 100ms (lenient upper bound)
       expect(elapsed / 100).toBeLessThan(100);
     });
 
@@ -349,9 +349,9 @@ describe('buildCode', () => {
       }
       const elapsed = performance.now() - start;
 
-      // 100 decodes should take less than 1000ms
+      // 100 decodes should take less than 1000ms (10ms average target)
       expect(elapsed).toBeLessThan(1000);
-      // Single decode should be well under 100ms
+      // Average decode time should be under 100ms (lenient upper bound)
       expect(elapsed / 100).toBeLessThan(100);
     });
   });

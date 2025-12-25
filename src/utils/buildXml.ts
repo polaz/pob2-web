@@ -512,7 +512,7 @@ export function buildToXml(build: Build): string {
   // Tree element with Spec
   const nodes = serializeNodes(build.allocatedNodeIds);
   const masteryEffects = serializeMasteryEffects(build.masterySelections);
-  // masteryEffects passed directly - xmlElement filters empty strings (see line 177)
+  // masteryEffects passed directly - xmlElement filters empty strings (see xmlElement JSDoc)
   const specElement = xmlElement(
     'Spec',
     {
@@ -794,6 +794,7 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
     const includeInFullDps = getBoolAttr(skillEl, 'includeInFullDPS');
     const slot = getAttr(skillEl, 'slot');
 
+    // Conditional spread: empty strings are intentionally excluded (meaningless labels/slots)
     const group: SkillGroup = {
       id: crypto.randomUUID(),
       enabled: getBoolAttr(skillEl, 'enabled') ?? true,
