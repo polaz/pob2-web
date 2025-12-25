@@ -1,0 +1,403 @@
+<template>
+  <div class="item-slot-grid">
+    <!-- Main equipment grid -->
+    <div class="item-slot-grid__main">
+      <!-- Left column: Weapons -->
+      <div class="item-slot-grid__column">
+        <ItemSlotComponent
+          v-for="slot in leftColumnSlots"
+          :key="slot.slot"
+          :slot-info="slot"
+          :item="getEquippedItem(slot.slot)"
+          :selected="selectedSlot === slot.slot"
+          @click="handleSlotClick(slot.slot)"
+          @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+        />
+      </div>
+
+      <!-- Center column: Body, Helm, Belt -->
+      <div class="item-slot-grid__column item-slot-grid__column--center">
+        <ItemSlotComponent
+          v-for="slot in centerColumnSlots"
+          :key="slot.slot"
+          :slot-info="slot"
+          :item="getEquippedItem(slot.slot)"
+          :selected="selectedSlot === slot.slot"
+          @click="handleSlotClick(slot.slot)"
+          @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+        />
+      </div>
+
+      <!-- Right column: Gloves, Boots, Amulet -->
+      <div class="item-slot-grid__column">
+        <ItemSlotComponent
+          v-for="slot in rightColumnSlots"
+          :key="slot.slot"
+          :slot-info="slot"
+          :item="getEquippedItem(slot.slot)"
+          :selected="selectedSlot === slot.slot"
+          @click="handleSlotClick(slot.slot)"
+          @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+        />
+      </div>
+    </div>
+
+    <!-- Ring row -->
+    <div class="item-slot-grid__rings row justify-center q-gutter-md q-mt-md">
+      <ItemSlotComponent
+        v-for="slot in ringSlots"
+        :key="slot.slot"
+        :slot-info="slot"
+        :item="getEquippedItem(slot.slot)"
+        :selected="selectedSlot === slot.slot"
+        :size="'small'"
+        @click="handleSlotClick(slot.slot)"
+        @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+      />
+    </div>
+
+    <!-- Weapon swap toggle -->
+    <div class="item-slot-grid__swap row items-center justify-center q-mt-md">
+      <q-btn
+        :color="isWeaponSwapActive ? 'primary' : 'grey-8'"
+        :text-color="isWeaponSwapActive ? 'white' : 'grey-5'"
+        size="sm"
+        dense
+        flat
+        @click="toggleWeaponSwap"
+      >
+        <q-icon name="swap_horiz" class="q-mr-xs" />
+        Weapon Set {{ isWeaponSwapActive ? '2' : '1' }}
+      </q-btn>
+    </div>
+
+    <!-- Swap weapon slots (shown when swap is active) -->
+    <div v-if="showSwapSlots" class="item-slot-grid__swap-slots row justify-center q-gutter-md q-mt-sm">
+      <ItemSlotComponent
+        v-for="slot in swapSlots"
+        :key="slot.slot"
+        :slot-info="slot"
+        :item="getEquippedItem(slot.slot)"
+        :selected="selectedSlot === slot.slot"
+        @click="handleSlotClick(slot.slot)"
+        @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+      />
+    </div>
+
+    <!-- Flask row -->
+    <div class="item-slot-grid__flasks row justify-center q-gutter-sm q-mt-lg">
+      <ItemSlotComponent
+        v-for="slot in flaskSlots"
+        :key="slot.slot"
+        :slot-info="slot"
+        :item="getEquippedItem(slot.slot)"
+        :selected="selectedSlot === slot.slot"
+        :size="'flask'"
+        @click="handleSlotClick(slot.slot)"
+        @contextmenu.prevent="handleSlotContextMenu(slot.slot, $event)"
+      />
+    </div>
+
+    <!-- Context menu -->
+    <q-menu v-model="contextMenuVisible" :target="contextMenuTarget" context-menu>
+      <q-list dense style="min-width: 150px">
+        <q-item v-if="contextMenuSlot !== null && getEquippedItem(contextMenuSlot)" clickable v-close-popup @click="handleEditItem">
+          <q-item-section avatar>
+            <q-icon name="edit" size="sm" />
+          </q-item-section>
+          <q-item-section>Edit</q-item-section>
+        </q-item>
+        <q-item v-if="contextMenuSlot !== null && getEquippedItem(contextMenuSlot)" clickable v-close-popup @click="handleCopyItem">
+          <q-item-section avatar>
+            <q-icon name="content_copy" size="sm" />
+          </q-item-section>
+          <q-item-section>Copy</q-item-section>
+        </q-item>
+        <q-item v-if="hasClipboardItem" clickable v-close-popup @click="handlePasteItem">
+          <q-item-section avatar>
+            <q-icon name="content_paste" size="sm" />
+          </q-item-section>
+          <q-item-section>Paste</q-item-section>
+        </q-item>
+        <q-item clickable v-close-popup @click="handlePasteFromClipboard">
+          <q-item-section avatar>
+            <q-icon name="content_paste_go" size="sm" />
+          </q-item-section>
+          <q-item-section>Paste from Game</q-item-section>
+        </q-item>
+        <q-separator v-if="contextMenuSlot !== null && getEquippedItem(contextMenuSlot)" />
+        <q-item v-if="contextMenuSlot !== null && getEquippedItem(contextMenuSlot)" clickable v-close-popup @click="handleRemoveItem" class="text-negative">
+          <q-item-section avatar>
+            <q-icon name="delete" size="sm" />
+          </q-item-section>
+          <q-item-section>Remove</q-item-section>
+        </q-item>
+      </q-list>
+    </q-menu>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+import type { Item, ItemSlot as ItemSlotEnum } from 'src/protos/pob2_pb';
+import { useItemStore, EQUIPMENT_SLOTS, FLASK_SLOTS, SWAP_SLOTS, type SlotInfo } from 'src/stores/itemStore';
+import { useBuildStore } from 'src/stores/buildStore';
+import { parseItem } from 'src/engine/items/ItemParser';
+import ItemSlotComponent from './ItemSlot.vue';
+
+// ============================================================================
+// Props & Emits
+// ============================================================================
+
+withDefaults(
+  defineProps<{
+    /** Whether to show swap weapon slots */
+    showSwapSlots?: boolean;
+  }>(),
+  {
+    showSwapSlots: true,
+  }
+);
+
+const emit = defineEmits<{
+  /** Emitted when a slot is selected */
+  'slot-select': [slot: ItemSlotEnum];
+  /** Emitted when edit is requested for an item */
+  'edit-item': [slot: ItemSlotEnum, item: Item];
+  /** Emitted when paste from clipboard is requested */
+  'paste-item': [slot: ItemSlotEnum, item: Item];
+}>();
+
+// ============================================================================
+// Stores
+// ============================================================================
+
+const itemStore = useItemStore();
+const buildStore = useBuildStore();
+
+// ============================================================================
+// Slot Organization
+// ============================================================================
+
+/** Left column slots: Main Hand, Off Hand */
+const leftColumnSlots = computed<SlotInfo[]>(() => {
+  const slots = itemStore.activeWeaponSlots;
+  return EQUIPMENT_SLOTS.filter(
+    (s) => s.slot === slots.mainHand || s.slot === slots.offHand
+  );
+});
+
+/** Center column slots: Helmet, Body Armour, Belt */
+const centerColumnSlots = computed<SlotInfo[]>(() => {
+  return EQUIPMENT_SLOTS.filter((s) =>
+    ['SLOT_HELMET', 'SLOT_BODY_ARMOUR', 'SLOT_BELT'].includes(
+      getSlotEnumName(s.slot)
+    )
+  );
+});
+
+/** Right column slots: Gloves, Boots, Amulet */
+const rightColumnSlots = computed<SlotInfo[]>(() => {
+  return EQUIPMENT_SLOTS.filter((s) =>
+    ['SLOT_GLOVES', 'SLOT_BOOTS', 'SLOT_AMULET'].includes(getSlotEnumName(s.slot))
+  );
+});
+
+/** Ring slots */
+const ringSlots = computed<SlotInfo[]>(() => {
+  return EQUIPMENT_SLOTS.filter((s) =>
+    ['SLOT_RING_1', 'SLOT_RING_2'].includes(getSlotEnumName(s.slot))
+  );
+});
+
+/** Flask slots */
+const flaskSlots = computed<SlotInfo[]>(() => FLASK_SLOTS);
+
+/** Weapon swap slots */
+const swapSlots = computed<SlotInfo[]>(() => SWAP_SLOTS);
+
+/** Selected slot from store */
+const selectedSlot = computed(() => itemStore.selectedSlot);
+
+/** Weapon swap state from store */
+const isWeaponSwapActive = computed(() => itemStore.isWeaponSwapActive);
+
+/** Whether clipboard has an item */
+const hasClipboardItem = computed(() => itemStore.hasClipboardItem);
+
+// ============================================================================
+// Context Menu State
+// ============================================================================
+
+const contextMenuVisible = ref(false);
+const contextMenuTarget = ref<Element | undefined>(undefined);
+const contextMenuSlot = ref<ItemSlotEnum | null>(null);
+
+// ============================================================================
+// Methods
+// ============================================================================
+
+/**
+ * Gets the enum name from ItemSlot value for filtering.
+ */
+function getSlotEnumName(slot: ItemSlotEnum): string {
+  // Map enum values to names
+  const slotNames: Record<number, string> = {
+    1: 'SLOT_WEAPON_1',
+    2: 'SLOT_WEAPON_2',
+    3: 'SLOT_WEAPON_1_SWAP',
+    4: 'SLOT_WEAPON_2_SWAP',
+    10: 'SLOT_HELMET',
+    11: 'SLOT_BODY_ARMOUR',
+    12: 'SLOT_GLOVES',
+    13: 'SLOT_BOOTS',
+    20: 'SLOT_AMULET',
+    21: 'SLOT_RING_1',
+    22: 'SLOT_RING_2',
+    23: 'SLOT_BELT',
+    30: 'SLOT_FLASK_1',
+    31: 'SLOT_FLASK_2',
+    32: 'SLOT_FLASK_3',
+    33: 'SLOT_FLASK_4',
+    34: 'SLOT_FLASK_5',
+  };
+  return slotNames[slot] ?? 'UNKNOWN';
+}
+
+/**
+ * Gets the equipped item for a slot.
+ */
+function getEquippedItem(slot: ItemSlotEnum): Item | null {
+  const items = buildStore.equippedItems;
+  return items[String(slot)] ?? null;
+}
+
+/**
+ * Handles slot click.
+ */
+function handleSlotClick(slot: ItemSlotEnum): void {
+  itemStore.selectSlot(slot);
+  emit('slot-select', slot);
+}
+
+/**
+ * Handles slot context menu.
+ */
+function handleSlotContextMenu(slot: ItemSlotEnum, event: MouseEvent): void {
+  contextMenuSlot.value = slot;
+  contextMenuTarget.value = event.target as Element;
+  contextMenuVisible.value = true;
+}
+
+/**
+ * Toggles weapon swap.
+ */
+function toggleWeaponSwap(): void {
+  itemStore.toggleWeaponSwap();
+}
+
+/**
+ * Handles edit item from context menu.
+ */
+function handleEditItem(): void {
+  if (contextMenuSlot.value === null) return;
+  const item = getEquippedItem(contextMenuSlot.value);
+  if (item) {
+    emit('edit-item', contextMenuSlot.value, item);
+  }
+}
+
+/**
+ * Handles copy item to clipboard.
+ */
+function handleCopyItem(): void {
+  if (contextMenuSlot.value === null) return;
+  const item = getEquippedItem(contextMenuSlot.value);
+  if (item) {
+    itemStore.copyItem(item);
+  }
+}
+
+/**
+ * Handles paste item from internal clipboard.
+ */
+function handlePasteItem(): void {
+  if (contextMenuSlot.value === null || !itemStore.clipboardItem) return;
+  buildStore.setEquippedItem(contextMenuSlot.value, itemStore.clipboardItem);
+}
+
+/**
+ * Handles paste from system clipboard (game item text).
+ */
+async function handlePasteFromClipboard(): Promise<void> {
+  if (contextMenuSlot.value === null) return;
+
+  try {
+    const text = await navigator.clipboard.readText();
+    if (!text.trim()) {
+      console.warn('Clipboard is empty');
+      return;
+    }
+
+    const result = parseItem(text);
+    if (result.success && result.item) {
+      emit('paste-item', contextMenuSlot.value, result.item);
+    } else {
+      console.warn('Failed to parse item:', result.error);
+    }
+  } catch (error) {
+    console.warn('Failed to read clipboard:', error);
+  }
+}
+
+/**
+ * Handles remove item from slot.
+ */
+function handleRemoveItem(): void {
+  if (contextMenuSlot.value === null) return;
+  buildStore.removeEquippedItem(contextMenuSlot.value);
+}
+</script>
+
+<style scoped>
+.item-slot-grid {
+  --slot-gap: 8px;
+  padding: 16px;
+}
+
+.item-slot-grid__main {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.item-slot-grid__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--slot-gap);
+}
+
+.item-slot-grid__column--center {
+  /* Center column has larger items */
+}
+
+.item-slot-grid__rings {
+  /* Ring row styling handled by Quasar classes */
+}
+
+.item-slot-grid__swap {
+  opacity: 0.8;
+}
+
+.item-slot-grid__swap-slots {
+  opacity: 0.7;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.item-slot-grid__flasks {
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+</style>
