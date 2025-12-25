@@ -13,7 +13,7 @@
     <q-card-section class="item-card__header q-pa-sm">
       <div class="row items-center no-wrap">
         <!-- Item icon placeholder -->
-        <div class="item-card__icon flex items-center justify-center q-mr-sm" :style="iconStyle">
+        <div class="item-card__icon flex items-center justify-center q-mr-sm">
           <img
             v-if="iconUrl"
             :src="iconUrl"
@@ -330,11 +330,6 @@ const cardStyle = computed(() => ({
   borderColor: getRarityBorderColor(props.item.rarity),
 }));
 
-/** Icon container styles */
-const iconStyle = computed(() => ({
-  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-}));
-
 /** Whether item has displayable properties */
 const hasProperties = computed(() => {
   return !!(
@@ -473,6 +468,11 @@ function formatBlock(value: number): string {
   /* Component-specific layout dimensions */
   --socket-size: 16px;
   --icon-size: 40px;
+  /* Subtle overlay colors for visual effects */
+  --header-gradient-color: rgba(255, 255, 255, 0.03);
+  --hover-shadow-color: rgba(0, 0, 0, 0.4);
+  --highlight-glow-color: rgba(255, 255, 100, 0.3);
+  --icon-bg-overlay: rgba(0, 0, 0, 0.3);
 
   background-color: var(--poe2-card-bg);
   border-color: var(--poe2-card-border);
@@ -482,7 +482,7 @@ function formatBlock(value: number): string {
 
 .item-card--hoverable:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px var(--hover-shadow-color);
 }
 
 .item-card--selected {
@@ -490,7 +490,7 @@ function formatBlock(value: number): string {
 }
 
 .item-card--highlighted {
-  box-shadow: 0 0 8px 2px rgba(255, 255, 100, 0.3);
+  box-shadow: 0 0 8px 2px var(--highlight-glow-color);
 }
 
 .item-card--corrupted {
@@ -498,12 +498,13 @@ function formatBlock(value: number): string {
 }
 
 .item-card__header {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+  background: linear-gradient(180deg, var(--header-gradient-color) 0%, transparent 100%);
 }
 
 .item-card__icon {
   width: var(--icon-size);
   height: var(--icon-size);
+  background-color: var(--icon-bg-overlay);
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
