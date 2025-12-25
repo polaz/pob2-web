@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/polaz/pob2-web/compare/v1.17.1...v1.17.2) (2025-12-25)
+
+
+### Bug Fixes
+
+* **tree:** implement linear node size scaling with zoom clamping ([e456af8](https://github.com/polaz/pob2-web/commit/e456af89f74f677ae481c8618a11763ab61bab2a))
+
 ## [1.17.1](https://github.com/polaz/pob2-web/compare/v1.17.0...v1.17.1) (2025-12-25)
 
 
