@@ -10,14 +10,24 @@ import { useTreeStore } from 'src/stores/treeStore';
 import type { PassiveTree, PassiveNode } from 'src/protos/pob2_pb';
 
 /** Create mock passive node */
-function createMockNode(id: string, name: string, x = 0, y = 0): PassiveNode {
-  return {
+function createMockNode(
+  id: string,
+  name: string,
+  x = 0,
+  y = 0,
+  ascendancyName?: string
+): PassiveNode {
+  const node: PassiveNode = {
     id,
     name,
     position: { x, y },
     stats: [`+10 to ${name}`],
     linkedIds: [],
   };
+  if (ascendancyName !== undefined) {
+    node.ascendancyName = ascendancyName;
+  }
+  return node;
 }
 
 /** Create mock passive tree */
@@ -304,6 +314,8 @@ describe('treeStore', () => {
       store.setSearchQuery('test');
       store.setHighlightedPath(['1', '2']);
       store.setComparisonNodes(['100']);
+      store.setVisibleAscendancy('Titan');
+      store.setShowAscendancyNodes(false);
 
       store.clearTreeData();
 
@@ -314,6 +326,8 @@ describe('treeStore', () => {
       expect(store.searchResults).toEqual([]);
       expect(store.highlightedPath).toEqual([]);
       expect(store.comparisonNodeIds).toBeNull();
+      expect(store.visibleAscendancy).toBeNull();
+      expect(store.showAscendancyNodes).toBe(true);
       expect(store.loadError).toBeNull();
     });
   });
@@ -349,6 +363,133 @@ describe('treeStore', () => {
 
       store.setDragging(false);
       expect(store.isDragging).toBe(false);
+    });
+  });
+
+  describe('ascendancy visibility', () => {
+    it('should have null visible ascendancy initially', () => {
+      const store = useTreeStore();
+
+      expect(store.visibleAscendancy).toBeNull();
+      expect(store.showAscendancyNodes).toBe(true);
+    });
+
+    it('should set visible ascendancy', () => {
+      const store = useTreeStore();
+
+      store.setVisibleAscendancy('Titan');
+
+      expect(store.visibleAscendancy).toBe('Titan');
+    });
+
+    it('should clear visible ascendancy', () => {
+      const store = useTreeStore();
+      store.setVisibleAscendancy('Titan');
+
+      store.setVisibleAscendancy(null);
+
+      expect(store.visibleAscendancy).toBeNull();
+    });
+
+    it('should toggle show ascendancy nodes', () => {
+      const store = useTreeStore();
+
+      store.setShowAscendancyNodes(false);
+      expect(store.showAscendancyNodes).toBe(false);
+
+      store.setShowAscendancyNodes(true);
+      expect(store.showAscendancyNodes).toBe(true);
+    });
+
+    it('should determine main tree node visibility (always visible)', () => {
+      const store = useTreeStore();
+      const nodes = [
+        createMockNode('100', 'Main Node'),
+        createMockNode('200', 'Ascendancy Node', 0, 0, 'Titan'),
+      ];
+      store.setTreeData(createMockTree(nodes));
+
+      // Main tree nodes are always visible
+      expect(store.isNodeVisible('100')).toBe(true);
+    });
+
+    it('should hide ascendancy nodes when no ascendancy is selected', () => {
+      const store = useTreeStore();
+      const nodes = [
+        createMockNode('100', 'Main Node'),
+        createMockNode('200', 'Titan Node', 0, 0, 'Titan'),
+      ];
+      store.setTreeData(createMockTree(nodes));
+
+      // No ascendancy selected, so ascendancy nodes should be hidden
+      expect(store.isNodeVisible('200')).toBe(false);
+    });
+
+    it('should show ascendancy nodes when matching ascendancy is selected', () => {
+      const store = useTreeStore();
+      const nodes = [
+        createMockNode('100', 'Main Node'),
+        createMockNode('200', 'Titan Node', 0, 0, 'Titan'),
+        createMockNode('300', 'Warbringer Node', 0, 0, 'Warbringer'),
+      ];
+      store.setTreeData(createMockTree(nodes));
+
+      store.setVisibleAscendancy('Titan');
+
+      expect(store.isNodeVisible('100')).toBe(true); // Main tree
+      expect(store.isNodeVisible('200')).toBe(true); // Titan
+      expect(store.isNodeVisible('300')).toBe(false); // Warbringer
+    });
+
+    it('should hide all ascendancy nodes when showAscendancyNodes is false', () => {
+      const store = useTreeStore();
+      const nodes = [
+        createMockNode('100', 'Main Node'),
+        createMockNode('200', 'Titan Node', 0, 0, 'Titan'),
+      ];
+      store.setTreeData(createMockTree(nodes));
+      store.setVisibleAscendancy('Titan');
+
+      store.setShowAscendancyNodes(false);
+
+      expect(store.isNodeVisible('100')).toBe(true); // Main tree still visible
+      expect(store.isNodeVisible('200')).toBe(false); // Ascendancy hidden
+    });
+
+    it('should compute visible node IDs correctly', () => {
+      const store = useTreeStore();
+      const nodes = [
+        createMockNode('100', 'Main Node 1'),
+        createMockNode('101', 'Main Node 2'),
+        createMockNode('200', 'Titan Node', 0, 0, 'Titan'),
+        createMockNode('300', 'Warbringer Node', 0, 0, 'Warbringer'),
+      ];
+      store.setTreeData(createMockTree(nodes));
+
+      // No ascendancy selected - only main nodes visible
+      expect(store.visibleNodeIds).toContain('100');
+      expect(store.visibleNodeIds).toContain('101');
+      expect(store.visibleNodeIds).not.toContain('200');
+      expect(store.visibleNodeIds).not.toContain('300');
+
+      // Select Titan ascendancy
+      store.setVisibleAscendancy('Titan');
+
+      expect(store.visibleNodeIds).toContain('100');
+      expect(store.visibleNodeIds).toContain('101');
+      expect(store.visibleNodeIds).toContain('200');
+      expect(store.visibleNodeIds).not.toContain('300');
+    });
+
+    it('should reset ascendancy state when clearing tree data', () => {
+      const store = useTreeStore();
+      store.setVisibleAscendancy('Titan');
+      store.setShowAscendancyNodes(false);
+
+      store.clearTreeData();
+
+      expect(store.visibleAscendancy).toBeNull();
+      expect(store.showAscendancyNodes).toBe(true);
     });
   });
 });
