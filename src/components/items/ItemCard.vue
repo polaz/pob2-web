@@ -13,7 +13,7 @@
     <q-card-section class="item-card__header q-pa-sm">
       <div class="row items-center no-wrap">
         <!-- Item icon placeholder -->
-        <div class="item-card__icon q-mr-sm" :style="iconStyle">
+        <div class="item-card__icon flex items-center justify-center q-mr-sm" :style="iconStyle">
           <img
             v-if="iconUrl"
             :src="iconUrl"
@@ -490,17 +490,12 @@ function formatBlock(value: number): string {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
-/* Icon container - custom flex for fixed dimensions + flex-shrink: 0 combo
-   that requires CSS; Quasar classes don't support this sizing pattern */
 .item-card__icon {
   width: 40px;
   height: 40px;
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .item-card__icon-img {

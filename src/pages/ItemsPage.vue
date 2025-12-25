@@ -41,7 +41,7 @@
             </div>
 
             <!-- No slot selected -->
-            <div v-if="!selectedSlot" class="items-page__empty text-center q-pa-xl">
+            <div v-if="!selectedSlot" class="items-page__empty column items-center justify-center text-center q-pa-xl">
               <q-icon name="touch_app" size="64px" color="grey-6" />
               <div class="text-grey-6 q-mt-md text-h6">Select an equipment slot</div>
               <div class="text-grey-7 q-mt-xs">
@@ -50,7 +50,7 @@
             </div>
 
             <!-- Slot selected but empty -->
-            <div v-else-if="!selectedItem" class="items-page__empty text-center q-pa-xl">
+            <div v-else-if="!selectedItem" class="items-page__empty column items-center justify-center text-center q-pa-xl">
               <q-icon name="inventory_2" size="64px" color="grey-6" />
               <div class="text-grey-6 q-mt-md text-h6">No item equipped</div>
               <div class="text-grey-7 q-mt-xs">
@@ -369,14 +369,8 @@ function clearComparison(): void {
   max-width: var(--comparison-panel-max-width);
 }
 
-/* Empty state - custom flex for min-height CSS variable integration;
-   BEM element styled via scoped CSS for encapsulation */
 .items-page__empty {
   min-height: var(--empty-state-min-height);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Responsive adjustments */

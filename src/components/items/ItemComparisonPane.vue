@@ -19,7 +19,7 @@
 
     <q-separator />
 
-    <q-card-section v-if="!itemA && !itemB" class="item-comparison-pane__empty text-center q-pa-lg">
+    <q-card-section v-if="!itemA && !itemB" class="item-comparison-pane__empty column items-center justify-center text-center q-pa-lg">
       <q-icon name="compare" size="48px" color="grey-6" />
       <div class="text-grey-6 q-mt-md">
         Select items to compare
@@ -43,7 +43,7 @@
               width="100%"
             />
           </div>
-          <div v-else class="item-comparison-pane__placeholder">
+          <div v-else class="item-comparison-pane__placeholder flex items-center justify-center">
             <q-icon name="inventory_2" size="24px" color="grey-7" />
           </div>
         </div>
@@ -59,7 +59,7 @@
               width="100%"
             />
           </div>
-          <div v-else class="item-comparison-pane__placeholder">
+          <div v-else class="item-comparison-pane__placeholder flex items-center justify-center">
             <q-icon name="inventory_2" size="24px" color="grey-7" />
           </div>
         </div>
@@ -337,23 +337,14 @@ function handleClear(): void {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
-/* Custom flex layout for centered empty state - component-specific styling
-   that requires precise control over BEM element positioning */
 .item-comparison-pane__empty {
   min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .item-comparison-pane__placeholder {
   border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 80px;
 }
 

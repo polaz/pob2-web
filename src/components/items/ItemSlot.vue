@@ -8,13 +8,13 @@
     @mouseleave="hovering = false"
   >
     <!-- Empty slot placeholder -->
-    <div v-if="!item" class="item-slot__empty">
+    <div v-if="!item" class="item-slot__empty fit column items-center justify-center">
       <img :src="placeholderIcon" :alt="slotInfo.name" class="item-slot__placeholder" />
       <div class="item-slot__label">{{ slotInfo.shortName }}</div>
     </div>
 
     <!-- Equipped item -->
-    <div v-else class="item-slot__item">
+    <div v-else class="item-slot__item fit flex items-center justify-center">
       <img
         :src="itemIcon"
         :alt="itemDisplayName"
@@ -206,15 +206,7 @@ function handleIconError(): void {
   /* Equipped slot has item-specific border color */
 }
 
-/* Empty slot content - custom flex for 100% fill + opacity combo;
-   BEM child element styled via scoped CSS for encapsulation */
 .item-slot__empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
   opacity: 0.5;
 }
 
@@ -233,13 +225,7 @@ function handleIconError(): void {
   letter-spacing: 0.5px;
 }
 
-.item-slot__item {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* item-slot__item uses Quasar 'fit' class for width/height: 100% */
 
 .item-slot__icon {
   width: 90%;

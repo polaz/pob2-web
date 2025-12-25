@@ -7,7 +7,7 @@
     transition-hide="slide-down"
     @update:model-value="$emit('update:modelValue', $event)"
   >
-    <q-card class="item-editor">
+    <q-card class="item-editor column">
       <!-- Header -->
       <q-card-section class="item-editor__header row items-center q-pb-none">
         <div class="text-h6">{{ isEditing ? 'Edit Item' : 'Create Item' }}</div>
@@ -16,7 +16,7 @@
       </q-card-section>
 
       <!-- Main content -->
-      <q-card-section class="item-editor__content row q-gutter-md">
+      <q-card-section class="item-editor__content col-grow row q-gutter-md">
         <!-- Left panel: Item form -->
         <div class="col-12 col-md-7">
           <!-- Paste from clipboard -->
@@ -667,23 +667,21 @@ function handleClose(): void {
 </script>
 
 <style scoped>
-/* Editor root - custom layout for height: 100% + max-width + margin: auto
-   full-screen modal pattern; Quasar classes don't handle this combo */
+/* Editor root - custom styling for max-width centering and full height
+   Uses Quasar 'column' class for flex-direction: column */
 .item-editor {
   background-color: #0d0d14;
   max-width: 1200px;
   margin: auto;
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .item-editor__header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Uses Quasar 'col-grow' class for flex: 1 behavior */
 .item-editor__content {
-  flex: 1;
   overflow-y: auto;
 }
 

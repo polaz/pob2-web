@@ -1,9 +1,9 @@
 <template>
   <div class="item-slot-grid">
     <!-- Main equipment grid -->
-    <div class="item-slot-grid__main">
+    <div class="item-slot-grid__main row justify-center">
       <!-- Left column: Weapons -->
-      <div class="item-slot-grid__column">
+      <div class="item-slot-grid__column column">
         <ItemSlotComponent
           v-for="slot in leftColumnSlots"
           :key="slot.slot"
@@ -16,7 +16,7 @@
       </div>
 
       <!-- Center column: Body, Helm, Belt -->
-      <div class="item-slot-grid__column item-slot-grid__column--center">
+      <div class="item-slot-grid__column column item-slot-grid__column--center">
         <ItemSlotComponent
           v-for="slot in centerColumnSlots"
           :key="slot.slot"
@@ -29,7 +29,7 @@
       </div>
 
       <!-- Right column: Gloves, Boots, Amulet -->
-      <div class="item-slot-grid__column">
+      <div class="item-slot-grid__column column">
         <ItemSlotComponent
           v-for="slot in rightColumnSlots"
           :key="slot.slot"
@@ -349,16 +349,10 @@ function handleRemoveItem(): void {
 }
 
 .item-slot-grid__main {
-  display: flex;
-  justify-content: center;
   gap: 24px;
 }
 
-/* Custom flex layout for slot columns - uses CSS custom property for gap
-   and requires column direction for vertical stacking of equipment slots */
 .item-slot-grid__column {
-  display: flex;
-  flex-direction: column;
   gap: var(--slot-gap);
 }
 
