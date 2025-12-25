@@ -80,58 +80,68 @@ let loadingPromise: Promise<ModParser> | null = null;
  * @returns Flattened ModParserData ready for parser construction
  */
 async function loadParserData(): Promise<ModParserData> {
-  // Load all data files in parallel
-  const [
-    formPatternsRaw,
-    statMappingsRaw,
-    flagMappingsRaw,
-    conditionMappingsRaw,
-    modCacheRaw,
-    modCacheOverridesRaw,
-  ] = await Promise.all([
-    import('src/data/mods/patterns/form-patterns.json') as Promise<{
-      default: FormPatternsJson;
-    }>,
-    import('src/data/mods/patterns/stat-mappings.json') as Promise<{
-      default: StatMappingsJson;
-    }>,
-    import('src/data/mods/patterns/flag-mappings.json') as Promise<{
-      default: FlagMappingsJson;
-    }>,
-    import('src/data/mods/patterns/condition-mappings.json') as Promise<{
-      default: ConditionMappingsJson;
-    }>,
-    import('src/data/mods/mod-cache.json') as Promise<{ default: ModCacheJson }>,
-    import('src/data/mods/mod-cache-overrides.json')
-      .then((m) => m.default as { mods?: Record<string, unknown> })
-      .catch(() => ({ mods: {} })),
-  ]);
+  try {
+    // Load all data files in parallel
+    const [
+      formPatternsRaw,
+      statMappingsRaw,
+      flagMappingsRaw,
+      conditionMappingsRaw,
+      modCacheRaw,
+      modCacheOverridesRaw,
+    ] = await Promise.all([
+      import('src/data/mods/patterns/form-patterns.json') as Promise<{
+        default: FormPatternsJson;
+      }>,
+      import('src/data/mods/patterns/stat-mappings.json') as Promise<{
+        default: StatMappingsJson;
+      }>,
+      import('src/data/mods/patterns/flag-mappings.json') as Promise<{
+        default: FlagMappingsJson;
+      }>,
+      import('src/data/mods/patterns/condition-mappings.json') as Promise<{
+        default: ConditionMappingsJson;
+      }>,
+      import('src/data/mods/mod-cache.json') as Promise<{ default: ModCacheJson }>,
+      // Overrides file is optional - gracefully handle missing file
+      import('src/data/mods/mod-cache-overrides.json')
+        .then((m) => m.default as { mods?: Record<string, unknown> })
+        .catch(() => ({ mods: {} })),
+    ]);
 
-  // Extract default exports (ES module imports)
-  const formPatterns = formPatternsRaw.default;
-  const statMappings = statMappingsRaw.default;
-  const flagMappings = flagMappingsRaw.default;
-  const conditionMappings = conditionMappingsRaw.default;
-  const modCache = modCacheRaw.default;
-  const modCacheOverrides = modCacheOverridesRaw;
+    // Extract default exports (ES module imports)
+    const formPatterns = formPatternsRaw.default;
+    const statMappings = statMappingsRaw.default;
+    const flagMappings = flagMappingsRaw.default;
+    const conditionMappings = conditionMappingsRaw.default;
+    const modCache = modCacheRaw.default;
+    const modCacheOverrides = modCacheOverridesRaw;
 
-  // Merge mod cache with overrides
-  const mergedMods = mergeWithOverrides(
-    modCache.mods,
-    modCacheOverrides.mods ?? {}
-  );
+    // Merge mod cache with overrides
+    const mergedMods = mergeWithOverrides(
+      modCache.mods,
+      modCacheOverrides.mods ?? {}
+    );
 
-  // Build flattened ModParserData
-  const parserData: ModParserData = {
-    patterns: formPatterns.patterns,
-    statMappings: statMappings.mappings,
-    flagMappings: flagMappings.modFlags,
-    keywordMappings: flagMappings.keywordFlags,
-    conditionMappings: conditionMappings.conditions as Record<string, ModCondition>,
-    modCache: mergedMods as Record<string, ModDefinition>,
-  };
+    // Build flattened ModParserData
+    const parserData: ModParserData = {
+      patterns: formPatterns.patterns,
+      statMappings: statMappings.mappings,
+      flagMappings: flagMappings.modFlags,
+      keywordMappings: flagMappings.keywordFlags,
+      conditionMappings: conditionMappings.conditions as Record<string, ModCondition>,
+      modCache: mergedMods as Record<string, ModDefinition>,
+    };
 
-  return parserData;
+    return parserData;
+  } catch (error: unknown) {
+    // Log detailed error for debugging - these files are essential for parser
+    console.error('[ModParserLoader] Failed to load data files:', error);
+    throw new Error(
+      'Failed to load ModParser data files. Check console for details. ' +
+        'Ensure all required JSON files exist in src/data/mods/'
+    );
+  }
 }
 
 // ============================================================================

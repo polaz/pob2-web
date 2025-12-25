@@ -201,11 +201,21 @@ function processNodeStats(
 /**
  * Process mastery effect selection for a mastery node.
  *
- * @param node - The mastery node (unused but kept for future reference)
+ * **KNOWN LIMITATION**: This function currently returns an empty array because
+ * mastery effect stats are stored in raw tree data (masteryEffects array) which
+ * is not available through the optimized TreeNode structure. Allocated mastery
+ * nodes will NOT contribute their selected bonuses until this is addressed.
+ *
+ * To fix this, one of these approaches is needed:
+ * 1. Pass raw tree data with masteryEffects through the processor input
+ * 2. Pre-process masteryEffects into a lookup map in CalcSetup
+ * 3. Extend TreeNode to include masteryEffects data
+ *
+ * @param _node - The mastery node (unused - see limitation above)
  * @param nodeId - The node ID for looking up selection
  * @param masterySelections - Map of nodeId -> selected effectId
- * @param parser - ModParser instance
- * @returns Array of Mod objects from the selected mastery effect
+ * @param _parser - ModParser instance (unused - see limitation above)
+ * @returns Empty array until mastery effect lookup is implemented
  */
 function processMasterySelection(
   _node: TreeNode,
@@ -221,28 +231,14 @@ function processMasterySelection(
     return mods;
   }
 
-  // Mastery effects are stored in the raw tree data, not the optimized TreeNode
-  // For now, we parse the effect ID as a stat reference
-  // The actual mastery effect lookup would require access to raw tree data
-  // with masteryEffects array
-
-  // Note: In a full implementation, we would:
-  // 1. Create a parse context with source: 'mastery', sourceId: `${nodeId}:${selectedEffectId}`
-  // 2. Look up the mastery effect stats from the raw tree data's masteryEffects array
-  // 3. Parse those stats using the parser
+  // LIMITATION: Cannot process mastery effects without raw tree data access.
+  // The masteryEffects array (containing effect stats) is only in raw tree data,
+  // not in the optimized TreeNode structure passed to this processor.
   //
-  // Example of how it would work with raw data:
-  // const rawNode = rawTreeData.nodes[nodeId];
-  // const effect = rawNode?.masteryEffects?.find(e => String(e.effect) === selectedEffectId);
-  // if (effect) {
-  //   for (const statText of effect.stats) {
-  //     const result = parser.parse(statText, { source: 'mastery', sourceId: ... });
-  //     if (result.success) mods.push(...result.mods);
-  //   }
-  // }
-
-  // For now, we'll need to integrate mastery effect lookup in CalcSetup
-  // when we have access to raw tree data
+  // Future implementation would:
+  // 1. Look up mastery effect by ID from raw tree data
+  // 2. Parse effect stats using the parser
+  // 3. Return mods with source: 'mastery', sourceId: `${nodeId}:${selectedEffectId}`
 
   return mods;
 }

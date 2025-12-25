@@ -406,9 +406,17 @@ function calculateAttributes(
   build: Build
 ): AttributeValues {
   // Start with class base attributes
-  const className = build.characterClass?.toString().toUpperCase() ?? 'WARRIOR';
-  const classStats =
-    CLASS_STARTING_STATS[className] ?? { str: 14, dex: 14, int: 14 };
+  // Default stats used when class is unknown or not in CLASS_STARTING_STATS
+  const DEFAULT_CLASS_STATS: AttributeValues = { str: 14, dex: 14, int: 14 };
+
+  let classStats: AttributeValues = DEFAULT_CLASS_STATS;
+  if (build.characterClass !== undefined) {
+    const candidateKey = String(build.characterClass).toUpperCase();
+    const foundStats = CLASS_STARTING_STATS[candidateKey];
+    if (foundStats) {
+      classStats = foundStats;
+    }
+  }
 
   // This is a simplified calculation - full implementation would use StatResolver
   // For now, just sum BASE attribute mods

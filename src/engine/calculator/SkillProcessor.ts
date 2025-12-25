@@ -218,8 +218,21 @@ function processSkillGroup(
   return { activeSkills, supportGems, modsCreated };
 }
 
-/** Flag to log support gem heuristic warning only once */
+/**
+ * Flag to log support gem heuristic warning only once.
+ *
+ * Note: Module-level state can persist across tests. Use resetWarningFlags()
+ * in test cleanup if testing warning behavior.
+ */
 let supportGemHeuristicWarned = false;
+
+/**
+ * Reset warning flags for testing purposes.
+ * Call this in test cleanup to ensure warnings can be tested in isolation.
+ */
+export function resetWarningFlags(): void {
+  supportGemHeuristicWarned = false;
+}
 
 /**
  * Process a GemInstance into a ProcessedGem with resolved values.
@@ -250,17 +263,24 @@ function processGemInstance(gem: GemInstance): ProcessedGem {
 /**
  * Process mods from a gem.
  *
- * TODO: This is a placeholder. Full implementation should:
+ * **IMPORTANT: This is a NO-OP placeholder awaiting gem data integration.**
+ *
+ * Currently returns 0 (no mods added) because gem stat data lookup is not yet
+ * implemented. This means skill/gem modifiers are NOT contributing to calculations.
+ *
+ * Full implementation requires:
  * 1. Look up gem data from src/data/gems/
  * 2. Get stats for the gem's level
  * 3. Apply quality bonuses
  * 4. Parse the resulting stat text
  *
- * @param gem - The processed gem
- * @param context - Parse context
- * @param parser - ModParser instance
- * @param skillDB - ModDB to add mods to
- * @returns Number of mods added
+ * See: gem data in src/data/gems/ for level progression data
+ *
+ * @param _gem - The processed gem (unused - placeholder)
+ * @param _context - Parse context (unused - placeholder)
+ * @param _parser - ModParser instance (unused - placeholder)
+ * @param _skillDB - ModDB to add mods to (unused - placeholder)
+ * @returns Always 0 until gem data integration is complete
  */
 function processGemMods(
   _gem: ProcessedGem,
@@ -268,19 +288,13 @@ function processGemMods(
   _parser: ModParser,
   _skillDB: ModDB
 ): number {
-  // TODO: Implement actual gem data lookup and processing
-  // For now, this is a placeholder that doesn't add any mods
-  // The actual implementation would:
-  //
+  // NO-OP: Gem data lookup not yet implemented
+  // When implemented, this would:
   // 1. Load gem data: const gemData = await getGemData(_gem.instance.gemId);
   // 2. Get level data: const levelData = gemData.levels[_gem.level - 1];
   // 3. Get stat text: const statTexts = levelData.stats;
   // 4. Apply quality: const qualityStats = applyQuality(gemData, _gem.quality);
-  // 5. Parse stats: for (const stat of [...statTexts, ...qualityStats]) {
-  //      const result = _parser.parse(stat, _context);
-  //      if (result.success) _skillDB.addList(result.mods);
-  //    }
-
+  // 5. Parse stats and add to skillDB
   return 0;
 }
 

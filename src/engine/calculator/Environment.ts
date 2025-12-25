@@ -32,6 +32,8 @@ import type { ModParser } from '../modifiers/ModParser';
 import type { Build, BuildConfig } from 'src/protos/build_pb';
 import type { Item } from 'src/protos/items_pb';
 import type { TreeData } from 'src/types/tree';
+import type { AttributeValues } from './types';
+import { CHARGE_CONSTANTS } from 'src/shared/constants';
 
 // ============================================================================
 // Environment Interface
@@ -124,21 +126,11 @@ export interface JewelSocket {
 }
 
 // ============================================================================
-// Attribute Types
-// ============================================================================
-
-/**
- * Character attributes (Strength, Dexterity, Intelligence).
- */
-export interface AttributeValues {
-  str: number;
-  dex: number;
-  int: number;
-}
-
-// ============================================================================
 // Dirty Tracking Types
 // ============================================================================
+
+// Re-export AttributeValues from types for convenience
+export type { AttributeValues } from './types';
 
 /**
  * Flags indicating which environment components have changed.
@@ -334,11 +326,6 @@ export function isJewelSocketDirty(flags: DirtyFlags, nodeId: string): boolean {
 /** Default enemy level for calculations */
 const DEFAULT_ENEMY_LEVEL = 83;
 
-/** Default maximum charges */
-const DEFAULT_MAX_POWER_CHARGES = 3;
-const DEFAULT_MAX_FRENZY_CHARGES = 3;
-const DEFAULT_MAX_ENDURANCE_CHARGES = 3;
-
 /**
  * Resolve BuildConfig to ResolvedBuildConfig with defaults.
  *
@@ -359,15 +346,15 @@ export function resolveConfig(
     // Charge configuration
     powerCharges: config?.powerCharges ?? false,
     powerChargeCount: config?.powerChargeCount ?? 0,
-    maxPowerCharges: DEFAULT_MAX_POWER_CHARGES,
+    maxPowerCharges: CHARGE_CONSTANTS.DEFAULT_POWER_CHARGES,
 
     frenzyCharges: config?.frenzyCharges ?? false,
     frenzyChargeCount: config?.frenzyChargeCount ?? 0,
-    maxFrenzyCharges: DEFAULT_MAX_FRENZY_CHARGES,
+    maxFrenzyCharges: CHARGE_CONSTANTS.DEFAULT_FRENZY_CHARGES,
 
     enduranceCharges: config?.enduranceCharges ?? false,
     enduranceChargeCount: config?.enduranceChargeCount ?? 0,
-    maxEnduranceCharges: DEFAULT_MAX_ENDURANCE_CHARGES,
+    maxEnduranceCharges: CHARGE_CONSTANTS.DEFAULT_ENDURANCE_CHARGES,
 
     // Combat state
     isLeeching: config?.isLeeching ?? false,

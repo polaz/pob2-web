@@ -87,11 +87,13 @@ export const MAIN_WEAPON_SLOTS = ['weapon1', 'weapon1swap', 'offhand1'] as const
 /** Weapon slots in the swap set (set 2) */
 export const SWAP_WEAPON_SLOTS = ['weapon2', 'weapon2swap', 'offhand2'] as const;
 
-/** All equipment slots */
+/** All equipment slots (includes swap weapon slots for completeness) */
 export const ALL_SLOTS = [
   'weapon1',
+  'weapon1swap',
   'offhand1',
   'weapon2',
+  'weapon2swap',
   'offhand2',
   'helmet',
   'body',
