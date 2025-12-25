@@ -23,7 +23,12 @@ export type {
   ItemParseResult,
   ItemTextSection,
   ItemSectionType,
+  // Equip result
+  EquipResult,
 } from './types';
+
+// Slot types
+export type { SlotCategory } from './ItemSlots';
 
 // Type constants and helpers
 export {
@@ -56,3 +61,39 @@ export { ItemInstance, createItemInstance, createEmptyItem } from './Item';
 
 // Item parser
 export { ItemParser, createItemParser, parseItem } from './ItemParser';
+
+// Item slots - validation and constants
+export {
+  // Slot category arrays
+  MAIN_HAND_SLOTS,
+  OFF_HAND_SLOTS,
+  WEAPON_SLOTS,
+  PRIMARY_WEAPON_SET,
+  SWAP_WEAPON_SET,
+  ARMOUR_SLOTS,
+  ACCESSORY_SLOTS,
+  FLASK_SLOT_ARRAY,
+  JEWEL_SLOTS,
+  ALL_EQUIPMENT_SLOTS,
+  // Item type sets
+  ONE_HANDED_TYPES,
+  TWO_HANDED_TYPES,
+  ALL_WEAPON_TYPES,
+  OFF_HAND_ONLY_TYPES,
+  OFF_HAND_VALID_TYPES,
+  // Slot → valid types mapping
+  SLOT_VALID_TYPES,
+  // Validation functions
+  isValidSlotForItem,
+  getSlotCategory,
+  isMainHandSlot,
+  isOffHandSlot,
+  isSwapSlot,
+  isWeaponSlot,
+  isTwoHandedWeaponType,
+  isOneHandedWeaponType,
+  getAlternateWeaponSlot,
+  getSlotValidationError,
+  getWeaponSlotsForSet,
+  getActiveEquipmentSlots,
+} from './ItemSlots';
