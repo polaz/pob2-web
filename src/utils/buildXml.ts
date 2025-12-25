@@ -761,20 +761,18 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
 
     // PoB2 treats missing 'enabled' attribute as true, so we normalize undefined to true
     // during parsing for consistent behavior. This is intentional - skills are enabled by default.
-    const group: SkillGroup = {
-      id: crypto.randomUUID(),
-      enabled: getBoolAttr(skillEl, 'enabled') ?? true,
-      gems,
-    };
-
-    // Only set optional properties when they have values
     const label = getAttr(skillEl, 'label');
     const includeInFullDps = getBoolAttr(skillEl, 'includeInFullDPS');
     const slot = getAttr(skillEl, 'slot');
 
-    if (label) group.label = label;
-    if (includeInFullDps !== undefined) group.includeInFullDps = includeInFullDps;
-    if (slot) group.slot = slot;
+    const group: SkillGroup = {
+      id: crypto.randomUUID(),
+      enabled: getBoolAttr(skillEl, 'enabled') ?? true,
+      gems,
+      ...(label && { label }),
+      ...(includeInFullDps !== undefined && { includeInFullDps }),
+      ...(slot && { slot }),
+    };
 
     skillGroups.push(group);
   }
@@ -882,12 +880,20 @@ export function xmlToBuild(xml: string): Build {
   }
 
   // Parse Build element
+  // Some legacy/alternative PoB XML exports omit a <Build> element and store build
+  // attributes directly on the root <PathOfBuilding> element. Fall back to the root
+  // so these formats still import correctly.
   const buildEl = root.querySelector('Build');
   const buildElOrRoot = buildEl ?? root;
   const className = getAttr(buildElOrRoot, 'className') ?? DEFAULT_CLASS_NAME;
   const characterClass = POB_NAME_TO_CLASS[className] ?? CharacterClass.WARRIOR;
 
   // Parse Tree element
+  // In some older or minimal PoB2 XML exports, the Spec element may be:
+  // - Directly under the PathOfBuilding root (no Tree wrapper), or
+  // - Completely missing when no tree was configured.
+  // We first look for Spec under Tree, then fall back to a root-level Spec,
+  // and finally treat the root itself as the source of tree attributes.
   const treeEl = root.querySelector('Tree');
   const specEl = treeEl?.querySelector('Spec') ?? root.querySelector('Spec');
   const specElOrRoot = specEl ?? root;
@@ -905,7 +911,7 @@ export function xmlToBuild(xml: string): Build {
   const notesText = notesEl?.textContent;
   const config = parseConfig(configEl);
 
-  // Build object with only defined optional properties
+  // Build object using conditional spread for optional properties
   const build: Build = {
     id: crypto.randomUUID(),
     name: getAttr(specElOrRoot, 'title') ?? getAttr(buildElOrRoot, 'buildName') ?? 'Imported Build',
@@ -915,12 +921,10 @@ export function xmlToBuild(xml: string): Build {
     masterySelections: parseMasteryEffects(masteryEffectsStr),
     equippedItems: parseItems(itemsEl),
     skillGroups: parseSkills(skillsEl),
+    ...(ascendancy && { ascendancy }),
+    ...(config && { config }),
+    ...(notesText && { notes: notesText }),
   };
-
-  // Only set optional properties when values exist
-  if (ascendancy) build.ascendancy = ascendancy;
-  if (config) build.config = config;
-  if (notesText) build.notes = notesText;
 
   return build;
 }
