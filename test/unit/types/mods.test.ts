@@ -30,6 +30,18 @@ describe('mods types', () => {
       }
     });
 
+    it('should use sequential bit positions starting from 0', () => {
+      const values = Object.values(ModFlag).sort((a, b) => (a < b ? -1 : 1));
+
+      // Verify first flag is 1n << 0n = 1n
+      expect(values[0]).toBe(1n);
+
+      // Verify each subsequent flag is exactly 2x the previous (next bit)
+      for (let i = 1; i < values.length; i++) {
+        expect(values[i]).toBe(values[i - 1]! * 2n);
+      }
+    });
+
     it('should support bitwise OR operations', () => {
       const combined = ModFlag.Attack | ModFlag.Melee | ModFlag.Sword;
 
@@ -52,6 +64,18 @@ describe('mods types', () => {
       for (const [name, value] of Object.entries(KeywordFlag)) {
         const isPowerOf2 = value > 0n && (value & (value - 1n)) === 0n;
         expect(isPowerOf2, `${name} should be power of 2`).toBe(true);
+      }
+    });
+
+    it('should use sequential bit positions starting from 0', () => {
+      const values = Object.values(KeywordFlag).sort((a, b) => (a < b ? -1 : 1));
+
+      // Verify first flag is 1n << 0n = 1n
+      expect(values[0]).toBe(1n);
+
+      // Verify each subsequent flag is exactly 2x the previous (next bit)
+      for (let i = 1; i < values.length; i++) {
+        expect(values[i]).toBe(values[i - 1]! * 2n);
       }
     });
 

@@ -136,12 +136,17 @@ export interface ModEffect {
 
 /**
  * Complex value for LIST type effects.
+ *
+ * Note: Index signature allows arbitrary properties because Path of Building's
+ * LIST values contain data-driven fields that vary per mod type. We define
+ * common fields explicitly but must allow extensibility for external data.
  */
 export interface ModEffectListValue {
   key?: string;
   keyword?: string;
   value?: number | string;
   keyOfScaledMod?: string;
+  /** Additional data-driven fields from Path of Building */
   [key: string]: unknown;
 }
 
@@ -170,11 +175,16 @@ export interface ModCondition {
 
 /**
  * Tag for targeting specific slots/gems/etc.
+ *
+ * Note: Index signature allows arbitrary properties because Path of Building's
+ * tag system has many specialized fields per tag type. We define common fields
+ * explicitly but must allow extensibility for external data.
  */
 export interface ModTag {
   type: string;
   slotName?: string;
   keyword?: string;
+  /** Additional tag-type-specific fields from Path of Building */
   [key: string]: unknown;
 }
 
