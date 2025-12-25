@@ -61,6 +61,9 @@ export class ModDB {
   /** Actor type for this database */
   private readonly actor: ActorType;
 
+  /** Cached modifier count for O(1) size lookup */
+  private _size = 0;
+
   /**
    * Create a new ModDB instance.
    *
@@ -87,6 +90,7 @@ export class ModDB {
     } else {
       this.mods.set(mod.name, [mod]);
     }
+    this._size++;
   }
 
   /**
@@ -121,15 +125,23 @@ export class ModDB {
    */
   removeBySource(source: string, sourceId?: string): void {
     for (const [name, mods] of this.mods) {
+      const originalLength = mods.length;
+
       const filtered = mods.filter((mod) => {
         if (mod.source !== source) return true;
         if (sourceId !== undefined && mod.sourceId !== sourceId) return true;
         return false;
       });
 
+      // Skip if no modifiers were removed
+      if (filtered.length === originalLength) continue;
+
+      const removed = originalLength - filtered.length;
+      this._size -= removed;
+
       if (filtered.length === 0) {
         this.mods.delete(name);
-      } else if (filtered.length !== mods.length) {
+      } else {
         this.mods.set(name, filtered);
       }
     }
@@ -140,17 +152,16 @@ export class ModDB {
    */
   clear(): void {
     this.mods.clear();
+    this._size = 0;
   }
 
   /**
    * Get the number of modifiers in the database.
+   *
+   * This is an O(1) operation using cached count.
    */
   get size(): number {
-    let count = 0;
-    for (const mods of this.mods.values()) {
-      count += mods.length;
-    }
-    return count;
+    return this._size;
   }
 
   // ==========================================================================
