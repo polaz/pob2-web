@@ -5,7 +5,7 @@
  * tests require WebGL/WebGPU context (covered in E2E tests).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mount, VueWrapper } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { ref, shallowRef } from 'vue';
 import { Quasar, QSpinnerDots, QIcon } from 'quasar';
 
@@ -37,7 +37,8 @@ vi.mock('src/composables/usePixiApp', () => ({
 import PassiveTreeCanvas from 'src/components/tree/PassiveTreeCanvas.vue';
 
 describe('PassiveTreeCanvas', () => {
-  let wrapper: VueWrapper;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let wrapper: ReturnType<typeof mount<any>>;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -121,12 +122,12 @@ describe('PassiveTreeCanvas', () => {
   describe('props', () => {
     it('should accept showFps prop as true', () => {
       wrapper = mountComponent({ showFps: true });
-      expect(wrapper.props('showFps')).toBe(true);
+      expect((wrapper.props() as { showFps?: boolean }).showFps).toBe(true);
     });
 
     it('should accept showFps prop as false', () => {
       wrapper = mountComponent({ showFps: false });
-      expect(wrapper.props('showFps')).toBe(false);
+      expect((wrapper.props() as { showFps?: boolean }).showFps).toBe(false);
     });
   });
 
@@ -158,27 +159,32 @@ describe('PassiveTreeCanvas', () => {
   describe('exposed properties', () => {
     it('should expose ready ref', () => {
       wrapper = mountComponent();
-      expect(wrapper.vm.ready).toBeDefined();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).ready).toBeDefined();
     });
 
     it('should expose error ref', () => {
       wrapper = mountComponent();
-      expect(wrapper.vm.error).toBeDefined();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).error).toBeDefined();
     });
 
     it('should expose rendererType ref', () => {
       wrapper = mountComponent();
-      expect(wrapper.vm.rendererType).toBeDefined();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).rendererType).toBeDefined();
     });
 
     it('should expose fps ref', () => {
       wrapper = mountComponent();
-      expect(wrapper.vm.fps).toBeDefined();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).fps).toBeDefined();
     });
 
     it('should expose layers ref', () => {
       wrapper = mountComponent();
-      expect(wrapper.vm.layers).toBeDefined();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).layers).toBeDefined();
     });
   });
 
