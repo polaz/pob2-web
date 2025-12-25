@@ -272,15 +272,32 @@ export function createCleanDirtyFlags(): DirtyFlags {
 }
 
 /**
+ * Wildcard marker indicating "all items" or "all jewels" are dirty.
+ *
+ * ## Design Rationale
+ *
+ * We use a string wildcard ('*') instead of separate boolean flags for simplicity:
+ * - Single Set<string> handles both specific IDs and "all dirty" state
+ * - Checking `set.has('*') || set.has(id)` is O(1) and clear
+ * - Alternative (separate allItemsDirty boolean) adds complexity without benefit
+ *
+ * The '*' character is safe because:
+ * - Slot names are defined constants (weapon1, helmet, etc.)
+ * - Jewel node IDs are numeric strings from tree data
+ * - Neither can ever be '*'
+ */
+export const DIRTY_WILDCARD = '*';
+
+/**
  * Create fully dirty flags (everything needs rebuild).
  */
 export function createFullyDirtyFlags(): DirtyFlags {
   return {
     passives: true,
-    items: new Set(['*']), // Wildcard for "all items"
+    items: new Set([DIRTY_WILDCARD]),
     skills: true,
     config: true,
-    jewels: new Set(['*']), // Wildcard for "all jewels"
+    jewels: new Set([DIRTY_WILDCARD]),
   };
 }
 
@@ -305,7 +322,7 @@ export function hasDirtyFlags(flags: DirtyFlags): boolean {
  * @returns True if slot is dirty or all items are dirty
  */
 export function isItemSlotDirty(flags: DirtyFlags, slot: string): boolean {
-  return flags.items.has('*') || flags.items.has(slot);
+  return flags.items.has(DIRTY_WILDCARD) || flags.items.has(slot);
 }
 
 /**
@@ -316,7 +333,7 @@ export function isItemSlotDirty(flags: DirtyFlags, slot: string): boolean {
  * @returns True if socket is dirty or all jewels are dirty
  */
 export function isJewelSocketDirty(flags: DirtyFlags, nodeId: string): boolean {
-  return flags.jewels.has('*') || flags.jewels.has(nodeId);
+  return flags.jewels.has(DIRTY_WILDCARD) || flags.jewels.has(nodeId);
 }
 
 // ============================================================================
@@ -372,6 +389,19 @@ export function resolveConfig(
   // Apply overrides if provided
   if (overrides) {
     Object.assign(resolved, overrides);
+  }
+
+  // Enforce mutual exclusivity for resource states.
+  // A character cannot be simultaneously "Low" and "Full" for the same resource.
+  // "Low" takes precedence as it's the more constrained state.
+  if (resolved.isOnLowLife && resolved.isOnFullLife) {
+    resolved.isOnFullLife = false;
+  }
+  if (resolved.isOnLowMana && resolved.isOnFullMana) {
+    resolved.isOnFullMana = false;
+  }
+  if (resolved.isOnLowEnergyShield && resolved.isOnFullEnergyShield) {
+    resolved.isOnFullEnergyShield = false;
   }
 
   // Clamp charge counts to maximums

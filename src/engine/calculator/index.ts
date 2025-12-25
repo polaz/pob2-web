@@ -33,6 +33,7 @@ export type {
 } from './Environment';
 
 export {
+  DIRTY_WILDCARD,
   createCleanDirtyFlags,
   createFullyDirtyFlags,
   hasDirtyFlags,

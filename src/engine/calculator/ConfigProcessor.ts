@@ -20,7 +20,7 @@
 import { ModDB } from '../modifiers/ModDB';
 import type { Mod } from '../modifiers/types';
 import type { ResolvedBuildConfig } from './Environment';
-import { CHARGE_CONSTANTS } from 'src/shared/constants';
+import { CHARGE_CONSTANTS, BOSS_CONSTANTS } from 'src/shared/constants';
 
 // ============================================================================
 // Types
@@ -310,7 +310,7 @@ export function processEnemyConfig(config: ResolvedBuildConfig): ModDB {
     enemyDB.addMod({
       name: 'CurseEffectiveness',
       type: 'MORE',
-      value: -0.33, // 33% less curse effect on bosses
+      value: BOSS_CONSTANTS.CURSE_EFFECT_REDUCTION,
       flags: NO_FLAGS,
       keywordFlags: NO_FLAGS,
       source: CONFIG_SOURCE,

@@ -219,12 +219,13 @@ function processSkillGroup(
 }
 
 /**
- * Flag to log support gem heuristic warning only once.
+ * Module-level warning flags to log each warning only once per session.
  *
  * Note: Module-level state can persist across tests. Use resetWarningFlags()
  * in test cleanup if testing warning behavior.
  */
 let supportGemHeuristicWarned = false;
+let processGemModsPlaceholderWarned = false;
 
 /**
  * Reset warning flags for testing purposes.
@@ -232,22 +233,38 @@ let supportGemHeuristicWarned = false;
  */
 export function resetWarningFlags(): void {
   supportGemHeuristicWarned = false;
+  processGemModsPlaceholderWarned = false;
 }
+
+/**
+ * Pattern to detect the word "support" as a separate token in a gem ID.
+ *
+ * This is intentionally conservative compared to a plain substring search:
+ * - Matches: "Support", "Damage Support", "minion_support", "support-damage"
+ * - Avoids matching: "supportive", "unsupportable" (mid-word usages)
+ *
+ * Known limitations:
+ * - False negatives: Support gems without "support" in their ID (e.g. "Empower")
+ * - False positives: Non-support gems with "support" as a token (unlikely in PoE2)
+ *
+ * This heuristic will be replaced by proper gem data lookup when gem data
+ * integration is complete (see src/data/gems/).
+ */
+const SUPPORT_GEM_PATTERN = /(?:^|[\s_-])support(?:$|[\s_-])/i;
 
 /**
  * Process a GemInstance into a ProcessedGem with resolved values.
  */
 function processGemInstance(gem: GemInstance): ProcessedGem {
-  // Simple heuristic: if gemId contains "support", it's a support gem
-  // TODO: Use proper gem data lookup to determine gem type (issue when gem data is integrated)
-  const isSupport = gem.gemId?.toLowerCase().includes('support') ?? false;
+  // Heuristic: treat gems whose ID contains "support" as a separate token as support gems
+  const isSupport = gem.gemId ? SUPPORT_GEM_PATTERN.test(gem.gemId) : false;
 
   // Warn once about using heuristic - gems might be incorrectly categorized
   if (!supportGemHeuristicWarned && gem.gemId) {
     console.warn(
-      '[SkillProcessor] Using string heuristic for gem type detection. ' +
-        'Gems without "support" in name may be incorrectly categorized. ' +
-        'This will be fixed when proper gem data lookup is implemented.'
+      '[SkillProcessor] Using heuristic for gem type detection. ' +
+        'Gems whose IDs do not contain the token "support" may be incorrectly categorized. ' +
+        'This will be replaced by proper gem data lookup when gem data is integrated.'
     );
     supportGemHeuristicWarned = true;
   }
@@ -288,6 +305,15 @@ function processGemMods(
   _parser: ModParser,
   _skillDB: ModDB
 ): number {
+  // Log once that gem stats are not yet applied
+  if (!processGemModsPlaceholderWarned) {
+    console.warn(
+      '[SkillProcessor] processGemMods is currently a no-op; gem stats are not yet applied. ' +
+        'This function exists to maintain call site structure while gem data integration is pending.'
+    );
+    processGemModsPlaceholderWarned = true;
+  }
+
   // NO-OP: Gem data lookup not yet implemented
   // When implemented, this would:
   // 1. Load gem data: const gemData = await getGemData(_gem.instance.gemId);

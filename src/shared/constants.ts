@@ -154,6 +154,14 @@ export const TIME_CONSTANTS = {
 } as const;
 
 /**
+ * Boss-related constants
+ */
+export const BOSS_CONSTANTS = {
+  /** Curse effect reduction on boss enemies (33% less curse effect) */
+  CURSE_EFFECT_REDUCTION: -0.33,
+} as const;
+
+/**
  * Class starting attributes (PoE2)
  */
 export const CLASS_STARTING_STATS: Record<

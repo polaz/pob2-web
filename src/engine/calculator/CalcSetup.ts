@@ -40,6 +40,7 @@ import {
   type SetupOptions,
   type DirtyFlags,
   type AttributeValues,
+  DIRTY_WILDCARD,
   createFullyDirtyFlags,
   createCleanDirtyFlags,
   hasDirtyFlags,
@@ -247,7 +248,7 @@ function processAccelerated(
 
   // Update changed item slots
   if (dirtyFlags.items.size > 0) {
-    const isAllItems = dirtyFlags.items.has('*');
+    const isAllItems = dirtyFlags.items.has(DIRTY_WILDCARD);
 
     if (isAllItems) {
       // Rebuild all items
@@ -286,18 +287,12 @@ function processAccelerated(
     conditions = configResult.conditions;
   }
 
-  // Handle jewel updates
-  if (dirtyFlags.jewels.size > 0) {
-    const isAllJewels = dirtyFlags.jewels.has('*');
-
-    if (isAllJewels || dirtyFlags.passives) {
-      // Jewels are processed separately and merged in setupEnvironment
-      // If passives changed, jewels need to be re-added anyway
-    } else {
-      // Incremental jewel updates would go here
-      // For now, jewels are always processed fully
-    }
-  }
+  // Note: Jewel modifiers are NOT processed incrementally in this function.
+  // Jewel processing is always done in setupEnvironment() after all other
+  // components are processed. This is because jewels are merged into passiveDB
+  // and the order of operations matters. Any jewel change (dirty flag set)
+  // triggers full jewel reprocessing in the main setupEnvironment flow.
+  // See: setupEnvironment() lines that call processJewels() and passiveDB.addDB()
 
   return { passiveDB, itemDBs, itemDBsSwap, skillDB, configDB, conditions };
 }
@@ -369,8 +364,6 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
 
 /**
  * Rebuild the flattened playerDB from source ModDBs.
- *
- * Performance target: <1ms
  */
 export function rebuildPlayerDB(
   passiveDB: ModDB,
