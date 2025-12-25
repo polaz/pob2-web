@@ -521,13 +521,14 @@ export function buildToXml(build: Build): string {
   const masteryEffects = hasMasterySelections
     ? serializeMasteryEffects(build.masterySelections)
     : undefined;
+  // xmlElement already filters out undefined values, so we can pass masteryEffects directly
   const specElement = xmlElement(
     'Spec',
     {
       title: build.name ?? DEFAULT_SPEC_TITLE,
       treeVersion: POE2_TREE_VERSION,
       nodes,
-      ...(masteryEffects !== undefined && { masteryEffects }),
+      masteryEffects,
     },
     '',
     true
@@ -807,6 +808,7 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
     // Conditional spread: empty strings are intentionally excluded (meaningless labels/slots)
     const group: SkillGroup = {
       id: crypto.randomUUID(),
+      // Use ?? (not ||) to preserve explicit false values; only undefined triggers default
       enabled: getBoolAttr(skillEl, 'enabled') ?? true,
       gems,
       ...(label && { label }),

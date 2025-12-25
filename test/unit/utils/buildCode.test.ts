@@ -177,8 +177,9 @@ describe('buildCode', () => {
       const codeLevel1 = encodeBuildCode(build, { compressionLevel: 1 });
       const codeLevel9 = encodeBuildCode(build, { compressionLevel: 9 });
 
-      // Higher compression level (9) should always produce smaller or equal output
-      // compared to lower compression (1) for the same input data
+      // Higher compression generally produces smaller output, but for very small inputs
+      // the overhead may cause equal or slightly larger output. For typical build data
+      // (several KB), level 9 should always be smaller or equal to level 1.
       expect(codeLevel9.length).toBeLessThanOrEqual(codeLevel1.length);
     });
   });
@@ -333,10 +334,10 @@ describe('buildCode', () => {
       }
       const elapsed = performance.now() - start;
 
-      // 100 encodes should take less than 1000ms (10ms average target)
+      // 100 encodes should complete in under 1000ms total.
+      // This is a lenient CI-friendly threshold; actual performance is typically <1ms per encode.
+      // The threshold accounts for CI environment variability and cold start overhead.
       expect(elapsed).toBeLessThan(1000);
-      // Average encode time should be under 100ms (lenient upper bound)
-      expect(elapsed / 100).toBeLessThan(100);
     });
 
     it('should decode in under 100ms', () => {
