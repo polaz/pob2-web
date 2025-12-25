@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/polaz/pob2-web/compare/v1.3.0...v1.4.0) (2025-12-25)
+
+
+### Features
+
+* **tree:** implement passive tree data loading and graph traversal ([#54](https://github.com/polaz/pob2-web/issues/54)) ([b55a0c9](https://github.com/polaz/pob2-web/commit/b55a0c97a310e3533f17f7f13937fcdf7b43c48a)), closes [#5](https://github.com/polaz/pob2-web/issues/5)
+
 # [1.3.0](https://github.com/polaz/pob2-web/compare/v1.2.0...v1.3.0) (2025-12-25)
 
 
