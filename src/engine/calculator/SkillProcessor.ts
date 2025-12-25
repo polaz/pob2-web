@@ -33,7 +33,7 @@
 import { ModDB } from '../modifiers/ModDB';
 import type { ModParser } from '../modifiers/ModParser';
 import type { ModParseContext } from '../modifiers/types';
-import type { SkillGroup, GemInstance } from 'src/protos/pob2_pb';
+import type { SkillGroup, GemInstance } from 'src/protos/skills_pb';
 
 // ============================================================================
 // Types

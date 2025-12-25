@@ -29,7 +29,8 @@
 
 import type { ModDB } from '../modifiers/ModDB';
 import type { ModParser } from '../modifiers/ModParser';
-import type { Build, BuildConfig, Item } from 'src/protos/pob2_pb';
+import type { Build, BuildConfig } from 'src/protos/build_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { TreeData } from 'src/types/tree';
 
 // ============================================================================

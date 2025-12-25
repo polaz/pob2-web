@@ -27,7 +27,7 @@
 import { ModDB } from '../modifiers/ModDB';
 import type { ModParser } from '../modifiers/ModParser';
 import type { ModParseContext } from '../modifiers/types';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { JewelSocket } from './Environment';
 import { ALL_SLOTS } from './ItemProcessor';
 

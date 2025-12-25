@@ -31,7 +31,8 @@
 import { ModDB } from '../modifiers/ModDB';
 import { getModParser } from '../modifiers/ModParserLoader';
 import type { ModParser } from '../modifiers/ModParser';
-import type { Build, Item } from 'src/protos/pob2_pb';
+import type { Build } from 'src/protos/build_pb';
+import type { Item } from 'src/protos/items_pb';
 import type { TreeData } from 'src/types/tree';
 
 import {

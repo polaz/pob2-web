@@ -23,7 +23,7 @@
 import { ModDB } from '../modifiers/ModDB';
 import type { ModParser } from '../modifiers/ModParser';
 import type { Mod, ModParseContext } from '../modifiers/types';
-import type { Item } from 'src/protos/pob2_pb';
+import type { Item } from 'src/protos/items_pb';
 
 // ============================================================================
 // Types
