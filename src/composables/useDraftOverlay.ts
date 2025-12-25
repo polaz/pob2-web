@@ -48,6 +48,10 @@ export function useDraftOverlay() {
    * Apply draft edits to a gem.
    * Returns the merged gem with any draft overrides applied.
    *
+   * Note: Uses deepMerge for nested object handling. Gem is NOT a protobuf
+   * type (defined in types/gems.ts), so the protobuf cloneDeep guideline
+   * doesn't apply.
+   *
    * @param gem - The base gem data
    * @returns Merged gem with drafts applied
    */
@@ -105,6 +109,11 @@ export function useDraftOverlay() {
 
   /**
    * Apply draft edits to an item.
+   *
+   * Note: Uses deepMerge for nested object handling. While Item is a protobuf
+   * type, the draft is a plain JS object (Partial<Item>) containing only
+   * modified fields. The cloneDeep guideline applies to full protobuf message
+   * instances with internal state, not partial patches applied to base data.
    *
    * @param item - The base item data
    * @returns Merged item with drafts applied

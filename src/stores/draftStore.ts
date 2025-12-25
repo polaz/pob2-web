@@ -124,13 +124,18 @@ export const useDraftStore = defineStore('draft', () => {
 
   /**
    * Set or update a skill/gem edit.
+   *
+   * Note: Uses deepMerge for nested object handling (tags, requirements).
+   * Gem is NOT a protobuf type (defined in types/gems.ts), so the protobuf
+   * cloneDeep guideline doesn't apply. Drafts are plain JS objects created
+   * by user edits, not deserialized protobuf instances.
+   *
    * @param gemId - The gem ID to edit
    * @param draft - Partial gem data to override
    */
   function setSkillEdit(gemId: string, draft: GemDraft): void {
     const newMap = new Map(skillEdits.value);
     const existing = newMap.get(gemId);
-    // Use deepMerge to handle nested objects (tags, requirements, etc.)
     newMap.set(gemId, existing ? deepMerge(existing, draft) : draft);
     skillEdits.value = newMap;
   }
@@ -175,13 +180,19 @@ export const useDraftStore = defineStore('draft', () => {
 
   /**
    * Set or update an item edit.
+   *
+   * Note: Uses deepMerge for nested object handling (weaponData, armourData).
+   * While Item is a protobuf type, ItemDraft (Partial<Item>) drafts are plain
+   * JS objects created by user edits containing only modified fields - not
+   * deserialized protobuf instances with internal state. The cloneDeep
+   * guideline applies to full protobuf message instances, not partial patches.
+   *
    * @param itemId - The item ID to edit
    * @param draft - Partial item data to override
    */
   function setItemEdit(itemId: string, draft: ItemDraft): void {
     const newMap = new Map(itemEdits.value);
     const existing = newMap.get(itemId);
-    // Use deepMerge to handle nested objects (weaponData, armourData, etc.)
     newMap.set(itemId, existing ? deepMerge(existing, draft) : draft);
     itemEdits.value = newMap;
   }
@@ -316,6 +327,11 @@ export const useDraftStore = defineStore('draft', () => {
 
   /**
    * Update an existing custom node.
+   *
+   * Note: Uses deepMerge to handle masteryEffects array properly.
+   * CustomTreeNode is NOT a protobuf type (defined in types/draft.ts),
+   * so the protobuf cloneDeep guideline doesn't apply.
+   *
    * @param nodeId - The custom node ID to update
    * @param updates - Partial node data to merge
    */
@@ -330,7 +346,6 @@ export const useDraftStore = defineStore('draft', () => {
     }
 
     const newMap = new Map(customNodes.value);
-    // Use deepMerge for consistency and to handle masteryEffects array
     newMap.set(nodeId, deepMerge(existing, updates));
     customNodes.value = newMap;
   }
