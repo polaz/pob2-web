@@ -239,6 +239,18 @@ export function resetWarningFlags(): void {
 }
 
 /**
+ * Known support gem IDs that do not contain the word "support".
+ *
+ * This is a stopgap until full gem data integration. IDs are stored in
+ * lowercase; lookups normalize input accordingly.
+ */
+const KNOWN_SUPPORT_GEM_IDS: ReadonlySet<string> = new Set([
+  'empower',
+  'enhance',
+  'enlighten',
+]);
+
+/**
  * Pattern to detect the word "support" as a separate token in a gem ID.
  *
  * Matches when "support" appears:
@@ -247,28 +259,46 @@ export function resetWarningFlags(): void {
  *
  * Examples: "Support", "Damage Support", "minion_support", "support-damage"
  *
- * Known limitations:
- * - False negatives: Support gems without "support" in their ID (e.g. "Empower")
- * - False positives: Non-support gems with "support" as a token (unlikely in PoE2)
- *
- * This heuristic will be replaced by proper gem data lookup when gem data
- * integration is complete (see src/data/gems/).
+ * This heuristic is combined with KNOWN_SUPPORT_GEM_IDS for gems like "Empower"
+ * that don't have "support" in their name. Will be replaced by proper gem data
+ * lookup when gem data integration is complete (see src/data/gems/).
  */
 const SUPPORT_GEM_PATTERN = /(?:^|[\s_-])support(?:$|[\s_-])/i;
+
+/**
+ * Determine whether a gem ID represents a support gem.
+ *
+ * First checks KNOWN_SUPPORT_GEM_IDS (for gems like "Empower" that don't
+ * contain "support"), then falls back to the SUPPORT_GEM_PATTERN heuristic.
+ */
+function isSupportGemId(gemId: string): boolean {
+  const normalized = gemId.trim().toLowerCase();
+  if (normalized.length === 0) {
+    return false;
+  }
+
+  // Check known support gems first
+  if (KNOWN_SUPPORT_GEM_IDS.has(normalized)) {
+    return true;
+  }
+
+  // Fall back to pattern matching
+  return SUPPORT_GEM_PATTERN.test(gemId);
+}
 
 /**
  * Process a GemInstance into a ProcessedGem with resolved values.
  */
 function processGemInstance(gem: GemInstance): ProcessedGem {
-  // Heuristic: treat gems whose ID contains "support" as a separate token as support gems
-  const isSupport = gem.gemId ? SUPPORT_GEM_PATTERN.test(gem.gemId) : false;
+  // Use combined check: known IDs + pattern heuristic
+  const isSupport = gem.gemId ? isSupportGemId(gem.gemId) : false;
 
   // Warn once about using heuristic - gems might be incorrectly categorized
   if (!supportGemHeuristicWarned && gem.gemId) {
     console.warn(
       '[SkillProcessor] Using heuristic for gem type detection. ' +
-        'Gems whose IDs do not contain the token "support" may be incorrectly categorized. ' +
-        'This will be replaced by proper gem data lookup when gem data is integrated.'
+        'Some gems may be incorrectly categorized until full gem data integration. ' +
+        'Known support gems without "support" in name: Empower, Enhance, Enlighten.'
     );
     supportGemHeuristicWarned = true;
   }

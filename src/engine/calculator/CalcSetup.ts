@@ -448,6 +448,15 @@ export function rebuildPlayerDB(
 
 /**
  * Calculate character attributes from passives and items.
+ *
+ * LIMITATION: This is a simplified calculation that only sums BASE modifiers.
+ * It does NOT use StatResolver and therefore ignores INC/MORE modifiers to
+ * attributes. For accurate attribute values with percentage bonuses, a full
+ * StatResolver pass would be needed. This simplified version is sufficient
+ * for basic attribute requirements checking but may be inaccurate for builds
+ * with significant % increased attribute modifiers.
+ *
+ * @returns Attribute values (may be inaccurate if % modifiers exist)
  */
 function calculateAttributes(
   passiveDB: ModDB,
