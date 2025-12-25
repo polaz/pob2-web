@@ -601,5 +601,46 @@ describe('ModDB', () => {
 
       expect(db.sum('BASE', 'Life', {})).toBe(100);
     });
+
+    it('should handle division by zero in PerStat condition', () => {
+      // When div is 0, the value should not be modified (guard against NaN)
+      db.addMod(
+        createMod({
+          name: 'Damage',
+          type: 'BASE',
+          value: 10,
+          condition: { type: 'PerStat', stat: 'Strength', div: 0 },
+        })
+      );
+
+      const config = { stats: { Strength: 100 } };
+      // With div=0, the condition is skipped, value remains unchanged
+      expect(db.sum('BASE', 'Damage', config)).toBe(10);
+    });
+
+    it('should handle empty names array returning default values', () => {
+      db.addMod(createMod({ name: 'Life', type: 'BASE', value: 100 }));
+
+      // Calling with no stat names returns defaults
+      expect(db.sum('BASE')).toBe(0);
+      expect(db.more()).toBe(1);
+      expect(db.flag()).toBe(false);
+    });
+
+    it('should throw on mixed types in arguments', () => {
+      // Config object in the middle of stat names is invalid
+      // Runtime validation catches this even though types allow it
+      expect(() => {
+        db.sum('BASE', 'Life', {}, 'Damage');
+      }).toThrow(TypeError);
+    });
+
+    it('should throw when only config object is passed without stat names', () => {
+      // Passing just a config with no stat names should throw
+      // Runtime validation catches this even though types allow it
+      expect(() => {
+        db.more({ flags: 1n });
+      }).toThrow(TypeError);
+    });
   });
 });

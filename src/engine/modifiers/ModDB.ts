@@ -61,9 +61,6 @@ export class ModDB {
   /** Actor type for this database */
   private readonly actor: ActorType;
 
-  /** Multiplier cache for expensive calculations (reserved for future optimization) */
-  private readonly multiplierCache: Map<string, number> = new Map();
-
   /**
    * Create a new ModDB instance.
    *
@@ -90,7 +87,6 @@ export class ModDB {
     } else {
       this.mods.set(mod.name, [mod]);
     }
-    this.invalidateCache();
   }
 
   /**
@@ -137,7 +133,6 @@ export class ModDB {
         this.mods.set(name, filtered);
       }
     }
-    this.invalidateCache();
   }
 
   /**
@@ -145,7 +140,6 @@ export class ModDB {
    */
   clear(): void {
     this.mods.clear();
-    this.invalidateCache();
   }
 
   /**
@@ -258,7 +252,11 @@ export class ModDB {
         // Value per X points of a stat
         const statValue = config.stats?.[cond.stat ?? ''] ?? 0;
         const div = cond.div ?? 1;
-        value *= Math.floor(statValue / div);
+        // Guard against division by zero to avoid NaN propagation
+        if (div > 0) {
+          value *= Math.floor(statValue / div);
+        }
+        // If div <= 0, value remains unchanged (effectively 0 multiplier)
       } else if (cond.type === 'Multiplier') {
         // Multiply by a variable value
         const multiplier = config.stats?.[cond.var ?? ''] ?? 0;
@@ -497,28 +495,49 @@ export class ModDB {
    * Parse variable arguments into names array and config.
    *
    * Supports: sum('A', 'B', config) or sum('A', 'B')
+   * Empty names array without config is valid (returns defaults).
+   * Config object without stat names throws (likely user error).
    */
   private parseArgs(
     args: (string | CalcConfig)[]
   ): { names: string[]; config: CalcConfig } {
     const last = args[args.length - 1];
+
+    // Check if last argument is a config object
     if (last !== undefined && typeof last === 'object' && !Array.isArray(last)) {
+      const names = args.slice(0, -1);
+
+      // Config without stat names is likely a user error
+      if (names.length === 0) {
+        throw new TypeError(
+          'ModDB: at least one stat name is required when using a config object'
+        );
+      }
+
+      // Validate that all preceding arguments are strings
+      if (!names.every((arg) => typeof arg === 'string')) {
+        throw new TypeError(
+          'ModDB: all arguments before config must be stat name strings'
+        );
+      }
+
       return {
-        names: args.slice(0, -1) as string[],
+        names: names.filter((arg): arg is string => typeof arg === 'string'),
         config: last,
       };
     }
+
+    // No config object - all arguments must be strings
+    if (!args.every((arg): arg is string => typeof arg === 'string')) {
+      throw new TypeError(
+        'ModDB: arguments must be stat name strings, optionally followed by a config object'
+      );
+    }
+
     return {
-      names: args as string[],
+      names: args,
       config: {},
     };
-  }
-
-  /**
-   * Invalidate the multiplier cache.
-   */
-  private invalidateCache(): void {
-    this.multiplierCache.clear();
   }
 
   /**
