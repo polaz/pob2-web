@@ -80,6 +80,32 @@ const DEFAULT_LEVEL = 1;
  */
 const DEFAULT_SPEC_TITLE = 'Default';
 
+/**
+ * Starting ID for PoB2 item numbering.
+ * PoB2 uses 1-based item IDs in the Items section.
+ */
+const ITEM_ID_START = 1;
+
+/**
+ * Index of the first skill group, used to mark it as the main active skill.
+ * PoB2 treats the first skill in the list as the "main" active skill.
+ */
+const FIRST_SKILL_GROUP_INDEX = 0;
+
+/**
+ * Minimum quality value to display in item text.
+ * PoB2 treats 0% quality as the default state and omits it from item display.
+ */
+const MIN_DISPLAYED_QUALITY = 0;
+
+// Item text parsing prefix lengths (for substring extraction)
+/** Length of "Rarity: " prefix in item text */
+const RARITY_PREFIX_LENGTH = 8;
+/** Length of "Item Level: " prefix in item text */
+const ITEM_LEVEL_PREFIX_LENGTH = 12;
+/** Length of "Implicits: " prefix in item text */
+const IMPLICITS_PREFIX_LENGTH = 11;
+
 // =============================================================================
 // Character Class Mapping
 // =============================================================================
@@ -294,8 +320,8 @@ function serializeItem(item: Item): string {
     lines.push(`Item Level: ${item.itemLevel}`);
   }
 
-  // Quality - PoB2 only displays quality when > 0; 0% is the default state and is omitted
-  if (item.quality !== undefined && item.quality > 0) {
+  // Quality - PoB2 only displays quality when > MIN_DISPLAYED_QUALITY
+  if (item.quality !== undefined && item.quality > MIN_DISPLAYED_QUALITY) {
     lines.push(`Quality: +${item.quality}%`);
   }
 
@@ -328,7 +354,7 @@ function serializeItem(item: Item): string {
 function serializeItems(items: Record<string, Item>): string {
   const itemElements: string[] = [];
   const slotElements: string[] = [];
-  let itemId = 1;
+  let itemId = ITEM_ID_START;
 
   for (const [slot, item] of Object.entries(items)) {
     const currentId = itemId++;
@@ -382,7 +408,7 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
           enabled: enabledAttr,
           slot: group.slot,
           label: group.label,
-          mainActiveSkill: index === 0 ? DEFAULT_SET_ID : undefined,
+          mainActiveSkill: index === FIRST_SKILL_GROUP_INDEX ? DEFAULT_SET_ID : undefined,
           includeInFullDPS: group.includeInFullDps,
         },
         gemElements ? '\n' + gemElements + '\n' : ''
@@ -582,14 +608,14 @@ function parseItem(itemText: string, itemId: string): Item {
 
     // Parse rarity
     if (line.startsWith('Rarity: ')) {
-      const rarityStr = line.substring(8).trim().toUpperCase();
+      const rarityStr = line.substring(RARITY_PREFIX_LENGTH).trim().toUpperCase();
       item.rarity = POB_TO_RARITY[rarityStr] ?? ItemRarity.RARITY_NORMAL;
       continue;
     }
 
     // Parse item level
     if (line.startsWith('Item Level: ')) {
-      const parsedLevel = parseInt(line.substring(12), 10);
+      const parsedLevel = parseInt(line.substring(ITEM_LEVEL_PREFIX_LENGTH), 10);
       if (!Number.isNaN(parsedLevel)) {
         item.itemLevel = parsedLevel;
       }
@@ -617,7 +643,7 @@ function parseItem(itemText: string, itemId: string): Item {
 
     // Parse implicits count
     if (line.startsWith('Implicits: ')) {
-      const parsedImplicitCount = parseInt(line.substring(11), 10);
+      const parsedImplicitCount = parseInt(line.substring(IMPLICITS_PREFIX_LENGTH), 10);
       implicitCount = Number.isNaN(parsedImplicitCount) ? 0 : parsedImplicitCount;
       section = 'implicits';
       continue;
@@ -678,7 +704,7 @@ function parseItems(itemsElement: Element | null): Record<string, Item> {
   for (let i = 0; i < itemElements.length; i++) {
     const itemEl = itemElements.item(i);
     if (!itemEl) continue;
-    const id = getAttr(itemEl, 'id') ?? String(i + 1);
+    const id = getAttr(itemEl, 'id') ?? String(i + ITEM_ID_START);
     const itemText = itemEl.textContent ?? '';
     itemById.set(id, parseItem(itemText, id));
   }
