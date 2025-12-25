@@ -10,3 +10,5 @@ export { useGemData } from './useGemData';
 export { useSkillData } from './useSkillData';
 export { usePixiApp } from './usePixiApp';
 export type { RendererType, FallbackInfo, TreeLayers, UsePixiAppResult } from './usePixiApp';
+export { useBuildStorage } from './useBuildStorage';
+export type { BuildListItem } from './useBuildStorage';

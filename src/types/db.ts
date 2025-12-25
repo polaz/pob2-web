@@ -2,10 +2,15 @@
  * Database type definitions for Dexie.js IndexedDB storage
  */
 
+/** Current build format version */
+export const BUILD_FORMAT_VERSION = 1;
+
 /** Build state stored in IndexedDB */
 export interface StoredBuild {
   /** Auto-incremented primary key */
   id?: number;
+  /** Build format version for migrations */
+  version: number;
   /** Build display name */
   name: string;
   /** Character class (e.g., 'Warrior', 'Witch') */

@@ -21,7 +21,7 @@ import {
   exportDatabase,
   importDatabase,
 } from '../../../src/db/index';
-import { DEFAULT_USER_PREFERENCES, type StoredBuild } from '../../../src/types/db';
+import { DEFAULT_USER_PREFERENCES, BUILD_FORMAT_VERSION, type StoredBuild } from '../../../src/types/db';
 
 describe('PoB2Database', () => {
   beforeEach(async () => {
@@ -34,6 +34,7 @@ describe('PoB2Database', () => {
 
   describe('Builds CRUD', () => {
     const testBuild = {
+      version: BUILD_FORMAT_VERSION,
       name: 'Test Warrior Build',
       className: 'Warrior',
       ascendancy: 'Titan',
@@ -195,6 +196,7 @@ describe('PoB2Database', () => {
     it('should export and import database', async () => {
       // Create test data
       await createBuild({
+        version: BUILD_FORMAT_VERSION,
         name: 'Export Test',
         className: 'Witch',
         level: 80,
@@ -226,6 +228,7 @@ describe('PoB2Database', () => {
 
     it('should clear entire database', async () => {
       await createBuild({
+        version: BUILD_FORMAT_VERSION,
         name: 'Test',
         className: 'Warrior',
         level: 1,
