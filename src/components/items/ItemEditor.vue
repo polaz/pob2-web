@@ -551,14 +551,17 @@ async function handlePasteFromClipboard(): Promise<void> {
 
 /**
  * Handles paste text change and parses the item.
+ * q-input @update:model-value emits string | number | null;
+ * we only process non-empty strings.
  */
-function handlePasteTextChange(text: string | number | null): void {
-  if (typeof text !== 'string' || !text.trim()) {
+function handlePasteTextChange(value: string | number | null): void {
+  // Only process non-empty strings
+  if (typeof value !== 'string' || !value.trim()) {
     parseError.value = '';
     return;
   }
 
-  const result = parseItem(text);
+  const result = parseItem(value);
   if (result.success && result.item) {
     parseError.value = '';
     applyParsedItem(result.item);
@@ -664,6 +667,8 @@ function handleClose(): void {
 </script>
 
 <style scoped>
+/* Editor root - custom layout for height: 100% + max-width + margin: auto
+   full-screen modal pattern; Quasar classes don't handle this combo */
 .item-editor {
   background-color: #0d0d14;
   max-width: 1200px;

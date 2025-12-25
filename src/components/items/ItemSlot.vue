@@ -206,6 +206,8 @@ function handleIconError(): void {
   /* Equipped slot has item-specific border color */
 }
 
+/* Empty slot content - custom flex for 100% fill + opacity combo;
+   BEM child element styled via scoped CSS for encapsulation */
 .item-slot__empty {
   display: flex;
   flex-direction: column;

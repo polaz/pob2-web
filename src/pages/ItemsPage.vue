@@ -369,6 +369,8 @@ function clearComparison(): void {
   max-width: var(--comparison-panel-max-width);
 }
 
+/* Empty state - custom flex for min-height CSS variable integration;
+   BEM element styled via scoped CSS for encapsulation */
 .items-page__empty {
   min-height: var(--empty-state-min-height);
   display: flex;

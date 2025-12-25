@@ -440,17 +440,21 @@ const totalDps = computed(() => {
 // Formatting Helpers
 // ============================================================================
 
-/** Percentage storage multiplier divisor */
-const PERCENTAGE_TO_DECIMAL_DIVISOR = 100;
+/**
+ * Percentage storage multiplier.
+ * Game values are stored scaled by 100 (e.g., 500 = 5.00%).
+ * Divide by this to convert to display percentage.
+ */
+const PERCENTAGE_STORAGE_MULTIPLIER = 100;
 
-/** Format crit chance from stored value (e.g., 500 -> "5.00") */
+/** Format crit chance from stored value (e.g., 500 -> "5.00%") */
 function formatCritChance(value: number): string {
-  return (value / PERCENTAGE_TO_DECIMAL_DIVISOR).toFixed(2);
+  return (value / PERCENTAGE_STORAGE_MULTIPLIER).toFixed(2);
 }
 
-/** Format block chance from stored value */
+/** Format block chance from stored value (e.g., 500 -> "5%") */
 function formatBlock(value: number): string {
-  return (value / PERCENTAGE_TO_DECIMAL_DIVISOR).toFixed(0);
+  return (value / PERCENTAGE_STORAGE_MULTIPLIER).toFixed(0);
 }
 </script>
 
@@ -486,6 +490,8 @@ function formatBlock(value: number): string {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
+/* Icon container - custom flex for fixed dimensions + flex-shrink: 0 combo
+   that requires CSS; Quasar classes don't support this sizing pattern */
 .item-card__icon {
   width: 40px;
   height: 40px;
