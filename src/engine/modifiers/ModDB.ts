@@ -106,7 +106,7 @@ export class ModDB {
    * @param other - The ModDB to merge from
    */
   addDB(other: ModDB): void {
-    for (const [, mods] of other.mods) {
+    for (const mods of other.mods.values()) {
       for (const mod of mods) {
         this.addMod(mod);
       }
@@ -238,13 +238,20 @@ export class ModDB {
   /**
    * Get the effective value of a modifier, applying PerStat/Multiplier.
    *
+   * This method is intended for numeric mod types (BASE, INC, MORE, OVERRIDE).
+   * If called with a non-numeric value, returns 0 to avoid NaN propagation.
+   *
    * @param mod - The modifier
    * @param config - The calculation config
    * @returns The effective value
    */
   private getEffectiveValue(mod: Mod, config: CalcConfig): number {
-    // Only numeric mod types use this method (BASE, INC, MORE, OVERRIDE)
-    let value = mod.value as number;
+    // Runtime safeguard: ensure value is numeric before doing arithmetic
+    if (typeof mod.value !== 'number') {
+      return 0;
+    }
+
+    let value = mod.value;
 
     if (mod.condition) {
       const cond = mod.condition;
@@ -444,23 +451,32 @@ export class ModDB {
       modCount += mods.length;
 
       for (const mod of mods) {
-        const value = this.getEffectiveValue(mod, config);
-
+        // Only call getEffectiveValue for numeric mod types
         switch (mod.type) {
-          case 'BASE':
+          case 'BASE': {
+            const value = this.getEffectiveValue(mod, config);
             base += value;
             break;
-          case 'INC':
+          }
+          case 'INC': {
+            const value = this.getEffectiveValue(mod, config);
             inc += value;
             break;
-          case 'MORE':
+          }
+          case 'MORE': {
+            const value = this.getEffectiveValue(mod, config);
             more *= 1 + value;
             break;
-          case 'OVERRIDE':
+          }
+          case 'OVERRIDE': {
+            const value = this.getEffectiveValue(mod, config);
             if (override === undefined || value > override) {
               override = value;
             }
             break;
+          }
+          // FLAG and LIST types are intentionally ignored in calc()
+          // as they are non-numeric and have their own query methods
         }
       }
     }
@@ -516,27 +532,33 @@ export class ModDB {
       }
 
       // Validate that all preceding arguments are strings
-      if (!names.every((arg): arg is string => typeof arg === 'string')) {
+      const invalidIndex = names.findIndex((arg) => typeof arg !== 'string');
+      if (invalidIndex !== -1) {
+        const invalidValue = names[invalidIndex];
+        const invalidType = Array.isArray(invalidValue) ? 'array' : typeof invalidValue;
         throw new TypeError(
-          'ModDB: all arguments before config must be stat name strings'
+          `ModDB: argument at position ${invalidIndex + 1} has type ${invalidType} but expected string`
         );
       }
 
       return {
-        names,
+        names: names as string[],
         config: last,
       };
     }
 
     // No config object - all arguments must be strings
-    if (!args.every((arg): arg is string => typeof arg === 'string')) {
+    const invalidIndex = args.findIndex((arg) => typeof arg !== 'string');
+    if (invalidIndex !== -1) {
+      const invalidValue = args[invalidIndex];
+      const invalidType = Array.isArray(invalidValue) ? 'array' : typeof invalidValue;
       throw new TypeError(
-        'ModDB: arguments must be stat name strings, optionally followed by a config object'
+        `ModDB: argument at position ${invalidIndex + 1} has type ${invalidType} but expected string`
       );
     }
 
     return {
-      names: args,
+      names: args as string[],
       config: {},
     };
   }
