@@ -1,12 +1,12 @@
 <template>
-  <div class="full-width full-height overflow-hidden">
+  <q-page class="overflow-hidden">
     <PassiveTreeCanvas
       :show-fps="true"
       @ready="onCanvasReady"
       @resize="onCanvasResize"
       @error="onCanvasError"
     />
-  </div>
+  </q-page>
 </template>
 
 <script setup lang="ts">

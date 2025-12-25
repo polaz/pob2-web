@@ -1,0 +1,1927 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:55.889Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "amulet",
+  "meta": {
+    "totalItems": 24,
+    "itemsWithVariants": 13,
+    "totalEntries": 41,
+    "byType": {
+      "Amulet": 24
+    }
+  },
+  "uniques": {
+    "the-anvil-pre-0-2-0": {
+      "id": "the-anvil-pre-0-2-0",
+      "name": "The Anvil",
+      "baseType": "Bloodstone Amulet",
+      "baseTypeId": "bloodstone-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Life",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "10% reduced Movement Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "10% reduced Skill Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "(25-50)% increased Armour",
+          "tags": [
+            "defences"
+          ],
+          "min": 25,
+          "max": 50
+        },
+        {
+          "text": "20% increased Block chance",
+          "value": 20
+        },
+        {
+          "text": "+(3-5)% to maximum Block chance",
+          "min": 3,
+          "max": 5
+        }
+      ],
+      "variantGroup": "the-anvil",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "the-anvil-pre-0-4-0": {
+      "id": "the-anvil-pre-0-4-0",
+      "name": "The Anvil",
+      "baseType": "Bloodstone Amulet",
+      "baseTypeId": "bloodstone-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Life",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "10% reduced Movement Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "10% reduced Skill Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "(25-50)% increased Armour",
+          "tags": [
+            "defences"
+          ],
+          "min": 25,
+          "max": 50
+        },
+        {
+          "text": "25% increased Block chance",
+          "value": 25
+        },
+        {
+          "text": "+(3-5)% to maximum Block chance",
+          "min": 3,
+          "max": 5
+        }
+      ],
+      "variantGroup": "the-anvil",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-anvil-current": {
+      "id": "the-anvil-current",
+      "name": "The Anvil",
+      "baseType": "Bloodstone Amulet",
+      "baseTypeId": "bloodstone-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Life",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "10% reduced Movement Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "10% reduced Skill Speed",
+          "tags": [
+            "speed"
+          ],
+          "value": 10
+        },
+        {
+          "text": "(25-50)% increased Armour",
+          "tags": [
+            "defences"
+          ],
+          "min": 25,
+          "max": 50
+        },
+        {
+          "text": "25% increased Block chance",
+          "value": 25
+        },
+        {
+          "text": "+(5-10)% to maximum Block chance",
+          "min": 5,
+          "max": 10
+        }
+      ],
+      "variantGroup": "the-anvil",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "astramentis-pre-0-2-0": {
+      "id": "astramentis-pre-0-2-0",
+      "name": "Astramentis",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+(80-100) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "-4 Physical Damage taken from Attack Hits",
+          "tags": [
+            "physical",
+            "attack"
+          ],
+          "value": 4
+        }
+      ],
+      "variantGroup": "astramentis",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "astramentis-current": {
+      "id": "astramentis-current",
+      "name": "Astramentis",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+(50-100) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "-4 Physical Damage taken from Attack Hits",
+          "tags": [
+            "physical",
+            "attack"
+          ],
+          "value": 4
+        }
+      ],
+      "variantGroup": "astramentis",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "beacon-of-azis": {
+      "id": "beacon-of-azis",
+      "name": "Beacon of Azis",
+      "baseType": "Solar Amulet",
+      "baseTypeId": "solar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-15) to Spirit",
+          "implicit": true,
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+30 to Spirit",
+          "value": 30
+        },
+        {
+          "text": "30% increased Light Radius",
+          "value": 30
+        },
+        {
+          "text": "Critical Hits ignore Enemy Monster Elemental Resistances"
+        }
+      ]
+    },
+    "carnage-heart-pre-0-4-0": {
+      "id": "carnage-heart-pre-0-4-0",
+      "name": "Carnage Heart",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "20% reduced maximum Life",
+          "tags": [
+            "life"
+          ],
+          "value": 20
+        },
+        {
+          "text": "+(10-20) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "tags": [
+            "fire",
+            "cold",
+            "lightning"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "100% increased amount of Life Leeched",
+          "value": 100
+        }
+      ],
+      "variantGroup": "carnage-heart",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "carnage-heart-current": {
+      "id": "carnage-heart-current",
+      "name": "Carnage Heart",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "20% reduced maximum Life",
+          "tags": [
+            "life"
+          ],
+          "value": 20
+        },
+        {
+          "text": "+(10-20) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "tags": [
+            "fire",
+            "cold",
+            "lightning"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(100-200)% increased amount of Life Leeched",
+          "min": 100,
+          "max": 200
+        }
+      ],
+      "variantGroup": "carnage-heart",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "choir-of-the-storm-pre-0-4-0": {
+      "id": "choir-of-the-storm-pre-0-4-0",
+      "name": "Choir of the Storm",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Lightning Bolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "tags": [
+            "lightning"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Critical Hits Ignore Enemy Monster Lightning Resistance",
+          "tags": [
+            "lightning"
+          ]
+        },
+        {
+          "text": "Trigger Lightning Bolt Skill on Critical Hit"
+        }
+      ],
+      "variantGroup": "choir-of-the-storm",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "choir-of-the-storm-current": {
+      "id": "choir-of-the-storm-current",
+      "name": "Choir of the Storm",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Lightning Bolt",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(50-100)% to Lightning Resistance",
+          "tags": [
+            "lightning"
+          ],
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "Critical Hits Ignore Enemy Monster Lightning Resistance",
+          "tags": [
+            "lightning"
+          ]
+        },
+        {
+          "text": "Trigger Lightning Bolt Skill on Critical Hit"
+        }
+      ],
+      "variantGroup": "choir-of-the-storm",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "defiance-of-destiny-pre-0-1-1": {
+      "id": "defiance-of-destiny-pre-0-1-1",
+      "name": "Defiance of Destiny",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 56"
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(6-10)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Recover 5% of Missing Life before being Hit by an Enemy",
+          "tags": [
+            "life"
+          ]
+        }
+      ],
+      "variantGroup": "defiance-of-destiny",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "defiance-of-destiny-pre-0-2-1": {
+      "id": "defiance-of-destiny-pre-0-2-1",
+      "name": "Defiance of Destiny",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 56"
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(6-10)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Recover 10% of Missing Life before being Hit by an Enemy",
+          "tags": [
+            "life"
+          ]
+        }
+      ],
+      "variantGroup": "defiance-of-destiny",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "defiance-of-destiny-pre-0-4-0": {
+      "id": "defiance-of-destiny-pre-0-4-0",
+      "name": "Defiance of Destiny",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 56"
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(6-10)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Recover (10-20)% of Missing Life before being Hit by an Enemy",
+          "tags": [
+            "life"
+          ],
+          "min": 10,
+          "max": 20
+        }
+      ],
+      "variantGroup": "defiance-of-destiny",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "defiance-of-destiny-current": {
+      "id": "defiance-of-destiny-current",
+      "name": "Defiance of Destiny",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 56"
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(6-10)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(25-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 25,
+          "max": 40
+        },
+        {
+          "text": "Recover (20-30)% of Missing Life before being Hit by an Enemy",
+          "tags": [
+            "life"
+          ],
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "defiance-of-destiny",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-everlasting-gaze-pre-0-2-0": {
+      "id": "the-everlasting-gaze-pre-0-2-0",
+      "name": "The Everlasting Gaze",
+      "baseType": "Azure Amulet",
+      "baseTypeId": "azure-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+50 to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "value": 50
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "value": 50
+        },
+        {
+          "text": "Gain (20-30)% of maximum Mana as Extra maximum Energy Shield",
+          "tags": [
+            "defences"
+          ],
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "the-everlasting-gaze",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "the-everlasting-gaze-current": {
+      "id": "the-everlasting-gaze-current",
+      "name": "The Everlasting Gaze",
+      "baseType": "Azure Amulet",
+      "baseTypeId": "azure-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "value": 50
+        },
+        {
+          "text": "Gain (4-6)% of maximum Mana as Extra maximum Energy Shield",
+          "tags": [
+            "defences"
+          ],
+          "min": 4,
+          "max": 6
+        }
+      ],
+      "variantGroup": "the-everlasting-gaze",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "eye-of-chayula-pre-0-2-0": {
+      "id": "eye-of-chayula-pre-0-2-0",
+      "name": "Eye of Chayula",
+      "baseType": "Gold Amulet",
+      "baseTypeId": "gold-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(12-20)% increased Rarity of Items found",
+          "implicit": true,
+          "min": 12,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% reduced maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+2500 to Stun Threshold",
+          "value": 2500
+        }
+      ],
+      "variantGroup": "eye-of-chayula",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "eye-of-chayula-current": {
+      "id": "eye-of-chayula-current",
+      "name": "Eye of Chayula",
+      "baseType": "Gold Amulet",
+      "baseTypeId": "gold-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(12-20)% increased Rarity of Items found",
+          "implicit": true,
+          "min": 12,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% reduced maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Cannot be Light Stunned"
+        }
+      ],
+      "variantGroup": "eye-of-chayula",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "fireflower-pre-0-2-0": {
+      "id": "fireflower-pre-0-2-0",
+      "name": "Fireflower",
+      "baseType": "Solar Amulet",
+      "baseTypeId": "solar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 52"
+        },
+        {
+          "text": "+(10-15) to Spirit",
+          "implicit": true,
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(30-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Take 100 Fire Damage when you Ignite an Enemy",
+          "tags": [
+            "fire"
+          ]
+        },
+        {
+          "text": "+(1-4) to Level of all Fire Skills",
+          "tags": [
+            "fire"
+          ],
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "variantGroup": "fireflower",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "fireflower-current": {
+      "id": "fireflower-current",
+      "name": "Fireflower",
+      "baseType": "Solar Amulet",
+      "baseTypeId": "solar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 52"
+        },
+        {
+          "text": "+(10-15) to Spirit",
+          "implicit": true,
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(30-40)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Take 100 Fire Damage when you Ignite an Enemy",
+          "tags": [
+            "fire"
+          ]
+        },
+        {
+          "text": "+(1-4) to Level of all Fire Skills",
+          "tags": [
+            "fire"
+          ],
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "variantGroup": "fireflower",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "fixation-of-yix": {
+      "id": "fixation-of-yix",
+      "name": "Fixation of Yix",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+100 to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "value": 100
+        },
+        {
+          "text": "Allies in your Presence have (30-50)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Allies in your Presence have (30-50)% increased Critical Damage Bonus",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Allies in your Presence have (10-20)% increased Attack Speed",
+          "tags": [
+            "attack",
+            "speed"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence have (10-20)% increased Cast Speed",
+          "tags": [
+            "caster",
+            "speed"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "50% reduced Presence Area of Effect",
+          "value": 50
+        }
+      ]
+    },
+    "hinekora-s-sight": {
+      "id": "hinekora-s-sight",
+      "name": "Hinekora's Sight",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 44"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Future-Past",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "+(300-600) to Accuracy Rating",
+          "tags": [
+            "attack"
+          ],
+          "min": 300,
+          "max": 600
+        },
+        {
+          "text": "+(300-600) to Evasion Rating",
+          "tags": [
+            "defences"
+          ],
+          "min": 300,
+          "max": 600
+        },
+        {
+          "text": "Cannot be Blinded"
+        }
+      ]
+    },
+    "idol-of-uldurn": {
+      "id": "idol-of-uldurn",
+      "name": "Idol of Uldurn",
+      "baseType": "Crimson Amulet",
+      "baseTypeId": "crimson-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 24"
+        },
+        {
+          "text": "(2-4) Life Regeneration per second",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 2,
+          "max": 4
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Skills have +1 to Limit"
+        }
+      ]
+    },
+    "igniferis": {
+      "id": "igniferis",
+      "name": "Igniferis",
+      "baseType": "Crimson Amulet",
+      "baseTypeId": "crimson-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(2-4) Life Regeneration per second",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 2,
+          "max": 4
+        },
+        {
+          "text": "+(10-20)% to Fire Resistance",
+          "tags": [
+            "fire"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% reduced Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Life Recovery from Regeneration is not applied"
+        },
+        {
+          "text": "Every 4 seconds, Recover 1 Life for every 0.2 Life Recovery per second from Regeneration"
+        }
+      ]
+    },
+    "ligurium-talisman": {
+      "id": "ligurium-talisman",
+      "name": "Ligurium Talisman",
+      "baseType": "Lapis Amulet",
+      "baseTypeId": "lapis-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 35"
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(30-40) to maximum Energy Shield",
+          "tags": [
+            "defences"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(25-35) to Spirit",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "tags": [
+            "attribute"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Life Regeneration is applied to Energy Shield instead"
+        }
+      ]
+    },
+    "the-pandemonius-pre-0-4-0": {
+      "id": "the-pandemonius-pre-0-4-0",
+      "name": "The Pandemonius",
+      "baseType": "Lapis Amulet",
+      "baseTypeId": "lapis-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 52"
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "tags": [
+            "cold"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Damage Penetrates 75% Cold Resistance",
+          "tags": [
+            "cold"
+          ]
+        },
+        {
+          "text": "Blind Chilled enemies on Hit"
+        }
+      ],
+      "variantGroup": "the-pandemonius",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-pandemonius-current": {
+      "id": "the-pandemonius-current",
+      "name": "The Pandemonius",
+      "baseType": "Lapis Amulet",
+      "baseTypeId": "lapis-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 52"
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(50-100)% to Cold Resistance",
+          "tags": [
+            "cold"
+          ],
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "Damage Penetrates 75% Cold Resistance",
+          "tags": [
+            "cold"
+          ]
+        },
+        {
+          "text": "Blind Chilled enemies on Hit"
+        }
+      ],
+      "variantGroup": "the-pandemonius",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "revered-resin": {
+      "id": "revered-resin",
+      "name": "Revered Resin",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(20-30)% increased Flask Life Recovery rate",
+          "tags": [
+            "life"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Life Flasks gain (0.17-0.25) charges per Second",
+          "min": 0.17,
+          "max": 0.25
+        }
+      ]
+    },
+    "rondel-of-fragility": {
+      "id": "rondel-of-fragility",
+      "name": "Rondel of Fragility",
+      "baseType": "Lunar Amulet",
+      "baseTypeId": "lunar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "implicit": true,
+          "tags": [
+            "defences"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(15-30)% increased Skill Speed",
+          "tags": [
+            "speed"
+          ],
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "-30% to all Elemental Resistances",
+          "tags": [
+            "fire",
+            "cold",
+            "lightning"
+          ],
+          "value": 30
+        },
+        {
+          "text": "(30-50)% increased Damage",
+          "min": 30,
+          "max": 50
+        }
+      ]
+    },
+    "serpent-s-egg": {
+      "id": "serpent-s-egg",
+      "name": "Serpent's Egg",
+      "baseType": "Gold Amulet",
+      "baseTypeId": "gold-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(12-20)% increased Rarity of Items found",
+          "implicit": true,
+          "min": 12,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to all Attributes",
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "tags": [
+            "chaos"
+          ],
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain an additional Charge when you gain a Charge"
+        }
+      ]
+    },
+    "stone-of-lazhwar": {
+      "id": "stone-of-lazhwar",
+      "name": "Stone of Lazhwar",
+      "baseType": "Lapis Amulet",
+      "baseTypeId": "lapis-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(10-15) to Intelligence",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(50-100) to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(15-25)% increased Cast Speed",
+          "tags": [
+            "caster",
+            "speed"
+          ],
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(15-25)% to Block Chance while holding a Focus",
+          "min": 15,
+          "max": 25
+        }
+      ]
+    },
+    "surefooted-sigil": {
+      "id": "surefooted-sigil",
+      "name": "Surefooted Sigil",
+      "baseType": "Jade Amulet",
+      "baseTypeId": "jade-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-15) to Dexterity",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(5-15) to Dexterity",
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+1 metre to Dodge Roll distance",
+          "value": 1
+        },
+        {
+          "text": "50% increased Evasion Rating if you've Dodge Rolled Recently",
+          "value": 50
+        }
+      ]
+    },
+    "strugglescream-pre-0-4-0": {
+      "id": "strugglescream-pre-0-4-0",
+      "name": "Strugglescream",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "Can have 2 additional Instilled Modifiers"
+        }
+      ],
+      "variantGroup": "strugglescream",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "strugglescream-current": {
+      "id": "strugglescream-current",
+      "name": "Strugglescream",
+      "baseType": "Stellar Amulet",
+      "baseTypeId": "stellar-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(5-7) to all Attributes",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 5,
+          "max": 7
+        },
+        {
+          "text": "Can have 3 additional Instilled Modifiers"
+        }
+      ],
+      "variantGroup": "strugglescream",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ungil-s-harmony-pre-0-1-1": {
+      "id": "ungil-s-harmony-pre-0-1-1",
+      "name": "Ungil's Harmony",
+      "baseType": "Azure Amulet",
+      "baseTypeId": "azure-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 25"
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "100% increased Critical Hit Chance",
+          "value": 100
+        },
+        {
+          "text": "+(60-100) to Stun Threshold",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Your Critical Hits do not deal extra Damage"
+        }
+      ],
+      "variantGroup": "ungil-s-harmony",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "ungil-s-harmony-current": {
+      "id": "ungil-s-harmony-current",
+      "name": "Ungil's Harmony",
+      "baseType": "Azure Amulet",
+      "baseTypeId": "azure-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "Requires Level 25"
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "implicit": true,
+          "tags": [
+            "mana"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "tags": [
+            "mana"
+          ],
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(100-200)% increased Critical Hit Chance",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "text": "+(60-100) to Stun Threshold",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Your Critical Hits do not deal extra Damage"
+        }
+      ],
+      "variantGroup": "ungil-s-harmony",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "xoph-s-blood-pre-0-3-0": {
+      "id": "xoph-s-blood-pre-0-3-0",
+      "name": "Xoph's Blood",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-20)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(30-40)% to Fire Resistance",
+          "tags": [
+            "fire"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Enemies in your Presence have +1% to Fire Resistance"
+        }
+      ],
+      "variantGroup": "xoph-s-blood",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "xoph-s-blood-pre-0-4-0": {
+      "id": "xoph-s-blood-pre-0-4-0",
+      "name": "Xoph's Blood",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-20)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(30-40)% to Fire Resistance",
+          "tags": [
+            "fire"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Enemies in your Presence have -10% to Fire Resistance"
+        }
+      ],
+      "variantGroup": "xoph-s-blood",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "xoph-s-blood-current": {
+      "id": "xoph-s-blood-current",
+      "name": "Xoph's Blood",
+      "baseType": "Amber Amulet",
+      "baseTypeId": "amber-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "+(10-15) to Strength",
+          "implicit": true,
+          "tags": [
+            "attribute"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(10-20)% increased maximum Life",
+          "tags": [
+            "life"
+          ],
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "tags": [
+            "fire"
+          ],
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence have -25% to Fire Resistance"
+        }
+      ],
+      "variantGroup": "xoph-s-blood",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "yoke-of-suffering-pre-0-2-1": {
+      "id": "yoke-of-suffering-pre-0-2-1",
+      "name": "Yoke of Suffering",
+      "baseType": "Bloodstone Amulet",
+      "baseTypeId": "bloodstone-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Life",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(10-15)% to all Elemental Resistances",
+          "tags": [
+            "fire",
+            "cold",
+            "lightning"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(15-30)% increased Elemental Damage",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Enemies take (5-10)% increased Damage for each Elemental Ailment type among",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "your Ailments on them"
+        },
+        {
+          "text": "(20-30)% reduced Duration of Ignite, Shock and Chill on Enemies",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "yoke-of-suffering",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "yoke-of-suffering-current": {
+      "id": "yoke-of-suffering-current",
+      "name": "Yoke of Suffering",
+      "baseType": "Bloodstone Amulet",
+      "baseTypeId": "bloodstone-amulet",
+      "itemType": "Amulet",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Life",
+          "implicit": true,
+          "tags": [
+            "life"
+          ],
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(10-15)% to all Elemental Resistances",
+          "tags": [
+            "fire",
+            "cold",
+            "lightning"
+          ],
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(15-30)% increased Elemental Damage",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Enemies take (15-20)% increased Damage for each Elemental Ailment type among",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "your Ailments on them"
+        },
+        {
+          "text": "(30-40)% reduced Duration of Ignite, Shock and Chill on Enemies",
+          "min": 30,
+          "max": 40
+        }
+      ],
+      "variantGroup": "yoke-of-suffering",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    }
+  }
+}

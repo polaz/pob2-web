@@ -1,0 +1,1874 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:55.244Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "gloves",
+  "meta": {
+    "totalItems": 35,
+    "itemsWithVariants": 19,
+    "totalEntries": 55,
+    "byType": {
+      "Gloves": 35
+    }
+  },
+  "uniques": {
+    "atziri-s-acuity-pre-0-1-1": {
+      "id": "atziri-s-acuity-pre-0-1-1",
+      "name": "Atziri's Acuity",
+      "baseType": "Moulded Mitts",
+      "baseTypeId": "moulded-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(80-100)% increased Armour",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Leech from Critical Hits is instant"
+        }
+      ],
+      "variantGroup": "atziri-s-acuity",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "atziri-s-acuity-current": {
+      "id": "atziri-s-acuity-current",
+      "name": "Atziri's Acuity",
+      "baseType": "Moulded Mitts",
+      "baseTypeId": "moulded-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(80-100)% increased Armour",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(30-50)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Leech from Critical Hits is instant"
+        }
+      ],
+      "variantGroup": "atziri-s-acuity",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "dreadfist": {
+      "id": "dreadfist",
+      "name": "Dreadfist",
+      "baseType": "Bolstered Mitts",
+      "baseTypeId": "bolstered-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(20-30)% increased Critical Damage Bonus",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Critical Hits inflict Impale"
+        },
+        {
+          "text": "Critical Hits cannot Extract Impale"
+        },
+        {
+          "text": "(20-31) to (31-49) Physical Thorns damage",
+          "min": 20,
+          "max": 31
+        }
+      ]
+    },
+    "hateforge-pre-0-4-0": {
+      "id": "hateforge-pre-0-4-0",
+      "name": "Hateforge",
+      "baseType": "Moulded Mitts",
+      "baseTypeId": "moulded-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "Gain a random Charge on reaching Maximum Rage, no more than once every (3-6) seconds",
+          "min": 3,
+          "max": 6
+        },
+        {
+          "text": "Lose all Rage on reaching Maximum Rage"
+        }
+      ],
+      "variantGroup": "hateforge",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "hateforge-current": {
+      "id": "hateforge-current",
+      "name": "Hateforge",
+      "baseType": "Moulded Mitts",
+      "baseTypeId": "moulded-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "(300-400)% increased Armour",
+          "min": 300,
+          "max": 400
+        },
+        {
+          "text": "Gain (3-6) Rage on Hit",
+          "min": 3,
+          "max": 6
+        },
+        {
+          "text": "Gain a random Charge on reaching Maximum Rage, no more than once every (3-6) seconds",
+          "min": 3,
+          "max": 6
+        },
+        {
+          "text": "Lose all Rage on reaching Maximum Rage"
+        }
+      ],
+      "variantGroup": "hateforge",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "lochtonial-caress-pre-0-1-1": {
+      "id": "lochtonial-caress-pre-0-1-1",
+      "name": "Lochtonial Caress",
+      "baseType": "Tempered Mitts",
+      "baseTypeId": "tempered-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Skill Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(10-15)% reduced maximum Mana",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Share Charges with Allies in your Presence"
+        }
+      ],
+      "variantGroup": "lochtonial-caress",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "lochtonial-caress-current": {
+      "id": "lochtonial-caress-current",
+      "name": "Lochtonial Caress",
+      "baseType": "Tempered Mitts",
+      "baseTypeId": "tempered-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Skill Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(15-25) to Armour",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(10-15)% reduced maximum Mana",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Share Charges with Allies in your Presence"
+        }
+      ],
+      "variantGroup": "lochtonial-caress",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "empire-s-grasp": {
+      "id": "empire-s-grasp",
+      "name": "Empire's Grasp",
+      "baseType": "Titan Mitts",
+      "baseTypeId": "titan-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Armour",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (30-50) Life per enemy killed",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(10-20)% increased Global Physical Damage",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Knockback direction is reversed"
+        }
+      ]
+    },
+    "treefingers-pre-0-1-1": {
+      "id": "treefingers-pre-0-1-1",
+      "name": "Treefingers",
+      "baseType": "Riveted Mitts",
+      "baseTypeId": "riveted-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Armour",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Adds (3-5) to (6-8) Physical Damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "Giant's Blood"
+        }
+      ],
+      "variantGroup": "treefingers",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "treefingers-pre-0-4-0": {
+      "id": "treefingers-pre-0-4-0",
+      "name": "Treefingers",
+      "baseType": "Riveted Mitts",
+      "baseTypeId": "riveted-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Armour",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Adds (6-10) to (12-16) Physical Damage to Attacks",
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "5% reduced Attack Speed",
+          "value": 5
+        },
+        {
+          "text": "(20-30)% increased Stun Buildup",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Giant's Blood"
+        }
+      ],
+      "variantGroup": "treefingers",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "treefingers-current": {
+      "id": "treefingers-current",
+      "name": "Treefingers",
+      "baseType": "Riveted Mitts",
+      "baseTypeId": "riveted-mitts",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Armour",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Adds (6-10) to (12-16) Physical Damage to Attacks",
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "5% reduced Attack Speed",
+          "value": 5
+        },
+        {
+          "text": "+(15-20) to Strength",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Stun Buildup",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Giant's Blood"
+        }
+      ],
+      "variantGroup": "treefingers",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "grip-of-winter-pre-0-1-1": {
+      "id": "grip-of-winter-pre-0-1-1",
+      "name": "Grip of Winter",
+      "baseType": "Firm Bracers",
+      "baseTypeId": "firm-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Evasion Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Adds (3-5) to (6-8) Cold damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "(40-50)% increased Freeze Buildup",
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "(20-30)% increased Magnitude of Chill you inflict",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "grip-of-winter",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "grip-of-winter-current": {
+      "id": "grip-of-winter-current",
+      "name": "Grip of Winter",
+      "baseType": "Firm Bracers",
+      "baseTypeId": "firm-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Evasion Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Adds (3-5) to (6-8) Cold damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(40-50)% increased Freeze Buildup",
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "(20-30)% increased Magnitude of Chill you inflict",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "grip-of-winter",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "idle-hands": {
+      "id": "idle-hands",
+      "name": "Idle Hands",
+      "baseType": "Sectioned Bracers",
+      "baseTypeId": "sectioned-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(60-100) to Accuracy Rating",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Attack Speed while on Full Mana",
+          "value": 25
+        },
+        {
+          "text": "You count as on Full Mana while at 90% of maximum Mana or above"
+        }
+      ]
+    },
+    "maligaro-s-virtuosity-pre-0-4-0": {
+      "id": "maligaro-s-virtuosity-pre-0-4-0",
+      "name": "Maligaro's Virtuosity",
+      "baseType": "Fine Bracers",
+      "baseTypeId": "fine-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Evasion Rating",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "5% increased Attack Speed",
+          "value": 5
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Your Critical Damage Bonus is 250%"
+        }
+      ],
+      "variantGroup": "maligaro-s-virtuosity",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "maligaro-s-virtuosity-current": {
+      "id": "maligaro-s-virtuosity-current",
+      "name": "Maligaro's Virtuosity",
+      "baseType": "Fine Bracers",
+      "baseTypeId": "fine-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Evasion Rating",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "5% increased Attack Speed",
+          "value": 5
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Your Critical Hit Chance cannot be Rerolled"
+        }
+      ],
+      "variantGroup": "maligaro-s-virtuosity",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "northpaw-pre-0-1-1": {
+      "id": "northpaw-pre-0-1-1",
+      "name": "Northpaw",
+      "baseType": "Suede Bracers",
+      "baseTypeId": "suede-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Adds (2-3) to (5-6) Physical Damage to Attacks",
+          "min": 2,
+          "max": 3
+        }
+      ],
+      "variantGroup": "northpaw",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "northpaw-pre-0-2-0": {
+      "id": "northpaw-pre-0-2-0",
+      "name": "Northpaw",
+      "baseType": "Suede Bracers",
+      "baseTypeId": "suede-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(15-25) to Evasion Rating",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Adds (3-5) to (8-10) Physical Damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "(20-30)% increased Critical Damage Bonus",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Base Critical Hit Chance for Attacks with Weapons is 8%"
+        }
+      ],
+      "variantGroup": "northpaw",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "northpaw-current": {
+      "id": "northpaw-current",
+      "name": "Northpaw",
+      "baseType": "Suede Bracers",
+      "baseTypeId": "suede-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(15-25) to Evasion Rating",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Adds (3-5) to (8-10) Physical Damage to Attacks",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "(10-15)% increased Critical Damage Bonus",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Base Critical Hit Chance for Attacks with Weapons is 7%"
+        }
+      ],
+      "variantGroup": "northpaw",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "snakebite-pre-0-1-1": {
+      "id": "snakebite-pre-0-1-1",
+      "name": "Snakebite",
+      "baseType": "Spined Bracers",
+      "baseTypeId": "spined-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(7-17)% to Chaos Resistance",
+          "min": 7,
+          "max": 17
+        },
+        {
+          "text": "20% chance to Poison on Hit",
+          "value": 20
+        },
+        {
+          "text": "Targets can be affected by +1 of your Poisons at the same time"
+        }
+      ],
+      "variantGroup": "snakebite",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "snakebite-current": {
+      "id": "snakebite-current",
+      "name": "Snakebite",
+      "baseType": "Spined Bracers",
+      "baseTypeId": "spined-bracers",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(7-17)% to Chaos Resistance",
+          "min": 7,
+          "max": 17
+        },
+        {
+          "text": "(6-10) Life Regeneration per second",
+          "min": 6,
+          "max": 10
+        },
+        {
+          "text": "(20-30)% chance to Poison on Hit",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Targets can be affected by +1 of your Poisons at the same time"
+        }
+      ],
+      "variantGroup": "snakebite",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "candlemaker-pre-0-1-1": {
+      "id": "candlemaker-pre-0-1-1",
+      "name": "Candlemaker",
+      "baseType": "Sombre Gloves",
+      "baseTypeId": "sombre-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(15-30)% to Fire Resistance",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "-(30-15)% to Cold Resistance",
+          "min": 30,
+          "max": 15
+        },
+        {
+          "text": "Flammability Magnitude is doubled"
+        }
+      ],
+      "variantGroup": "candlemaker",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "candlemaker-current": {
+      "id": "candlemaker-current",
+      "name": "Candlemaker",
+      "baseType": "Sombre Gloves",
+      "baseTypeId": "sombre-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "(20-40)% increased Fire Damage",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "(10-20)% reduced Cold Damage",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(20-40)% to Fire Resistance",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "-(20-10)% to Cold Resistance",
+          "min": 20,
+          "max": 10
+        },
+        {
+          "text": "Flammability Magnitude is doubled"
+        }
+      ],
+      "variantGroup": "candlemaker",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "demon-stitcher": {
+      "id": "demon-stitcher",
+      "name": "Demon Stitcher",
+      "baseType": "Intricate Gloves",
+      "baseTypeId": "intricate-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(80-120) to maximum Life",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(6-12)% increased Cast Speed",
+          "min": 6,
+          "max": 12
+        },
+        {
+          "text": "Sacrifice (5-15)% of Life to gain that much Energy Shield when you Cast a Spell",
+          "min": 5,
+          "max": 15
+        }
+      ]
+    },
+    "doedre-s-tenure-pre-0-1-1": {
+      "id": "doedre-s-tenure-pre-0-1-1",
+      "name": "Doedre's Tenure",
+      "baseType": "Stitched Gloves",
+      "baseTypeId": "stitched-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "100% increased Spell Damage",
+          "value": 100
+        },
+        {
+          "text": "(15-25)% reduced Cast Speed",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "min": 10,
+          "max": 15
+        }
+      ],
+      "variantGroup": "doedre-s-tenure",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "doedre-s-tenure-current": {
+      "id": "doedre-s-tenure-current",
+      "name": "Doedre's Tenure",
+      "baseType": "Stitched Gloves",
+      "baseTypeId": "stitched-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "100% increased Spell Damage",
+          "value": 100
+        },
+        {
+          "text": "(15-25)% reduced Cast Speed",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(10-15) to Intelligence",
+          "min": 10,
+          "max": 15
+        }
+      ],
+      "variantGroup": "doedre-s-tenure",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "essentia-sanguis": {
+      "id": "essentia-sanguis",
+      "name": "Essentia Sanguis",
+      "baseType": "Furtive Wraps",
+      "baseTypeId": "furtive-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Evasion and Energy Shield",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "Adds 1 to (30-50) Lightning damage to Attacks",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(15-25) to Intelligence",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(25-35)% to Lightning Resistance",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "Life Leech is Converted to Energy Shield Leech"
+        }
+      ]
+    },
+    "kitoko-s-current": {
+      "id": "kitoko-s-current",
+      "name": "Kitoko's Current",
+      "baseType": "Jewelled Gloves",
+      "baseTypeId": "jewelled-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(10-15)% reduced Attack and Cast Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Lightning damage from Hits Contributes to Electrocution Buildup"
+        }
+      ]
+    },
+    "leopold-s-applause": {
+      "id": "leopold-s-applause",
+      "name": "Leopold's Applause",
+      "baseType": "Embroidered Gloves",
+      "baseTypeId": "embroidered-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Damage Penetrates 10% Elemental Resistances"
+        },
+        {
+          "text": "Your Hits can Penetrate Elemental Resistances down to a minimum of -50%"
+        }
+      ]
+    },
+    "nightscale": {
+      "id": "nightscale",
+      "name": "Nightscale",
+      "baseType": "Pauascale Gloves",
+      "baseTypeId": "pauascale-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(30-50)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "150% increased Mana Regeneration Rate if you've dealt a Critical Hit Recently",
+          "value": 150
+        },
+        {
+          "text": "Cannot Regenerate Mana if you haven't dealt a Critical Hit Recently"
+        }
+      ]
+    },
+    "painter-s-servant-pre-0-1-1": {
+      "id": "painter-s-servant-pre-0-1-1",
+      "name": "Painter's Servant",
+      "baseType": "Torn Gloves",
+      "baseTypeId": "torn-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(5-10)% to Fire Resistance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(5-10)% to Cold Resistance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(5-10)% to Lightning Resistance",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Cold Damage",
+          "value": 33
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Fire Damage",
+          "value": 33
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Lightning Damage",
+          "value": 33
+        }
+      ],
+      "variantGroup": "painter-s-servant",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "painter-s-servant-current": {
+      "id": "painter-s-servant-current",
+      "name": "Painter's Servant",
+      "baseType": "Torn Gloves",
+      "baseTypeId": "torn-gloves",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Gain (5-10)% of Elemental Damage as Extra Cold Damage",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Gain (5-10)% of Elemental Damage as Extra Fire Damage",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Gain (5-10)% of Elemental Damage as Extra Lightning Damage",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Cold Damage",
+          "value": 33
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Fire Damage",
+          "value": 33
+        },
+        {
+          "text": "33% of Elemental Damage Converted to Lightning Damage",
+          "value": 33
+        }
+      ],
+      "variantGroup": "painter-s-servant",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "aerisvane-s-wings": {
+      "id": "aerisvane-s-wings",
+      "name": "Aerisvane's Wings",
+      "baseType": "Burnished Gauntlets",
+      "baseTypeId": "burnished-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Armour and Evasion",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Decimating Strike"
+        }
+      ]
+    },
+    "aurseize": {
+      "id": "aurseize",
+      "name": "Aurseize",
+      "baseType": "Layered Gauntlets",
+      "baseTypeId": "layered-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Armour and Evasion",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(40-50)% increased Rarity of Items found",
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "Lose 2% of maximum Life on Kill"
+        }
+      ]
+    },
+    "death-articulated": {
+      "id": "death-articulated",
+      "name": "Death Articulated",
+      "baseType": "Ornate Gauntlets",
+      "baseTypeId": "ornate-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Lose 5% of maximum Life per second"
+        },
+        {
+          "text": "Regenerate 5 Rage per second"
+        },
+        {
+          "text": "No Inherent loss of Rage"
+        }
+      ]
+    },
+    "deathblow-pre-0-1-1": {
+      "id": "deathblow-pre-0-1-1",
+      "name": "Deathblow",
+      "baseType": "Doubled Gauntlets",
+      "baseTypeId": "doubled-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Gain (20-30) Life per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (20-30) Mana per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Culling Strike"
+        }
+      ],
+      "variantGroup": "deathblow",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "deathblow-current": {
+      "id": "deathblow-current",
+      "name": "Deathblow",
+      "baseType": "Doubled Gauntlets",
+      "baseTypeId": "doubled-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Evasion",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Gain (20-30) Life per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain (20-30) Mana per enemy killed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Culling Strike"
+        }
+      ],
+      "variantGroup": "deathblow",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "jarngreipr-pre-0-1-1": {
+      "id": "jarngreipr-pre-0-1-1",
+      "name": "Jarngreipr",
+      "baseType": "Ringmail Gauntlets",
+      "baseTypeId": "ringmail-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Adds (2-3) to (5-6) Physical Damage to Attacks",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(4-8)% increased Attack Speed",
+          "min": 4,
+          "max": 8
+        },
+        {
+          "text": "Strength can satisfy other Attribute Requirements of Melee Weapons and Melee Skills"
+        }
+      ],
+      "variantGroup": "jarngreipr",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "jarngreipr-current": {
+      "id": "jarngreipr-current",
+      "name": "Jarngreipr",
+      "baseType": "Ringmail Gauntlets",
+      "baseTypeId": "ringmail-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "50% increased Armour and Evasion",
+          "value": 50
+        },
+        {
+          "text": "Adds (2-3) to (5-6) Physical Damage to Attacks",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(4-8)% increased Attack Speed",
+          "min": 4,
+          "max": 8
+        },
+        {
+          "text": "Strength can satisfy other Attribute Requirements of Melee Weapons and Melee Skills"
+        }
+      ],
+      "variantGroup": "jarngreipr",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "valako-s-vice": {
+      "id": "valako-s-vice",
+      "name": "Valako's Vice",
+      "baseType": "Plate Gauntlets",
+      "baseTypeId": "plate-gauntlets",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Evasion",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(5-10)% increased Attack Speed",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(30-50)% to Lightning Resistance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "100% of Fire damage Converted to Lightning damage",
+          "value": 100
+        }
+      ]
+    },
+    "blueflame-bracers-pre-0-1-1": {
+      "id": "blueflame-bracers-pre-0-1-1",
+      "name": "Blueflame Bracers",
+      "baseType": "Goldcast Cuffs",
+      "baseTypeId": "goldcast-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(5-15)% to Fire Resistance",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15)% to Cold Resistance",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "100% of Fire Damage Converted to Cold Damage",
+          "value": 100
+        }
+      ],
+      "variantGroup": "blueflame-bracers",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "blueflame-bracers-current": {
+      "id": "blueflame-bracers-current",
+      "name": "Blueflame Bracers",
+      "baseType": "Goldcast Cuffs",
+      "baseTypeId": "goldcast-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+20 to maximum Energy Shield",
+          "value": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(5-15)% to Fire Resistance",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15)% to Cold Resistance",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "100% of Fire Damage Converted to Cold Damage",
+          "value": 100
+        }
+      ],
+      "variantGroup": "blueflame-bracers",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "gravebind-pre-0-1-1": {
+      "id": "gravebind-pre-0-1-1",
+      "name": "Gravebind",
+      "baseType": "Rope Cuffs",
+      "baseTypeId": "rope-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Armour and Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Gain (7-10) Life per enemy killed",
+          "min": 7,
+          "max": 10
+        },
+        {
+          "text": "Gain (4-6) Mana per enemy killed",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "Enemies in your Presence killed by anyone count as being killed by you instead"
+        }
+      ],
+      "variantGroup": "gravebind",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "gravebind-current": {
+      "id": "gravebind-current",
+      "name": "Gravebind",
+      "baseType": "Rope Cuffs",
+      "baseTypeId": "rope-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Armour and Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-15)% to Cold Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Gain (7-10) Life per enemy killed",
+          "min": 7,
+          "max": 10
+        },
+        {
+          "text": "Gain (4-6) Mana per enemy killed",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "Enemies in your Presence killed by anyone count as being killed by you instead"
+        }
+      ],
+      "variantGroup": "gravebind",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-prisoner-s-manacles": {
+      "id": "the-prisoner-s-manacles",
+      "name": "The Prisoner's Manacles",
+      "baseType": "Verisium Cuffs",
+      "baseTypeId": "verisium-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(200-300)% increased Armour and Energy Shield",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "+100 to maximum Life",
+          "value": 100
+        },
+        {
+          "text": "100% increased Attribute Requirements",
+          "value": 100
+        },
+        {
+          "text": "+(20-40)% to Lightning Resistance",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "(15-30) Life Regeneration per second",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "Debuffs you inflict have (20-30)% increased Slow Magnitude",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Cannot Immobilise enemies"
+        }
+      ]
+    },
+    "shackles-of-the-wretched": {
+      "id": "shackles-of-the-wretched",
+      "name": "Shackles of the Wretched",
+      "baseType": "Aged Cuffs",
+      "baseTypeId": "aged-cuffs",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "You cannot be Chilled for 6 seconds after being Chilled"
+        },
+        {
+          "text": "You cannot be Frozen for 6 seconds after being Frozen"
+        },
+        {
+          "text": "You cannot be Ignited for 6 seconds after being Ignited"
+        },
+        {
+          "text": "You cannot be Shocked for 6 seconds after being Shocked"
+        },
+        {
+          "text": "Curses you inflict are reflected back to you"
+        }
+      ]
+    },
+    "blessed-bonds": {
+      "id": "blessed-bonds",
+      "name": "Blessed Bonds",
+      "baseType": "Linen Wraps",
+      "baseTypeId": "linen-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(60-100) to Evasion Rating",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(30-50) to maximum Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Gain (25-35) Mana per enemy killed",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "Inflict Cold Exposure on Igniting an Enemy"
+        },
+        {
+          "text": "Inflict Fire Exposure on Shocking an Enemy"
+        },
+        {
+          "text": "Inflict Lightning Exposure on Critical Hit"
+        }
+      ]
+    },
+    "hand-of-wisdom-and-action-current": {
+      "id": "hand-of-wisdom-and-action-current",
+      "name": "Hand of Wisdom and Action",
+      "baseType": "Variant: Pre 0.2.0",
+      "baseTypeId": "variant-pre-0-2-0",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Furtive Wraps"
+        },
+        {
+          "text": "+(15-25) to Dexterity",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(15-25) to Intelligence",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "3% increased Attack Speed per 20 Dexterity",
+          "value": 3
+        },
+        {
+          "text": "Adds 1 to 10 Lightning Damage to Attacks per 20 Intelligence"
+        }
+      ],
+      "variantGroup": "hand-of-wisdom-and-action",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "killjoy-pre-0-1-1": {
+      "id": "killjoy-pre-0-1-1",
+      "name": "Killjoy",
+      "baseType": "Linen Wraps",
+      "baseTypeId": "linen-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Evasion and Energy Shield",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Life Flasks do not recover Life"
+        },
+        {
+          "text": "On-Kill Effects happen twice"
+        }
+      ],
+      "variantGroup": "killjoy",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "killjoy-current": {
+      "id": "killjoy-current",
+      "name": "Killjoy",
+      "baseType": "Linen Wraps",
+      "baseTypeId": "linen-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Evasion and Energy Shield",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(20-30)% increased Critical Damage Bonus",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Life Flasks do not recover Life"
+        },
+        {
+          "text": "On-Kill Effects happen twice"
+        }
+      ],
+      "variantGroup": "killjoy",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "plaguefinger-pre-0-1-1": {
+      "id": "plaguefinger-pre-0-1-1",
+      "name": "Plaguefinger",
+      "baseType": "Gauze Wraps",
+      "baseTypeId": "gauze-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Evasion and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(4-6)% increased Attack Speed",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "(5-10)% chance to Poison on Hit",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "All Damage from Hits Contributes to Poison Magnitude"
+        }
+      ],
+      "variantGroup": "plaguefinger",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "plaguefinger-current": {
+      "id": "plaguefinger-current",
+      "name": "Plaguefinger",
+      "baseType": "Gauze Wraps",
+      "baseTypeId": "gauze-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Evasion and Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(4-6)% increased Attack Speed",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "(20-30)% chance to Poison on Hit",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "All Damage from Hits Contributes to Poison Magnitude"
+        }
+      ],
+      "variantGroup": "plaguefinger",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "thunderfist": {
+      "id": "thunderfist",
+      "name": "Thunderfist",
+      "baseType": "Utility Wraps",
+      "baseTypeId": "utility-wraps",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Crackling Palm",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(1-111)% increased Evasion and Energy Shield",
+          "min": 1,
+          "max": 111
+        },
+        {
+          "text": "(1-11)% increased Attack Speed",
+          "min": 1,
+          "max": 11
+        },
+        {
+          "text": "+(1-33)% to Lightning Resistance",
+          "min": 1,
+          "max": 33
+        },
+        {
+          "text": "Adds 1 to (77-111) Lightning Damage to Unarmed Melee Hits",
+          "min": 77,
+          "max": 111
+        },
+        {
+          "text": "+(0.1-1.1)% to Unarmed Melee Attack Critical Hit Chance",
+          "min": 0.1,
+          "max": 1.1
+        }
+      ]
+    },
+    "sine-aequo-pre-0-4-0": {
+      "id": "sine-aequo-pre-0-4-0",
+      "name": "Sine Aequo",
+      "baseType": "Grand Manchettes",
+      "baseTypeId": "grand-manchettes",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Skill Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(40-60)% increased Armour, Evasion and Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Immobilise enemies at 50% buildup instead of 100%"
+        },
+        {
+          "text": "Enemies Immobilised by you take 25% less Damage"
+        }
+      ],
+      "variantGroup": "sine-aequo",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "sine-aequo-current": {
+      "id": "sine-aequo-current",
+      "name": "Sine Aequo",
+      "baseType": "Grand Manchettes",
+      "baseTypeId": "grand-manchettes",
+      "itemType": "Gloves",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Skill Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(100-150)% increased Armour, Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Immobilise enemies at 50% buildup instead of 100%"
+        },
+        {
+          "text": "Enemies Immobilised by you take 20% more Damage"
+        }
+      ],
+      "variantGroup": "sine-aequo",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    }
+  }
+}

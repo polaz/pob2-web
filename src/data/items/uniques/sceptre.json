@@ -1,0 +1,571 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:53.310Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "sceptre",
+  "meta": {
+    "totalItems": 8,
+    "itemsWithVariants": 2,
+    "totalEntries": 14,
+    "byType": {
+      "Sceptre": 8
+    }
+  },
+  "uniques": {
+    "the-dark-defiler-pre-0-1-1": {
+      "id": "the-dark-defiler-pre-0-1-1",
+      "name": "The Dark Defiler",
+      "baseType": "Rattling Sceptre",
+      "baseTypeId": "rattling-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Skeletal Warrior Minion",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(20-30) to maximum Mana",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "(10-30)% increased Mana Regeneration Rate",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "Gain 3% of Damage as Chaos Damage per Undead Minion"
+        }
+      ],
+      "variantGroup": "the-dark-defiler",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-dark-defiler-current": {
+      "id": "the-dark-defiler-current",
+      "name": "The Dark Defiler",
+      "baseType": "Rattling Sceptre",
+      "baseTypeId": "rattling-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Skeletal Warrior Minion",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+(20-30) to maximum Mana",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "(10-30)% increased Mana Regeneration Rate",
+          "min": 10,
+          "max": 30
+        },
+        {
+          "text": "Gain 5% of Damage as Chaos Damage per Undead Minion"
+        }
+      ],
+      "variantGroup": "the-dark-defiler",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "font-of-power": {
+      "id": "font-of-power",
+      "name": "Font of Power",
+      "baseType": "Omen Sceptre",
+      "baseTypeId": "omen-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Malice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(30-50)% increased Spirit",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "When a Party Member in your Presence Casts a Spell, you"
+        },
+        {
+          "text": "Sacrifice 20% of Mana and they Leech that Mana"
+        }
+      ]
+    },
+    "guiding-palm-fire-pre-0-2-1": {
+      "id": "guiding-palm-fire-pre-0-2-1",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Fire",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal (4-6) to (7-10) added Attack Fire Damage",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "fire-pre-0-2-1",
+      "variantName": "Fire (Pre 0.2.1 )"
+    },
+    "guiding-palm-cold-pre-0-2-1": {
+      "id": "guiding-palm-cold-pre-0-2-1",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal (3-5) to (6-8) added Attack Cold Damage",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "cold-pre-0-2-1",
+      "variantName": "Cold (Pre 0.2.1 )"
+    },
+    "guiding-palm-lightning-pre-0-2-1": {
+      "id": "guiding-palm-lightning-pre-0-2-1",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Lightning",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal 1 to (10-15) added Attack Lightning Damage",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "lightning-pre-0-2-1",
+      "variantName": "Lightning (Pre 0.2.1 )"
+    },
+    "guiding-palm-fire": {
+      "id": "guiding-palm-fire",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Fire",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal (15-23) to (28-35) added Attack Fire Damage",
+          "min": 15,
+          "max": 23
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "fire",
+      "variantName": "Fire"
+    },
+    "guiding-palm-cold": {
+      "id": "guiding-palm-cold",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal (15-23) to (28-35) added Attack Cold Damage",
+          "min": 15,
+          "max": 23
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "cold",
+      "variantName": "Cold"
+    },
+    "guiding-palm-lightning": {
+      "id": "guiding-palm-lightning",
+      "name": "Guiding Palm",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Lightning",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal 1 to (56-70) added Attack Lightning Damage",
+          "min": 56,
+          "max": 70
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(5-10) to all Attributes",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "guiding-palm",
+      "variantId": "lightning",
+      "variantName": "Lightning",
+      "isDefaultVariant": true
+    },
+    "guiding-palm-of-the-eye": {
+      "id": "guiding-palm-of-the-eye",
+      "name": "Guiding Palm of the Eye",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Ice",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Gain 25% of Damage as Extra Cold Damage"
+        },
+        {
+          "text": "Allies in your Presence deal (15-23) to (28-35) added Attack Cold Damage",
+          "min": 15,
+          "max": 23
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Grants effect of Guided Freezing Shrine"
+        }
+      ]
+    },
+    "guiding-palm-of-the-heart": {
+      "id": "guiding-palm-of-the-heart",
+      "name": "Guiding Palm of the Heart",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Fire",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Gain 25% of Damage as Extra Fire Damage"
+        },
+        {
+          "text": "Allies in your Presence deal (15-23) to (28-35) added Attack Fire Damage",
+          "min": 15,
+          "max": 23
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Grants effect of Guided Meteoric Shrine"
+        }
+      ]
+    },
+    "guiding-palm-of-the-mind": {
+      "id": "guiding-palm-of-the-mind",
+      "name": "Guiding Palm of the Mind",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Lightning",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Gain 25% of Damage as Extra Lightning Damage"
+        },
+        {
+          "text": "Allies in your Presence deal 1 to (56-70) added Attack Lightning Damage",
+          "min": 56,
+          "max": 70
+        },
+        {
+          "text": "50% of your Base Life Regeneration is granted to Allies in your Presence",
+          "value": 50
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Grants effect of Guided Tempest Shrine"
+        }
+      ]
+    },
+    "palm-of-the-dreamer": {
+      "id": "palm-of-the-dreamer",
+      "name": "Palm of the Dreamer",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Requires Level 65"
+        },
+        {
+          "text": "Grants Skill: Level (1-20) Impurity",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Allies in your Presence deal (13-17) to (25-37) added Attack Chaos Damage",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "+(7-13) to all Attributes",
+          "min": 7,
+          "max": 13
+        },
+        {
+          "text": "23% reduced Light Radius",
+          "value": 23
+        },
+        {
+          "text": "(-13-13)% reduced Skill Effect Duration"
+        },
+        {
+          "text": "Gain 27% of Damage as Extra Chaos Damage"
+        },
+        {
+          "text": "Grants effect of Dreaming Gloom Shrine"
+        }
+      ]
+    },
+    "sacred-flame": {
+      "id": "sacred-flame",
+      "name": "Sacred Flame",
+      "baseType": "Shrine Sceptre",
+      "baseTypeId": "shrine-sceptre",
+      "itemType": "Sceptre",
+      "category": "weapons",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Purity of Fire",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "Gain (40-60)% of Damage as Extra Fire Damage",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Allies in your Presence Regenerate (2-3)% of their Maximum Life per second",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "Allies in your Presence Gain (20-30)% of Damage as Extra Fire Damage",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence Resist Elemental Damage based on their Lowest Resistance"
+        }
+      ]
+    }
+  }
+}
