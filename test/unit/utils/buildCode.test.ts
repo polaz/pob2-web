@@ -177,9 +177,9 @@ describe('buildCode', () => {
       const codeLevel1 = encodeBuildCode(build, { compressionLevel: 1 });
       const codeLevel9 = encodeBuildCode(build, { compressionLevel: 9 });
 
-      // Higher compression should generally produce smaller or equal output
-      // (allow small tolerance as compression effectiveness varies with data)
-      expect(codeLevel9.length).toBeLessThanOrEqual(codeLevel1.length + 10);
+      // Higher compression level (9) should always produce smaller or equal output
+      // compared to lower compression (1) for the same input data
+      expect(codeLevel9.length).toBeLessThanOrEqual(codeLevel1.length);
     });
   });
 

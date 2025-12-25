@@ -35,7 +35,7 @@
     "comlink": "^4.4.2",
     "dexie": "4.3.0",
     "electron-updater": "6.7.3",
-    "fflate": "^0.8.2",
+    "fflate": "0.8.2",
     "lodash-es": "^4.17.22",
     "pinia": "^3.0.4",
     "pixi.js": "^8.14.3",

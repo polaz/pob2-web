@@ -511,15 +511,19 @@ export function buildToXml(build: Build): string {
 
   // Tree element with Spec
   const nodes = serializeNodes(build.allocatedNodeIds);
-  const masteryEffects = serializeMasteryEffects(build.masterySelections);
-  // masteryEffects passed directly - xmlElement filters empty strings (see xmlElement JSDoc)
+  // Explicit check for empty masterySelections - pass undefined instead of empty string
+  // to avoid relying on xmlElement's implicit empty-string filtering behavior
+  const hasMasterySelections = Object.keys(build.masterySelections).length > 0;
+  const masteryEffects = hasMasterySelections
+    ? serializeMasteryEffects(build.masterySelections)
+    : undefined;
   const specElement = xmlElement(
     'Spec',
     {
       title: build.name ?? DEFAULT_SPEC_TITLE,
       treeVersion: POE2_TREE_VERSION,
       nodes,
-      masteryEffects,
+      ...(masteryEffects !== undefined && { masteryEffects }),
     },
     '',
     true
