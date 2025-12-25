@@ -1,0 +1,458 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:56.427Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "focus",
+  "meta": {
+    "totalItems": 8,
+    "itemsWithVariants": 4,
+    "totalEntries": 13,
+    "byType": {
+      "Focus": 8
+    }
+  },
+  "uniques": {
+    "apep-s-supremacy": {
+      "id": "apep-s-supremacy",
+      "name": "Apep's Supremacy",
+      "baseType": "Voodoo Focus",
+      "baseTypeId": "voodoo-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-200)% increased Energy Shield",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "text": "(30-50)% increased Energy Shield Recharge Rate",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% faster start of Energy Shield Recharge",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "20% of Elemental damage from Hits taken as Chaos damage",
+          "value": 20
+        },
+        {
+          "text": "+25% chance to be Poisoned",
+          "value": 25
+        }
+      ]
+    },
+    "carrion-call-pre-0-1-1": {
+      "id": "carrion-call-pre-0-1-1",
+      "name": "Carrion Call",
+      "baseType": "Engraved Focus",
+      "baseTypeId": "engraved-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Energy Shield",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Minions have (20-30)% increased maximum Life",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Minions' Resistances are equal to yours"
+        }
+      ],
+      "variantGroup": "carrion-call",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "carrion-call-current": {
+      "id": "carrion-call-current",
+      "name": "Carrion Call",
+      "baseType": "Engraved Focus",
+      "baseTypeId": "engraved-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(30-40) to maximum Energy Shield",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "Minions have (20-30)% increased maximum Life",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(20-30)% increased Mana Regeneration Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Minions deal (20-30)% increased Damage",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Minions' Resistances are equal to yours"
+        }
+      ],
+      "variantGroup": "carrion-call",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "deathrattle": {
+      "id": "deathrattle",
+      "name": "Deathrattle",
+      "baseType": "Twig Focus",
+      "baseTypeId": "twig-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(10-20) to maximum Energy Shield",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-40)% increased Spell Damage",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "20% chance for Energy Shield Recharge to start when you Kill an Enemy",
+          "value": 20
+        }
+      ]
+    },
+    "effigy-of-cruelty-pre-0-3-0": {
+      "id": "effigy-of-cruelty-pre-0-3-0",
+      "name": "Effigy of Cruelty",
+      "baseType": "Antler Focus",
+      "baseTypeId": "antler-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(60-80)% increased Spell Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+10 to Intelligence",
+          "value": 10
+        },
+        {
+          "text": "+(7-13)% to Chaos Resistance",
+          "min": 7,
+          "max": 13
+        },
+        {
+          "text": "Critical Hits with Spells apply (3-5) Stacks of Critical Weakness",
+          "min": 3,
+          "max": 5
+        }
+      ],
+      "variantGroup": "effigy-of-cruelty",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "effigy-of-cruelty-pre-0-4-0": {
+      "id": "effigy-of-cruelty-pre-0-4-0",
+      "name": "Effigy of Cruelty",
+      "baseType": "Antler Focus",
+      "baseTypeId": "antler-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(60-80)% increased Spell Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+10 to Intelligence",
+          "value": 10
+        },
+        {
+          "text": "+(7-13)% to Chaos Resistance",
+          "min": 7,
+          "max": 13
+        },
+        {
+          "text": "Critical Hits with Spells apply (1-3) Stack of Critical Weakness",
+          "min": 1,
+          "max": 3
+        }
+      ],
+      "variantGroup": "effigy-of-cruelty",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "effigy-of-cruelty-current": {
+      "id": "effigy-of-cruelty-current",
+      "name": "Effigy of Cruelty",
+      "baseType": "Antler Focus",
+      "baseTypeId": "antler-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(40-50)% increased Spell Damage",
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "+10 to Intelligence",
+          "value": 10
+        },
+        {
+          "text": "+(7-13)% to Chaos Resistance",
+          "min": 7,
+          "max": 13
+        }
+      ],
+      "variantGroup": "effigy-of-cruelty",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-eternal-spark-pre-0-1-1": {
+      "id": "the-eternal-spark-pre-0-1-1",
+      "name": "The Eternal Spark",
+      "baseType": "Crystal Focus",
+      "baseTypeId": "crystal-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Energy Shield",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+5% to Maximum Lightning Resistance",
+          "value": 5
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate while stationary",
+          "value": 50
+        }
+      ],
+      "variantGroup": "the-eternal-spark",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-eternal-spark-current": {
+      "id": "the-eternal-spark-current",
+      "name": "The Eternal Spark",
+      "baseType": "Crystal Focus",
+      "baseTypeId": "crystal-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Energy Shield",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+5% to Maximum Lightning Resistance",
+          "value": 5
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "40% increased Mana Regeneration Rate",
+          "value": 40
+        },
+        {
+          "text": "40% increased Mana Regeneration Rate while stationary",
+          "value": 40
+        }
+      ],
+      "variantGroup": "the-eternal-spark",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "rathpith-globe-pre-0-4-0": {
+      "id": "rathpith-globe-pre-0-4-0",
+      "name": "Rathpith Globe",
+      "baseType": "Sacred Focus",
+      "baseTypeId": "sacred-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to maximum Life",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Non-Channelling Spells cost an additional 6% of your maximum Life"
+        },
+        {
+          "text": "Non-Channelling Spells have 5% increased Critical Hit Chance per 100 maximum Life"
+        },
+        {
+          "text": "Non-Channelling Spells deal 10% increased Damage per 100 maximum Life"
+        }
+      ],
+      "variantGroup": "rathpith-globe",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "rathpith-globe-current": {
+      "id": "rathpith-globe-current",
+      "name": "Rathpith Globe",
+      "baseType": "Sacred Focus",
+      "baseTypeId": "sacred-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to maximum Life",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "Non-Channelling Spells cost an additional 6% of your maximum Life"
+        },
+        {
+          "text": "Non-Channelling Spells have 3% increased Critical Hit Chance per 100 maximum Life"
+        },
+        {
+          "text": "Non-Channelling Spells deal 6% increased Damage per 100 maximum Life"
+        }
+      ],
+      "variantGroup": "rathpith-globe",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "serpent-s-lesson": {
+      "id": "serpent-s-lesson",
+      "name": "Serpent's Lesson",
+      "baseType": "Tonal Focus",
+      "baseTypeId": "tonal-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "+(60-100) to maximum Life",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "You count as on Low Life while at 35% of maximum Mana or below"
+        },
+        {
+          "text": "You count as on Low Mana while at 35% of maximum Life or below"
+        }
+      ]
+    },
+    "threaded-light": {
+      "id": "threaded-light",
+      "name": "Threaded Light",
+      "baseType": "Woven Focus",
+      "baseTypeId": "woven-focus",
+      "itemType": "Focus",
+      "category": "accessories",
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Energy Shield",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "(30-40)% increased Mana Regeneration Rate",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "20% increased Light Radius",
+          "value": 20
+        },
+        {
+          "text": "(8-12)% increased Spell Damage per 10 Spirit",
+          "min": 8,
+          "max": 12
+        }
+      ]
+    }
+  }
+}

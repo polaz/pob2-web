@@ -1,0 +1,2938 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:55.396Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "helmet",
+  "meta": {
+    "totalItems": 51,
+    "itemsWithVariants": 30,
+    "totalEntries": 84,
+    "byType": {
+      "Helmet": 51
+    }
+  },
+  "uniques": {
+    "black-sun-crest": {
+      "id": "black-sun-crest",
+      "name": "Black Sun Crest",
+      "baseType": "Wrapped Greathelm",
+      "baseTypeId": "wrapped-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "20% reduced Light Radius",
+          "value": 20
+        },
+        {
+          "text": "(5-15)% increased Strength",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "(5-15)% increased Dexterity",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "(5-15)% increased Intelligence",
+          "min": 5,
+          "max": 15
+        }
+      ]
+    },
+    "blood-price": {
+      "id": "blood-price",
+      "name": "Blood Price",
+      "baseType": "Fierce Greathelm",
+      "baseTypeId": "fierce-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(80-120)% increased Armour",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(100-150) to Stun Threshold",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(30-60)% increased Presence Area of Effect",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Enemies in your Presence have at least 10% of Life Reserved"
+        }
+      ]
+    },
+    "corona-of-the-red-sun-pre-0-1-1": {
+      "id": "corona-of-the-red-sun-pre-0-1-1",
+      "name": "Corona of the Red Sun",
+      "baseType": "Warrior Greathelm",
+      "baseTypeId": "warrior-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(100-150) to Accuracy Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Leeching Life from your Hits causes Allies in your Presence to also Leech the same amount of Life"
+        }
+      ],
+      "variantGroup": "corona-of-the-red-sun",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "corona-of-the-red-sun-current": {
+      "id": "corona-of-the-red-sun-current",
+      "name": "Corona of the Red Sun",
+      "baseType": "Warrior Greathelm",
+      "baseTypeId": "warrior-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(100-150) to Accuracy Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(20-25)% to Fire Resistance",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Leeching Life from your Hits causes Allies in your Presence to also Leech the same amount of Life"
+        }
+      ],
+      "variantGroup": "corona-of-the-red-sun",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "deidbell-pre-0-1-1": {
+      "id": "deidbell-pre-0-1-1",
+      "name": "Deidbell",
+      "baseType": "Elite Greathelm",
+      "baseTypeId": "elite-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(20-30)% increased Warcry Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Warcries Explode Corpses dealing 10% of their Life as Physical Damage"
+        },
+        {
+          "text": "Warcry Skills have (20-30)% increased Area of Effect",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "deidbell",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "deidbell-current": {
+      "id": "deidbell-current",
+      "name": "Deidbell",
+      "baseType": "Elite Greathelm",
+      "baseTypeId": "elite-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Armour",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-30)% increased Warcry Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Warcries Explode Corpses dealing 10% of their Life as Physical Damage"
+        },
+        {
+          "text": "Warcry Skills have (20-30)% increased Area of Effect",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "deidbell",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ezomyte-peak-pre-0-1-1": {
+      "id": "ezomyte-peak-pre-0-1-1",
+      "name": "Ezomyte Peak",
+      "baseType": "Soldier Greathelm",
+      "baseTypeId": "soldier-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(10-20)% increased Area of Effect",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Unwavering Stance"
+        }
+      ],
+      "variantGroup": "ezomyte-peak",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "ezomyte-peak-current": {
+      "id": "ezomyte-peak-current",
+      "name": "Ezomyte Peak",
+      "baseType": "Soldier Greathelm",
+      "baseTypeId": "soldier-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(50-80) to maximum Life",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "(3-6) Life Regeneration per second",
+          "min": 3,
+          "max": 6
+        },
+        {
+          "text": "(10-20)% increased Area of Effect",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Unwavering Stance"
+        }
+      ],
+      "variantGroup": "ezomyte-peak",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "horns-of-bynden-pre-0-1-1": {
+      "id": "horns-of-bynden-pre-0-1-1",
+      "name": "Horns of Bynden",
+      "baseType": "Rusted Greathelm",
+      "baseTypeId": "rusted-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(5-15)% increased Rarity of Items found",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain 1 Rage on Melee Hit"
+        },
+        {
+          "text": "Every Rage also grants 1% increased Armour"
+        }
+      ],
+      "variantGroup": "horns-of-bynden",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "horns-of-bynden-current": {
+      "id": "horns-of-bynden-current",
+      "name": "Horns of Bynden",
+      "baseType": "Rusted Greathelm",
+      "baseTypeId": "rusted-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+20 to Armour",
+          "value": 20
+        },
+        {
+          "text": "(5-15)% increased Rarity of Items found",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(20-30) to Strength",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain 1 Rage on Melee Hit"
+        },
+        {
+          "text": "Every Rage also grants 1% increased Armour"
+        }
+      ],
+      "variantGroup": "horns-of-bynden",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "thrillsteel": {
+      "id": "thrillsteel",
+      "name": "Thrillsteel",
+      "baseType": "Spired Greathelm",
+      "baseTypeId": "spired-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Onslaught"
+        }
+      ]
+    },
+    "wings-of-caelyn-pre-0-1-1": {
+      "id": "wings-of-caelyn-pre-0-1-1",
+      "name": "Wings of Caelyn",
+      "baseType": "Rusted Greathelm",
+      "baseTypeId": "rusted-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(5-15)% increased Rarity of Items found",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain 1 Rage on Melee Hit"
+        },
+        {
+          "text": "Every Rage also grants 1% increased Stun Threshold"
+        }
+      ],
+      "variantGroup": "wings-of-caelyn",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "wings-of-caelyn-current": {
+      "id": "wings-of-caelyn-current",
+      "name": "Wings of Caelyn",
+      "baseType": "Rusted Greathelm",
+      "baseTypeId": "rusted-greathelm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+20 to Armour",
+          "value": 20
+        },
+        {
+          "text": "(5-15)% increased Rarity of Items found",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain 1 Rage on Melee Hit"
+        },
+        {
+          "text": "Every Rage also grants 1% increased Stun Threshold"
+        }
+      ],
+      "variantGroup": "wings-of-caelyn",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "alpha-s-howl": {
+      "id": "alpha-s-howl",
+      "name": "Alpha's Howl",
+      "baseType": "Armoured Cap",
+      "baseTypeId": "armoured-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(80-100)% increased Evasion Rating",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+100 to Spirit",
+          "value": 100
+        },
+        {
+          "text": "+(50-75)% to Cold Resistance",
+          "min": 50,
+          "max": 75
+        },
+        {
+          "text": "Presence Radius is doubled"
+        }
+      ]
+    },
+    "the-black-insignia": {
+      "id": "the-black-insignia",
+      "name": "The Black Insignia",
+      "baseType": "Corsair Cap",
+      "baseTypeId": "corsair-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(70-100)% increased Evasion Rating",
+          "min": 70,
+          "max": 100
+        },
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Gain Tailwind on Critical Hit, no more than once per second"
+        },
+        {
+          "text": "Lose all Tailwind when Hit"
+        }
+      ]
+    },
+    "constricting-command-pre-0-3-0": {
+      "id": "constricting-command-pre-0-3-0",
+      "name": "Constricting Command",
+      "baseType": "Viper Cap",
+      "baseTypeId": "viper-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(80-120) to maximum Life",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(8-12) Life Regeneration per second",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "Pin Enemies which are Primed for Pinning"
+        }
+      ],
+      "variantGroup": "constricting-command",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "constricting-command-current": {
+      "id": "constricting-command-current",
+      "name": "Constricting Command",
+      "baseType": "Viper Cap",
+      "baseTypeId": "viper-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(80-120) to maximum Life",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(8-12) Life Regeneration per second",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "Require (2-4) fewer enemies to be Surrounded",
+          "min": 2,
+          "max": 4
+        }
+      ],
+      "variantGroup": "constricting-command",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "elevore-pre-0-1-1": {
+      "id": "elevore-pre-0-1-1",
+      "name": "Elevore",
+      "baseType": "Hunter Hood",
+      "baseTypeId": "hunter-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Evasion Rating",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Charms gain 0.5 charges per Second"
+        }
+      ],
+      "variantGroup": "elevore",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "elevore-current": {
+      "id": "elevore-current",
+      "name": "Elevore",
+      "baseType": "Hunter Hood",
+      "baseTypeId": "hunter-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Evasion Rating",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Charms gain 0.5 charges per Second"
+        },
+        {
+          "text": "+1 Charm Slot",
+          "value": 1
+        }
+      ],
+      "variantGroup": "elevore",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "goldrim": {
+      "id": "goldrim",
+      "name": "Goldrim",
+      "baseType": "Felt Cap",
+      "baseTypeId": "felt-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to Evasion Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "10% increased Rarity of Items found",
+          "value": 10
+        },
+        {
+          "text": "+(25-35)% to all Elemental Resistances",
+          "min": 25,
+          "max": 35
+        }
+      ]
+    },
+    "heatshiver": {
+      "id": "heatshiver",
+      "name": "Heatshiver",
+      "baseType": "Velvet Cap",
+      "baseTypeId": "velvet-cap",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(50-70)% increased Evasion Rating",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(20-30)% to Cold Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Gain 1% of Cold damage as Extra Fire damage per 1% Chill Magnitude on enemy"
+        }
+      ]
+    },
+    "innsmouth-pre-0-1-1": {
+      "id": "innsmouth-pre-0-1-1",
+      "name": "Innsmouth",
+      "baseType": "Shabby Hood",
+      "baseTypeId": "shabby-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "25% reduced maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "+(10-20)% to Cold Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(13-19)% to Chaos Resistance",
+          "min": 13,
+          "max": 19
+        },
+        {
+          "text": "100% increased Mana Regeneration Rate",
+          "value": 100
+        }
+      ],
+      "variantGroup": "innsmouth",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "innsmouth-current": {
+      "id": "innsmouth-current",
+      "name": "Innsmouth",
+      "baseType": "Shabby Hood",
+      "baseTypeId": "shabby-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(20-30) to Evasion Rating",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% reduced maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "+(10-20)% to Cold Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(13-19)% to Chaos Resistance",
+          "min": 13,
+          "max": 19
+        },
+        {
+          "text": "100% increased Mana Regeneration Rate",
+          "value": 100
+        }
+      ],
+      "variantGroup": "innsmouth",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "myris-uxor": {
+      "id": "myris-uxor",
+      "name": "Myris Uxor",
+      "baseType": "Covert Hood",
+      "baseTypeId": "covert-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(100-150) to Accuracy Rating",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "100% increased Culling Strike Threshold",
+          "value": 100
+        }
+      ]
+    },
+    "radiant-grief": {
+      "id": "radiant-grief",
+      "name": "Radiant Grief",
+      "baseType": "Lace Hood",
+      "baseTypeId": "lace-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(80-100)% increased Evasion Rating",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+(15-25)% to Fire Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "30% increased Light Radius",
+          "value": 30
+        },
+        {
+          "text": "Enemies in your Presence are Ignited as though dealt 100 Base Fire Damage"
+        }
+      ]
+    },
+    "starkonja-s-head": {
+      "id": "starkonja-s-head",
+      "name": "Starkonja's Head",
+      "baseType": "Leatherbound Hood",
+      "baseTypeId": "leatherbound-hood",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-200)% increased Evasion Rating",
+          "min": 100,
+          "max": 200
+        },
+        {
+          "text": "(15-25)% increased Critical Hit Chance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "+(30-40) to Dexterity",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "150% increased Global Evasion Rating when on Low Life",
+          "value": 150
+        },
+        {
+          "text": "15% of Damage from Hits is taken from your Damageable Companion's Life before you",
+          "value": 15
+        }
+      ]
+    },
+    "atziri-s-disdain-0-2-0": {
+      "id": "atziri-s-disdain-0-2-0",
+      "name": "Atziri's Disdain",
+      "baseType": "Gold Circlet",
+      "baseTypeId": "gold-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(40-60) to maximum Mana",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(20-25)% of Damage taken bypasses Energy Shield",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "Gain (25-30)% of maximum Life as Extra maximum Energy Shield",
+          "min": 25,
+          "max": 30
+        }
+      ],
+      "variantGroup": "atziri-s-disdain",
+      "variantId": "0-2-0",
+      "variantName": "0.2.0"
+    },
+    "atziri-s-disdain-current": {
+      "id": "atziri-s-disdain-current",
+      "name": "Atziri's Disdain",
+      "baseType": "Gold Circlet",
+      "baseTypeId": "gold-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "10% of Damage taken bypasses Energy Shield",
+          "value": 10
+        },
+        {
+          "text": "Gain (10-15)% of maximum Life as Extra maximum Energy Shield",
+          "min": 10,
+          "max": 15
+        }
+      ],
+      "variantGroup": "atziri-s-disdain",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "crown-of-eyes": {
+      "id": "crown-of-eyes",
+      "name": "Crown of Eyes",
+      "baseType": "Vermeil Circlet",
+      "baseTypeId": "vermeil-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-140)% increased Energy Shield",
+          "min": 100,
+          "max": 140
+        },
+        {
+          "text": "+(150-200) to Accuracy Rating",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "-10% to Fire Resistance",
+          "value": 10
+        },
+        {
+          "text": "Increases and Reductions to Spell damage also apply to Attacks"
+        }
+      ]
+    },
+    "crown-of-thorns": {
+      "id": "crown-of-thorns",
+      "name": "Crown of Thorns",
+      "baseType": "Twig Circlet",
+      "baseTypeId": "twig-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(100-150) to maximum Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Lose 5 Life when you use a Skill"
+        },
+        {
+          "text": "(3-5) to (6-10) Physical Thorns damage",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "Pain Attunement"
+        }
+      ]
+    },
+    "the-devouring-diadem-pre-0-1-1": {
+      "id": "the-devouring-diadem-pre-0-1-1",
+      "name": "The Devouring Diadem",
+      "baseType": "Wicker Tiara",
+      "baseTypeId": "wicker-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(13-19)% to Chaos Resistance",
+          "min": 13,
+          "max": 19
+        },
+        {
+          "text": "Every 3 seconds, Consume a nearby Corpse to Recover 20% of maximum Life"
+        }
+      ],
+      "variantGroup": "the-devouring-diadem",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-devouring-diadem-current": {
+      "id": "the-devouring-diadem-current",
+      "name": "The Devouring Diadem",
+      "baseType": "Wicker Tiara",
+      "baseTypeId": "wicker-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(13-19)% to Chaos Resistance",
+          "min": 13,
+          "max": 19
+        },
+        {
+          "text": "Every 3 seconds, Consume a nearby Corpse to Recover 20% of maximum Life"
+        }
+      ],
+      "variantGroup": "the-devouring-diadem",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "forbidden-gaze-pre-0-1-1": {
+      "id": "forbidden-gaze-pre-0-1-1",
+      "name": "Forbidden Gaze",
+      "baseType": "Chain Tiara",
+      "baseTypeId": "chain-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(3-5)% to Maximum Cold Resistance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(25-35)% to Cold Resistance",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "25% reduced Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "forbidden-gaze",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "forbidden-gaze-current": {
+      "id": "forbidden-gaze-current",
+      "name": "Forbidden Gaze",
+      "baseType": "Chain Tiara",
+      "baseTypeId": "chain-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(3-5)% to Maximum Cold Resistance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(30-50)% to Cold Resistance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "25% reduced Light Radius",
+          "value": 25
+        }
+      ],
+      "variantGroup": "forbidden-gaze",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "indigon-pre-0-4-0": {
+      "id": "indigon-pre-0-4-0",
+      "name": "Indigon",
+      "baseType": "Magus Tiara",
+      "baseTypeId": "magus-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Energy Shield",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(80-120) to maximum Mana",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(35-50)% increased Cost of Skills for each 200 total Mana Spent Recently",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "(35-50)% increased Spell damage for each 200 total Mana you have Spent Recently",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "Mana Recovery other than Regeneration cannot Recover Mana"
+        }
+      ],
+      "variantGroup": "indigon",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "indigon-current": {
+      "id": "indigon-current",
+      "name": "Indigon",
+      "baseType": "Magus Tiara",
+      "baseTypeId": "magus-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(100-140)% increased Energy Shield",
+          "min": 100,
+          "max": 140
+        },
+        {
+          "text": "+(80-120) to maximum Mana",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "(5-10)% increased Cost of Skills for each 200 total Mana Spent Recently",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "(10-15)% increased Spell damage for each 200 total Mana you have Spent Recently",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Mana Recovery other than Regeneration cannot Recover Mana"
+        }
+      ],
+      "variantGroup": "indigon",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "mask-of-the-stitched-demon": {
+      "id": "mask-of-the-stitched-demon",
+      "name": "Mask of the Stitched Demon",
+      "baseType": "Feathered Tiara",
+      "baseTypeId": "feathered-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(120-160)% increased Energy Shield",
+          "min": 120,
+          "max": 160
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Cannot have Energy Shield"
+        },
+        {
+          "text": "Regenerate 0.05 Life per second per Maximum Energy Shield"
+        }
+      ]
+    },
+    "sandstorm-visage-pre-0-2-0": {
+      "id": "sandstorm-visage-pre-0-2-0",
+      "name": "Sandstorm Visage",
+      "baseType": "Chain Tiara",
+      "baseTypeId": "chain-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(80-120) to maximum Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence are Blinded"
+        },
+        {
+          "text": "Every second, inflicts Critical Weakness on enemies in your Presence for 1 second"
+        }
+      ],
+      "variantGroup": "sandstorm-visage",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "sandstorm-visage-pre-0-4-0": {
+      "id": "sandstorm-visage-pre-0-4-0",
+      "name": "Sandstorm Visage",
+      "baseType": "Chain Tiara",
+      "baseTypeId": "chain-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(80-120) to maximum Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence are Blinded"
+        },
+        {
+          "text": "Every second, inflicts Critical Weakness on enemies in your Presence for 15 seconds"
+        }
+      ],
+      "variantGroup": "sandstorm-visage",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "sandstorm-visage-current": {
+      "id": "sandstorm-visage-current",
+      "name": "Sandstorm Visage",
+      "baseType": "Chain Tiara",
+      "baseTypeId": "chain-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Zarokh, the Temporal}"
+      },
+      "modifiers": [
+        {
+          "text": "+(80-120) to maximum Energy Shield",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(20-30) to Dexterity",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Enemies in your Presence are Blinded"
+        },
+        {
+          "text": "Every second, inflicts Critical Weakness on enemies in your Presence for (15-20) seconds",
+          "min": 15,
+          "max": 20
+        }
+      ],
+      "variantGroup": "sandstorm-visage",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "scold-s-bridle": {
+      "id": "scold-s-bridle",
+      "name": "Scold's Bridle",
+      "baseType": "Jade Tiara",
+      "baseTypeId": "jade-tiara",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(75-150) to maximum Energy Shield",
+          "min": 75,
+          "max": 150
+        },
+        {
+          "text": "(60-100)% increased Spell Damage",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(80-100) to maximum Mana",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "15% reduced Cast Speed",
+          "value": 15
+        },
+        {
+          "text": "Take (25-100)% of Mana Costs you pay for Skills as Physical Damage",
+          "min": 25,
+          "max": 100
+        }
+      ]
+    },
+    "visage-of-ayah-pre-0-1-1": {
+      "id": "visage-of-ayah-pre-0-1-1",
+      "name": "Visage of Ayah",
+      "baseType": "Beaded Circlet",
+      "baseTypeId": "beaded-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Eldritch Battery"
+        }
+      ],
+      "variantGroup": "visage-of-ayah",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "visage-of-ayah-current": {
+      "id": "visage-of-ayah-current",
+      "name": "Visage of Ayah",
+      "baseType": "Beaded Circlet",
+      "baseTypeId": "beaded-circlet",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Energy Shield",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(10-20)% to Lightning Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Eldritch Battery"
+        }
+      ],
+      "variantGroup": "visage-of-ayah",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "assailum-pre-0-4-0": {
+      "id": "assailum-pre-0-4-0",
+      "name": "Assailum",
+      "baseType": "Closed Helm",
+      "baseTypeId": "closed-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Evasion",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(200-400) to Accuracy Rating",
+          "min": 200,
+          "max": 400
+        },
+        {
+          "text": "(30-50)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Skills have a (100-150)% longer Perfect Timing window",
+          "min": 100,
+          "max": 150
+        }
+      ],
+      "variantGroup": "assailum",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "assailum-current": {
+      "id": "assailum-current",
+      "name": "Assailum",
+      "baseType": "Closed Helm",
+      "baseTypeId": "closed-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Kosis, The Revelation}"
+      },
+      "modifiers": [
+        {
+          "text": "(200-300)% increased Armour and Evasion",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "+(200-400) to Accuracy Rating",
+          "min": 200,
+          "max": 400
+        },
+        {
+          "text": "(30-50)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Skills have a (100-150)% longer Perfect Timing window",
+          "min": 100,
+          "max": 150
+        }
+      ],
+      "variantGroup": "assailum",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-bringer-of-rain-pre-0-2-1": {
+      "id": "the-bringer-of-rain-pre-0-2-1",
+      "name": "The Bringer of Rain",
+      "baseType": "Decorated Helm",
+      "baseTypeId": "decorated-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(600-800)% increased Armour and Evasion",
+          "min": 600,
+          "max": 800
+        },
+        {
+          "text": "+(200-300) to Accuracy Rating",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "(30-60) Life Regeneration per second",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Can't use Body Armour"
+        },
+        {
+          "text": "You can wield Two-Handed Axes, Maces and Swords in one hand"
+        }
+      ],
+      "variantGroup": "the-bringer-of-rain",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "the-bringer-of-rain-pre-0-4-0": {
+      "id": "the-bringer-of-rain-pre-0-4-0",
+      "name": "The Bringer of Rain",
+      "baseType": "Decorated Helm",
+      "baseTypeId": "decorated-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(600-800)% increased Armour and Evasion",
+          "min": 600,
+          "max": 800
+        },
+        {
+          "text": "+(200-300) to Accuracy Rating",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "100% increased Critical Hit Chance",
+          "value": 100
+        },
+        {
+          "text": "(30-60) Life Regeneration per second",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Can't use Body Armour"
+        },
+        {
+          "text": "You can wield Two-Handed Axes, Maces and Swords in one hand"
+        }
+      ],
+      "variantGroup": "the-bringer-of-rain",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-bringer-of-rain-current": {
+      "id": "the-bringer-of-rain-current",
+      "name": "The Bringer of Rain",
+      "baseType": "Decorated Helm",
+      "baseTypeId": "decorated-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(600-800)% increased Armour and Evasion",
+          "min": 600,
+          "max": 800
+        },
+        {
+          "text": "+(200-300) to Accuracy Rating",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "100% increased Critical Hit Chance",
+          "value": 100
+        },
+        {
+          "text": "(30-60) Life Regeneration per second",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Can't use Body Armour"
+        },
+        {
+          "text": "You can wield Two-Handed Axes, Maces and Swords in one hand"
+        },
+        {
+          "text": "This item gains bonuses from Socketed Items as though it was a Body Armour"
+        },
+        {
+          "text": "Has 4 Augment Sockets"
+        }
+      ],
+      "variantGroup": "the-bringer-of-rain",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "erian-s-cobble-pre-0-1-1": {
+      "id": "erian-s-cobble-pre-0-1-1",
+      "name": "Erian's Cobble",
+      "baseType": "Guarded Helm",
+      "baseTypeId": "guarded-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(0-20) to Armour",
+          "min": 0,
+          "max": 20
+        },
+        {
+          "text": "+(0-15) to Evasion Rating",
+          "min": 0,
+          "max": 15
+        },
+        {
+          "text": "+(0-10) to maximum Energy Shield",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-30) to Accuracy Rating",
+          "min": 0,
+          "max": 30
+        },
+        {
+          "text": "+(0-15) to maximum Life",
+          "min": 0,
+          "max": 15
+        },
+        {
+          "text": "+(0-10) to maximum Mana",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "(0-10)% increased Rarity of Items found",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "(0-15)% increased Critical Hit Chance",
+          "min": 0,
+          "max": 15
+        },
+        {
+          "text": "+(0-5) to Strength",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "+(0-5) to Dexterity",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "+(0-5) to Intelligence",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "+(0-5)% to Fire Resistance",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "+(0-5)% to Cold Resistance",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "+(0-5)% to Lightning Resistance",
+          "min": 0,
+          "max": 5
+        },
+        {
+          "text": "(0-0.05) Life Regeneration per second",
+          "min": 0,
+          "max": 0.05
+        }
+      ],
+      "variantGroup": "erian-s-cobble",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "erian-s-cobble-current": {
+      "id": "erian-s-cobble-current",
+      "name": "Erian's Cobble",
+      "baseType": "Guarded Helm",
+      "baseTypeId": "guarded-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(0-40) to Armour",
+          "min": 0,
+          "max": 40
+        },
+        {
+          "text": "+(0-30) to Evasion Rating",
+          "min": 0,
+          "max": 30
+        },
+        {
+          "text": "+(0-20) to maximum Energy Shield",
+          "min": 0,
+          "max": 20
+        },
+        {
+          "text": "+(0-60) to Accuracy Rating",
+          "min": 0,
+          "max": 60
+        },
+        {
+          "text": "+(0-30) to maximum Life",
+          "min": 0,
+          "max": 30
+        },
+        {
+          "text": "+(0-20) to maximum Mana",
+          "min": 0,
+          "max": 20
+        },
+        {
+          "text": "(0-20)% increased Rarity of Items found",
+          "min": 0,
+          "max": 20
+        },
+        {
+          "text": "(0-30)% increased Critical Hit Chance",
+          "min": 0,
+          "max": 30
+        },
+        {
+          "text": "+(0-10) to Strength",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-10) to Dexterity",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-10) to Intelligence",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-10)% to Fire Resistance",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-10)% to Cold Resistance",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "+(0-10)% to Lightning Resistance",
+          "min": 0,
+          "max": 10
+        },
+        {
+          "text": "(0-6) Life Regeneration per second",
+          "min": 0,
+          "max": 6
+        }
+      ],
+      "variantGroup": "erian-s-cobble",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "greymake-pre-0-4-0": {
+      "id": "greymake-pre-0-4-0",
+      "name": "Greymake",
+      "baseType": "Brimmed Helm",
+      "baseTypeId": "brimmed-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to Strength",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Dexterity",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Intelligence",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "-1 to all Attributes per Level",
+          "value": 1
+        }
+      ],
+      "variantGroup": "greymake",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "greymake-current": {
+      "id": "greymake-current",
+      "name": "Greymake",
+      "baseType": "Brimmed Helm",
+      "baseTypeId": "brimmed-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to Strength",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Dexterity",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Intelligence",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "-1 to all Attributes per Level",
+          "value": 1
+        },
+        {
+          "text": "Has 4 Augment Sockets"
+        }
+      ],
+      "variantGroup": "greymake",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ironride-pre-0-1-1": {
+      "id": "ironride-pre-0-1-1",
+      "name": "Ironride",
+      "baseType": "Visored Helm",
+      "baseTypeId": "visored-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Armour and Evasion",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-15)% to Lightning Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "You have no Accuracy Penalty at Distance"
+        }
+      ],
+      "variantGroup": "ironride",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "ironride-current": {
+      "id": "ironride-current",
+      "name": "Ironride",
+      "baseType": "Visored Helm",
+      "baseTypeId": "visored-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-80)% increased Armour and Evasion",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-15)% to Lightning Resistance",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "You have no Accuracy Penalty at Distance"
+        }
+      ],
+      "variantGroup": "ironride",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-smiling-knight-pre-0-1-1": {
+      "id": "the-smiling-knight-pre-0-1-1",
+      "name": "The Smiling Knight",
+      "baseType": "Cowled Helm",
+      "baseTypeId": "cowled-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-50)% increased Armour and Evasion",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(50-100) to Accuracy Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(15-25)% increased Critical Hit Chance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Aggravate Bleeding on targets you Critically Hit with Attacks"
+        }
+      ],
+      "variantGroup": "the-smiling-knight",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-smiling-knight-current": {
+      "id": "the-smiling-knight-current",
+      "name": "The Smiling Knight",
+      "baseType": "Cowled Helm",
+      "baseTypeId": "cowled-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Armour and Evasion",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(50-100) to Accuracy Rating",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "(15-25)% increased Critical Hit Chance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Aggravate Bleeding on targets you Critically Hit with Attacks"
+        }
+      ],
+      "variantGroup": "the-smiling-knight",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-vile-knight": {
+      "id": "the-vile-knight",
+      "name": "The Vile Knight",
+      "baseType": "Shielded Helm",
+      "baseTypeId": "shielded-helm",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(60-100)% increased Armour and Evasion",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "+(75-125) to Accuracy Rating",
+          "min": 75,
+          "max": 125
+        },
+        {
+          "text": "(10-15) Life Regeneration per second",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Deal 4% increased Damage with Hits to Rare or Unique Enemies for each second they've ever been in your Presence, up to a maximum of 200%"
+        }
+      ]
+    },
+    "bronzebeard-pre-0-1-1": {
+      "id": "bronzebeard-pre-0-1-1",
+      "name": "Bronzebeard",
+      "baseType": "Horned Crown",
+      "baseTypeId": "horned-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% reduced Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "(35-50)% reduced Effect of Chill on you",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "(35-50)% reduced Magnitude of Ignite on you",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "(35-50)% reduced effect of Shock on you",
+          "min": 35,
+          "max": 50
+        }
+      ],
+      "variantGroup": "bronzebeard",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "bronzebeard-current": {
+      "id": "bronzebeard-current",
+      "name": "Bronzebeard",
+      "baseType": "Horned Crown",
+      "baseTypeId": "horned-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% reduced Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+100 to maximum Life",
+          "value": 100
+        },
+        {
+          "text": "(35-50)% reduced Effect of Chill on you",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "(35-50)% reduced Magnitude of Ignite on you",
+          "min": 35,
+          "max": 50
+        },
+        {
+          "text": "(35-50)% reduced effect of Shock on you",
+          "min": 35,
+          "max": 50
+        }
+      ],
+      "variantGroup": "bronzebeard",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "cornathaum": {
+      "id": "cornathaum",
+      "name": "Cornathaum",
+      "baseType": "Heavy Crown",
+      "baseTypeId": "heavy-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(40-50) to Intelligence",
+          "min": 40,
+          "max": 50
+        },
+        {
+          "text": "30% increased Light Radius",
+          "value": 30
+        },
+        {
+          "text": "5% increased Experience gain",
+          "value": 5
+        }
+      ]
+    },
+    "crown-of-the-pale-king-pre-0-1-1": {
+      "id": "crown-of-the-pale-king-pre-0-1-1",
+      "name": "Crown of the Pale King",
+      "baseType": "Cultist Crown",
+      "baseTypeId": "cultist-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(40-80) to maximum Life",
+          "min": 40,
+          "max": 80
+        },
+        {
+          "text": "10% increased Rarity of Items found",
+          "value": 10
+        },
+        {
+          "text": "Thorns can Retaliate against all Hits"
+        }
+      ],
+      "variantGroup": "crown-of-the-pale-king",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "crown-of-the-pale-king-current": {
+      "id": "crown-of-the-pale-king-current",
+      "name": "Crown of the Pale King",
+      "baseType": "Cultist Crown",
+      "baseTypeId": "cultist-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(40-80) to maximum Life",
+          "min": 40,
+          "max": 80
+        },
+        {
+          "text": "10% increased Rarity of Items found",
+          "value": 10
+        },
+        {
+          "text": "(10-15) to (20-25) Physical Thorns damage",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Thorns can Retaliate against all Hits"
+        }
+      ],
+      "variantGroup": "crown-of-the-pale-king",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "crown-of-the-victor-pre-0-2-0": {
+      "id": "crown-of-the-victor-pre-0-2-0",
+      "name": "Crown of the Victor",
+      "baseType": "Iron Crown",
+      "baseTypeId": "iron-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Gain 10 Life per enemy killed"
+        },
+        {
+          "text": "Gain 10 Mana per enemy killed"
+        },
+        {
+          "text": "+1 to Level of all Skills",
+          "value": 1
+        }
+      ],
+      "variantGroup": "crown-of-the-victor",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "crown-of-the-victor-current": {
+      "id": "crown-of-the-victor-current",
+      "name": "Crown of the Victor",
+      "baseType": "Iron Crown",
+      "baseTypeId": "iron-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Gain 10 Life per enemy killed"
+        },
+        {
+          "text": "Gain 10 Mana per enemy killed"
+        },
+        {
+          "text": "+1 to Level of all Skills",
+          "value": 1
+        }
+      ],
+      "variantGroup": "crown-of-the-victor",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-deepest-tower": {
+      "id": "the-deepest-tower",
+      "name": "The Deepest Tower",
+      "baseType": "Spiritbone Crown",
+      "baseTypeId": "spiritbone-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt",
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(70-130)% increased Armour and Energy Shield",
+          "min": 70,
+          "max": 130
+        },
+        {
+          "text": "+(70-100) to maximum Life",
+          "min": 70,
+          "max": 100
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "50% reduced Presence Area of Effect",
+          "value": 50
+        },
+        {
+          "text": "10% reduced Light Radius",
+          "value": 10
+        },
+        {
+          "text": "Enemies in your Presence count as being on Low Life"
+        }
+      ]
+    },
+    "keeper-of-the-arc-pre-0-4-0": {
+      "id": "keeper-of-the-arc-pre-0-4-0",
+      "name": "Keeper of the Arc",
+      "baseType": "Spiritbone Crown",
+      "baseTypeId": "spiritbone-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(15-25) Life Regeneration per second",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "(15-25)% increased Mana Regeneration Rate",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Alternating every 5 seconds:"
+        },
+        {
+          "text": "Take 30% more Damage from Hits"
+        },
+        {
+          "text": "Take 30% more Damage over time"
+        }
+      ],
+      "variantGroup": "keeper-of-the-arc",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "keeper-of-the-arc-current": {
+      "id": "keeper-of-the-arc-current",
+      "name": "Keeper of the Arc",
+      "baseType": "Spiritbone Crown",
+      "baseTypeId": "spiritbone-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "(150-250)% increased Armour and Energy Shield",
+          "min": 150,
+          "max": 250
+        },
+        {
+          "text": "(15-25) Life Regeneration per second",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "(15-25)% increased Mana Regeneration Rate",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Alternating every 5 seconds:"
+        },
+        {
+          "text": "Take 40% less Damage from Hits"
+        },
+        {
+          "text": "Take 40% less Damage over time"
+        }
+      ],
+      "variantGroup": "keeper-of-the-arc",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "veil-of-the-night": {
+      "id": "veil-of-the-night",
+      "name": "Veil of the Night",
+      "baseType": "Martyr Crown",
+      "baseTypeId": "martyr-crown",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "50% increased maximum Life",
+          "value": 50
+        },
+        {
+          "text": "+(10-20) to all Attributes",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "40% reduced Light Radius",
+          "value": 40
+        },
+        {
+          "text": "You have no Elemental Resistances"
+        }
+      ]
+    },
+    "atsak-s-sight-pre-0-1-1": {
+      "id": "atsak-s-sight-pre-0-1-1",
+      "name": "Atsak's Sight",
+      "baseType": "Veiled Mask",
+      "baseTypeId": "veiled-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(20-40)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Critical Hits Poison the enemy"
+        }
+      ],
+      "variantGroup": "atsak-s-sight",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "atsak-s-sight-current": {
+      "id": "atsak-s-sight-current",
+      "name": "Atsak's Sight",
+      "baseType": "Veiled Mask",
+      "baseTypeId": "veiled-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(30-40)% increased Critical Hit Chance",
+          "min": 30,
+          "max": 40
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Critical Hits Poison the enemy"
+        }
+      ],
+      "variantGroup": "atsak-s-sight",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "glimpse-of-chaos": {
+      "id": "glimpse-of-chaos",
+      "name": "Glimpse of Chaos",
+      "baseType": "Tribal Mask",
+      "baseTypeId": "tribal-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Can be modified while Corrupted"
+        },
+        {
+          "text": "+(50-150) to maximum Life",
+          "min": 50,
+          "max": 150
+        },
+        {
+          "text": "+(50-150) to maximum Mana",
+          "min": 50,
+          "max": 150
+        },
+        {
+          "text": "+(-30-30)% to Fire Resistance"
+        },
+        {
+          "text": "+(-30-30)% to Cold Resistance"
+        },
+        {
+          "text": "+(-30-30)% to Lightning Resistance"
+        },
+        {
+          "text": "Chaos Resistance is zero"
+        }
+      ]
+    },
+    "the-hollow-mask-pre-0-1-1": {
+      "id": "the-hollow-mask-pre-0-1-1",
+      "name": "The Hollow Mask",
+      "baseType": "Hewn Mask",
+      "baseTypeId": "hewn-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "15% additional Physical Damage Reduction",
+          "value": 15
+        },
+        {
+          "text": "-10% to all Elemental Resistances",
+          "value": 10
+        }
+      ],
+      "variantGroup": "the-hollow-mask",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-hollow-mask-current": {
+      "id": "the-hollow-mask-current",
+      "name": "The Hollow Mask",
+      "baseType": "Hewn Mask",
+      "baseTypeId": "hewn-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(60-80) to maximum Life",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "15% additional Physical Damage Reduction",
+          "value": 15
+        },
+        {
+          "text": "-10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "+13% to Chaos Resistance",
+          "value": 13
+        }
+      ],
+      "variantGroup": "the-hollow-mask",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "leer-cast-pre-0-1-1": {
+      "id": "leer-cast-pre-0-1-1",
+      "name": "Leer Cast",
+      "baseType": "Hooded Mask",
+      "baseTypeId": "hooded-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Allies in your Presence deal 50% increased Damage"
+        },
+        {
+          "text": "25% reduced Damage",
+          "value": 25
+        }
+      ],
+      "variantGroup": "leer-cast",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "leer-cast-current": {
+      "id": "leer-cast-current",
+      "name": "Leer Cast",
+      "baseType": "Hooded Mask",
+      "baseTypeId": "hooded-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(30-50) to maximum Life",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Allies in your Presence deal 50% increased Damage"
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "25% reduced Damage",
+          "value": 25
+        }
+      ],
+      "variantGroup": "leer-cast",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "mask-of-the-sanguimancer": {
+      "id": "mask-of-the-sanguimancer",
+      "name": "Mask of the Sanguimancer",
+      "baseType": "Face Mask",
+      "baseTypeId": "face-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(20-25) to Evasion Rating",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "+(10-15) to maximum Energy Shield",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(20-40)% increased Critical Hit Chance for Spells",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Blood Magic"
+        }
+      ]
+    },
+    "mind-of-the-council-pre-0-4-0": {
+      "id": "mind-of-the-council-pre-0-4-0",
+      "name": "Mind of the Council",
+      "baseType": "Death Mask",
+      "baseTypeId": "death-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(60-90)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 90
+        },
+        {
+          "text": "+(60-90) to maximum Mana",
+          "min": 60,
+          "max": 90
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Attacks cost an additional 6% of your maximum Mana"
+        },
+        {
+          "text": "Attacks have Added maximum Lightning Damage equal to (6-9)% of maximum Mana",
+          "min": 6,
+          "max": 9
+        }
+      ],
+      "variantGroup": "mind-of-the-council",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "mind-of-the-council-current": {
+      "id": "mind-of-the-council-current",
+      "name": "Mind of the Council",
+      "baseType": "Death Mask",
+      "baseTypeId": "death-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Evasion and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(60-90) to maximum Mana",
+          "min": 60,
+          "max": 90
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Attacks cost an additional 6% of your maximum Mana"
+        },
+        {
+          "text": "Attacks have Added maximum Lightning Damage equal to (6-9)% of maximum Mana",
+          "min": 6,
+          "max": 9
+        }
+      ],
+      "variantGroup": "mind-of-the-council",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-three-dragons": {
+      "id": "the-three-dragons",
+      "name": "The Three Dragons",
+      "baseType": "Solid Mask",
+      "baseTypeId": "solid-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Evasion and Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20)% to all Elemental Resistances",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Fire Damage from Hits Contributes to Shock Chance instead of Flammability and Ignite Magnitudes"
+        },
+        {
+          "text": "Cold Damage from Hits Contributes to Flammability and Ignite Magnitudes instead of Chill Magnitude or Freeze Buildup"
+        },
+        {
+          "text": "Lightning Damage from Hits Contributes to Freeze Buildup instead of Shock Chance"
+        }
+      ]
+    },
+    "the-vertex-pre-0-4-0": {
+      "id": "the-vertex-pre-0-4-0",
+      "name": "The Vertex",
+      "baseType": "Tribal Mask",
+      "baseTypeId": "tribal-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "Equipment and Skill Gems have 50% reduced Attribute Requirements"
+        }
+      ],
+      "variantGroup": "the-vertex",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-vertex-equipment": {
+      "id": "the-vertex-equipment",
+      "name": "The Vertex",
+      "baseType": "Tribal Mask",
+      "baseTypeId": "tribal-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "Equipment has no Attribute Requirements"
+        }
+      ],
+      "variantGroup": "the-vertex",
+      "variantId": "equipment",
+      "variantName": "Equipment"
+    },
+    "the-vertex-skill-gems": {
+      "id": "the-vertex-skill-gems",
+      "name": "The Vertex",
+      "baseType": "Tribal Mask",
+      "baseTypeId": "tribal-mask",
+      "itemType": "Helmet",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "(20-30)% increased Critical Hit Chance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(13-17)% to Chaos Resistance",
+          "min": 13,
+          "max": 17
+        },
+        {
+          "text": "Skill Gems have no Attribute Requirements"
+        }
+      ],
+      "variantGroup": "the-vertex",
+      "variantId": "skill-gems",
+      "variantName": "Skill Gems",
+      "isDefaultVariant": true
+    },
+    "solus-ipse-pre-0-4-0": {
+      "id": "solus-ipse-pre-0-4-0",
+      "name": "Solus Ipse",
+      "baseType": "Grand Visage",
+      "baseTypeId": "grand-visage",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Armour, Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Equipment and Skill Gems have 25% increased Attribute Requirements"
+        },
+        {
+          "text": "You can Socket an additional copy of each Lineage Support Gem, in different Skills"
+        }
+      ],
+      "variantGroup": "solus-ipse",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "solus-ipse-current": {
+      "id": "solus-ipse-current",
+      "name": "Solus Ipse",
+      "baseType": "Grand Visage",
+      "baseTypeId": "grand-visage",
+      "itemType": "Helmet",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Armour, Evasion and Energy Shield",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "+(60-100) to maximum Mana",
+          "min": 60,
+          "max": 100
+        },
+        {
+          "text": "25% increased Light Radius",
+          "value": 25
+        },
+        {
+          "text": "Equipment and Skill Gems have 25% increased Attribute Requirements"
+        },
+        {
+          "text": "You can Socket 2 additional copies of each Lineage Support Gem, in different Skills"
+        }
+      ],
+      "variantGroup": "solus-ipse",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    }
+  }
+}

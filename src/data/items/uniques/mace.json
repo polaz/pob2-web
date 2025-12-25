@@ -1,0 +1,1319 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:53.132Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "mace",
+  "meta": {
+    "totalItems": 20,
+    "itemsWithVariants": 14,
+    "totalEntries": 37,
+    "byType": {
+      "One Handed Mace": 20
+    }
+  },
+  "uniques": {
+    "brynhand-s-mark-pre-0-1-1": {
+      "id": "brynhand-s-mark-pre-0-1-1",
+      "name": "Brynhand's Mark",
+      "baseType": "Wooden Club",
+      "baseTypeId": "wooden-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (3-4) to (6-8) Physical Damage",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "text": "+(30-50) to Accuracy Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(5-10) to Strength",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Causes Double Stun Buildup"
+        }
+      ],
+      "variantGroup": "brynhand-s-mark",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "brynhand-s-mark-current": {
+      "id": "brynhand-s-mark-current",
+      "name": "Brynhand's Mark",
+      "baseType": "Wooden Club",
+      "baseTypeId": "wooden-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (10-14) to (16-20) Physical Damage",
+          "min": 10,
+          "max": 14
+        },
+        {
+          "text": "+(30-50) to Accuracy Rating",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "20% reduced Attack Speed",
+          "value": 20
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Causes Double Stun Buildup"
+        }
+      ],
+      "variantGroup": "brynhand-s-mark",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "frostbreath-pre-0-1-1": {
+      "id": "frostbreath-pre-0-1-1",
+      "name": "Frostbreath",
+      "baseType": "Slim Mace",
+      "baseTypeId": "slim-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (4-6) to (8-12) Physical Damage",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "Adds (4-6) to (8-12) Cold Damage",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "All Damage from Hits with this Weapon Contributes to Freeze Buildup"
+        },
+        {
+          "text": "Culling Strike against Frozen Enemies"
+        }
+      ],
+      "variantGroup": "frostbreath",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "frostbreath-current": {
+      "id": "frostbreath-current",
+      "name": "Frostbreath",
+      "baseType": "Slim Mace",
+      "baseTypeId": "slim-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (8-12) to (16-20) Physical Damage",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "Adds (8-12) to (16-20) Cold Damage",
+          "min": 8,
+          "max": 12
+        },
+        {
+          "text": "+5% to Critical Hit Chance",
+          "value": 5
+        },
+        {
+          "text": "All Damage from Hits with this Weapon Contributes to Freeze Buildup"
+        },
+        {
+          "text": "Culling Strike against Frozen Enemies"
+        }
+      ],
+      "variantGroup": "frostbreath",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "marohi-erqi": {
+      "id": "marohi-erqi",
+      "name": "Marohi Erqi",
+      "baseType": "Totemic Greatclub",
+      "baseTypeId": "totemic-greatclub",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Crushes Enemies on Hit",
+          "implicit": true
+        },
+        {
+          "text": "+150 Strength Requirement",
+          "value": 150
+        },
+        {
+          "text": "(600-700)% increased Physical Damage",
+          "min": 600,
+          "max": 700
+        },
+        {
+          "text": "-(300-200) to Accuracy Rating",
+          "min": 300,
+          "max": 200
+        },
+        {
+          "text": "35% reduced Attack Speed",
+          "value": 35
+        },
+        {
+          "text": "Causes (40-60)% increased Stun Buildup",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "Heavy Stuns Enemies that are on Full Life"
+        }
+      ]
+    },
+    "mj-lner-pre-0-2-1": {
+      "id": "mj-lner-pre-0-2-1",
+      "name": "Mjölner",
+      "baseType": "Torment Club",
+      "baseTypeId": "torment-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Thundergod's Wrath",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+200 Intelligence Requirement",
+          "value": 200
+        },
+        {
+          "text": "+100 Strength Requirement",
+          "value": 100
+        },
+        {
+          "text": "(150-200)% increased Physical Damage",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Level of all Lightning Skills",
+          "value": 1
+        }
+      ],
+      "variantGroup": "mj-lner",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "mj-lner-current": {
+      "id": "mj-lner-current",
+      "name": "Mjölner",
+      "baseType": "Torment Club",
+      "baseTypeId": "torment-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Thundergod's Wrath",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "+200 Intelligence Requirement",
+          "value": 200
+        },
+        {
+          "text": "+100 Strength Requirement",
+          "value": 100
+        },
+        {
+          "text": "(250-350)% increased Physical Damage",
+          "min": 250,
+          "max": 350
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(2-4) to Level of all Lightning Skills",
+          "min": 2,
+          "max": 4
+        }
+      ],
+      "variantGroup": "mj-lner",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "nebuloch": {
+      "id": "nebuloch",
+      "name": "Nebuloch",
+      "baseType": "Brigand Mace",
+      "baseTypeId": "brigand-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (39-48) to (69-79) Physical Damage",
+          "min": 39,
+          "max": 48
+        },
+        {
+          "text": "+(20-30)% to Critical Damage Bonus",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Adds (25-36) to (44-55) Chaos damage",
+          "min": 25,
+          "max": 36
+        },
+        {
+          "text": "Attacks consume an Endurance Charge to Critically Hit"
+        },
+        {
+          "text": "Take 100 Chaos damage per second per Endurance Charge"
+        }
+      ]
+    },
+    "olrovasara-pre-0-2-0": {
+      "id": "olrovasara-pre-0-2-0",
+      "name": "Olrovasara",
+      "baseType": "Torment Club",
+      "baseTypeId": "torment-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Adds 1 to (60-80) Lightning Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(300-400) to Accuracy Rating",
+          "min": 300,
+          "max": 400
+        },
+        {
+          "text": "(5-30)% increased Attack Speed",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "On Hitting an enemy, gains maximum added Lightning damage equal to"
+        },
+        {
+          "text": "the enemy's Power for 20 seconds, up to a total of 500"
+        }
+      ],
+      "variantGroup": "olrovasara",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "olrovasara-current": {
+      "id": "olrovasara-current",
+      "name": "Olrovasara",
+      "baseType": "Torment Club",
+      "baseTypeId": "torment-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Adds 1 to (80-120) Lightning Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(300-400) to Accuracy Rating",
+          "min": 300,
+          "max": 400
+        },
+        {
+          "text": "(5-30)% increased Attack Speed",
+          "min": 5,
+          "max": 30
+        },
+        {
+          "text": "On Hitting an enemy, gains maximum added Lightning damage equal to"
+        },
+        {
+          "text": "the enemy's Power for 20 seconds, up to a total of 500"
+        }
+      ],
+      "variantGroup": "olrovasara",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "sculpted-suffering-pre-0-3-0": {
+      "id": "sculpted-suffering-pre-0-3-0",
+      "name": "Sculpted Suffering",
+      "baseType": "Warpick",
+      "baseTypeId": "warpick",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(10-15)% to Critical Damage Bonus",
+          "implicit": true,
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Adds (21-26) to (25-31) Physical Damage",
+          "min": 21,
+          "max": 26
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Breaks Armour equal to 40% of damage from Hits with this weapon"
+        },
+        {
+          "text": "Fully Armour Broken enemies you kill with Hits Shatter"
+        }
+      ],
+      "variantGroup": "sculpted-suffering",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "sculpted-suffering-current": {
+      "id": "sculpted-suffering-current",
+      "name": "Sculpted Suffering",
+      "baseType": "Warpick",
+      "baseTypeId": "warpick",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+(5-10)% to Critical Damage Bonus",
+          "implicit": true,
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Adds (21-26) to (25-31) Physical Damage",
+          "min": 21,
+          "max": 26
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Breaks Armour equal to 40% of damage from Hits with this weapon"
+        },
+        {
+          "text": "Fully Armour Broken enemies you kill with Hits Shatter"
+        }
+      ],
+      "variantGroup": "sculpted-suffering",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "seeing-stars-pre-0-1-1": {
+      "id": "seeing-stars-pre-0-1-1",
+      "name": "Seeing Stars",
+      "baseType": "{variant:1,2}Plated Mace",
+      "baseTypeId": "variant-1-2-plated-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (9-12) to (18-22) Cold Damage",
+          "min": 9,
+          "max": 12
+        },
+        {
+          "text": "Adds 1 to (30-35) Lightning Damage",
+          "min": 30,
+          "max": 35
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Energy Generation is doubled"
+        }
+      ],
+      "variantGroup": "seeing-stars",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "seeing-stars-pre-0-4-0": {
+      "id": "seeing-stars-pre-0-4-0",
+      "name": "Seeing Stars",
+      "baseType": "{variant:1,2}Plated Mace",
+      "baseTypeId": "variant-1-2-plated-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (12-16) to (22-25) Cold Damage",
+          "min": 12,
+          "max": 16
+        },
+        {
+          "text": "Adds 1 to (40-45) Lightning Damage",
+          "min": 40,
+          "max": 45
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Energy Generation is doubled"
+        }
+      ],
+      "variantGroup": "seeing-stars",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "seeing-stars-current": {
+      "id": "seeing-stars-current",
+      "name": "Seeing Stars",
+      "baseType": "{variant:1,2}Plated Mace",
+      "baseTypeId": "variant-1-2-plated-mace",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Marching Mace"
+        },
+        {
+          "text": "Adds (24-31) to (36-46) Cold Damage",
+          "min": 24,
+          "max": 31
+        },
+        {
+          "text": "Adds (1-5) to (66-90) Lightning Damage",
+          "min": 1,
+          "max": 5
+        },
+        {
+          "text": "(10-20)% increased Attack Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Energy Generation is doubled"
+        }
+      ],
+      "variantGroup": "seeing-stars",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "trenchtimbre-pre-0-1-1": {
+      "id": "trenchtimbre-pre-0-1-1",
+      "name": "Trenchtimbre",
+      "baseType": "Spiked Club",
+      "baseTypeId": "spiked-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (10-12) to (18-35) Physical Damage",
+          "min": 10,
+          "max": 12
+        },
+        {
+          "text": "(20-30)% increased Attack Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Increases and Reductions to Minion Attack Speed also affect you"
+        }
+      ],
+      "variantGroup": "trenchtimbre",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "trenchtimbre-pre-0-2-0": {
+      "id": "trenchtimbre-pre-0-2-0",
+      "name": "Trenchtimbre",
+      "baseType": "Spiked Club",
+      "baseTypeId": "spiked-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (13-15) to (22-25) Physical Damage",
+          "min": 13,
+          "max": 15
+        },
+        {
+          "text": "(20-30)% increased Attack Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(1-3) to Level of all Minion Skills",
+          "min": 1,
+          "max": 3
+        },
+        {
+          "text": "Increases and Reductions to Minion Attack Speed also affect you"
+        }
+      ],
+      "variantGroup": "trenchtimbre",
+      "variantId": "pre-0-2-0",
+      "variantName": "Pre 0.2.0"
+    },
+    "trenchtimbre-current": {
+      "id": "trenchtimbre-current",
+      "name": "Trenchtimbre",
+      "baseType": "Spiked Club",
+      "baseTypeId": "spiked-club",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (13-15) to (22-25) Physical Damage",
+          "min": 13,
+          "max": 15
+        },
+        {
+          "text": "(20-30)% increased Attack Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(1-2) to Level of all Minion Skills",
+          "min": 1,
+          "max": 2
+        },
+        {
+          "text": "Increases and Reductions to Minion Attack Speed also affect you"
+        }
+      ],
+      "variantGroup": "trenchtimbre",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "wylund-s-stake-pre-0-1-1": {
+      "id": "wylund-s-stake-pre-0-1-1",
+      "name": "Wylund's Stake",
+      "baseType": "Smithing Hammer",
+      "baseTypeId": "smithing-hammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (2-3) to (4-5) Physical Damage",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "Adds (2-3) to (4-5) Fire Damage",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "Hits Break (30-50) Armour",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Inflicts Fire Exposure when this Weapon Fully Breaks Armour"
+        }
+      ],
+      "variantGroup": "wylund-s-stake",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "wylund-s-stake-current": {
+      "id": "wylund-s-stake-current",
+      "name": "Wylund's Stake",
+      "baseType": "Smithing Hammer",
+      "baseTypeId": "smithing-hammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "Adds (4-6) to (8-10) Physical Damage",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "Adds (4-6) to (8-10) Fire Damage",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Hits Break (30-50) Armour",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Inflicts Fire Exposure when this Weapon Fully Breaks Armour"
+        }
+      ],
+      "variantGroup": "wylund-s-stake",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "brain-rattler-pre-0-1-1": {
+      "id": "brain-rattler-pre-0-1-1",
+      "name": "Brain Rattler",
+      "baseType": "Studded Greatclub",
+      "baseTypeId": "studded-greatclub",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (10-12) to (18-22) Physical Damage",
+          "min": 10,
+          "max": 12
+        },
+        {
+          "text": "Adds 1 to (36-42) Lightning Damage",
+          "min": 36,
+          "max": 42
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "All damage with this Weapon causes Electrocution buildup"
+        }
+      ],
+      "variantGroup": "brain-rattler",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "brain-rattler-current": {
+      "id": "brain-rattler-current",
+      "name": "Brain Rattler",
+      "baseType": "Studded Greatclub",
+      "baseTypeId": "studded-greatclub",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (18-22) to (24-28) Physical Damage",
+          "min": 18,
+          "max": 22
+        },
+        {
+          "text": "Adds 1 to (50-55) Lightning Damage",
+          "min": 50,
+          "max": 55
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "All damage with this Weapon causes Electrocution buildup"
+        }
+      ],
+      "variantGroup": "brain-rattler",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "chober-chaber-pre-0-1-1": {
+      "id": "chober-chaber-pre-0-1-1",
+      "name": "Chober Chaber",
+      "baseType": "Leaden Greathammer",
+      "baseTypeId": "leaden-greathammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+100 Intelligence Requirement",
+          "value": 100
+        },
+        {
+          "text": "(80-120)% increased Physical Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(80-100) to maximum Mana",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+5% to Critical Hit Chance",
+          "value": 5
+        },
+        {
+          "text": "Increases and Reductions to Minion Damage also affect you"
+        }
+      ],
+      "variantGroup": "chober-chaber",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "chober-chaber-current": {
+      "id": "chober-chaber-current",
+      "name": "Chober Chaber",
+      "baseType": "Leaden Greathammer",
+      "baseTypeId": "leaden-greathammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "+100 Intelligence Requirement",
+          "value": 100
+        },
+        {
+          "text": "Adds (58-65) to (102-110) Physical Damage",
+          "min": 58,
+          "max": 65
+        },
+        {
+          "text": "+(80-100) to maximum Mana",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "+50 to Spirit",
+          "value": 50
+        },
+        {
+          "text": "Increases and Reductions to Minion Damage also affect you"
+        }
+      ],
+      "variantGroup": "chober-chaber",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "the-empty-roar": {
+      "id": "the-empty-roar",
+      "name": "The Empty Roar",
+      "baseType": "Cultist Greathammer",
+      "baseTypeId": "cultist-greathammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "Strikes deal Splash Damage",
+          "implicit": true
+        },
+        {
+          "text": "Adds (25-35) to (40-50) Physical Damage",
+          "min": 25,
+          "max": 35
+        },
+        {
+          "text": "Leeches 10% of Physical Damage as Life"
+        },
+        {
+          "text": "(10-20)% chance to cause Bleeding on Hit",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "All Attacks count as Empowered Attacks"
+        },
+        {
+          "text": "Cannot use Warcries"
+        }
+      ]
+    },
+    "the-hammer-of-faith-pre-0-2-1": {
+      "id": "the-hammer-of-faith-pre-0-2-1",
+      "name": "The Hammer of Faith",
+      "baseType": "Giant Maul",
+      "baseTypeId": "giant-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(200-250)% increased Physical Damage",
+          "min": 200,
+          "max": 250
+        },
+        {
+          "text": "10% reduced Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "value": 50
+        },
+        {
+          "text": "Every 10 seconds, gain a random non-damaging Shrine buff for 20 seconds"
+        }
+      ],
+      "variantGroup": "the-hammer-of-faith",
+      "variantId": "pre-0-2-1",
+      "variantName": "Pre 0.2.1"
+    },
+    "the-hammer-of-faith-pre-0-4-0": {
+      "id": "the-hammer-of-faith-pre-0-4-0",
+      "name": "The Hammer of Faith",
+      "baseType": "Giant Maul",
+      "baseTypeId": "giant-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(250-300)% increased Physical Damage",
+          "min": 250,
+          "max": 300
+        },
+        {
+          "text": "10% reduced Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "value": 50
+        },
+        {
+          "text": "Every 10 seconds, gain a random non-damaging Shrine buff for 20 seconds"
+        }
+      ],
+      "variantGroup": "the-hammer-of-faith",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-hammer-of-faith-current": {
+      "id": "the-hammer-of-faith-current",
+      "name": "The Hammer of Faith",
+      "baseType": "Giant Maul",
+      "baseTypeId": "giant-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(300-350)% increased Physical Damage",
+          "min": 300,
+          "max": 350
+        },
+        {
+          "text": "10% reduced Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+10% to all Elemental Resistances",
+          "value": 10
+        },
+        {
+          "text": "50% increased Mana Regeneration Rate",
+          "value": 50
+        },
+        {
+          "text": "Every 10 seconds, gain a random non-damaging Shrine buff for 20 seconds"
+        }
+      ],
+      "variantGroup": "the-hammer-of-faith",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "hoghunt-pre-0-1-1": {
+      "id": "hoghunt-pre-0-1-1",
+      "name": "Hoghunt",
+      "baseType": "Felled Greatclub",
+      "baseTypeId": "felled-greatclub",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Physical Damage",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+15% to Critical Hit Chance",
+          "value": 15
+        },
+        {
+          "text": "10% reduced Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+10 to Strength",
+          "value": 10
+        },
+        {
+          "text": "Maim on Critical Hit"
+        }
+      ],
+      "variantGroup": "hoghunt",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "hoghunt-current": {
+      "id": "hoghunt-current",
+      "name": "Hoghunt",
+      "baseType": "Felled Greatclub",
+      "baseTypeId": "felled-greatclub",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (16-20) to (23-27) Physical Damage",
+          "min": 16,
+          "max": 20
+        },
+        {
+          "text": "+15% to Critical Hit Chance",
+          "value": 15
+        },
+        {
+          "text": "10% reduced Attack Speed",
+          "value": 10
+        },
+        {
+          "text": "+10 to Strength",
+          "value": 10
+        },
+        {
+          "text": "Maim on Critical Hit"
+        }
+      ],
+      "variantGroup": "hoghunt",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "hrimnor-s-hymn-pre-0-1-1": {
+      "id": "hrimnor-s-hymn-pre-0-1-1",
+      "name": "Hrimnor's Hymn",
+      "baseType": "Oak Greathammer",
+      "baseTypeId": "oak-greathammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Causes (20-40)% increased Stun Buildup",
+          "implicit": true,
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "(60-80)% increased Physical Damage",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Gain (10-20) Life per enemy killed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Slam Skills you use yourself cause an additional Aftershock"
+        }
+      ],
+      "variantGroup": "hrimnor-s-hymn",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "hrimnor-s-hymn-current": {
+      "id": "hrimnor-s-hymn-current",
+      "name": "Hrimnor's Hymn",
+      "baseType": "Oak Greathammer",
+      "baseTypeId": "oak-greathammer",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Causes (20-40)% increased Stun Buildup",
+          "implicit": true,
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "(80-120)% increased Physical Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(10-15) to Strength",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Gain (10-20) Life per enemy killed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Slam Skills you use yourself cause an additional Aftershock"
+        }
+      ],
+      "variantGroup": "hrimnor-s-hymn",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "quecholli": {
+      "id": "quecholli",
+      "name": "Quecholli",
+      "baseType": "Crumbling Maul",
+      "baseTypeId": "crumbling-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Causes Enemies to Explode on Critical kill, for 10% of their Life as Physical Damage",
+          "implicit": true
+        },
+        {
+          "text": "(80-120)% increased Physical Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "+(10-15) to all Attributes",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Gain 30 Life per enemy killed"
+        },
+        {
+          "text": "This Weapon's Critical Hit Chance is 100%"
+        },
+        {
+          "text": "Critical Hits do not deal extra Damage"
+        }
+      ]
+    },
+    "tidebreaker": {
+      "id": "tidebreaker",
+      "name": "Tidebreaker",
+      "baseType": "Pointed Maul",
+      "baseTypeId": "pointed-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "(120-150)% increased Physical Damage",
+          "min": 120,
+          "max": 150
+        },
+        {
+          "text": "+(2-3) to Level of all Melee Skills",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "text": "+(20-30) to Intelligence",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Causes (150-200)% increased Stun Buildup",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "All Damage from Hits with this Weapon Contributes to Chill Magnitude"
+        }
+      ]
+    },
+    "trephina-pre-0-1-1": {
+      "id": "trephina-pre-0-1-1",
+      "name": "Trephina",
+      "baseType": "Forge Maul",
+      "baseTypeId": "forge-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (7-10) to (12-18) Physical Damage",
+          "min": 7,
+          "max": 10
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Causes (30-50)% increased Stun Buildup",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Always deals Critical Hits against Heavy Stunned Enemies"
+        }
+      ],
+      "variantGroup": "trephina",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "trephina-current": {
+      "id": "trephina-current",
+      "name": "Trephina",
+      "baseType": "Forge Maul",
+      "baseTypeId": "forge-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "modifiers": [
+        {
+          "text": "Adds (12-15) to (22-25) Physical Damage",
+          "min": 12,
+          "max": 15
+        },
+        {
+          "text": "(10-15)% increased Attack Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "Causes (30-50)% increased Stun Buildup",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Always deals Critical Hits against Heavy Stunned Enemies"
+        }
+      ],
+      "variantGroup": "trephina",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "shyaba": {
+      "id": "shyaba",
+      "name": "Shyaba",
+      "baseType": "Temple Maul",
+      "baseTypeId": "temple-maul",
+      "itemType": "One Handed Mace",
+      "category": "weapons",
+      "source": {
+        "league": "Dawn of the Hunt"
+      },
+      "modifiers": [
+        {
+          "text": "+50 Dexterity Requirement",
+          "value": 50
+        },
+        {
+          "text": "-15 Strength Requirement",
+          "value": 15
+        },
+        {
+          "text": "(80-120)% increased Physical Damage",
+          "min": 80,
+          "max": 120
+        },
+        {
+          "text": "50% increased Attack Speed",
+          "value": 50
+        },
+        {
+          "text": "(15-25)% increased Light Radius",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Always Hits"
+        }
+      ]
+    }
+  }
+}
