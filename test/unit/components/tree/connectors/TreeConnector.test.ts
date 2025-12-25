@@ -31,8 +31,6 @@ function createTestNode(
     orbitIndex: 0,
     isProxy: false,
     isAscendancyStart: false,
-    // Note: Pattern `!== undefined && { key }` correctly handles 0 values
-    // because `0 !== undefined` evaluates to true, so { group: 0 } is included
     ...(group !== undefined && { group }),
     ...(orbit !== undefined && { orbit }),
   };
