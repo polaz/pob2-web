@@ -26,6 +26,19 @@ const GREEN_CHANNEL_SHIFT = 8;
  */
 const CUBIC_BEZIER_COEFFICIENT = 3;
 
+/** Full circle in radians (2π) for angle normalization and arc calculations */
+const TWO_PI = Math.PI * 2;
+
+/**
+ * Bezier control point distance formula constants.
+ * The control point distance for arc approximation is: h = (4/3) * tan(θ/4) * r
+ * These are the numerator and denominator of the 4/3 fraction.
+ */
+const BEZIER_CONTROL_DISTANCE_NUMERATOR = 4;
+const BEZIER_CONTROL_DISTANCE_DENOMINATOR = 3;
+/** Divisor for bezier tangent half-angle calculation: tan(θ/4) */
+const BEZIER_TANGENT_ANGLE_DIVISOR = 4;
+
 // ============================================================================
 // Basic Geometry
 // ============================================================================
@@ -63,10 +76,9 @@ export function lerp(p1: Point, p2: Point, t: number): Point {
  * Normalize an angle to the range [0, 2π).
  */
 export function normalizeAngle(angle: number): number {
-  const twoPi = Math.PI * 2;
-  let normalized = angle % twoPi;
+  let normalized = angle % TWO_PI;
   if (normalized < 0) {
-    normalized += twoPi;
+    normalized += TWO_PI;
   }
   return normalized;
 }
@@ -78,9 +90,9 @@ export function normalizeAngle(angle: number): number {
 export function angleDifference(from: number, to: number): number {
   let diff = normalizeAngle(to) - normalizeAngle(from);
   if (diff > Math.PI) {
-    diff -= Math.PI * 2;
+    diff -= TWO_PI;
   } else if (diff <= -Math.PI) {
-    diff += Math.PI * 2;
+    diff += TWO_PI;
   }
   return diff;
 }
@@ -209,16 +221,18 @@ export function arcToBezierSegment(
   // Calculate arc angle for this segment
   let arcAngle = toAngle - fromAngle;
   if (arc.clockwise && arcAngle > 0) {
-    arcAngle -= Math.PI * 2;
+    arcAngle -= TWO_PI;
   } else if (!arc.clockwise && arcAngle < 0) {
-    arcAngle += Math.PI * 2;
+    arcAngle += TWO_PI;
   }
 
   // Control point distance factor
   // For a 90-degree arc, this equals BEZIER_KAPPA
   // For other angles: (4/3) * tan(θ/4)
-  const tanHalfHalf = Math.tan(arcAngle / 4);
-  const alpha = (4 / 3) * tanHalfHalf;
+  const tanHalfHalf = Math.tan(arcAngle / BEZIER_TANGENT_ANGLE_DIVISOR);
+  const alpha =
+    (BEZIER_CONTROL_DISTANCE_NUMERATOR / BEZIER_CONTROL_DISTANCE_DENOMINATOR) *
+    tanHalfHalf;
 
   // Start and end points on the circle
   const p0 = pointOnCircle(centerX, centerY, radius, fromAngle);
@@ -254,9 +268,9 @@ export function arcToBezierCurves(arc: ArcData): BezierCurve[] {
   // Calculate total arc angle
   let totalAngle = endAngle - startAngle;
   if (clockwise) {
-    if (totalAngle > 0) totalAngle -= Math.PI * 2;
+    if (totalAngle > 0) totalAngle -= TWO_PI;
   } else {
-    if (totalAngle < 0) totalAngle += Math.PI * 2;
+    if (totalAngle < 0) totalAngle += TWO_PI;
   }
 
   const absTotalAngle = Math.abs(totalAngle);
