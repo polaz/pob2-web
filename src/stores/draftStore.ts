@@ -23,6 +23,7 @@ import type {
 } from 'src/types/draft';
 import { generateCustomNodeId } from 'src/types/draft';
 import type { TreeNodeType } from 'src/types/tree';
+import { deepMerge } from 'src/utils/dataOverlay';
 
 export const useDraftStore = defineStore('draft', () => {
   // ============================================================================
@@ -129,7 +130,8 @@ export const useDraftStore = defineStore('draft', () => {
   function setSkillEdit(gemId: string, draft: GemDraft): void {
     const newMap = new Map(skillEdits.value);
     const existing = newMap.get(gemId);
-    newMap.set(gemId, { ...existing, ...draft });
+    // Use deepMerge to handle nested objects (tags, requirements, etc.)
+    newMap.set(gemId, existing ? deepMerge(existing, draft) : draft);
     skillEdits.value = newMap;
   }
 
@@ -179,7 +181,8 @@ export const useDraftStore = defineStore('draft', () => {
   function setItemEdit(itemId: string, draft: ItemDraft): void {
     const newMap = new Map(itemEdits.value);
     const existing = newMap.get(itemId);
-    newMap.set(itemId, { ...existing, ...draft });
+    // Use deepMerge to handle nested objects (weaponData, armourData, etc.)
+    newMap.set(itemId, existing ? deepMerge(existing, draft) : draft);
     itemEdits.value = newMap;
   }
 
@@ -327,7 +330,8 @@ export const useDraftStore = defineStore('draft', () => {
     }
 
     const newMap = new Map(customNodes.value);
-    newMap.set(nodeId, { ...existing, ...updates });
+    // Use deepMerge for consistency and to handle masteryEffects array
+    newMap.set(nodeId, deepMerge(existing, updates));
     customNodes.value = newMap;
   }
 
