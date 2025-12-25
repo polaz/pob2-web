@@ -38,9 +38,18 @@ vi.mock('src/composables/usePixiApp', () => ({
 // Import component after mock is set up
 import PassiveTreeCanvas from 'src/components/tree/PassiveTreeCanvas.vue';
 
+/** Type for the component's exposed properties via defineExpose */
+interface PassiveTreeCanvasExposed {
+  ready: (typeof mockReady)['value'];
+  error: (typeof mockError)['value'];
+  rendererType: (typeof mockRendererType)['value'];
+  fps: (typeof mockFps)['value'];
+  fallbackInfo: (typeof mockFallbackInfo)['value'];
+  layers: (typeof mockLayers)['value'];
+}
+
 describe('PassiveTreeCanvas', () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let wrapper: ReturnType<typeof mount<any>>;
+  let wrapper: ReturnType<typeof mount<typeof PassiveTreeCanvas>>;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -160,40 +169,43 @@ describe('PassiveTreeCanvas', () => {
   });
 
   describe('exposed properties', () => {
+    /**
+     * Helper to get typed exposed properties from wrapper.
+     * Vue Test Utils doesn't provide type inference for defineExpose,
+     * so we cast through unknown for type safety.
+     */
+    function getExposed(): PassiveTreeCanvasExposed {
+      return wrapper.vm as unknown as PassiveTreeCanvasExposed;
+    }
+
     it('should expose ready ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).ready).toBeDefined();
+      expect(getExposed().ready).toBeDefined();
     });
 
     it('should expose error ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).error).toBeDefined();
+      expect(getExposed().error).toBeDefined();
     });
 
     it('should expose rendererType ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).rendererType).toBeDefined();
+      expect(getExposed().rendererType).toBeDefined();
     });
 
     it('should expose fps ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).fps).toBeDefined();
+      expect(getExposed().fps).toBeDefined();
     });
 
     it('should expose fallbackInfo ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).fallbackInfo).toBeDefined();
+      expect(getExposed().fallbackInfo).toBeDefined();
     });
 
     it('should expose layers ref', () => {
       wrapper = mountComponent();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      expect((wrapper.vm as any).layers).toBeDefined();
+      expect(getExposed().layers).toBeDefined();
     });
   });
 

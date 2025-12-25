@@ -33,10 +33,15 @@
 import { shallowRef, computed, onMounted, onUnmounted, watch } from 'vue';
 import { usePixiApp, type TreeLayers } from 'src/composables/usePixiApp';
 
-const props = defineProps<{
-  /** Whether to show FPS counter (only in dev mode) */
-  showFps?: boolean;
-}>();
+const props = withDefaults(
+  defineProps<{
+    /** Whether to show FPS counter (only in dev mode) */
+    showFps?: boolean;
+  }>(),
+  {
+    showFps: true,
+  }
+);
 
 const emit = defineEmits<{
   /** Emitted when the canvas is ready */
@@ -55,7 +60,7 @@ const canvasRef = shallowRef<HTMLCanvasElement | null>(null);
 const { ready, error, rendererType, fps, fallbackInfo, layers, init, resize } = usePixiApp();
 
 // Show FPS only in dev mode when prop is true (reactive to prop changes)
-const shouldShowFps = computed(() => import.meta.env.DEV && (props.showFps ?? true));
+const shouldShowFps = computed(() => import.meta.env.DEV && props.showFps);
 
 // Compute fallback reason message for display
 const fallbackReason = computed(() => {

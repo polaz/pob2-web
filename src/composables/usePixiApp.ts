@@ -72,58 +72,66 @@ const FPS_UPDATE_INTERVAL_MS = 500;
  */
 const CANVAS_BACKGROUND_COLOR = 0x1a1a2e;
 
-/**
- * Detect renderer availability and reasons for unavailability.
- * Returns detailed info about what's available and why fallbacks might occur.
- */
-function detectRendererAvailability(): {
+/** Result of renderer availability detection */
+interface RendererAvailability {
   webgpuAvailable: boolean;
   webgpuReason?: string;
   webgl2Available: boolean;
   webgl2Reason?: string;
   webglAvailable: boolean;
   webglReason?: string;
-} {
-  const result: ReturnType<typeof detectRendererAvailability> = {
-    webgpuAvailable: false,
-    webgl2Available: false,
-    webglAvailable: false,
-  };
+}
 
+/**
+ * Detect renderer availability and reasons for unavailability.
+ * Returns detailed info about what's available and why fallbacks might occur.
+ */
+function detectRendererAvailability(): RendererAvailability {
   // Check WebGPU availability
-  if (typeof navigator !== 'undefined' && 'gpu' in navigator) {
-    result.webgpuAvailable = true;
-  } else {
-    result.webgpuReason = 'navigator.gpu not available (browser does not support WebGPU)';
-  }
+  const webgpuAvailable = typeof navigator !== 'undefined' && 'gpu' in navigator;
+  const webgpuReason = webgpuAvailable
+    ? undefined
+    : 'navigator.gpu not available (browser does not support WebGPU)';
 
   // Check WebGL2 availability
+  let webgl2Available = false;
+  let webgl2Reason: string | undefined;
   try {
     const testCanvas = document.createElement('canvas');
     const gl2 = testCanvas.getContext('webgl2');
     if (gl2) {
-      result.webgl2Available = true;
+      webgl2Available = true;
     } else {
-      result.webgl2Reason = 'WebGL2 context creation failed';
+      webgl2Reason = 'WebGL2 context creation failed';
     }
   } catch (e) {
-    result.webgl2Reason = `WebGL2 error: ${e instanceof Error ? e.message : String(e)}`;
+    webgl2Reason = `WebGL2 error: ${e instanceof Error ? e.message : String(e)}`;
   }
 
   // Check WebGL availability
+  let webglAvailable = false;
+  let webglReason: string | undefined;
   try {
     const testCanvas = document.createElement('canvas');
     const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
     if (gl) {
-      result.webglAvailable = true;
+      webglAvailable = true;
     } else {
-      result.webglReason = 'WebGL context creation failed';
+      webglReason = 'WebGL context creation failed';
     }
   } catch (e) {
-    result.webglReason = `WebGL error: ${e instanceof Error ? e.message : String(e)}`;
+    webglReason = `WebGL error: ${e instanceof Error ? e.message : String(e)}`;
   }
 
-  return result;
+  return {
+    webgpuAvailable,
+    webgl2Available,
+    webglAvailable,
+    // Only include reason properties if they have values (exactOptionalPropertyTypes)
+    ...(webgpuReason && { webgpuReason }),
+    ...(webgl2Reason && { webgl2Reason }),
+    ...(webglReason && { webglReason }),
+  };
 }
 
 /**
