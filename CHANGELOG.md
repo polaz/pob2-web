@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/polaz/pob2-web/compare/v1.18.0...v1.19.0) (2025-12-25)
+
+
+### Features
+
+* **tree:** implement class and ascendancy selection ([#131](https://github.com/polaz/pob2-web/issues/131)) ([7c8ac4f](https://github.com/polaz/pob2-web/commit/7c8ac4f9af83cf3cc5e8ff9c8b84f7920c18bed1)), closes [#19](https://github.com/polaz/pob2-web/issues/19)
+
 # [1.18.0](https://github.com/polaz/pob2-web/compare/v1.17.2...v1.18.0) (2025-12-25)
 
 
