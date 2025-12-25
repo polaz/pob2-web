@@ -6,8 +6,9 @@
  * passives, gems, config) to compute final stat values.
  */
 
-// Main class
+// Main classes
 export { ModDB } from './ModDB';
+export { ModList } from './ModList';
 
 // Types
 export type {
