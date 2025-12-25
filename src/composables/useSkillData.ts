@@ -128,11 +128,6 @@ async function loadSkillData(): Promise<SkillsData> {
     throw error;
   });
 
-  // Reset loading promise in finally to allow retries
-  void loadingPromise.finally(() => {
-    loadingPromise = null;
-  });
-
   return loadingPromise;
 }
 
@@ -309,6 +304,13 @@ export function useSkillData() {
   /**
    * Get damage effectiveness for a skill at a specific level.
    *
+   * Formula from PoB CalcTools.lua:
+   *   baseEffectiveness * (1 + incrementalEffectiveness * (level - 1))
+   *                     * (1 + damageIncrementalEffectiveness) ^ (level - 1)
+   *
+   * Note: incrementalEffectiveness uses linear scaling, while
+   * damageIncrementalEffectiveness uses exponential scaling.
+   *
    * @param skill - The skill
    * @param level - The gem level (1-40)
    * @param statSetIndex - The stat set index (0 for primary, 1+ for variants)
@@ -326,13 +328,12 @@ export function useSkillData() {
     const incEff = statSet.incrementalEffectiveness ?? 0;
     const damageIncEff = statSet.damageIncrementalEffectiveness ?? 0;
 
-    // Calculate effectiveness at level
-    // Formula from PoB: baseEffectiveness * (1 + incrementalEffectiveness * (level - 1))
-    // Plus damage incremental for some skills
-    const levelBonus = incEff * (level - 1);
-    const damageBonus = damageIncEff * (level - 1);
+    // Linear scaling for incrementalEffectiveness
+    const linearMultiplier = 1 + incEff * (level - 1);
+    // Exponential scaling for damageIncrementalEffectiveness
+    const exponentialMultiplier = Math.pow(1 + damageIncEff, level - 1);
 
-    return baseEff * (1 + levelBonus + damageBonus);
+    return baseEff * linearMultiplier * exponentialMultiplier;
   }
 
   /**

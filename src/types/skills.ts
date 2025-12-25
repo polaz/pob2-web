@@ -2,6 +2,8 @@
 // Types for PoE2 skill stats data extracted from PoB2's Skills/*.lua files
 // Source: PathOfBuildingCommunity/PathOfBuilding-PoE2
 
+import type { GemType, GemTags } from './gems';
+
 /**
  * Quality stat bonus per quality point
  */
@@ -144,7 +146,11 @@ export interface Skill {
   /** Skill types that prevent support */
   excludeSkillTypes?: string[];
 
-  /** Support gem family grouping */
+  /**
+   * Support gem family grouping.
+   * Note: Skills data stores this as an array, while Gem.family in gems.ts
+   * is a single string. The extraction preserves the array format from PoB.
+   */
   gemFamily?: string[];
 
   /** Quality stat bonuses */
@@ -228,7 +234,7 @@ export interface CompleteSkill {
   gem: {
     id: string;
     name: string;
-    type: string;
+    type: GemType;
     isSupport: boolean;
     tier: number;
     maxLevel: number;
@@ -237,8 +243,8 @@ export interface CompleteSkill {
       dex: number;
       int: number;
     };
-    /** Tag flags for filtering (values may be undefined for non-present tags) */
-    tags: Record<string, boolean | undefined>;
+    /** Tag flags for filtering */
+    tags: GemTags;
     weaponTypes?: string[];
   };
 
