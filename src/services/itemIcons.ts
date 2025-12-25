@@ -143,9 +143,16 @@ const XML_ESCAPE_MAP: Record<string, string> = {
  * Escapes a single character for safe use in XML/SVG content.
  * Returns the escaped version if it's a special character, otherwise the original.
  *
- * @param char - A single character to escape. Multi-character strings are returned unchanged.
+ * Design: This function intentionally only handles single characters because
+ * it's used for escaping single-letter placeholders in SVG text elements.
+ * Multi-character strings pass through unchanged as a safety measure - the
+ * caller (e.g., charAt(0)) should already provide a single character.
+ *
+ * @param char - A single character to escape.
+ * @returns The XML-escaped character (e.g., '<' becomes '&lt;') or the original.
  */
 function escapeXmlChar(char: string): string {
+  // Guard: charAt(0) always returns a single char, but we validate defensively
   if (char.length !== 1) {
     return char;
   }
@@ -403,7 +410,8 @@ class ItemIconLoader {
    */
   getSlotPlaceholder(slotType: string): string {
     const iconName = SLOT_ICONS[slotType.toLowerCase()] ?? 'default';
-    // Escape XML special characters for safe SVG embedding
+    // charAt(0) returns a single character; escapeXmlChar handles XML special chars
+    // (e.g., if iconName were '<script>', this would safely escape the '<')
     const letter = escapeXmlChar(iconName.charAt(0).toUpperCase());
 
     return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Crect fill='%231a1a2e' stroke='%233a3a4e' stroke-width='2' stroke-dasharray='4' x='1' y='1' width='62' height='62' rx='4'/%3E%3Ctext x='32' y='40' fill='%23555' font-family='sans-serif' font-size='28' text-anchor='middle'%3E${letter}%3C/text%3E%3C/svg%3E`;

@@ -96,10 +96,6 @@ const props = withDefaults(
   }
 );
 
-// Convenience aliases for cleaner template access
-const isSelected = computed(() => props.selected);
-const slotSize = computed(() => props.size);
-
 defineEmits<{
   click: [];
 }>();
@@ -117,16 +113,16 @@ const iconError = ref(false);
 
 /** Slot CSS classes */
 const slotClasses = computed(() => ({
-  'item-slot--selected': isSelected.value,
+  'item-slot--selected': props.selected,
   'item-slot--hovering': hovering.value,
   'item-slot--empty': !props.item,
   'item-slot--equipped': !!props.item,
-  [`item-slot--${slotSize.value}`]: true,
+  [`item-slot--${props.size}`]: true,
 }));
 
 /** Slot size dimensions */
 const slotDimensions = computed(() => {
-  switch (slotSize.value) {
+  switch (props.size) {
     case 'small':
       return { width: `${SLOT_SIZE_SMALL}px`, height: `${SLOT_SIZE_SMALL}px` };
     case 'flask':
@@ -189,6 +185,11 @@ function handleIconError(): void {
 <style scoped>
 /* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-slot {
+  /* Component-specific layout dimensions as CSS custom properties */
+  --placeholder-scale: 60%;
+  --icon-scale: 90%;
+  --rarity-bar-height: 3px;
+
   position: relative;
   background-color: var(--poe2-slot-bg);
   border: 2px solid var(--poe2-slot-border);
@@ -217,8 +218,8 @@ function handleIconError(): void {
 }
 
 .item-slot__placeholder {
-  width: 60%;
-  height: 60%;
+  width: var(--placeholder-scale);
+  height: var(--placeholder-scale);
   object-fit: contain;
   opacity: 0.6;
 }
@@ -239,8 +240,8 @@ function handleIconError(): void {
 /* item-slot__item uses Quasar 'fit' class for width/height: 100% */
 
 .item-slot__icon {
-  width: 90%;
-  height: 90%;
+  width: var(--icon-scale);
+  height: var(--icon-scale);
   object-fit: contain;
 }
 
@@ -249,7 +250,7 @@ function handleIconError(): void {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: var(--rarity-bar-height);
 }
 
 /* Size variants are handled by slotDimensions computed property (inline styles)

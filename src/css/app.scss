@@ -53,7 +53,11 @@ $scrollbar-size: 8px;
 // Selection Styling
 // ============================================================================
 
+// Selection highlight colors - muted blue that complements PoE2's dark theme
+$selection-color: rgb(136, 136, 255); // Soft blue, matches PoE2 accent tones
+$selection-opacity: 0.3; // Low opacity to not obscure text
+
 ::selection {
-  background-color: rgba(136, 136, 255, 0.3); // Magic blue with transparency
+  background-color: rgba($selection-color, $selection-opacity);
   color: var(--poe2-text-primary);
 }

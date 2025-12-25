@@ -360,7 +360,14 @@ const pasteText = ref('');
 /** Parse error message */
 const parseError = ref('');
 
-/** Edited item data - use Record for dynamic optional properties */
+/**
+ * Edited item state for the form.
+ *
+ * Optional properties (requiredLevel?, etc.) use TypeScript optional syntax
+ * rather than `| undefined` due to exactOptionalPropertyTypes. This means
+ * these properties are either present with a number value or absent entirely.
+ * We use the `delete` operator to remove them when clearing the form.
+ */
 interface EditedItemState {
   id: string;
   name: string;
@@ -530,6 +537,10 @@ function resetForm(): void {
     editedItem.rarity = ItemRarity.RARITY_NORMAL;
     editedItem.itemLevel = 1;
     editedItem.quality = 0;
+    // Use delete operator for optional properties: With exactOptionalPropertyTypes,
+    // we cannot assign undefined to optional props (requiredLevel?: number means
+    // absent, not number | undefined). Vue 3's Proxy-based reactivity handles
+    // delete operations correctly, triggering updates when properties are removed.
     delete editedItem.requiredLevel;
     delete editedItem.requiredStr;
     delete editedItem.requiredDex;
@@ -616,7 +627,9 @@ function applyParsedItem(item: Item): void {
   editedItem.rarity = item.rarity ?? ItemRarity.RARITY_NORMAL;
   editedItem.itemLevel = item.itemLevel ?? 1;
   editedItem.quality = item.quality ?? 0;
-  // Use conditional assignment to avoid setting undefined with exactOptionalPropertyTypes
+  // Handle optional properties with exactOptionalPropertyTypes: We can't assign
+  // undefined to optional props, so we use delete when the source value is absent.
+  // Vue 3's Proxy-based reactivity handles delete operations correctly.
   if (item.requiredLevel !== undefined) editedItem.requiredLevel = item.requiredLevel;
   else delete editedItem.requiredLevel;
   if (item.requiredStr !== undefined) editedItem.requiredStr = item.requiredStr;

@@ -123,8 +123,11 @@
     </div>
 
     <!-- Item editor modal -->
-    <!-- Use v-bind with conditional object to omit target-slot when undefined,
-         since ItemEditor expects `targetSlot?: ItemSlot` (omitted vs explicit undefined) -->
+    <!-- Conditional v-bind pattern: When editingSlot is undefined, we pass an empty
+         object {} so the target-slot prop is omitted entirely. This is required because
+         TypeScript's exactOptionalPropertyTypes treats "prop: undefined" differently from
+         "prop not present". ItemEditor expects `targetSlot?: ItemSlot` (optional, not
+         undefined-able), so we must omit it rather than pass undefined. -->
     <ItemEditor
       v-model="isEditorOpen"
       :item="editingItem"
@@ -198,14 +201,18 @@ const selectedItem = computed(() => {
 // ============================================================================
 
 /**
- * Handles slot selection from grid.
+ * Handles slot selection from grid (event listener placeholder).
  *
- * This is intentionally a no-op: slot selection state is managed by
- * itemStore.selectSlot() which is called directly by ItemSlotGrid.
- * We keep this handler to satisfy the slot-select event contract.
+ * Currently a no-op: selection state is managed by itemStore.selectSlot()
+ * which ItemSlotGrid calls directly. This handler exists for:
+ * 1. Satisfying the @slot-select event binding in the template
+ * 2. Future extensibility (e.g., analytics, side effects on selection)
+ *
+ * @param _slot - The selected slot (unused - prefixed with underscore per convention)
  */
 function handleSlotSelect(_slot: ItemSlot): void {
-  // No action needed - selection is handled by itemStore via ItemSlotGrid
+  // Selection state is managed by itemStore via ItemSlotGrid.
+  // Add page-level side effects here if needed in the future.
 }
 
 /**
@@ -356,7 +363,11 @@ function clearComparison(): void {
 
 <style scoped>
 .items-page {
-  /* Layout dimensions */
+  /* Layout dimensions - extracted as CSS custom properties for maintainability.
+     These values are based on the three-panel layout design:
+     - Slots panel: Fixed width to fit the equipment grid
+     - Details panel: Flexible, fills remaining space
+     - Comparison panel: Constrained width for side-by-side view */
   --page-padding: 16px;
   --slots-panel-width: 280px;
   --details-panel-min-width: 300px;

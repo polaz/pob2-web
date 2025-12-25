@@ -285,16 +285,22 @@ defineEmits<{
 
 const iconUrl = ref<string>('');
 /**
- * Tracks icon load failures - currently unused since we use synchronous placeholders.
- * Retained for future async icon loading when item data includes icon paths.
+ * Tracks icon load failures for UI feedback (e.g., showing error state).
+ *
+ * Currently set but not read because we use synchronous placeholders.
+ * When async icon loading is implemented (item data with icon paths),
+ * this will be used to conditionally render error states or retry buttons.
+ * Prefixed with underscore to indicate intentional non-use for now.
  */
-const iconError = ref(false);
+const _iconError = ref(false);
 
 function loadIcon(): void {
+  // Reset error state on new load attempt
+  _iconError.value = false;
   // For now, use rarity placeholder since items don't have icon paths yet.
   // When icon paths are added to item data, this will become async:
   //   iconUrl.value = await itemIconLoader.getIconUrl(props.item.iconPath);
-  // The handleIconError() and iconError state will then handle load failures.
+  // The handleIconError() and _iconError state will then handle load failures.
   iconUrl.value = itemIconLoader.getRarityPlaceholder(
     props.item.rarity ?? 0,
     props.item.baseName?.charAt(0) ?? props.item.name?.charAt(0) ?? '?'
@@ -306,7 +312,7 @@ function loadIcon(): void {
  * Currently only triggered by img @error event (retained for future async loading).
  */
 function handleIconError(): void {
-  iconError.value = true;
+  _iconError.value = true;
   iconUrl.value = itemIconLoader.getPlaceholder();
 }
 
@@ -450,6 +456,10 @@ const totalDps = computed(() => {
  * Game stores percentage values as integers scaled by 100
  * (i.e., in hundredths of a percent, so 500 represents 5.00%).
  * Divide by this constant to convert stored values to display percentages.
+ *
+ * Note: This constant is local to ItemCard because it's only used here for
+ * display formatting. If other components need percentage conversion, consider
+ * moving to a shared utility (e.g., src/utils/formatting.ts).
  */
 const PERCENTAGE_STORAGE_MULTIPLIER = 100;
 
