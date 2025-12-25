@@ -469,7 +469,9 @@ function formatBlock(value: number): string {
 <style scoped>
 /* Uses global PoE2 theme variables from themes/poe2.scss */
 .item-card {
+  /* Component-specific layout dimensions */
   --socket-size: 16px;
+  --icon-size: 40px;
 
   background-color: var(--poe2-card-bg);
   border-color: var(--poe2-card-border);
@@ -499,8 +501,8 @@ function formatBlock(value: number): string {
 }
 
 .item-card__icon {
-  width: 40px;
-  height: 40px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;

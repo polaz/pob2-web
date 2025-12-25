@@ -356,8 +356,10 @@ function handleClear(): void {
 }
 
 .item-comparison-pane__deltas {
+  --deltas-padding: 8px;
+
   background-color: rgba(255, 255, 255, 0.02);
   border-radius: 4px;
-  padding: 8px;
+  padding: var(--deltas-padding);
 }
 </style>
