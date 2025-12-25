@@ -556,7 +556,7 @@ export function buildToXml(build: Build): string {
  * Parse allocated node IDs from PoB2 format.
  */
 function parseNodes(nodesStr: string | undefined): string[] {
-  if (!nodesStr || nodesStr.trim() === '') {
+  if (!nodesStr?.trim()) {
     return [];
   }
   return nodesStr.split(',').filter((id) => id.trim() !== '');
@@ -566,7 +566,7 @@ function parseNodes(nodesStr: string | undefined): string[] {
  * Parse mastery selections from PoB2 format.
  */
 function parseMasteryEffects(effectsStr: string | undefined): Record<string, string> {
-  if (!effectsStr || effectsStr.trim() === '') {
+  if (!effectsStr?.trim()) {
     return {};
   }
 
