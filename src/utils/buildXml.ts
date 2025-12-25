@@ -811,7 +811,9 @@ function parseConfig(configElement: Element | null): BuildConfig | undefined {
         if (numValue !== undefined) config.enemyLevel = numValue;
         break;
       case 'enemyIsBoss':
-        config.enemyIsBoss = strValue === 'Pinnacle' || strValue === 'true';
+        if (strValue !== undefined) {
+          config.enemyIsBoss = strValue === 'Pinnacle' || strValue === 'true';
+        }
         break;
       case 'usePowerCharges':
         if (boolValue !== undefined) config.powerCharges = boolValue;
