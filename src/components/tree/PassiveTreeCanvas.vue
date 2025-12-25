@@ -3,7 +3,11 @@
     <canvas ref="canvasRef" class="block full-width full-height" />
 
     <!-- Dev mode FPS counter -->
-    <div v-if="showFps && ready" class="passive-tree-canvas__fps absolute q-pa-xs text-caption">
+    <div
+      v-if="shouldShowFps && ready"
+      class="passive-tree-canvas__fps absolute q-pa-xs text-caption"
+      style="top: 8px; right: 8px"
+    >
       {{ fps }} FPS | {{ rendererType.toUpperCase() }}
     </div>
 
@@ -48,7 +52,7 @@ const canvasRef = shallowRef<HTMLCanvasElement | null>(null);
 const { ready, error, rendererType, fps, layers, init, resize } = usePixiApp();
 
 // Show FPS only in dev mode when prop is true (reactive to prop changes)
-const showFps = computed(() => import.meta.env.DEV && (props.showFps ?? true));
+const shouldShowFps = computed(() => import.meta.env.DEV && (props.showFps ?? true));
 
 // ResizeObserver for responsive sizing
 let resizeObserver: ResizeObserver | null = null;
@@ -120,9 +124,8 @@ defineExpose({
   background-color: #1a1a2e;
 }
 
+/* FPS counter visual styling - positioning via inline style */
 .passive-tree-canvas__fps {
-  top: 8px;
-  right: 8px;
   background-color: rgba(0, 0, 0, 0.7);
   color: #4ade80;
   font-family: monospace;
