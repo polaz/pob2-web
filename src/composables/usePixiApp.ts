@@ -192,17 +192,30 @@ export function usePixiApp(): UsePixiAppResult {
   let lastFpsUpdateTime = 0;
   let frameCount = 0;
   let fpsTickerCallback: ((ticker: Ticker) => void) | null = null;
+  let isInitializing = false;
 
   /**
    * Initialize the PixiJS Application.
    *
    * @param canvas - The canvas element to render to
+   * @throws Error if canvas is null or invalid
    */
   async function init(canvas: HTMLCanvasElement): Promise<void> {
-    if (app.value) {
-      console.warn('[usePixiApp] Already initialized');
+    // Prevent race condition: check both initialized and initializing states
+    if (app.value || isInitializing) {
+      console.warn('[usePixiApp] Already initialized or initializing');
       return;
     }
+
+    // Validate canvas parameter
+    if (!canvas || !(canvas instanceof HTMLCanvasElement)) {
+      const err = new Error('[usePixiApp] Invalid canvas element provided');
+      error.value = err;
+      console.error(err.message);
+      return;
+    }
+
+    isInitializing = true;
 
     try {
       const pixiApp = new Application();
@@ -273,17 +286,27 @@ export function usePixiApp(): UsePixiAppResult {
     } catch (e) {
       error.value = e instanceof Error ? e : new Error(String(e));
       console.error('[usePixiApp] Initialization failed:', e);
+    } finally {
+      isInitializing = false;
     }
   }
 
   /**
    * Resize the application to the given dimensions.
    *
-   * @param width - New width in CSS pixels
-   * @param height - New height in CSS pixels
+   * @param width - New width in CSS pixels (must be positive)
+   * @param height - New height in CSS pixels (must be positive)
    */
   function resize(width: number, height: number): void {
     if (!app.value) return;
+
+    // Validate dimensions to prevent rendering issues
+    if (width <= 0 || height <= 0 || !Number.isFinite(width) || !Number.isFinite(height)) {
+      if (isDev) {
+        console.warn(`[usePixiApp] Invalid resize dimensions: ${width}x${height}`);
+      }
+      return;
+    }
 
     app.value.renderer.resize(width, height);
   }

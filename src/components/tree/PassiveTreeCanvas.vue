@@ -84,11 +84,40 @@ const fallbackReason = computed(() => {
 // ResizeObserver for responsive sizing
 let resizeObserver: ResizeObserver | null = null;
 
+// Throttle resize calls to 60fps (16ms) to prevent excessive updates during rapid resizing
+const RESIZE_THROTTLE_MS = 16;
+let lastResizeTime = 0;
+let resizeTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
 /**
- * Handle container resize.
+ * Handle container resize with throttling.
  * Uses the container's client dimensions to resize the canvas.
+ * Throttled to 60fps to prevent performance issues during rapid window resizing.
  */
 function handleResize(): void {
+  if (!containerRef.value || !ready.value) return;
+
+  const now = performance.now();
+  const elapsed = now - lastResizeTime;
+
+  if (elapsed >= RESIZE_THROTTLE_MS) {
+    // Enough time has passed, resize immediately
+    performResize();
+    lastResizeTime = now;
+  } else if (!resizeTimeoutId) {
+    // Schedule resize for later to ensure final size is captured
+    resizeTimeoutId = setTimeout(() => {
+      resizeTimeoutId = null;
+      performResize();
+      lastResizeTime = performance.now();
+    }, RESIZE_THROTTLE_MS - elapsed);
+  }
+}
+
+/**
+ * Perform the actual resize operation.
+ */
+function performResize(): void {
   if (!containerRef.value || !ready.value) return;
 
   const { clientWidth, clientHeight } = containerRef.value;
@@ -115,6 +144,12 @@ onMounted(async () => {
 });
 
 onUnmounted(() => {
+  // Clear any pending throttled resize
+  if (resizeTimeoutId) {
+    clearTimeout(resizeTimeoutId);
+    resizeTimeoutId = null;
+  }
+
   if (resizeObserver) {
     resizeObserver.disconnect();
     resizeObserver = null;
