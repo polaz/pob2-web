@@ -3,6 +3,7 @@ import { createPinia } from 'pinia';
 
 // Export all stores
 export { useBuildStore } from './buildStore';
+export { useLevelingPathStore } from './levelingPathStore';
 export { useTreeStore, type TreeViewport, type NodeSearchResult } from './treeStore';
 export { useItemStore, EQUIPMENT_SLOTS, FLASK_SLOTS, SWAP_SLOTS, type SlotInfo } from './itemStore';
 export { useSkillStore, type GemSearchResult } from './skillStore';

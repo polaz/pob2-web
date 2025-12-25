@@ -86,3 +86,29 @@ export const DEFAULT_USER_PREFERENCES: UserPreferences = {
   recentBuilds: [],
   keyboardShortcutsEnabled: true,
 };
+
+// ============================================================================
+// Path of Leveling
+// ============================================================================
+
+/** Leveling path stored in IndexedDB */
+export interface StoredLevelingPath {
+  /** Auto-incremented primary key */
+  id?: number;
+  /** Leveling path display name */
+  name: string;
+  /** Reference to associated build (optional) */
+  buildId?: number;
+  /** Character class name (e.g., 'WARRIOR', 'SORCERESS') */
+  className: string;
+  /** Checkpoints serialized as JSON */
+  checkpoints: string;
+  /** Steps serialized as JSON */
+  steps: string;
+  /** Path notes/description */
+  notes?: string;
+  /** Creation timestamp */
+  createdAt: Date;
+  /** Last modification timestamp */
+  updatedAt: Date;
+}

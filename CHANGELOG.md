@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/polaz/pob2-web/compare/v1.13.0...v1.14.0) (2025-12-25)
+
+
+### Features
+
+* **draft:** implement draft overlay layer for user contributions ([#105](https://github.com/polaz/pob2-web/issues/105)) ([0e84dfa](https://github.com/polaz/pob2-web/commit/0e84dfa97ecc3c8d326bb32e00b30d0abd18bc10)), closes [#57](https://github.com/polaz/pob2-web/issues/57)
+
 # [1.13.0](https://github.com/polaz/pob2-web/compare/v1.12.0...v1.13.0) (2025-12-25)
 
 
