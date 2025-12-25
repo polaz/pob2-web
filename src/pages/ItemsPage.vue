@@ -126,7 +126,7 @@
     <ItemEditor
       v-model="isEditorOpen"
       :item="editingItem"
-      v-bind="editingSlot !== undefined ? { 'target-slot': editingSlot } : {}"
+      :target-slot="editingSlot"
       @save="handleEditorSave"
       @cancel="handleEditorCancel"
     />
@@ -195,9 +195,13 @@ const selectedItem = computed(() => {
 
 /**
  * Handles slot selection from grid.
+ *
+ * This is intentionally a no-op: slot selection state is managed by
+ * itemStore.selectSlot() which is called directly by ItemSlotGrid.
+ * We keep this handler to satisfy the slot-select event contract.
  */
 function handleSlotSelect(_slot: ItemSlot): void {
-  // Selection is handled by the store via ItemSlotGrid
+  // No action needed - selection is handled by itemStore via ItemSlotGrid
 }
 
 /**

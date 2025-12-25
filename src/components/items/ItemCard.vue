@@ -429,6 +429,7 @@ const totalDps = computed(() => {
   const chaosMin = wd.chaosMin ?? 0;
   const chaosMax = wd.chaosMax ?? 0;
 
+  // Divide by 2 to get average of min+max for each damage type
   const avgDamage =
     (physMin + physMax + fireMin + fireMax + coldMin + coldMax + lightningMin + lightningMax + chaosMin + chaosMax) / 2;
   const dps = avgDamage * wd.attackSpeed;
