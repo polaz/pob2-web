@@ -6,7 +6,6 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, h } from 'vue';
-import type { Gem, GemsData, GemType } from 'src/types/gems';
 
 // Mock the database module
 vi.mock('src/db', () => ({
@@ -151,6 +150,27 @@ describe('useGemData composable API', () => {
     expect(projectileGems.every((g) => g.tags.projectile === true)).toBe(true);
   });
 
+  it('should expose getGemsForWeapon function', async () => {
+    const result = await mountAndWaitForLoad();
+
+    // Gems without weapon restrictions should be included
+    const anyWeaponGems = result.getGemsForWeapon('sword');
+    expect(anyWeaponGems.length).toBeGreaterThan(0);
+
+    // All returned gems should either have no restriction or match the weapon
+    expect(
+      anyWeaponGems.every(
+        (g) =>
+          !g.weaponTypes ||
+          g.weaponTypes.some((wt) => wt.toLowerCase().includes('sword'))
+      )
+    ).toBe(true);
+
+    // Case-insensitive matching
+    const upperCaseResult = result.getGemsForWeapon('SWORD');
+    expect(upperCaseResult.length).toBe(anyWeaponGems.length);
+  });
+
   it('should expose searchGems function', async () => {
     const result = await mountAndWaitForLoad();
 
@@ -222,6 +242,7 @@ describe('useGemData composable API', () => {
     expect(composableResult!.getSkillGems()).toEqual([]);
     expect(composableResult!.getSupportGems()).toEqual([]);
     expect(composableResult!.getGemsByTag('fire')).toEqual([]);
+    expect(composableResult!.getGemsForWeapon('sword')).toEqual([]);
     expect(composableResult!.searchGems('test')).toEqual([]);
     expect(composableResult!.getGemsByAttribute('str')).toEqual([]);
   });
