@@ -1,0 +1,1389 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:55.069Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "boots",
+  "meta": {
+    "totalItems": 23,
+    "itemsWithVariants": 16,
+    "totalEntries": 41,
+    "byType": {
+      "Boots": 23
+    }
+  },
+  "uniques": {
+    "birth-of-fury-pre-0-1-1": {
+      "id": "birth-of-fury-pre-0-1-1",
+      "name": "Birth of Fury",
+      "baseType": "Stone Greaves",
+      "baseTypeId": "stone-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "15% increased Movement Speed",
+          "value": 15
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(10-20)% to Fire Resistance",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Drop Ignited Ground while moving, which lasts 8 seconds and Ignites as though dealing Fire Damage equal to 10% of your maximum Life"
+        }
+      ],
+      "variantGroup": "birth-of-fury",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "birth-of-fury-current": {
+      "id": "birth-of-fury-current",
+      "name": "Birth of Fury",
+      "baseType": "Stone Greaves",
+      "baseTypeId": "stone-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "20% increased Movement Speed",
+          "value": 20
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-30)% to Fire Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "Drop Ignited Ground while moving, which lasts 8 seconds and Ignites as though dealing Fire Damage equal to 10% of your maximum Life"
+        }
+      ],
+      "variantGroup": "birth-of-fury",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "corpsewade": {
+      "id": "corpsewade",
+      "name": "Corpsewade",
+      "baseType": "Iron Greaves",
+      "baseTypeId": "iron-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Decompose",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(30-50)% increased Armour",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(5-10) to Strength",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "Trigger Decompose every 1.2 metres travelled"
+        }
+      ]
+    },
+    "the-infinite-pursuit-pre-0-1-1": {
+      "id": "the-infinite-pursuit-pre-0-1-1",
+      "name": "The Infinite Pursuit",
+      "baseType": "Bronze Greaves",
+      "baseTypeId": "bronze-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(80-100) to maximum Life",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(80-100)% increased Chance to be afflicted by Ailments when Hit",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "20% increased Movement Speed while affected by an Ailment",
+          "value": 20
+        }
+      ],
+      "variantGroup": "the-infinite-pursuit",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-infinite-pursuit-current": {
+      "id": "the-infinite-pursuit-current",
+      "name": "The Infinite Pursuit",
+      "baseType": "Bronze Greaves",
+      "baseTypeId": "bronze-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(100-150)% increased Armour",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(80-100) to maximum Life",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(80-100)% increased Chance to be afflicted by Ailments when Hit",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "25% increased Movement Speed while affected by an Ailment",
+          "value": 25
+        }
+      ],
+      "variantGroup": "the-infinite-pursuit",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "legionstride-pre-0-1-1": {
+      "id": "legionstride-pre-0-1-1",
+      "name": "Legionstride",
+      "baseType": "Rough Greaves",
+      "baseTypeId": "rough-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-80)% increased Armour",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(30-50) to Stun Threshold",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "-10 Physical damage taken from Projectile Attacks",
+          "value": 10
+        },
+        {
+          "text": "+10% to Block chance",
+          "value": 10
+        }
+      ],
+      "variantGroup": "legionstride",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "legionstride-current": {
+      "id": "legionstride-current",
+      "name": "Legionstride",
+      "baseType": "Rough Greaves",
+      "baseTypeId": "rough-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "+(50-70) to Armour",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "+(50-70) to Stun Threshold",
+          "min": 50,
+          "max": 70
+        },
+        {
+          "text": "-10 Physical damage taken from Projectile Attacks",
+          "value": 10
+        },
+        {
+          "text": "+10% to Block chance",
+          "value": 10
+        }
+      ],
+      "variantGroup": "legionstride",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "trampletoe-pre-0-1-1": {
+      "id": "trampletoe-pre-0-1-1",
+      "name": "Trampletoe",
+      "baseType": "Trimmed Greaves",
+      "baseTypeId": "trimmed-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "50% increased Attribute Requirements",
+          "value": 50
+        },
+        {
+          "text": "Deal 30% of Overkill damage to enemies within 2 metres of the enemy killed"
+        }
+      ],
+      "variantGroup": "trampletoe",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "trampletoe-current": {
+      "id": "trampletoe-current",
+      "name": "Trampletoe",
+      "baseType": "Trimmed Greaves",
+      "baseTypeId": "trimmed-greaves",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "15% increased Movement Speed",
+          "value": 15
+        },
+        {
+          "text": "(50-100)% increased Armour",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "50% increased Attribute Requirements",
+          "value": 50
+        },
+        {
+          "text": "Deal 30% of Overkill damage to enemies within 2 metres of the enemy killed"
+        }
+      ],
+      "variantGroup": "trampletoe",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "briarpatch-pre-0-1-1": {
+      "id": "briarpatch-pre-0-1-1",
+      "name": "Briarpatch",
+      "baseType": "Laced Boots",
+      "baseTypeId": "laced-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Movement Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+0.15% to Thorns Critical Hit Chance",
+          "value": 0.15
+        }
+      ],
+      "variantGroup": "briarpatch",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "briarpatch-current": {
+      "id": "briarpatch-current",
+      "name": "Briarpatch",
+      "baseType": "Laced Boots",
+      "baseTypeId": "laced-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Movement Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(40-60) to maximum Life",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(60-80) to Stun Threshold",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+25% to Thorns Critical Hit Chance",
+          "value": 25
+        },
+        {
+          "text": "(10-15) to (20-25) Physical Thorns damage",
+          "min": 10,
+          "max": 15
+        }
+      ],
+      "variantGroup": "briarpatch",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "bushwhack": {
+      "id": "bushwhack",
+      "name": "Bushwhack",
+      "baseType": "Lizardscale Boots",
+      "baseTypeId": "lizardscale-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(15-25)% increased Movement Speed",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "(50-80)% increased Evasion Rating",
+          "min": 50,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Physical Damage is Pinning"
+        }
+      ]
+    },
+    "gamblesprint-pre-0-1-1": {
+      "id": "gamblesprint-pre-0-1-1",
+      "name": "Gamblesprint",
+      "baseType": "Embossed Boots",
+      "baseTypeId": "embossed-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-140)% increased Evasion Rating",
+          "min": 100,
+          "max": 140
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(5-15)% to Lightning Resistance",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "Gain 0% to 40% increased Movement Speed at random when Hit, until Hit again"
+        }
+      ],
+      "variantGroup": "gamblesprint",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "gamblesprint-current": {
+      "id": "gamblesprint-current",
+      "name": "Gamblesprint",
+      "baseType": "Embossed Boots",
+      "baseTypeId": "embossed-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-140)% increased Evasion Rating",
+          "min": 100,
+          "max": 140
+        },
+        {
+          "text": "(10-15)% increased Rarity of Items found",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(10-15) to Dexterity",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "+(15-25)% to Lightning Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Gain 0% to 40% increased Movement Speed at random when Hit, until Hit again"
+        }
+      ],
+      "variantGroup": "gamblesprint",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "thunderstep-pre-0-1-1": {
+      "id": "thunderstep-pre-0-1-1",
+      "name": "Thunderstep",
+      "baseType": "Steeltoe Boots",
+      "baseTypeId": "steeltoe-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Movement Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(3-5)% to Maximum Lightning Resistance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(25-35)% to Lightning Resistance",
+          "min": 25,
+          "max": 35
+        }
+      ],
+      "variantGroup": "thunderstep",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "thunderstep-current": {
+      "id": "thunderstep-current",
+      "name": "Thunderstep",
+      "baseType": "Steeltoe Boots",
+      "baseTypeId": "steeltoe-boots",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "dropSource": "No longer obtainable"
+      },
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Movement Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(40-60)% increased Evasion Rating",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(3-5)% to Maximum Lightning Resistance",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "text": "+(30-50)% to Lightning Resistance",
+          "min": 30,
+          "max": 50
+        }
+      ],
+      "variantGroup": "thunderstep",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "bones-of-ullr-pre-0-1-1": {
+      "id": "bones-of-ullr-pre-0-1-1",
+      "name": "Bones of Ullr",
+      "baseType": "Lattice Sandals",
+      "baseTypeId": "lattice-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+25 to maximum Life",
+          "value": 25
+        },
+        {
+          "text": "+25 to maximum Mana",
+          "value": 25
+        },
+        {
+          "text": "20% reduced Reservation Efficiency of Skills which create Undead Minions",
+          "value": 20
+        }
+      ],
+      "variantGroup": "bones-of-ullr",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "bones-of-ullr-pre-0-3-0": {
+      "id": "bones-of-ullr-pre-0-3-0",
+      "name": "Bones of Ullr",
+      "baseType": "Lattice Sandals",
+      "baseTypeId": "lattice-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(40-60)% increased Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-40) to maximum Life",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "+(20-40) to maximum Mana",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "20% reduced Reservation Efficiency of Skills which create Undead Minions",
+          "value": 20
+        }
+      ],
+      "variantGroup": "bones-of-ullr",
+      "variantId": "pre-0-3-0",
+      "variantName": "Pre 0.3.0"
+    },
+    "bones-of-ullr-current": {
+      "id": "bones-of-ullr-current",
+      "name": "Bones of Ullr",
+      "baseType": "Lattice Sandals",
+      "baseTypeId": "lattice-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(5-15)% increased Movement Speed",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "(40-60)% increased Energy Shield",
+          "min": 40,
+          "max": 60
+        },
+        {
+          "text": "+(20-40) to maximum Life",
+          "min": 20,
+          "max": 40
+        },
+        {
+          "text": "(20-30)% increased Reservation Efficiency of Skills which create Undead Minions",
+          "min": 20,
+          "max": 30
+        }
+      ],
+      "variantGroup": "bones-of-ullr",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "luminous-pace-pre-0-1-1": {
+      "id": "luminous-pace-pre-0-1-1",
+      "name": "Luminous Pace",
+      "baseType": "Straw Sandals",
+      "baseTypeId": "straw-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "(20-30)% reduced Energy Shield Recharge Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "100% faster start of Energy Shield Recharge",
+          "value": 100
+        }
+      ],
+      "variantGroup": "luminous-pace",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "luminous-pace-current": {
+      "id": "luminous-pace-current",
+      "name": "Luminous Pace",
+      "baseType": "Straw Sandals",
+      "baseTypeId": "straw-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "+(20-30) to maximum Energy Shield",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "+(5-10) to Intelligence",
+          "min": 5,
+          "max": 10
+        },
+        {
+          "text": "(20-30)% reduced Energy Shield Recharge Rate",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "100% faster start of Energy Shield Recharge",
+          "value": 100
+        }
+      ],
+      "variantGroup": "luminous-pace",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "wanderlust": {
+      "id": "wanderlust",
+      "name": "Wanderlust",
+      "baseType": "Wrapped Sandals",
+      "baseTypeId": "wrapped-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "20% increased Movement Speed",
+          "value": 20
+        },
+        {
+          "text": "+(10-20) to maximum Energy Shield",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+5 to Dexterity",
+          "value": 5
+        },
+        {
+          "text": "Your speed is unaffected by Slows"
+        }
+      ]
+    },
+    "windscream-pre-0-1-1": {
+      "id": "windscream-pre-0-1-1",
+      "name": "Windscream",
+      "baseType": "Feathered Sandals",
+      "baseTypeId": "feathered-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Movement Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(50-100)% increased Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Curses have no Activation Delay"
+        }
+      ],
+      "variantGroup": "windscream",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "windscream-current": {
+      "id": "windscream-current",
+      "name": "Windscream",
+      "baseType": "Feathered Sandals",
+      "baseTypeId": "feathered-sandals",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Movement Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "(50-100)% increased Energy Shield",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Curse Skills have (10-20)% increased Cast Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "Curses have no Activation Delay"
+        }
+      ],
+      "variantGroup": "windscream",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "wondertrap-pre-0-1-1": {
+      "id": "wondertrap-pre-0-1-1",
+      "name": "Wondertrap",
+      "baseType": "Silk Slippers",
+      "baseTypeId": "silk-slippers",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(5-15)% increased Movement Speed",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15) to Strength",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "+(5-15) to Intelligence",
+          "min": 5,
+          "max": 15
+        },
+        {
+          "text": "50% increased Rarity of Items found when on Low Life",
+          "value": 50
+        }
+      ],
+      "variantGroup": "wondertrap",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "wondertrap-current": {
+      "id": "wondertrap-current",
+      "name": "Wondertrap",
+      "baseType": "Silk Slippers",
+      "baseTypeId": "silk-slippers",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-20)% increased Movement Speed",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(30-50) to maximum Energy Shield",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(10-20) to Strength",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Dexterity",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "50% increased Rarity of Items found when on Low Life",
+          "value": 50
+        }
+      ],
+      "variantGroup": "wondertrap",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "darkray-vectors": {
+      "id": "darkray-vectors",
+      "name": "Darkray Vectors",
+      "baseType": "Braced Sabatons",
+      "baseTypeId": "braced-sabatons",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(50-100)% increased Armour and Evasion",
+          "min": 50,
+          "max": 100
+        },
+        {
+          "text": "+(20-30)% to Lightning Resistance",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "25% reduced Light Radius",
+          "value": 25
+        },
+        {
+          "text": "5% increased Movement Speed per Frenzy Charge",
+          "value": 5
+        },
+        {
+          "text": "+1 to Maximum Frenzy Charges",
+          "value": 1
+        }
+      ]
+    },
+    "the-knight-errant-pre-0-1-1": {
+      "id": "the-knight-errant-pre-0-1-1",
+      "name": "The Knight-errant",
+      "baseType": "Mail Sabatons",
+      "baseTypeId": "mail-sabatons",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(30-50)% increased Armour and Evasion",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Stun Threshold",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Iron Reflexes"
+        }
+      ],
+      "variantGroup": "the-knight-errant",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "the-knight-errant-current": {
+      "id": "the-knight-errant-current",
+      "name": "The Knight-errant",
+      "baseType": "Mail Sabatons",
+      "baseTypeId": "mail-sabatons",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(30-50)% increased Armour and Evasion",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Stun Threshold",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(30-50) to Ailment Threshold",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Iron Reflexes"
+        }
+      ],
+      "variantGroup": "the-knight-errant",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "obern-s-bastion": {
+      "id": "obern-s-bastion",
+      "name": "Obern's Bastion",
+      "baseType": "Stacked Sabatons",
+      "baseTypeId": "stacked-sabatons",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(150-200)% increased Armour and Evasion",
+          "min": 150,
+          "max": 200
+        },
+        {
+          "text": "(20-25) Life Regeneration per second",
+          "min": 20,
+          "max": 25
+        },
+        {
+          "text": "200% increased Stun Recovery",
+          "value": 200
+        },
+        {
+          "text": "(30-50)% reduced Chill Duration on you",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% reduced Freeze Duration on you",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "(30-50)% reduced Shock duration on you",
+          "min": 30,
+          "max": 50
+        }
+      ]
+    },
+    "shankgonne": {
+      "id": "shankgonne",
+      "name": "Shankgonne",
+      "baseType": "Covered Sabatons",
+      "baseTypeId": "covered-sabatons",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "league": "Rise of the Abyssal"
+      },
+      "modifiers": [
+        {
+          "text": "Grants Skill: Level (1-20) Black Powder Blitz",
+          "implicit": true,
+          "min": 1,
+          "max": 20
+        },
+        {
+          "text": "(80-100)% increased Armour and Evasion",
+          "min": 80,
+          "max": 100
+        },
+        {
+          "text": "(10-20)% increased Rarity of Items found",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+(15-25)% to Fire Resistance",
+          "min": 15,
+          "max": 25
+        },
+        {
+          "text": "Gain Deflection Rating equal to 20% of Armour"
+        },
+        {
+          "text": "+(200-300) to Stun Threshold",
+          "min": 200,
+          "max": 300
+        },
+        {
+          "text": "You cannot Sprint"
+        }
+      ]
+    },
+    "wake-of-destruction-pre-0-1-1": {
+      "id": "wake-of-destruction-pre-0-1-1",
+      "name": "Wake of Destruction",
+      "baseType": "Secured Leggings",
+      "baseTypeId": "secured-leggings",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(30-60)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Adds 1 to (30-50) Lightning damage to Attacks",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Drop Shocked Ground while moving, lasting 8 seconds"
+        }
+      ],
+      "variantGroup": "wake-of-destruction",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "wake-of-destruction-current": {
+      "id": "wake-of-destruction-current",
+      "name": "Wake of Destruction",
+      "baseType": "Secured Leggings",
+      "baseTypeId": "secured-leggings",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "10% increased Movement Speed",
+          "value": 10
+        },
+        {
+          "text": "(30-60)% increased Armour and Energy Shield",
+          "min": 30,
+          "max": 60
+        },
+        {
+          "text": "Adds 1 to (30-50) Lightning damage to Attacks",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "Drop Shocked Ground while moving, lasting 8 seconds"
+        }
+      ],
+      "variantGroup": "wake-of-destruction",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "beetlebite": {
+      "id": "beetlebite",
+      "name": "Beetlebite",
+      "baseType": "Velour Shoes",
+      "baseTypeId": "velour-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{The King in the Mists} in normal{Crux of Nothingness}"
+      },
+      "modifiers": [
+        {
+          "text": "(20-30)% increased Movement Speed",
+          "min": 20,
+          "max": 30
+        },
+        {
+          "text": "(60-120)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 120
+        },
+        {
+          "text": "Aggravate Bleeding on Enemies when they Enter your Presence"
+        },
+        {
+          "text": "100% increased Thorns damage",
+          "value": 100
+        }
+      ]
+    },
+    "ghostmarch-pre-0-4-0": {
+      "id": "ghostmarch-pre-0-4-0",
+      "name": "Ghostmarch",
+      "baseType": "Threaded Shoes",
+      "baseTypeId": "threaded-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Dodge Roll passes through Enemies"
+        }
+      ],
+      "variantGroup": "ghostmarch",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0."
+    },
+    "ghostmarch-current": {
+      "id": "ghostmarch-current",
+      "name": "Ghostmarch",
+      "baseType": "Threaded Shoes",
+      "baseTypeId": "threaded-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "15% increased Movement Speed",
+          "value": 15
+        },
+        {
+          "text": "(100-150)% increased Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "+(30-50) to maximum Mana",
+          "min": 30,
+          "max": 50
+        },
+        {
+          "text": "+(17-23)% to Chaos Resistance",
+          "min": 17,
+          "max": 23
+        },
+        {
+          "text": "Dodge Roll passes through Enemies"
+        }
+      ],
+      "variantGroup": "ghostmarch",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "powertread-pre-0-1-1": {
+      "id": "powertread-pre-0-1-1",
+      "name": "Powertread",
+      "baseType": "Hunting Shoes",
+      "baseTypeId": "hunting-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Movement Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(60-80)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Maximum Power Charges",
+          "value": 1
+        },
+        {
+          "text": "8% increased Critical Damage Bonus per Power Charge",
+          "value": 8
+        }
+      ],
+      "variantGroup": "powertread",
+      "variantId": "pre-0-1-1",
+      "variantName": "Pre 0.1.1"
+    },
+    "powertread-pre-0-4-0": {
+      "id": "powertread-pre-0-4-0",
+      "name": "Powertread",
+      "baseType": "Hunting Shoes",
+      "baseTypeId": "hunting-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(10-15)% increased Movement Speed",
+          "min": 10,
+          "max": 15
+        },
+        {
+          "text": "(60-80)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Maximum Power Charges",
+          "value": 1
+        },
+        {
+          "text": "12% increased Critical Damage Bonus per Power Charge",
+          "value": 12
+        }
+      ],
+      "variantGroup": "powertread",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "powertread-current": {
+      "id": "powertread-current",
+      "name": "Powertread",
+      "baseType": "Hunting Shoes",
+      "baseTypeId": "hunting-shoes",
+      "itemType": "Boots",
+      "category": "armour",
+      "modifiers": [
+        {
+          "text": "(15-20)% increased Movement Speed",
+          "min": 15,
+          "max": 20
+        },
+        {
+          "text": "(60-80)% increased Evasion and Energy Shield",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "+(10-20) to Intelligence",
+          "min": 10,
+          "max": 20
+        },
+        {
+          "text": "+1 to Maximum Power Charges",
+          "value": 1
+        },
+        {
+          "text": "12% increased Critical Damage Bonus per Power Charge",
+          "value": 12
+        }
+      ],
+      "variantGroup": "powertread",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "ab-aeterno-pre-0-4-0": {
+      "id": "ab-aeterno-pre-0-4-0",
+      "name": "Ab Aeterno",
+      "baseType": "Grand Cuisses",
+      "baseTypeId": "grand-cuisses",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(15-30)% increased Movement Speed",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "(60-80)% increased Armour, Evasion and Energy Shield",
+          "min": 60,
+          "max": 80
+        },
+        {
+          "text": "Dodge Roll avoids all Hits"
+        },
+        {
+          "text": "10% less Movement and Skill Speed per Dodge Roll in the past 20 seconds",
+          "value": 10
+        }
+      ],
+      "variantGroup": "ab-aeterno",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "ab-aeterno-current": {
+      "id": "ab-aeterno-current",
+      "name": "Ab Aeterno",
+      "baseType": "Grand Cuisses",
+      "baseTypeId": "grand-cuisses",
+      "itemType": "Boots",
+      "category": "armour",
+      "source": {
+        "dropSource": "Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}"
+      },
+      "modifiers": [
+        {
+          "text": "(15-30)% increased Movement Speed",
+          "min": 15,
+          "max": 30
+        },
+        {
+          "text": "(100-150)% increased Armour, Evasion and Energy Shield",
+          "min": 100,
+          "max": 150
+        },
+        {
+          "text": "Dodge Roll avoids all Hits"
+        },
+        {
+          "text": "10% less Movement and Skill Speed per Dodge Roll in the past 20 seconds",
+          "value": 10
+        }
+      ],
+      "variantGroup": "ab-aeterno",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    }
+  }
+}

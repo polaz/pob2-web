@@ -1,3 +1,18 @@
+# [1.15.0](https://github.com/polaz/pob2-web/compare/v1.14.0...v1.15.0) (2025-12-25)
+
+
+### Bug Fixes
+
+* **tree:** wrap TreePage in q-page for proper height calculation ([6839cc1](https://github.com/polaz/pob2-web/commit/6839cc1902dabf2bf1ce59f8ac0c0cb216ce81da))
+
+
+### Features
+
+* **calc:** implement StatResolver and StatConversion ([#110](https://github.com/polaz/pob2-web/issues/110)) ([2a5c6d0](https://github.com/polaz/pob2-web/commit/2a5c6d020e954912c02471c36b6064f90a2cf1d8)), closes [#13](https://github.com/polaz/pob2-web/issues/13)
+* **data:** convert PoB unique items to JSON format ([#9](https://github.com/polaz/pob2-web/issues/9)) ([#111](https://github.com/polaz/pob2-web/issues/111)) ([34ed370](https://github.com/polaz/pob2-web/commit/34ed370c01ca2efd75ac2da2b9e4e9c25cf705cd))
+* **engine:** implement Item data structure and parsing ([#108](https://github.com/polaz/pob2-web/issues/108)) ([801ccee](https://github.com/polaz/pob2-web/commit/801cceef1e30c840906118429d8399e5647d989d)), closes [#28](https://github.com/polaz/pob2-web/issues/28)
+* **leveling:** implement LevelingPath data model ([#107](https://github.com/polaz/pob2-web/issues/107)) ([30296c1](https://github.com/polaz/pob2-web/commit/30296c1df969ec4ae6756f8baa2ede9693e3c931)), closes [#67](https://github.com/polaz/pob2-web/issues/67)
+
 # [1.14.0](https://github.com/polaz/pob2-web/compare/v1.13.0...v1.14.0) (2025-12-25)
 
 

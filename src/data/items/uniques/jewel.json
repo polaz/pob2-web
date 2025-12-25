@@ -1,0 +1,700 @@
+{
+  "version": "0.1",
+  "extractedAt": "2025-12-25T15:19:56.770Z",
+  "source": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "fileType": "jewel",
+  "meta": {
+    "totalItems": 7,
+    "itemsWithVariants": 5,
+    "totalEntries": 22,
+    "byType": {
+      "Jewel": 7
+    }
+  },
+  "uniques": {
+    "the-adorned-pre-0-4-0": {
+      "id": "the-adorned-pre-0-4-0",
+      "name": "The Adorned",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "(0-100)% increased Effect of Jewel Socket Passive Skills",
+          "min": 0,
+          "max": 100
+        },
+        {
+          "text": "containing Corrupted Magic Jewels"
+        }
+      ],
+      "variantGroup": "the-adorned",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "the-adorned-current": {
+      "id": "the-adorned-current",
+      "name": "The Adorned",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Trialmaster} in normal{The Trial of Chaos}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "(0-150)% increased Effect of Jewel Socket Passive Skills",
+          "min": 0,
+          "max": 150
+        },
+        {
+          "text": "containing Corrupted Magic Jewels"
+        }
+      ],
+      "variantGroup": "the-adorned",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "controlled-metamorphosis-very-small-ring": {
+      "id": "controlled-metamorphosis-very-small-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Very Small Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "very-small-ring",
+      "variantName": "Very Small Ring"
+    },
+    "controlled-metamorphosis-small-ring": {
+      "id": "controlled-metamorphosis-small-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Small Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "small-ring",
+      "variantName": "Small Ring"
+    },
+    "controlled-metamorphosis-medium-small-ring": {
+      "id": "controlled-metamorphosis-medium-small-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Medium-Small Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "medium-small-ring",
+      "variantName": "Medium-Small Ring"
+    },
+    "controlled-metamorphosis-medium-ring": {
+      "id": "controlled-metamorphosis-medium-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Medium Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "medium-ring",
+      "variantName": "Medium Ring"
+    },
+    "controlled-metamorphosis-medium-large-ring": {
+      "id": "controlled-metamorphosis-medium-large-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Medium-Large Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "medium-large-ring",
+      "variantName": "Medium-Large Ring"
+    },
+    "controlled-metamorphosis-large-ring": {
+      "id": "controlled-metamorphosis-large-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Large Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "large-ring",
+      "variantName": "Large Ring"
+    },
+    "controlled-metamorphosis-very-large-ring": {
+      "id": "controlled-metamorphosis-very-large-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Very Large Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "very-large-ring",
+      "variantName": "Very Large Ring"
+    },
+    "controlled-metamorphosis-massive-ring": {
+      "id": "controlled-metamorphosis-massive-ring",
+      "name": "Controlled Metamorphosis",
+      "baseType": "Diamond",
+      "baseTypeId": "diamond",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1"
+        },
+        {
+          "text": "Radius: Variable"
+        },
+        {
+          "text": "Only affects Passives in Massive Ring"
+        },
+        {
+          "text": "Passives in Radius can be Allocated without being connected to your tree"
+        },
+        {
+          "text": "-(20-5)% to all Elemental Resistances",
+          "min": 20,
+          "max": 5
+        },
+        {
+          "text": "-(23-3)% to Chaos Resistance",
+          "min": 23,
+          "max": 3
+        }
+      ],
+      "variantGroup": "controlled-metamorphosis",
+      "variantId": "massive-ring",
+      "variantName": "Massive Ring",
+      "isDefaultVariant": true
+    },
+    "grand-spectrum": {
+      "id": "grand-spectrum",
+      "name": "Grand Spectrum",
+      "baseType": "Emerald",
+      "baseTypeId": "emerald",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "modifiers": [
+        {
+          "text": "Limited to: 3"
+        },
+        {
+          "text": "2% increased Spirit per socketed Grand Spectrum",
+          "value": 2
+        }
+      ]
+    },
+    "grand-spectrum-pre-0-4-0": {
+      "id": "grand-spectrum-pre-0-4-0",
+      "name": "Grand Spectrum",
+      "baseType": "Sapphire",
+      "baseTypeId": "sapphire",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "modifiers": [
+        {
+          "text": "Limited to: 3"
+        },
+        {
+          "text": "+4% to all Elemental Resistances per socketed Grand Spectrum",
+          "value": 4
+        }
+      ],
+      "variantGroup": "grand-spectrum",
+      "variantId": "pre-0-4-0",
+      "variantName": "Pre 0.4.0"
+    },
+    "grand-spectrum-current": {
+      "id": "grand-spectrum-current",
+      "name": "Grand Spectrum",
+      "baseType": "Sapphire",
+      "baseTypeId": "sapphire",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "modifiers": [
+        {
+          "text": "Limited to: 3"
+        },
+        {
+          "text": "+6% to all Elemental Resistances per socketed Grand Spectrum",
+          "value": 6
+        }
+      ],
+      "variantGroup": "grand-spectrum",
+      "variantId": "current",
+      "variantName": "Current",
+      "isDefaultVariant": true
+    },
+    "heroic-tragedy-vorana": {
+      "id": "heroic-tragedy-vorana",
+      "name": "Heroic Tragedy",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Remembrancing (100-8000) songworthy deeds by the line of Vorana",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Kalguur"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "heroic-tragedy",
+      "variantId": "vorana",
+      "variantName": "Vorana"
+    },
+    "heroic-tragedy-medved": {
+      "id": "heroic-tragedy-medved",
+      "name": "Heroic Tragedy",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Remembrancing (100-8000) songworthy deeds by the line of Medved",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Kalguur"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "heroic-tragedy",
+      "variantId": "medved",
+      "variantName": "Medved"
+    },
+    "heroic-tragedy-olroth": {
+      "id": "heroic-tragedy-olroth",
+      "name": "Heroic Tragedy",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Olroth, Origin of the Fall}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Remembrancing (100-8000) songworthy deeds by the line of Olroth",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Kalguur"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "heroic-tragedy",
+      "variantId": "olroth",
+      "variantName": "Olroth",
+      "isDefaultVariant": true
+    },
+    "undying-hate-amanamu": {
+      "id": "undying-hate-amanamu",
+      "name": "Undying Hate",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Vessel of Kulemak}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Glorifying the defilement of (100-8000) souls in tribute to Amanamu",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Abyssals"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "undying-hate",
+      "variantId": "amanamu",
+      "variantName": "Amanamu"
+    },
+    "undying-hate-kulemak": {
+      "id": "undying-hate-kulemak",
+      "name": "Undying Hate",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Vessel of Kulemak}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Glorifying the defilement of (100-8000) souls in tribute to Kulemak",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Abyssals"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "undying-hate",
+      "variantId": "kulemak",
+      "variantName": "Kulemak"
+    },
+    "undying-hate-kurgal": {
+      "id": "undying-hate-kurgal",
+      "name": "Undying Hate",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Vessel of Kulemak}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Glorifying the defilement of (100-8000) souls in tribute to Kurgal",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Abyssals"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "undying-hate",
+      "variantId": "kurgal",
+      "variantName": "Kurgal"
+    },
+    "undying-hate-tecrod": {
+      "id": "undying-hate-tecrod",
+      "name": "Undying Hate",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Vessel of Kulemak}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Glorifying the defilement of (100-8000) souls in tribute to Tecrod",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Abyssals"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "undying-hate",
+      "variantId": "tecrod",
+      "variantName": "Tecrod"
+    },
+    "undying-hate-ulaman": {
+      "id": "undying-hate-ulaman",
+      "name": "Undying Hate",
+      "baseType": "Timeless Jewel",
+      "baseTypeId": "timeless-jewel",
+      "itemType": "Jewel",
+      "category": "jewels",
+      "source": {
+        "dropSource": "Drops from unique{Vessel of Kulemak}"
+      },
+      "modifiers": [
+        {
+          "text": "Limited to: 1 Historic"
+        },
+        {
+          "text": "Radius: Very Large"
+        },
+        {
+          "text": "Glorifying the defilement of (100-8000) souls in tribute to Ulaman",
+          "min": 100,
+          "max": 8000
+        },
+        {
+          "text": "Passives in radius are Conquered by the Abyssals"
+        },
+        {
+          "text": "Historic"
+        }
+      ],
+      "variantGroup": "undying-hate",
+      "variantId": "ulaman",
+      "variantName": "Ulaman",
+      "isDefaultVariant": true
+    }
+  }
+}
