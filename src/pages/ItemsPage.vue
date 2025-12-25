@@ -123,10 +123,12 @@
     </div>
 
     <!-- Item editor modal -->
+    <!-- Use v-bind with conditional object to omit target-slot when undefined,
+         since ItemEditor expects `targetSlot?: ItemSlot` (omitted vs explicit undefined) -->
     <ItemEditor
       v-model="isEditorOpen"
       :item="editingItem"
-      :target-slot="editingSlot"
+      v-bind="editingSlot !== undefined ? { 'target-slot': editingSlot } : {}"
       @save="handleEditorSave"
       @cancel="handleEditorCancel"
     />
