@@ -9,26 +9,26 @@ import { NodeType } from 'src/protos/pob2_pb';
 
 /** Base size in pixels for each node type at zoom level 1.0 */
 export const NODE_SIZES: Record<NodeType, number> = {
-  [NodeType.NODE_TYPE_UNKNOWN]: 24,
-  [NodeType.NODE_NORMAL]: 24,
-  [NodeType.NODE_NOTABLE]: 38,
-  [NodeType.NODE_KEYSTONE]: 52,
-  [NodeType.NODE_MASTERY]: 40,
-  [NodeType.NODE_SOCKET]: 44,
-  [NodeType.NODE_CLASS_START]: 48,
-  [NodeType.NODE_ASCEND_CLASS_START]: 42,
+  [NodeType.NODE_TYPE_UNKNOWN]: 6,
+  [NodeType.NODE_NORMAL]: 6,
+  [NodeType.NODE_NOTABLE]: 10,
+  [NodeType.NODE_KEYSTONE]: 14,
+  [NodeType.NODE_MASTERY]: 10,
+  [NodeType.NODE_SOCKET]: 12,
+  [NodeType.NODE_CLASS_START]: 12,
+  [NodeType.NODE_ASCEND_CLASS_START]: 10,
 };
 
 /** Frame/border thickness for each node type */
 export const NODE_FRAME_WIDTHS: Record<NodeType, number> = {
-  [NodeType.NODE_TYPE_UNKNOWN]: 2,
-  [NodeType.NODE_NORMAL]: 2,
-  [NodeType.NODE_NOTABLE]: 3,
-  [NodeType.NODE_KEYSTONE]: 4,
-  [NodeType.NODE_MASTERY]: 2,
-  [NodeType.NODE_SOCKET]: 3,
-  [NodeType.NODE_CLASS_START]: 3,
-  [NodeType.NODE_ASCEND_CLASS_START]: 3,
+  [NodeType.NODE_TYPE_UNKNOWN]: 0.5,
+  [NodeType.NODE_NORMAL]: 0.5,
+  [NodeType.NODE_NOTABLE]: 0.75,
+  [NodeType.NODE_KEYSTONE]: 1,
+  [NodeType.NODE_MASTERY]: 0.5,
+  [NodeType.NODE_SOCKET]: 0.75,
+  [NodeType.NODE_CLASS_START]: 0.75,
+  [NodeType.NODE_ASCEND_CLASS_START]: 0.75,
 };
 
 // ============================================================================
@@ -119,27 +119,48 @@ export const MAX_POLYGON_SIDES = 8;
 /** Hit area constants for node interaction */
 export const HIT_AREA = {
   /** Extra padding around nodes for easier clicking */
-  padding: 4,
+  padding: 2,
 } as const;
 
-/** Node label rendering constants */
+/** Node label rendering constants (in rem units) */
 export const LABEL_CONSTANTS = {
-  /** Font size for node labels in pixels */
-  fontSize: 10,
-  /** Maximum width for label text wrapping */
-  maxWidth: 80,
-  /** Vertical offset from node center to label */
-  verticalOffset: 4,
+  /** Font size in rem (relative to root font size, typically 16px) */
+  fontSizeRem: 0.75,
+  /** Maximum width for label text wrapping in rem */
+  maxWidthRem: 8,
+  /** Vertical offset from node center to label in rem */
+  verticalOffsetRem: 0.25,
 } as const;
+
+/** Get root font size in pixels (for rem conversion) */
+function getRootFontSize(): number {
+  if (typeof document === 'undefined') return 16; // SSR fallback
+  return parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+}
+
+/** Get font size in pixels (converted from rem) */
+export function getLabelFontSize(): number {
+  return LABEL_CONSTANTS.fontSizeRem * getRootFontSize();
+}
+
+/** Get max width in pixels (converted from rem) */
+export function getLabelMaxWidth(): number {
+  return LABEL_CONSTANTS.maxWidthRem * getRootFontSize();
+}
+
+/** Get vertical offset in pixels (converted from rem) */
+export function getLabelVerticalOffset(): number {
+  return LABEL_CONSTANTS.verticalOffsetRem * getRootFontSize();
+}
 
 /** Highlight effect constants for selected/search nodes */
 export const HIGHLIGHT_CONSTANTS = {
   /** Line width for highlight border */
-  lineWidth: 3,
+  lineWidth: 1.5,
   /** Alpha for highlight border */
   alpha: 0.8,
   /** Radius offset for highlight circle */
-  radiusOffset: 4,
+  radiusOffset: 2,
 } as const;
 
 /** Minimum zoom level below which connections are hidden for performance */
@@ -182,31 +203,31 @@ export interface LODLevel {
 /** LOD levels from low detail (zoomed out) to high detail (zoomed in) */
 export const LOD_LEVELS: LODLevel[] = [
   {
-    // Minimal - zoomed way out, just dots
+    // Minimal - zoomed way out, small dots
     minZoom: 0,
-    maxZoom: 0.3,
-    showIcons: false,
-    showLabels: false,
-    showGlows: false,
-    showFrameDetails: false,
-    sizeMultiplier: 0.5,
-  },
-  {
-    // Medium - basic shapes
-    minZoom: 0.3,
     maxZoom: 0.6,
     showIcons: false,
     showLabels: false,
     showGlows: false,
-    showFrameDetails: true,
-    sizeMultiplier: 0.75,
+    showFrameDetails: false,
+    sizeMultiplier: 0.4,
   },
   {
-    // Full - all details visible
+    // Medium - basic shapes with frames
     minZoom: 0.6,
+    maxZoom: 1.2,
+    showIcons: false,
+    showLabels: false,
+    showGlows: false,
+    showFrameDetails: true,
+    sizeMultiplier: 0.6,
+  },
+  {
+    // High - full detail, no labels
+    minZoom: 1.2,
     maxZoom: Infinity,
     showIcons: true,
-    showLabels: true,
+    showLabels: false, // Labels disabled - too cluttered
     showGlows: true,
     showFrameDetails: true,
     sizeMultiplier: 1.0,
@@ -395,18 +416,14 @@ export function isAscendancyNode(nodeType: NodeType): boolean {
 
 /**
  * Get the number of sides for a node shape (for polygon rendering).
- * - Normal: Circle (many sides)
- * - Notable: Diamond/octagon
- * - Keystone: Octagon
- * - Others: Circle
+ * - Notable: Diamond (4 sides)
+ * - Others: Circle (uses PixiJS circle() when sides > MAX_POLYGON_SIDES)
  */
 export function getNodeShapeSides(nodeType: NodeType): number {
   switch (nodeType) {
     case NodeType.NODE_NOTABLE:
       return 4; // Diamond
-    case NodeType.NODE_KEYSTONE:
-      return 8; // Octagon
     default:
-      return 32; // Circle approximation
+      return 32; // Circle - will use circle() since 32 > MAX_POLYGON_SIDES
   }
 }

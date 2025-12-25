@@ -7,8 +7,8 @@ import { NodeType } from 'src/protos/pob2_pb';
 import {
   NODE_COLORS,
   NODE_ANIMATION,
+  NODE_FRAME_WIDTHS,
   GLOW_CONSTANTS,
-  LABEL_CONSTANTS,
   HIGHLIGHT_CONSTANTS,
   HIT_AREA,
   MAX_POLYGON_SIDES,
@@ -22,7 +22,9 @@ import {
   getNodeAlpha,
   getNodeShapeSides,
   getLODLevel,
-  isSpecialNode,
+  getLabelFontSize,
+  getLabelMaxWidth,
+  getLabelVerticalOffset,
 } from './NodeTypes';
 import { getNodeSpriteManager } from './NodeSprites';
 
@@ -30,14 +32,17 @@ import { getNodeSpriteManager } from './NodeSprites';
 // Text Style for Node Labels
 // ============================================================================
 
-const LABEL_STYLE: Partial<TextStyle> = {
-  fontFamily: 'Arial, sans-serif',
-  fontSize: LABEL_CONSTANTS.fontSize,
-  fill: 0xffffff,
-  align: 'center',
-  wordWrap: true,
-  wordWrapWidth: LABEL_CONSTANTS.maxWidth,
-};
+/** Create DPI-aware label text style */
+function createLabelStyle(): Partial<TextStyle> {
+  return {
+    fontFamily: 'Arial, sans-serif',
+    fontSize: getLabelFontSize(),
+    fill: 0xffffff,
+    align: 'center',
+    wordWrap: true,
+    wordWrapWidth: getLabelMaxWidth(),
+  };
+}
 
 // ============================================================================
 // TreeNode Class
@@ -71,6 +76,9 @@ export class TreeNode extends Container {
 
   /** Current LOD level */
   private _currentLOD: LODLevel;
+
+  /** Current viewport zoom level (for constant-size label rendering) */
+  private _currentZoom: number = 1.0;
 
   /** Visual elements */
   private glowGraphics: Graphics | null = null;
@@ -198,12 +206,26 @@ export class TreeNode extends Container {
    * Only re-renders if LOD level changes.
    */
   updateLOD(zoom: number): void {
+    this._currentZoom = zoom;
     const newLOD = getLODLevel(zoom);
 
     // Check if LOD changed
     if (newLOD.minZoom !== this._currentLOD.minZoom) {
       this._currentLOD = newLOD;
       this.render();
+    }
+
+    // Update label scale if visible (keeps text constant screen size during zoom)
+    if (this.labelText) {
+      const inverseZoom = 1 / zoom;
+      this.labelText.scale.set(inverseZoom);
+
+      // Update position offset too
+      const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
+      const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
+      const nodeRadius = size / 2;
+      const screenOffset = getLabelVerticalOffset() * inverseZoom;
+      this.labelText.position.set(0, nodeRadius + screenOffset);
     }
   }
 
@@ -342,8 +364,9 @@ export class TreeNode extends Container {
 
   /**
    * Render node label (name).
+   * Labels only show on hover, with constant screen size regardless of zoom.
    */
-  private renderLabel(size: number, lod: LODLevel): void {
+  private renderLabel(size: number, _lod: LODLevel): void {
     // Remove existing label
     if (this.labelText) {
       this.removeChild(this.labelText);
@@ -351,17 +374,31 @@ export class TreeNode extends Container {
       this.labelText = null;
     }
 
-    // Only show labels at high LOD for special nodes
-    if (!lod.showLabels || !isSpecialNode(this.nodeData.nodeType ?? NodeType.NODE_NORMAL)) {
+    // Only show label when hovered
+    if (!this._state.hovered) {
       return;
     }
 
     const name = this.nodeData.name;
-    if (!name) return;
+    const pos = this.nodeData.position;
 
-    this.labelText = new Text(name, LABEL_STYLE);
+    // Include node coordinates in debug mode
+    const debugCoords = pos ? `\n(${pos.x.toFixed(1)}, ${pos.y.toFixed(1)})` : '';
+    const labelContent = import.meta.env.DEV ? `${name || 'unnamed'}${debugCoords}` : (name || '');
+
+    if (!labelContent) return;
+
+    this.labelText = new Text(labelContent, createLabelStyle());
     this.labelText.anchor.set(0.5, 0);
-    this.labelText.position.set(0, size / 2 + LABEL_CONSTANTS.verticalOffset);
+
+    // Apply inverse zoom scale to keep text constant screen size
+    const inverseZoom = 1 / this._currentZoom;
+    this.labelText.scale.set(inverseZoom);
+
+    // Position below node edge with fixed screen-space offset
+    const nodeRadius = size / 2;
+    const screenOffset = getLabelVerticalOffset() * inverseZoom;
+    this.labelText.position.set(0, nodeRadius + screenOffset);
 
     this.addChild(this.labelText);
   }
@@ -377,7 +414,7 @@ export class TreeNode extends Container {
   }
 
   /**
-   * Update hover visual state (scale animation).
+   * Update hover visual state (scale animation and label).
    */
   private updateHoverState(): void {
     const targetScale = this._state.hovered ? NODE_ANIMATION.hoverScale : 1.0;
@@ -387,6 +424,11 @@ export class TreeNode extends Container {
 
     // Update alpha for hover effect
     this.alpha = getNodeAlpha(this._state);
+
+    // Re-render to show/hide label on hover
+    const nodeType = this.nodeData.nodeType ?? NodeType.NODE_NORMAL;
+    const size = getNodeSize(nodeType, this._currentLOD.minZoom + LOD_ZOOM_SIZE_OFFSET);
+    this.renderLabel(size, this._currentLOD);
   }
 
   // ============================================================================
@@ -414,15 +456,7 @@ export class TreeNode extends Container {
    * Get frame width for a node type.
    */
   private getFrameWidth(nodeType: NodeType): number {
-    switch (nodeType) {
-      case NodeType.NODE_KEYSTONE:
-        return 4;
-      case NodeType.NODE_NOTABLE:
-      case NodeType.NODE_SOCKET:
-        return 3;
-      default:
-        return 2;
-    }
+    return NODE_FRAME_WIDTHS[nodeType] ?? NODE_FRAME_WIDTHS[NodeType.NODE_NORMAL];
   }
 
   // ============================================================================

@@ -23,9 +23,9 @@ export interface NodeSearchResult {
 }
 
 /** Zoom limits for tree viewport */
-const ZOOM_MIN = 0.1;
+const ZOOM_MIN = 0.8;
 const ZOOM_MAX = 5.0;
-const ZOOM_DEFAULT = 1.0; // Coordinates are pre-scaled in TreePage.vue
+const ZOOM_DEFAULT = 2.0; // Start zoomed in showing central area like in-game
 
 /** Minimum query length for n-gram search */
 const MIN_QUERY_LENGTH = 2;
