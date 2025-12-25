@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/polaz/pob2-web/compare/v1.17.2...v1.18.0) (2025-12-25)
+
+
+### Features
+
+* **tree:** implement tree node connections and paths ([#126](https://github.com/polaz/pob2-web/issues/126)) ([b58087f](https://github.com/polaz/pob2-web/commit/b58087f44102cece5b93b65cc8916e46c5c1c7fd)), closes [#16](https://github.com/polaz/pob2-web/issues/16)
+
 ## [1.17.2](https://github.com/polaz/pob2-web/compare/v1.17.1...v1.17.2) (2025-12-25)
 
 
