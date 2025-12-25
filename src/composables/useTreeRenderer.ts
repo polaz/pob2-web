@@ -38,6 +38,8 @@ export interface UseTreeRendererResult {
   updateNodeStates: (allocatedIds: Set<string>) => void;
   /** Update viewport (pan/zoom) */
   updateViewport: () => void;
+  /** Center viewport on tree origin (0,0) */
+  centerViewport: (canvasWidth: number, canvasHeight: number) => void;
   /** Get TreeNode by ID */
   getTreeNode: (nodeId: string) => TreeNode | undefined;
   /** Destroy the renderer */
@@ -235,8 +237,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
 
     nodeCount.value = nodeMap.size;
 
-    // Center viewport on tree on first render
-    centerViewportOnTree(nodes);
+    // Note: centering is done by caller after canvas is properly sized
 
     // Apply current viewport
     updateViewport();
@@ -289,53 +290,26 @@ export function useTreeRenderer(): UseTreeRendererResult {
   }
 
   /**
-   * Calculate tree bounds and center viewport to show the entire tree.
+   * Center viewport on tree origin (0,0) at current zoom level.
+   * The PoE passive tree is designed with origin at center.
+   * @param canvasWidth - actual canvas width in pixels
+   * @param canvasHeight - actual canvas height in pixels
    */
-  function centerViewportOnTree(nodes: PassiveNode[]): void {
-    if (!app || nodes.length === 0) return;
+  function centerViewportOnTree(canvasWidth: number, canvasHeight: number): void {
+    const zoom = treeStore.viewport.zoom;
 
-    // Calculate bounds
-    let minX = Infinity;
-    let maxX = -Infinity;
-    let minY = Infinity;
-    let maxY = -Infinity;
+    // Center viewport on tree origin (0,0)
+    // Formula: screen position = tree position * zoom + viewport offset
+    // To put origin at screen center: 0 * zoom + viewport = screenCenter
+    // So: viewport = screenCenter
+    const viewportX = canvasWidth / 2;
+    const viewportY = canvasHeight / 2;
 
-    for (const node of nodes) {
-      if (node.position) {
-        minX = Math.min(minX, node.position.x);
-        maxX = Math.max(maxX, node.position.x);
-        minY = Math.min(minY, node.position.y);
-        maxY = Math.max(maxY, node.position.y);
-      }
+    if (import.meta.env.DEV) {
+      console.log(`[TreeRenderer] Centering on origin (0,0), canvas: ${canvasWidth}x${canvasHeight}, viewport: (${viewportX.toFixed(1)}, ${viewportY.toFixed(1)}), zoom: ${zoom}`);
     }
 
-    if (minX === Infinity) return;
-
-    const treeWidth = maxX - minX;
-    const treeHeight = maxY - minY;
-    const treeCenterX = (minX + maxX) / 2;
-    const treeCenterY = (minY + maxY) / 2;
-
-    // Get canvas dimensions
-    const canvasWidth = app.screen.width;
-    const canvasHeight = app.screen.height;
-
-    // Calculate zoom to fit tree in canvas (with padding)
-    const padding = 0.9; // 90% of canvas
-    const zoomX = (canvasWidth * padding) / treeWidth;
-    const zoomY = (canvasHeight * padding) / treeHeight;
-    const zoom = Math.min(zoomX, zoomY, 1.0); // Don't zoom in more than 1.0
-
-    // Calculate viewport position to center tree
-    // viewport.x and viewport.y offset the container position
-    // To center: canvas_center = tree_center * zoom + viewport_offset
-    // So: viewport_offset = canvas_center - tree_center * zoom
-    const viewportX = canvasWidth / 2 - treeCenterX * zoom;
-    const viewportY = canvasHeight / 2 - treeCenterY * zoom;
-
-    // Update store
     treeStore.setViewportPosition(viewportX, viewportY);
-    treeStore.setViewportZoom(zoom);
   }
 
   /**
@@ -551,6 +525,7 @@ export function useTreeRenderer(): UseTreeRendererResult {
     renderNodes,
     updateNodeStates,
     updateViewport,
+    centerViewport: centerViewportOnTree,
     getTreeNode,
     destroy,
   };

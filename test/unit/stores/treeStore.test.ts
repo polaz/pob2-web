@@ -49,7 +49,7 @@ describe('treeStore', () => {
 
       expect(store.viewport.x).toBe(0);
       expect(store.viewport.y).toBe(0);
-      expect(store.viewport.zoom).toBe(1.0);
+      expect(store.viewport.zoom).toBe(2.0);
     });
   });
 
@@ -163,9 +163,9 @@ describe('treeStore', () => {
       store.setViewportZoom(2.0);
       expect(store.viewport.zoom).toBe(2.0);
 
-      // Test lower bound (0.1)
-      store.setViewportZoom(0.05);
-      expect(store.viewport.zoom).toBe(0.1);
+      // Test lower bound (0.8)
+      store.setViewportZoom(0.5);
+      expect(store.viewport.zoom).toBe(0.8);
 
       // Test upper bound (5.0)
       store.setViewportZoom(10.0);
@@ -203,7 +203,7 @@ describe('treeStore', () => {
 
       expect(store.viewport.x).toBe(0);
       expect(store.viewport.y).toBe(0);
-      expect(store.viewport.zoom).toBe(1.0);
+      expect(store.viewport.zoom).toBe(2.0);
     });
 
     it('should center on node', () => {
