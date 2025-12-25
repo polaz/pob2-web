@@ -1,11 +1,24 @@
 /**
- * Item Store - manages equipped items UI state
+ * Item Store - manages equipped items UI state and slot management.
+ *
+ * This store handles:
+ * - UI state (selected slot, editor, clipboard, recent items)
+ * - Weapon swap tracking
+ * - Validated item equip/unequip operations (delegates to buildStore)
+ * - Convenience getters for accessing equipped items
  */
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { cloneDeep } from 'lodash-es';
 import type { Item } from 'src/protos/pob2_pb';
 import { ItemSlot } from 'src/protos/pob2_pb';
+import {
+  isValidSlotForItem,
+  getSlotValidationError,
+  getWeaponSlotsForSet,
+} from 'src/engine/items/ItemSlots';
+import type { EquipResult } from 'src/engine/items/types';
+import { useBuildStore } from './buildStore';
 
 /** Item slot display info */
 export interface SlotInfo {
@@ -47,6 +60,13 @@ export const SWAP_SLOTS: SlotInfo[] = [
 const MAX_RECENT_ITEMS = 20;
 
 export const useItemStore = defineStore('item', () => {
+  // ============================================================================
+  // Dependencies
+  // ============================================================================
+
+  /** Build store for accessing/modifying equipped items */
+  const buildStore = useBuildStore();
+
   // ============================================================================
   // State
   // ============================================================================
@@ -127,6 +147,92 @@ export const useItemStore = defineStore('item', () => {
 
   /** Whether an item is in clipboard */
   const hasClipboardItem = computed(() => clipboardItem.value !== null);
+
+  // ============================================================================
+  // Item Access Getters (read from buildStore)
+  // ============================================================================
+
+  /**
+   * Get item in a specific slot.
+   * Returns a function for parameterized lookup in templates.
+   */
+  const getItemInSlot = computed(() => {
+    return (slot: ItemSlot): Item | undefined => {
+      return buildStore.equippedItems[String(slot)];
+    };
+  });
+
+  /**
+   * Get all equipped items as a Map.
+   * Converts from buildStore's Record format to Map for easier iteration.
+   */
+  const allEquippedItems = computed((): Map<ItemSlot, Item> => {
+    const items = new Map<ItemSlot, Item>();
+    for (const [key, item] of Object.entries(buildStore.equippedItems)) {
+      const slot = Number(key) as ItemSlot;
+      if (!Number.isNaN(slot) && item) {
+        items.set(slot, item);
+      }
+    }
+    return items;
+  });
+
+  /**
+   * Get main hand weapon (respects weapon swap state).
+   */
+  const mainHandWeapon = computed((): Item | undefined => {
+    const slot = activeWeaponSlots.value.mainHand;
+    return buildStore.equippedItems[String(slot)];
+  });
+
+  /**
+   * Get off-hand item (respects weapon swap state).
+   */
+  const offHandItem = computed((): Item | undefined => {
+    const slot = activeWeaponSlots.value.offHand;
+    return buildStore.equippedItems[String(slot)];
+  });
+
+  /**
+   * Get equipped items for active weapon set only.
+   */
+  const activeWeaponItems = computed((): Map<ItemSlot, Item> => {
+    const items = new Map<ItemSlot, Item>();
+    const { mainHand, offHand } = activeWeaponSlots.value;
+
+    const mh = buildStore.equippedItems[String(mainHand)];
+    if (mh) items.set(mainHand, mh);
+
+    const oh = buildStore.equippedItems[String(offHand)];
+    if (oh) items.set(offHand, oh);
+
+    return items;
+  });
+
+  /**
+   * Get equipped items for swap weapon set.
+   */
+  const swapWeaponItems = computed((): Map<ItemSlot, Item> => {
+    const items = new Map<ItemSlot, Item>();
+    // Get the inactive weapon set slots
+    const inactiveSet: 1 | 2 = isWeaponSwapActive.value ? 1 : 2;
+    const { mainHand, offHand } = getWeaponSlotsForSet(inactiveSet);
+
+    const mh = buildStore.equippedItems[String(mainHand)];
+    if (mh) items.set(mainHand, mh);
+
+    const oh = buildStore.equippedItems[String(offHand)];
+    if (oh) items.set(offHand, oh);
+
+    return items;
+  });
+
+  /**
+   * Active weapon set number (1 = primary, 2 = swap).
+   */
+  const activeWeaponSet = computed((): 1 | 2 => {
+    return isWeaponSwapActive.value ? 2 : 1;
+  });
 
   // ============================================================================
   // Actions
@@ -226,6 +332,92 @@ export const useItemStore = defineStore('item', () => {
     searchQuery.value = '';
   }
 
+  // ============================================================================
+  // Validated Item Actions
+  // ============================================================================
+
+  /**
+   * Equip item in slot with validation.
+   * Validates item type against slot before equipping.
+   *
+   * @param slot - Target slot
+   * @param item - Item to equip
+   * @returns Result with success/error info and replaced item
+   */
+  function equipItem(slot: ItemSlot, item: Item): EquipResult {
+    // Validate slot compatibility
+    const error = getSlotValidationError(slot, item.itemType);
+    if (error) {
+      return { success: false, error };
+    }
+
+    // Get current item (for return value)
+    const replacedItem = buildStore.equippedItems[String(slot)];
+
+    // Delegate to buildStore
+    buildStore.setEquippedItem(slot, item);
+
+    // Add to recent items for quick access
+    addToRecentItems(item);
+
+    return {
+      success: true,
+      ...(replacedItem && { replacedItem }),
+    };
+  }
+
+  /**
+   * Unequip item from slot.
+   *
+   * @param slot - Slot to clear
+   * @returns The removed item, if any
+   */
+  function unequipItem(slot: ItemSlot): Item | undefined {
+    const item = buildStore.equippedItems[String(slot)];
+    if (item) {
+      buildStore.removeEquippedItem(slot);
+    }
+    return item;
+  }
+
+  /**
+   * Swap weapons between main and swap sets.
+   * Toggles between weapon set 1 and 2.
+   */
+  function swapWeapons(): void {
+    isWeaponSwapActive.value = !isWeaponSwapActive.value;
+  }
+
+  /**
+   * Check if an item can be equipped in a slot.
+   *
+   * @param slot - Target slot
+   * @param item - Item to check
+   * @returns True if item can be equipped in slot
+   */
+  function canEquipInSlot(slot: ItemSlot, item: Item): boolean {
+    return isValidSlotForItem(slot, item.itemType);
+  }
+
+  /**
+   * Get all items for a specific weapon set.
+   *
+   * @param weaponSet - Which weapon set (1 = primary, 2 = swap)
+   * @returns Map of slot to item for that weapon set
+   */
+  function getWeaponSetItems(weaponSet: 1 | 2): Map<ItemSlot, Item> {
+    const items = new Map<ItemSlot, Item>();
+    const { mainHand, offHand } = getWeaponSlotsForSet(weaponSet);
+
+    const mh = buildStore.equippedItems[String(mainHand)];
+    if (mh) items.set(mainHand, mh);
+
+    const oh = buildStore.equippedItems[String(offHand)];
+    if (oh) items.set(offHand, oh);
+
+    return items;
+  }
+
   return {
     // State
     selectedSlot,
@@ -242,13 +434,22 @@ export const useItemStore = defineStore('item', () => {
     FLASK_SLOTS,
     SWAP_SLOTS,
 
-    // Getters
+    // Getters - UI
     getSlotName,
     getSlotShortName,
     activeWeaponSlots,
     hasClipboardItem,
 
-    // Actions
+    // Getters - Item Access
+    getItemInSlot,
+    allEquippedItems,
+    mainHandWeapon,
+    offHandItem,
+    activeWeaponItems,
+    swapWeaponItems,
+    activeWeaponSet,
+
+    // Actions - UI
     selectSlot,
     clearSlotSelection,
     openEditor,
@@ -263,6 +464,13 @@ export const useItemStore = defineStore('item', () => {
     setSearchQuery,
     openUniqueBrowser,
     closeUniqueBrowser,
+
+    // Actions - Validated Item Operations
+    equipItem,
+    unequipItem,
+    swapWeapons,
+    canEquipInSlot,
+    getWeaponSetItems,
   };
 });
 
