@@ -81,7 +81,14 @@ const DEFAULT_SPEC_TITLE = 'Default';
 // Character Class Mapping
 // =============================================================================
 
-/** Map CharacterClass enum to PoB2 class name string */
+/**
+ * Map CharacterClass enum to PoB2 class name string.
+ *
+ * Note: CHARACTER_CLASS_UNKNOWN maps to 'Scion' for PoB2 compatibility, but this creates
+ * an asymmetric mapping since POB_NAME_TO_CLASS maps 'Scion' back to CharacterClass.SCION.
+ * This is intentional: UNKNOWN is a placeholder that serializes as a valid class for PoB2,
+ * but when we import 'Scion' from PoB2 XML, we correctly identify it as the Scion class.
+ */
 const CLASS_TO_POB_NAME: Record<CharacterClass, string> = {
   [CharacterClass.CHARACTER_CLASS_UNKNOWN]: 'Scion',
   [CharacterClass.WARRIOR]: 'Warrior',
@@ -170,6 +177,11 @@ function escapeAttr(value: string): string {
  * - `undefined` and empty strings are excluded (no attribute rendered)
  * - `false` renders as "false", `0` renders as "0" (both are valid values)
  * - `true` renders as "true"
+ *
+ * Self-closing behavior:
+ * - `selfClose=true` with no content: renders `<tag/>` or `<tag attr="val"/>`
+ * - `selfClose=true` with content: ignores selfClose, renders full element with content
+ *   (content takes precedence over self-closing since self-closing with content is invalid XML)
  */
 function xmlElement(
   tag: string,
@@ -194,10 +206,17 @@ function xmlElement(
 
 /**
  * Get attribute value from an element, returning undefined if not present.
+ *
+ * In the DOM, `getAttribute` returns:
+ * - `null` when the attribute is missing
+ * - a string (including `''`) when the attribute exists
+ *
+ * We normalize `null` to `undefined` so callers can distinguish:
+ * - `undefined` → attribute not present (suitable for optional props with exactOptionalPropertyTypes)
+ * - `''` → attribute present with an empty value
  */
 function getAttr(element: Element, name: string): string | undefined {
   const value = element.getAttribute(name);
-  // DOM getAttribute returns null when attribute is missing; convert to undefined for callers
   if (value === null) return undefined;
   return value;
 }
@@ -209,7 +228,8 @@ function getNumAttr(element: Element, name: string): number | undefined {
   const value = getAttr(element, name);
   if (value === undefined) return undefined;
   const num = Number(value);
-  return Number.isNaN(num) ? undefined : num;
+  // Reject NaN and non-finite values (Infinity, -Infinity) from malformed XML
+  return Number.isFinite(num) ? num : undefined;
 }
 
 /**
@@ -251,6 +271,8 @@ function serializeItem(item: Item): string {
   const lines: string[] = [];
 
   // Rarity line
+  // Explicitly check for undefined so ItemRarity.ITEM_RARITY_UNKNOWN (0) still maps via RARITY_TO_POB.
+  // Using a truthiness check (e.g. ||) would incorrectly treat 0 as "no rarity" and fallback.
   const rarity = item.rarity !== undefined ? RARITY_TO_POB[item.rarity] : 'NORMAL';
   lines.push(`Rarity: ${rarity}`);
 
@@ -349,10 +371,12 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
   const skillSetContent = skillGroups
     .map((group, index) => {
       const gemElements = group.gems.map(serializeGem).join('\n');
+      // Only serialize enabled="false" explicitly; missing attribute = true (PoB2 convention)
+      const enabledAttr = (group.enabled ?? true) === false ? false : undefined;
       return xmlElement(
         'Skill',
         {
-          enabled: group.enabled ?? true,
+          enabled: enabledAttr,
           slot: group.slot,
           label: group.label,
           mainActiveSkill: index === 0 ? DEFAULT_SET_ID : undefined,
@@ -606,6 +630,9 @@ function parseItem(itemText: string, itemId: string): Item {
     }
 
     // In header section, parse name and base
+    // For UNIQUE/RARE items: first line after rarity is name, second is baseName
+    // For NORMAL/MAGIC items: first line after rarity is baseName (no separate name)
+    // After baseName is set, transition to explicits section
     if (section === 'header') {
       if (!item.name && item.rarity !== undefined) {
         if (item.rarity === ItemRarity.RARITY_UNIQUE || item.rarity === ItemRarity.RARITY_RARE) {
