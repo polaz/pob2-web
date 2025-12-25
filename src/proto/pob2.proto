@@ -408,3 +408,94 @@ enum ItemSlot {
   SLOT_JEWEL_2 = 41;
   // ... more jewel slots as needed
 }
+
+// ============================================================================
+// PATH OF LEVELING
+// ============================================================================
+
+message LevelingPath {
+  string id = 1;                           // REQUIRED - unique identifier
+  optional string build_id = 2;            // Reference to end-game Build (optional)
+  optional string name = 3;
+  optional CharacterClass class_id = 4;
+  repeated Checkpoint checkpoints = 5;     // User-defined level milestones
+  repeated LevelingStep steps = 6;         // Ordered actions
+  optional string notes = 7;
+  optional google.protobuf.Timestamp created_at = 8;
+  optional google.protobuf.Timestamp updated_at = 9;
+}
+
+message Checkpoint {
+  int32 level = 1;                         // User-defined level milestone
+  repeated string allocated_passives = 2;  // Cumulative list of node IDs
+  map<string, Item> equipment = 3;         // Slot -> Item mapping
+  repeated SkillGroup gems = 4;            // Gem setup at this checkpoint
+  optional StatSnapshot stats = 5;         // Calculated stats at this level
+  optional string notes = 6;               // Checkpoint-specific notes
+}
+
+message LevelingStep {
+  int32 order = 1;                         // Execution order
+  optional StepTrigger trigger = 2;        // When to perform this step
+  optional StepAction action = 3;          // What to do
+  optional StatDelta stat_delta = 4;       // Impact on stats
+  optional string rationale = 5;           // Why this step matters
+}
+
+message StepTrigger {
+  StepTriggerType type = 1;
+  optional string value = 2;               // Level number, quest name, or item name
+}
+
+message StepAction {
+  StepActionType type = 1;
+  optional string target_id = 2;           // Node ID, item ID, or gem ID
+  optional string slot = 3;                // Item slot or socket position
+  optional string details = 4;             // Additional context
+}
+
+message StatDelta {
+  optional float dps_percent = 1;          // +/- percentage change
+  optional float ehp_percent = 2;          // +/- percentage change
+  optional float dps_absolute = 3;         // +/- absolute value
+  optional float ehp_absolute = 4;         // +/- absolute value
+  map<string, float> resistances = 5;      // Resistance changes
+  map<string, float> other_stats = 6;      // Other stat changes
+}
+
+message StatSnapshot {
+  optional float dps = 1;                  // Damage per second
+  optional float ehp = 2;                  // Effective HP
+  optional float life = 3;                 // Maximum life
+  optional float mana = 4;                 // Maximum mana
+  optional float energy_shield = 5;        // Maximum energy shield
+  optional int32 fire_res = 6;             // Fire resistance (percentage)
+  optional int32 cold_res = 7;             // Cold resistance (percentage)
+  optional int32 lightning_res = 8;        // Lightning resistance (percentage)
+  optional int32 chaos_res = 9;            // Chaos resistance (percentage)
+  optional float attack_speed = 10;        // Attacks per second
+  optional float cast_speed = 11;          // Casts per second
+  optional float crit_chance = 12;         // Critical strike chance (percentage)
+  optional float crit_multi = 13;          // Critical strike multiplier (percentage)
+  map<string, float> other = 14;           // Additional stats
+}
+
+enum StepTriggerType {
+  STEP_TRIGGER_TYPE_UNKNOWN = 0;
+  TRIGGER_LEVEL = 1;                       // Reach a certain level
+  TRIGGER_QUEST = 2;                       // Complete a quest
+  TRIGGER_ITEM = 3;                        // Acquire an item
+  TRIGGER_ZONE = 4;                        // Enter a zone
+  TRIGGER_WAYPOINT = 5;                    // Reach a waypoint
+}
+
+enum StepActionType {
+  STEP_ACTION_TYPE_UNKNOWN = 0;
+  ACTION_ALLOCATE = 1;                     // Allocate passive node
+  ACTION_EQUIP = 2;                        // Equip an item
+  ACTION_SOCKET = 3;                       // Socket a gem
+  ACTION_RESPEC = 4;                       // Respec passive nodes
+  ACTION_VENDOR = 5;                       // Buy from vendor
+  ACTION_CRAFT = 6;                        // Craft an item
+  ACTION_USE_SKILL = 7;                    // Start using a skill
+}
