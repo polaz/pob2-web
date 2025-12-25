@@ -372,7 +372,7 @@ function serializeSkills(skillGroups: SkillGroup[]): string {
     .map((group, index) => {
       const gemElements = group.gems.map(serializeGem).join('\n');
       // Only serialize enabled="false" explicitly; missing attribute = true (PoB2 convention)
-      const enabledAttr = (group.enabled ?? true) === false ? false : undefined;
+      const enabledAttr = group.enabled === false ? false : undefined;
       return xmlElement(
         'Skill',
         {
