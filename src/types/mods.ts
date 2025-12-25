@@ -246,6 +246,8 @@ export interface ModDefinition {
 export type ModSource =
   | 'item'
   | 'passive'
+  | 'ascendancy'
+  | 'mastery'
   | 'gem'
   | 'jewel'
   | 'flask'
