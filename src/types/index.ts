@@ -13,6 +13,9 @@ export * from './tree';
 // Gem data types
 export * from './gems';
 
+// Item base data types
+export * from './bases';
+
 // Skill stats data types
 export * from './skills';
 
