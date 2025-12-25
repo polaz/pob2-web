@@ -243,7 +243,8 @@ export class ModDB {
    * @returns The effective value
    */
   private getEffectiveValue(mod: Mod, config: CalcConfig): number {
-    let value = mod.value;
+    // Only numeric mod types use this method (BASE, INC, MORE, OVERRIDE)
+    let value = mod.value as number;
 
     if (mod.condition) {
       const cond = mod.condition;

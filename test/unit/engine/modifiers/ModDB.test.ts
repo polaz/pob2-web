@@ -193,6 +193,14 @@ describe('ModDB', () => {
       // (1 + 0.2) * (1 + 0.3) = 1.56
       expect(db.more('PhysicalDamage', 'Damage')).toBeCloseTo(1.56);
     });
+
+    it('should compound multiple negative MORE modifiers correctly', () => {
+      db.addMod(createMod({ name: 'Damage', type: 'MORE', value: -0.2 }));
+      db.addMod(createMod({ name: 'Damage', type: 'MORE', value: -0.3 }));
+
+      // (1 + (-0.2)) * (1 + (-0.3)) = 0.8 * 0.7 = 0.56
+      expect(db.more('Damage')).toBeCloseTo(0.56);
+    });
   });
 
   // ==========================================================================
@@ -602,9 +610,9 @@ describe('ModDB', () => {
       expect(db.sum('BASE', 'Life', {})).toBe(100);
     });
 
-    it('should handle division by zero in PerStat condition', () => {
-      // When div <= 0, the PerStat multiplication is skipped to avoid NaN
-      // The modifier is still included, but its value is not scaled
+    it('should skip PerStat scaling when div is zero or negative', () => {
+      // When div <= 0, the PerStat multiplication is skipped to avoid NaN.
+      // The modifier is still included in the result, but unscaled.
       db.addMod(
         createMod({
           name: 'Damage',
@@ -615,7 +623,7 @@ describe('ModDB', () => {
       );
 
       const config = { stats: { Strength: 100 } };
-      // With div=0, the PerStat scaling is skipped, original value used
+      // With div=0, scaling is skipped - original value (10) is used
       expect(db.sum('BASE', 'Damage', config)).toBe(10);
     });
 
@@ -629,16 +637,18 @@ describe('ModDB', () => {
     });
 
     it('should throw on mixed types in arguments', () => {
-      // Config object in the middle of stat names is invalid
-      // Runtime validation catches this even though types allow it
+      // The rest parameter type allows (string | CalcConfig)[], but runtime
+      // validation ensures config objects only appear at the end position.
+      // A config in the middle indicates a caller error.
       expect(() => {
         db.sum('BASE', 'Life', {}, 'Damage');
       }).toThrow(TypeError);
     });
 
     it('should throw when only config object is passed without stat names', () => {
-      // Passing just a config with no stat names should throw
-      // Runtime validation catches this even though types allow it
+      // The rest parameter type allows a single CalcConfig, but semantically
+      // this is a user error - config without stat names to query is meaningless.
+      // Runtime validation catches and rejects this pattern.
       expect(() => {
         db.more({ flags: 1n });
       }).toThrow(TypeError);

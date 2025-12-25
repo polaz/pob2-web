@@ -25,8 +25,12 @@ export interface Mod {
   /** How this modifier is applied (BASE, INC, MORE, etc.) */
   type: ModType;
 
-  /** The modifier value (numeric for most types) */
-  value: number;
+  /**
+   * The modifier value.
+   * - Numeric for most types (BASE, INC, MORE, OVERRIDE, FLAG)
+   * - May be complex/structured for LIST type modifiers
+   */
+  value: unknown;
 
   /** Damage/attack type flags for filtering (0 = applies to all) */
   flags: bigint;
