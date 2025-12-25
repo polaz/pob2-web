@@ -12,8 +12,18 @@ import { BUILD_FORMAT_VERSION } from '../types/db';
  * Each function upgrades builds from that version to the next.
  */
 const BUILD_MIGRATIONS: Record<number, (build: Record<string, unknown>) => void> = {
-  // Version 0 -> 1: Initial version, add version field
-  // No actual transformation needed, just set version to 1
+  /**
+   * Version 0 -> 1: Initial version, no structural changes.
+   *
+   * Existing builds without an explicit `version` are treated as version 0.
+   * We don't need to modify the build object itself here; the actual
+   * version number is set to `BUILD_FORMAT_VERSION` after all migrations
+   * have run in `migrateBuild`.
+   */
+  0: (build: Record<string, unknown>): void => {
+    // Intentional no-op migration; reference parameter to satisfy noUnusedParameters
+    void build;
+  },
 };
 
 /**

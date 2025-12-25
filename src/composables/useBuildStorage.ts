@@ -12,10 +12,12 @@ import {
   updateUserPreferences,
   deleteBuild as dbDeleteBuild,
   createBuild,
+  updateBuild,
 } from 'src/db';
 import type { StoredBuild } from 'src/types/db';
 import { BUILD_FORMAT_VERSION } from 'src/types/db';
 import { migrateBuild, buildNeedsMigration } from 'src/db/buildMigrations';
+import { CharacterClass } from 'src/protos/pob2_pb';
 
 /** Maximum number of recent builds to track */
 const MAX_RECENT_BUILDS = 10;
@@ -23,8 +25,18 @@ const MAX_RECENT_BUILDS = 10;
 /** Default auto-save interval in milliseconds */
 const DEFAULT_AUTO_SAVE_INTERVAL_MS = 30000;
 
-/** Minimum debounce delay for auto-save in milliseconds */
+/** Debounce delay for auto-save in milliseconds */
 const AUTO_SAVE_DEBOUNCE_MS = 2000;
+
+/**
+ * Convert CharacterClass enum to string name for storage.
+ * Mirrors the pattern from buildStore for consistency.
+ */
+function characterClassToString(charClass: CharacterClass | undefined): string {
+  if (charClass === undefined) return 'WARRIOR';
+  const name = CharacterClass[charClass];
+  return typeof name === 'string' ? name : 'WARRIOR';
+}
 
 /**
  * Build metadata for list display (without full data).
@@ -92,9 +104,13 @@ export function useBuildStorage() {
     isLoadingBuilds.value = true;
     try {
       const builds = await getAllBuilds();
-      buildList.value = builds.map((b) => {
+      // Filter out builds without IDs (should not happen, but be safe)
+      const buildsWithId = builds.filter(
+        (b): b is StoredBuild & { id: number } => typeof b.id === 'number'
+      );
+      buildList.value = buildsWithId.map((b) => {
         const item: BuildListItem = {
-          id: b.id!,
+          id: b.id,
           name: b.name,
           className: b.className,
           level: b.level,
@@ -163,10 +179,12 @@ export function useBuildStorage() {
       const prefs = await getUserPreferences();
       if (prefs.lastBuildId !== undefined) {
         const stored = await getBuild(prefs.lastBuildId);
-        if (stored) {
-          // Migrate if needed
+        if (stored && stored.id !== undefined) {
+          // Migrate if needed and persist the migration
           if (buildNeedsMigration(stored.version)) {
             migrateBuild(stored as unknown as Record<string, unknown>);
+            // Persist migrated build back to database
+            await updateBuild(stored.id, { version: BUILD_FORMAT_VERSION });
           }
           const loaded = await buildStore.load(prefs.lastBuildId);
           if (loaded) {
@@ -206,7 +224,10 @@ export function useBuildStorage() {
       await addToRecentBuilds(buildId);
       await saveLastSession();
     } catch (e) {
-      console.warn('Auto-save failed:', e instanceof Error ? e.message : e);
+      console.warn(
+        `Auto-save failed for build ${buildStore.currentBuildDbId}:`,
+        e instanceof Error ? e.message : e
+      );
     }
   }, AUTO_SAVE_DEBOUNCE_MS);
 
@@ -222,18 +243,29 @@ export function useBuildStorage() {
     let interval = intervalMs;
     if (interval === undefined) {
       const prefs = await getUserPreferences();
-      interval = prefs.autoSaveInterval * 1000;
+      const prefIntervalMs = prefs.autoSaveInterval * 1000;
+      interval =
+        Number.isFinite(prefIntervalMs) && prefIntervalMs > 0
+          ? prefIntervalMs
+          : DEFAULT_AUTO_SAVE_INTERVAL_MS;
     }
-    if (interval < AUTO_SAVE_DEBOUNCE_MS) {
-      interval = DEFAULT_AUTO_SAVE_INTERVAL_MS;
-    }
+
+    // Ensure interval is at least the debounce duration and positive
+    interval = Math.max(
+      Number.isFinite(interval) && interval > 0
+        ? interval
+        : DEFAULT_AUTO_SAVE_INTERVAL_MS,
+      AUTO_SAVE_DEBOUNCE_MS
+    );
 
     isAutoSaveActive.value = true;
 
     // Set up interval for periodic saves
     autoSaveIntervalId = setInterval(() => {
       if (buildStore.isDirty && !buildStore.isSaving) {
-        void debouncedSave();
+        void debouncedSave().catch(() => {
+          // Error already logged inside debouncedSave
+        });
       }
     }, interval);
   }
@@ -277,8 +309,11 @@ export function useBuildStorage() {
       const stored = await getBuild(id);
       if (!stored) return false;
 
+      // Migrate if needed and persist the migration
       if (buildNeedsMigration(stored.version)) {
         migrateBuild(stored as unknown as Record<string, unknown>);
+        // Persist migrated build back to database
+        await updateBuild(id, { version: BUILD_FORMAT_VERSION });
       }
 
       const loaded = await buildStore.load(id);
@@ -326,15 +361,21 @@ export function useBuildStorage() {
     const storedData: Omit<StoredBuild, 'id' | 'createdAt' | 'updatedAt'> = {
       version: BUILD_FORMAT_VERSION,
       name,
-      className: exported.characterClass?.toString() ?? 'WARRIOR',
+      className: characterClassToString(exported.characterClass),
       level: exported.level ?? 1,
-      passiveNodes: exported.allocatedNodeIds.map((id) => {
+      passiveNodes: exported.allocatedNodeIds.reduce<number[]>((acc, id) => {
         const num = Number.parseInt(id, 10);
-        return Number.isNaN(num) ? 0 : num;
-      }).filter((n) => n > 0),
+        if (!Number.isNaN(num) && num > 0) {
+          acc.push(num);
+        }
+        return acc;
+      }, []),
       items: JSON.stringify(exported.equippedItems),
       skills: JSON.stringify(exported.skillGroups),
-      ...(exported.ascendancy && { ascendancy: exported.ascendancy }),
+      ...(typeof exported.ascendancy === 'string' &&
+        exported.ascendancy.trim() !== '' && {
+          ascendancy: exported.ascendancy,
+        }),
       ...(exported.config && { config: JSON.stringify(exported.config) }),
       ...(Object.keys(exported.masterySelections).length > 0 && {
         masterySelections: JSON.stringify(exported.masterySelections),
@@ -383,7 +424,9 @@ export function useBuildStorage() {
     () => buildStore.isDirty,
     (isDirty) => {
       if (isDirty && isAutoSaveActive.value && !isRestoring) {
-        void debouncedSave();
+        void debouncedSave().catch(() => {
+          // Errors are already handled and logged inside debouncedSave
+        });
       }
     }
   );
@@ -420,7 +463,10 @@ export function useBuildStorage() {
 
     // Restore last session if requested
     if (restoreSession) {
-      await restoreLastSession();
+      const restored = await restoreLastSession();
+      if (!restored) {
+        console.info('No previous session to restore');
+      }
     }
 
     // Start auto-save if requested and user has it enabled
