@@ -21,3 +21,6 @@ export * from './skills';
 
 // Mod data types
 export * from './mods';
+
+// Internationalization types
+export * from './i18n';

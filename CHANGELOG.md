@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/polaz/pob2-web/compare/v1.10.0...v1.11.0) (2025-12-25)
+
+
+### Features
+
+* **data:** convert PoB item base data to JSON format ([#103](https://github.com/polaz/pob2-web/issues/103)) ([6a35b0e](https://github.com/polaz/pob2-web/commit/6a35b0ef407f3572eba6036aec6c6672a55727c1)), closes [#7](https://github.com/polaz/pob2-web/issues/7)
+
 # [1.10.0](https://github.com/polaz/pob2-web/compare/v1.9.0...v1.10.0) (2025-12-25)
 
 

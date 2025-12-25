@@ -4,6 +4,8 @@
 import { ref, computed, shallowRef } from 'vue';
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import type { PassiveTree, PassiveNode } from 'src/protos/pob2_pb';
+import { NgramIndex } from 'src/services/search';
+import type { SearchableDocument } from 'src/services/search';
 
 /** Tree viewport state */
 export interface TreeViewport {
@@ -24,6 +26,12 @@ export interface NodeSearchResult {
 const ZOOM_MIN = 0.1;
 const ZOOM_MAX = 3.0;
 const ZOOM_DEFAULT = 1.0;
+
+/** Minimum query length for n-gram search */
+const MIN_QUERY_LENGTH = 2;
+
+/** Maximum search results */
+const MAX_SEARCH_RESULTS = 50;
 
 export const useTreeStore = defineStore('tree', () => {
   // ============================================================================
@@ -66,6 +74,9 @@ export const useTreeStore = defineStore('tree', () => {
 
   /** Comparison mode - show diff between two builds */
   const comparisonNodeIds = shallowRef<string[] | null>(null);
+
+  /** N-gram search index for nodes */
+  const nodeSearchIndex = new NgramIndex({ ngramSize: 3, minQueryLength: MIN_QUERY_LENGTH });
 
   // ============================================================================
   // Getters
@@ -139,10 +150,24 @@ export const useTreeStore = defineStore('tree', () => {
   // Actions
   // ============================================================================
 
-  /** Set tree data */
+  /**
+   * Set tree data and build the search index.
+   */
   function setTreeData(tree: PassiveTree): void {
     treeData.value = tree;
     loadError.value = null;
+
+    // Build search index for nodes
+    const documents: SearchableDocument[] = tree.nodes.map((node) => ({
+      id: node.id,
+      type: 'node' as const,
+      fields: {
+        name: node.name ?? '',
+        stats: node.stats?.join(' ') ?? '',
+      },
+    }));
+
+    nodeSearchIndex.build(documents);
   }
 
   /** Set loading state */
@@ -167,16 +192,48 @@ export const useTreeStore = defineStore('tree', () => {
   }
 
   /**
-   * Set search query.
-   * This store only manages state - actual search is performed by tree worker
-   * at the component level. Worker initialization and error handling is the
-   * responsibility of the component that integrates the worker.
+   * Set search query and perform n-gram indexed search.
+   *
+   * Uses fuzzy n-gram matching for better search experience.
    */
   function setSearchQuery(query: string): void {
     searchQuery.value = query;
+
+    if (query.length === 0) {
+      searchResults.value = [];
+      return;
+    }
+
+    // For short queries (< MIN_QUERY_LENGTH), n-gram index returns empty
+    if (query.length < MIN_QUERY_LENGTH) {
+      searchResults.value = [];
+      return;
+    }
+
+    // Use n-gram index for search
+    const indexResults = nodeSearchIndex.search(query, { limit: MAX_SEARCH_RESULTS });
+
+    // Convert to NodeSearchResult format
+    const results: NodeSearchResult[] = [];
+    for (const result of indexResults) {
+      const node = nodesById.value.get(result.id);
+      if (!node) continue;
+
+      results.push({
+        nodeId: result.id,
+        node,
+        matchType: result.matchedField === 'name' ? 'name' : 'stat',
+        matchText: result.matchedText,
+      });
+    }
+
+    searchResults.value = results;
   }
 
-  /** Set search results */
+  /**
+   * Set search results directly.
+   * @deprecated Use setSearchQuery instead - search is now performed automatically
+   */
   function setSearchResults(results: NodeSearchResult[]): void {
     searchResults.value = results;
   }
