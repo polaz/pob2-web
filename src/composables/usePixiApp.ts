@@ -66,6 +66,13 @@ const isDev = import.meta.env.DEV;
 const FPS_UPDATE_INTERVAL_MS = 500;
 
 /**
+ * Default background color for the passive tree canvas.
+ * This dark blue (#1a1a2e) matches the PoE2 visual style and provides
+ * good contrast for tree nodes and connections.
+ */
+const CANVAS_BACKGROUND_COLOR = 0x1a1a2e;
+
+/**
  * Detect renderer availability and reasons for unavailability.
  * Returns detailed info about what's available and why fallbacks might occur.
  */
@@ -230,7 +237,7 @@ export function usePixiApp(): UsePixiAppResult {
         antialias: true,
         resolution: window.devicePixelRatio || 1,
         autoDensity: true,
-        backgroundColor: 0x1a1a2e,
+        backgroundColor: CANVAS_BACKGROUND_COLOR,
       });
 
       app.value = pixiApp;

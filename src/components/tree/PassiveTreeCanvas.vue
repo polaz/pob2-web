@@ -182,15 +182,27 @@ defineExpose({
 </script>
 
 <style scoped>
+/*
+ * CSS custom properties for passive tree canvas theming.
+ * These match the PoE2 visual style and can be overridden by parent components.
+ */
 .passive-tree-canvas {
-  min-height: 200px;
-  background-color: #1a1a2e;
+  /* Canvas background - matches PixiJS CANVAS_BACKGROUND_COLOR */
+  --tree-canvas-bg: #1a1a2e;
+  /* FPS counter styling */
+  --tree-fps-bg: rgba(0, 0, 0, 0.7);
+  --tree-fps-color: #4ade80;
+  /* Minimum height for canvas container */
+  --tree-canvas-min-height: 200px;
+
+  min-height: var(--tree-canvas-min-height);
+  background-color: var(--tree-canvas-bg);
 }
 
 /* FPS counter visual styling - positioning via inline style */
 .passive-tree-canvas__fps {
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #4ade80;
+  background-color: var(--tree-fps-bg);
+  color: var(--tree-fps-color);
   font-family: monospace;
   border-radius: 4px;
   pointer-events: none;

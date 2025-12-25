@@ -7,7 +7,7 @@
  *
  * Integration testing with actual PixiJS rendering should be done in E2E tests.
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import { defineComponent, h } from 'vue';
 
@@ -51,10 +51,6 @@ vi.mock('pixi.js', () => {
 
 describe('usePixiApp', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  afterEach(() => {
     vi.clearAllMocks();
   });
 
