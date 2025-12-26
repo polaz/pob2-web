@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/polaz/pob2-web/compare/v1.20.0...v1.20.1) (2025-12-26)
+
+
+### Bug Fixes
+
+* **tree:** filter cross-boundary connections between ascendancy and main tree ([f8a0e1b](https://github.com/polaz/pob2-web/commit/f8a0e1b083c2cd231487f7a60f2a052db8ca27e9))
+
 # [1.20.0](https://github.com/polaz/pob2-web/compare/v1.19.1...v1.20.0) (2025-12-26)
 
 
