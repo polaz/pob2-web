@@ -72,7 +72,7 @@
                   outlined
                   dense
                   class="col-12 col-sm-8"
-                  :hint="editedItem.rarity === 3 || editedItem.rarity === 4 ? 'Required for rare/unique' : 'Optional'"
+                  :hint="editedItem.rarity === ItemRarity.RARITY_RARE || editedItem.rarity === ItemRarity.RARITY_UNIQUE ? 'Required for rare/unique' : 'Optional'"
                 />
               </div>
               <div class="row q-gutter-sm q-mt-sm">
@@ -323,7 +323,7 @@ const $q = useQuasar();
 /** Maximum character level in PoE2 */
 const MAX_CHARACTER_LEVEL = 100;
 
-/** Maximum quality percentage for items */
+/** Maximum quality percentage for items (PoE2 caps quality at 30% via crafting) */
 const MAX_QUALITY = 30;
 
 // ============================================================================

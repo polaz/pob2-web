@@ -220,10 +220,10 @@ const swapSlots = computed<SlotInfo[]>(() => SWAP_SLOTS);
 /** Selected slot from store */
 const selectedSlot = computed(() => itemStore.selectedSlot);
 
-/** Weapon swap state from store */
+/** Weapon swap state from store - controls which weapon set label is shown */
 const isWeaponSwapActive = computed(() => itemStore.isWeaponSwapActive);
 
-/** Whether clipboard has an item */
+/** Whether clipboard has an item - used to conditionally show paste option in context menu */
 const hasClipboardItem = computed(() => itemStore.hasClipboardItem);
 
 // ============================================================================

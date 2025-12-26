@@ -399,7 +399,13 @@ const physicalDamage = computed(() => {
   return `${wd.physicalMin ?? 0}-${wd.physicalMax ?? 0}`;
 });
 
-/** Elemental damage display with colored values */
+/**
+ * Elemental damage display with colored values.
+ *
+ * Uses || (truthy) checks intentionally: we want to display damage if EITHER
+ * min or max is non-zero. Example: fireMin=0, fireMax=5 shows "0-5" fire damage.
+ * Both being 0 (or undefined) means no damage of that type to display.
+ */
 const elementalDamage = computed(() => {
   const wd = props.item.weaponData;
   if (!wd) return null;

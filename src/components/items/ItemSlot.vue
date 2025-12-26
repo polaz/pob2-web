@@ -72,7 +72,7 @@ const FLASK_SLOT_WIDTH = 40;
 /** Flask slot height in pixels */
 const FLASK_SLOT_HEIGHT = 64;
 
-/** Width of item tooltip card in pixels */
+/** Width of item tooltip card - string format for direct CSS usage in :style binding */
 const TOOLTIP_CARD_WIDTH = '260px';
 
 // ============================================================================
