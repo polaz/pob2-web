@@ -258,10 +258,11 @@ function processMasterySelection(
 ): Mod[] {
   const mods: Mod[] = [];
 
-  // Check if there's a selection for this mastery node
+  // Check if there's a selection for this mastery node.
+  // Early return keeps structure minimal while effect processing is unimplemented.
   const selectedEffectId = masterySelections[nodeId];
   if (!selectedEffectId) {
-    return mods;
+    return mods; // No selection = no mods (same as implemented behavior)
   }
 
   // LIMITATION: Cannot process mastery effects without raw tree data access.
@@ -348,11 +349,18 @@ export function updatePassivesIncremental(
     passiveDB.removeBySource(PASSIVE_SOURCE, nodeId);
     passiveDB.removeBySource(ASCENDANCY_SOURCE, nodeId);
 
-    // Also remove any mastery mods from this node
-    // Mastery sourceId format is "nodeId:effectId"
-    // We need to remove all mods where sourceId starts with "nodeId:"
-    // Since removeBySource doesn't support wildcards, we need to handle this differently
-    // For now, just remove exact matches for known mastery patterns
+    // Also remove any mastery mods from this node.
+    // Mastery sourceId format is "nodeId:effectId".
+    //
+    // TODO: Handle mastery selection CHANGES on existing nodes. Currently this only
+    // handles node removal. If a user changes mastery selection from effect A to B
+    // without deallocating the node, the old effect's mods won't be removed because:
+    // 1. The node isn't in the 'removed' array (still allocated)
+    // 2. masterySelections[nodeId] returns the NEW selection, not the old one
+    //
+    // When mastery processing is implemented, either:
+    // - Track old masterySelections to diff against, or
+    // - Use wildcard removal: removeBySourcePrefix(MASTERY_SOURCE, `${nodeId}:`)
     const masteryEffectId = masterySelections[nodeId];
     if (masteryEffectId) {
       passiveDB.removeBySource(MASTERY_SOURCE, `${nodeId}:${masteryEffectId}`);

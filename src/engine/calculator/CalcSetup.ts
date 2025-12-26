@@ -156,6 +156,10 @@ export async function setupEnvironment(
   // nodes in complex ways (e.g., Timeless Jewels transform nodes within radius). Tracking
   // which nodes are affected by each jewel would add significant complexity. Full
   // reprocessing is acceptable since jewel counts are small (typically <10).
+  //
+  // The dirtyFlags.jewels Set tracks WHICH jewels changed (for debugging/logging) but
+  // we only check size > 0 here. Per-jewel granularity could enable future optimizations
+  // for non-radius jewels, but currently all jewels are reprocessed together.
   const shouldProcessJewels =
     !accelerated || !previousEnv || dirtyFlags.jewels.size > 0 || dirtyFlags.passives;
   if (shouldProcessJewels) {
@@ -549,7 +553,11 @@ function arraysEqual<T>(a: T[], b: T[]): boolean {
  * compared by reference, not by value. This is intentional for performance
  * in hot paths like dirty flag computation. For BuildConfig, this means
  * nested changes may not be detected if the same object reference is reused.
- * In practice, config changes typically create new objects via proto cloning.
+ *
+ * IMPORTANT: This works correctly because proto-based objects (BuildConfig)
+ * create new object instances when modified - they don't mutate in place.
+ * If a caller mutates nested objects directly (bypassing proto cloning),
+ * changes will NOT be detected. Always use immutable update patterns.
  */
 function objectsEqual<T extends object>(a: T, b: T): boolean {
   const keysA = Object.keys(a);
