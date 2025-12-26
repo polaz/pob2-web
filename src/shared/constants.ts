@@ -57,7 +57,8 @@ export const DEFENCE_CONSTANTS = {
 } as const;
 
 /**
- * Charge constants (percentage values for display/documentation)
+ * Charge constants as percentage values (for display and documentation).
+ * For calculations, use CHARGE_MULTIPLIERS which has pre-computed decimal equivalents.
  */
 export const CHARGE_CONSTANTS = {
   // Power charges
@@ -77,8 +78,9 @@ export const CHARGE_CONSTANTS = {
 } as const;
 
 /**
- * Pre-computed decimal multipliers for charge bonuses.
- * Use these in calculations to avoid repeated division by 100.
+ * Pre-computed decimal multipliers for charge bonuses (percentage / 100).
+ * Use these in calculations instead of CHARGE_CONSTANTS to avoid division.
+ * Example: POWER_CHARGE_CRIT = 0.40 means +40% crit chance per charge.
  */
 export const CHARGE_MULTIPLIERS = {
   POWER_CHARGE_CRIT: CHARGE_CONSTANTS.POWER_CHARGE_CRIT / 100, // 0.40

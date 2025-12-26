@@ -396,7 +396,7 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
   const newJewelSockets = createJewelSocketMap(build.equippedItems);
   const prevJewelSockets = previousEnv.jewelSockets;
 
-  // Check for changed or removed sockets
+  // Check for removed or changed sockets (iterating prev finds these)
   for (const [nodeId, prevSocket] of prevJewelSockets) {
     const newSocket = newJewelSockets.get(nodeId);
     if (!newSocket || newSocket.jewel?.id !== prevSocket.jewel?.id) {
