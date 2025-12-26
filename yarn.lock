@@ -7492,6 +7492,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fflate@npm:0.8.2":
+  version: 0.8.2
+  resolution: "fflate@npm:0.8.2"
+  checksum: 10c0/03448d630c0a583abea594835a9fdb2aaf7d67787055a761515bf4ed862913cfd693b4c4ffd5c3f3b355a70cf1e19033e9ae5aedcca103188aaff91b8bd6e293
+  languageName: node
+  linkType: hard
+
 "figures@npm:^2.0.0":
   version: 2.0.0
   resolution: "figures@npm:2.0.0"
@@ -11565,6 +11572,7 @@ __metadata:
     eslint: "npm:^9.39.2"
     eslint-plugin-vue: "npm:^10.6.2"
     fake-indexeddb: "npm:^6.2.5"
+    fflate: "npm:0.8.2"
     globals: "npm:^16.5.0"
     happy-dom: "npm:^20.0.11"
     lodash-es: "npm:^4.17.22"
