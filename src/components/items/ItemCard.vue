@@ -573,6 +573,15 @@ function formatBlock(value: number): string {
   border: 1px solid var(--poe2-border-subtle);
 }
 
+/*
+ * Socket gradient colors use hardcoded values because each socket needs two
+ * colors (highlight and shadow) for the 3D radial gradient effect. The theme
+ * defines single socket colors (--poe2-socket-str, etc.) which work for flat
+ * fills but not gradients. To use theme variables here would require adding
+ * 10+ additional variables (--poe2-socket-str-light, --poe2-socket-str-dark, etc.).
+ * These gradient colors are derived from the theme socket colors with consistent
+ * lightening/darkening applied.
+ */
 .item-card__socket--r {
   background: radial-gradient(circle at 30% 30%, #ff6b6b, #8b0000);
 }
