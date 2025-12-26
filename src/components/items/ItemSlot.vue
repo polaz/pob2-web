@@ -211,7 +211,8 @@ function handleIconError(): void {
 
 .item-slot--selected {
   border-color: var(--q-primary) !important;
-  box-shadow: 0 0 8px rgba(var(--q-primary-rgb), 0.4);
+  /* Use solid primary color for glow - alpha not needed for box-shadow spread effect */
+  box-shadow: 0 0 8px var(--q-primary);
 }
 
 .item-slot--equipped {
