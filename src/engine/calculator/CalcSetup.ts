@@ -153,6 +153,14 @@ export async function setupEnvironment(
   const shouldProcessJewels =
     !accelerated || !previousEnv || dirtyFlags.jewels.size > 0 || dirtyFlags.passives;
   if (shouldProcessJewels) {
+    // If passiveDB is still the previousEnv reference (passives weren't dirty),
+    // we must create a copy before adding jewel mods to avoid mutating the previous env.
+    // When passives ARE dirty, passiveDB is already a fresh instance from processPassives.
+    if (accelerated && previousEnv && !dirtyFlags.passives) {
+      const clonedPassiveDB = new ModDB({ actor: 'player' });
+      clonedPassiveDB.addDB(passiveDB);
+      passiveDB = clonedPassiveDB;
+    }
     const jewelResult = processJewels({ jewelSockets, parser });
     passiveDB.addDB(jewelResult.jewelDB);
   }
