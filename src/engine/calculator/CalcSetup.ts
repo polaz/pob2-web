@@ -138,7 +138,8 @@ export async function setupEnvironment(
   const jewelSockets = createJewelSocketMap(build.equippedItems);
 
   // Process jewels and merge into passiveDB.
-  // In accelerated mode, skip if no jewel or passive changes; in full mode, always process.
+  // Always process in full mode (!accelerated or !previousEnv).
+  // In accelerated mode, only skip if BOTH jewels AND passives are unchanged.
   //
   // IMPORTANT: Jewels must be reprocessed when passives change because passiveDB is rebuilt
   // from scratch, which loses any previously merged jewel mods. The condition below ensures
