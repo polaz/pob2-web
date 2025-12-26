@@ -389,9 +389,9 @@ const hasStatusTags = computed(() => {
 /**
  * Physical damage display string.
  *
- * The falsy check `!wd.physicalMin && !wd.physicalMax` intentionally treats 0 as
- * "no damage" - a weapon with physicalMin: 0, physicalMax: 0 has no physical damage
- * to display. This is semantically correct: 0-0 damage means "none", not "zero".
+ * Uses the pattern `(!min && !max)` for early return when NEITHER has a value.
+ * By De Morgan's law, this is equivalent to `!(min || max)`.
+ * Result: shows damage if EITHER min or max is non-zero; returns null for 0-0.
  */
 const physicalDamage = computed(() => {
   const wd = props.item.weaponData;
@@ -402,9 +402,10 @@ const physicalDamage = computed(() => {
 /**
  * Elemental damage display with colored values.
  *
- * Uses || (truthy) checks intentionally: we want to display damage if EITHER
- * min or max is non-zero. Example: fireMin=0, fireMax=5 shows "0-5" fire damage.
- * Both being 0 (or undefined) means no damage of that type to display.
+ * Uses the pattern `(min || max)` for inclusion when EITHER has a value.
+ * This is logically equivalent to physical damage's `(!min && !max)` check above,
+ * just expressed positively rather than for early return.
+ * Result: shows damage if EITHER min or max is non-zero; skips 0-0.
  */
 const elementalDamage = computed(() => {
   const wd = props.item.weaponData;

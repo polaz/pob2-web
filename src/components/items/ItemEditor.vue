@@ -588,12 +588,14 @@ async function handlePasteFromClipboard(): Promise<void> {
 }
 
 /**
- * Handles paste text change and parses the item.
- * q-input @update:model-value emits string | number | null;
- * we only process non-empty strings.
+ * Handles paste text input changes and parses the item.
+ *
+ * @param value - Quasar q-input emits string | number | null depending on input type.
+ *   For type="textarea", it emits strings. We handle all types defensively since the
+ *   component type could change or users could interact unexpectedly.
  */
 function handlePasteTextChange(value: string | number | null): void {
-  // Only process non-empty strings
+  // Only process non-empty strings - q-input may emit null on clear or number for numeric inputs
   if (typeof value !== 'string' || !value.trim()) {
     parseError.value = '';
     return;
