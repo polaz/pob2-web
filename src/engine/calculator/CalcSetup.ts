@@ -138,14 +138,19 @@ export async function setupEnvironment(
   const jewelSockets = createJewelSocketMap(build.equippedItems);
 
   // Process jewels and merge into passiveDB.
-  // In accelerated mode, skip if no jewel changes; in full mode, always process.
+  // In accelerated mode, skip if no jewel or passive changes; in full mode, always process.
+  //
+  // IMPORTANT: Jewels must be reprocessed when passives change because passiveDB is rebuilt
+  // from scratch, which loses any previously merged jewel mods. The condition below ensures
+  // jewels are processed whenever passiveDB is rebuilt (passives dirty) or jewels change.
   //
   // NOTE: When any jewel changes, we reprocess ALL jewels rather than doing incremental
   // updates. This is intentional because jewel radius effects can interact with passive
   // nodes in complex ways (e.g., Timeless Jewels transform nodes within radius). Tracking
   // which nodes are affected by each jewel would add significant complexity. Full
   // reprocessing is acceptable since jewel counts are small (typically <10).
-  const shouldProcessJewels = !accelerated || !previousEnv || dirtyFlags.jewels.size > 0;
+  const shouldProcessJewels =
+    !accelerated || !previousEnv || dirtyFlags.jewels.size > 0 || dirtyFlags.passives;
   if (shouldProcessJewels) {
     const jewelResult = processJewels({ jewelSockets, parser });
     passiveDB.addDB(jewelResult.jewelDB);
@@ -320,12 +325,12 @@ function processAccelerated(
     conditions = configResult.conditions;
   }
 
-  // Note: Jewel modifiers are NOT processed incrementally in this function.
-  // Jewel processing is always done in setupEnvironment() after all other
-  // components are processed. This is because jewel modifiers are merged into
-  // passiveDB and the order of operations matters. Any jewel change (dirty flag
-  // set) triggers full jewel reprocessing in the main setupEnvironment flow.
-  // See: setupEnvironment() lines that call processJewels() and passiveDB.addDB()
+  // Note: Jewel modifiers are NOT processed in this function.
+  // Jewel processing is always done in setupEnvironment() after this function
+  // returns. This is because jewel modifiers are merged into passiveDB and the
+  // order of operations matters. setupEnvironment() handles jewel processing
+  // when either jewels OR passives are dirty (since passiveDB rebuild loses
+  // previously merged jewel mods). See: setupEnvironment() shouldProcessJewels.
 
   return { passiveDB, itemDBs, itemDBsSwap, skillDB, configDB, conditions };
 }
