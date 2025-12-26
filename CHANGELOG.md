@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/polaz/pob2-web/compare/v1.19.1...v1.20.0) (2025-12-26)
+
+
+### Features
+
+* **utils:** implement build code encode/decode for PoB2 compatibility ([#128](https://github.com/polaz/pob2-web/issues/128)) ([520d7b0](https://github.com/polaz/pob2-web/commit/520d7b055b851e2262784770685339c2281fc87f)), closes [#36](https://github.com/polaz/pob2-web/issues/36)
+
 ## [1.19.1](https://github.com/polaz/pob2-web/compare/v1.19.0...v1.19.1) (2025-12-25)
 
 
