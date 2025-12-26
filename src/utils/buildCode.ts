@@ -78,7 +78,7 @@ function uint8ArrayToBase64(bytes: Uint8Array): string {
   // Use for-loop for better performance with large arrays (vs Array.from().join())
   let binary = '';
   for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i]!); // index is within bounds
+    binary += String.fromCharCode(bytes[i]);
   }
   return btoa(binary);
 }
@@ -325,8 +325,7 @@ export function extractXmlFromBuildCode(code: string): string | null {
     const xmlBytes = inflateSync(compressed);
     const decoder = new TextDecoder('utf-8');
     return decoder.decode(xmlBytes);
-  } catch (error) {
-    console.warn('extractXmlFromBuildCode: failed to extract XML', error);
+  } catch {
     return null;
   }
 }

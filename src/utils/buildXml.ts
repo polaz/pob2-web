@@ -245,7 +245,8 @@ function xmlElement(
   content?: string,
   selfClose = false
 ): string {
-  // Filter: exclude undefined and empty strings; preserve 0, false, and all other values
+  // Filter: exclude undefined and empty strings; preserve 0, false, and all other values.
+  // This is intentional per the JSDoc above - 0 and false are valid XML attribute values.
   const attrStr = Object.entries(attrs)
     .filter(([, v]) => v !== undefined && v !== '')
     .map(([k, v]) => `${k}="${escapeAttr(String(v))}"`)
@@ -518,9 +519,9 @@ function serializeConfig(config: BuildConfig | undefined): string {
  * Convert a Build object to PoB2-compatible XML string.
  */
 export function buildToXml(build: Build): string {
-  // Nullish coalescing handles both undefined characterClass and unmapped enum values.
-  // CLASS_TO_POB_NAME[undefined] and CLASS_TO_POB_NAME[unknownValue] both return undefined.
-  const className = CLASS_TO_POB_NAME[build.characterClass as CharacterClass] ?? DEFAULT_CLASS_NAME;
+  // Nullish coalescing handles unmapped enum values (proto enums can be any number).
+  // CLASS_TO_POB_NAME[unknownValue] returns undefined, triggering the fallback.
+  const className = CLASS_TO_POB_NAME[build.characterClass] ?? DEFAULT_CLASS_NAME;
 
   // Build element
   const buildElement = xmlElement(
@@ -984,6 +985,7 @@ export function xmlToBuild(xml: string): Build {
     masterySelections: parseMasteryEffects(masteryEffectsStr),
     equippedItems: parseItems(itemsEl),
     skillGroups: parseSkills(skillsEl),
+    // Optional fields: exclude empty strings (meaningless) and undefined
     ...(ascendancy && { ascendancy }),
     ...(config && { config }),
     ...(notesText && { notes: notesText }),

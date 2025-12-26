@@ -692,10 +692,11 @@ describe('character class mapping', () => {
     expect(xml).toContain('className="Scion"');
   });
 
-  it('should handle unmapped enum value with default fallback', () => {
-    // Unmapped enum values (e.g., future classes) fall back to 'Warrior' via ?? operator
+  it('should use default class for values not in CLASS_TO_POB_NAME map', () => {
+    // Proto enums can have any numeric value; values not in our mapping fall back to default
     const build = createMinimalBuild();
-    build.characterClass = 999 as CharacterClass; // Unmapped value
+    // Use a value that's not in CLASS_TO_POB_NAME (simulating future/unknown class)
+    build.characterClass = 999 as CharacterClass;
 
     const xml = buildToXml(build);
     expect(xml).toContain('className="Warrior"'); // Default fallback
