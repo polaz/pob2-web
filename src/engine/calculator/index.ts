@@ -5,12 +5,8 @@
  */
 
 // Types from types.ts
-// Note: AttributeValues is also re-exported from Environment.ts (which imports it from types.ts).
-// We provide an alias StatResolverAttributeValues here for callers who want explicit naming,
-// but both refer to the same type from types.ts. The re-export via Environment.ts is for
-// organizational convenience since Environment interfaces use AttributeValues.
 export type {
-  AttributeValues as StatResolverAttributeValues,
+  AttributeValues,
   StatResolverConfig,
   StatResolverOptions,
   ResolvedStat,
@@ -27,12 +23,13 @@ export type {
 export { DAMAGE_TYPE_ORDER, STAT_DEPENDENCIES } from './types';
 
 // Types from Environment.ts
+// Note: AttributeValues is exported from types.ts above (canonical source).
+// Environment.ts re-exports it for convenience but we don't duplicate here.
 export type {
   Environment,
   SetupOptions,
   DirtyFlags,
   JewelSocket,
-  AttributeValues,
   ResolvedBuildConfig,
 } from './Environment';
 

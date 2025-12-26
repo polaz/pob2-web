@@ -156,6 +156,10 @@ export async function setupEnvironment(
     // If passiveDB is still the previousEnv reference (passives weren't dirty),
     // we must create a copy before adding jewel mods to avoid mutating the previous env.
     // When passives ARE dirty, passiveDB is already a fresh instance from processPassives.
+    //
+    // NOTE: ModDB.addDB copies Mod object references (shallow). This is safe because Mod
+    // objects are immutable in our architecture - they're created once by ModParser and
+    // never modified. Sharing references between ModDBs is intentional and memory-efficient.
     if (accelerated && previousEnv && !dirtyFlags.passives) {
       const clonedPassiveDB = new ModDB({ actor: 'player' });
       clonedPassiveDB.addDB(passiveDB);
@@ -374,6 +378,9 @@ function computeDirtyFlags(build: Build, previousEnv: Environment): DirtyFlags {
     ...Object.keys(prevBuild.equippedItems),
   ]);
 
+  // Compare items by ID only. In our proto-based architecture, items are immutable:
+  // modifying an item creates a new Item object with a new ID. This means ID comparison
+  // correctly detects all item changes including mod modifications.
   for (const slot of allSlots) {
     const newItem = build.equippedItems[slot];
     const oldItem = prevBuild.equippedItems[slot];
