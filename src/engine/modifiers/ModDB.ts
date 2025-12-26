@@ -320,6 +320,21 @@ export class ModDB {
   }
 
   /**
+   * Get all modifiers in this database.
+   *
+   * Does not include mods from parent database.
+   *
+   * @returns Array of all modifiers
+   */
+  getAllMods(): Mod[] {
+    const result: Mod[] = [];
+    for (const mods of this.mods.values()) {
+      result.push(...mods);
+    }
+    return result;
+  }
+
+  /**
    * Sum all modifiers of a specific type for given stat names.
    *
    * @param modType - The modifier type to sum (BASE or INC)

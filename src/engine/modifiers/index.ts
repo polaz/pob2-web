@@ -11,6 +11,15 @@ export { ModDB } from './ModDB';
 export { ModList } from './ModList';
 export { ModParser } from './ModParser';
 
+// ModParser loader (singleton with lazy initialization)
+export {
+  getModParser,
+  preloadModParser,
+  isModParserLoaded,
+  clearModParserCache,
+  getModParserStats,
+} from './ModParserLoader';
+
 // Types
 export type {
   Mod,

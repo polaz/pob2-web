@@ -57,7 +57,8 @@ export const DEFENCE_CONSTANTS = {
 } as const;
 
 /**
- * Charge constants
+ * Charge constants as percentage values (for display and documentation).
+ * For calculations, use CHARGE_MULTIPLIERS which has pre-computed decimal equivalents.
  */
 export const CHARGE_CONSTANTS = {
   // Power charges
@@ -74,6 +75,20 @@ export const CHARGE_CONSTANTS = {
   ENDURANCE_CHARGE_PHYS_DR: 4, // +4% physical damage reduction per endurance charge
   ENDURANCE_CHARGE_RESIST: 4, // +4% elemental resistances per endurance charge
   DEFAULT_ENDURANCE_CHARGES: 3, // Default max endurance charges
+} as const;
+
+/**
+ * Pre-computed decimal multipliers for charge bonuses (percentage / 100).
+ * Use these in calculations instead of CHARGE_CONSTANTS to avoid division.
+ * Example: POWER_CHARGE_CRIT = 0.40 means +40% crit chance per charge.
+ */
+export const CHARGE_MULTIPLIERS = {
+  POWER_CHARGE_CRIT: CHARGE_CONSTANTS.POWER_CHARGE_CRIT / 100, // 0.40
+  FRENZY_CHARGE_ATTACK_SPEED: CHARGE_CONSTANTS.FRENZY_CHARGE_ATTACK_SPEED / 100, // 0.04
+  FRENZY_CHARGE_CAST_SPEED: CHARGE_CONSTANTS.FRENZY_CHARGE_CAST_SPEED / 100, // 0.04
+  FRENZY_CHARGE_DAMAGE: CHARGE_CONSTANTS.FRENZY_CHARGE_DAMAGE / 100, // 0.04
+  ENDURANCE_CHARGE_PHYS_DR: CHARGE_CONSTANTS.ENDURANCE_CHARGE_PHYS_DR / 100, // 0.04
+  ENDURANCE_CHARGE_RESIST: CHARGE_CONSTANTS.ENDURANCE_CHARGE_RESIST / 100, // 0.04
 } as const;
 
 /**
@@ -151,6 +166,14 @@ export const TREE_CONSTANTS = {
 export const TIME_CONSTANTS = {
   RECENTLY_DURATION: 4, // "Recently" means within 4 seconds
   SERVER_TICK_RATE: 33.33, // Server tick rate in ms (30 ticks per second)
+} as const;
+
+/**
+ * Boss-related constants
+ */
+export const BOSS_CONSTANTS = {
+  /** Curse effect reduction on boss enemies (33% less curse effect) */
+  CURSE_EFFECT_REDUCTION: -0.33,
 } as const;
 
 /**

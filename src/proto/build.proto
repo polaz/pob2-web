@@ -57,10 +57,18 @@ message BuildConfig {
   optional int32 frenzy_charge_count = 14;
   optional int32 endurance_charge_count = 15;
 
-  // Combat state
+  // Combat state - Player resource states
+  // Field numbers 20-22 are life states (original)
+  // Field numbers 27-30 are mana/ES states (added later, after enemy ailments)
   optional bool is_leeching = 20;
   optional bool is_on_low_life = 21;
   optional bool is_on_full_life = 22;
+  optional bool is_on_low_mana = 27;
+  optional bool is_on_full_mana = 28;
+  optional bool is_on_low_energy_shield = 29;
+  optional bool is_on_full_energy_shield = 30;
+
+  // Combat state - Enemy ailment states (field numbers 23-26)
   optional bool enemy_is_chilled = 23;
   optional bool enemy_is_frozen = 24;
   optional bool enemy_is_shocked = 25;
