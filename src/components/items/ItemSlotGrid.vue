@@ -310,11 +310,10 @@ function handlePasteItem(): void {
  * Handles paste from system clipboard (game item text).
  *
  * Error handling note: This component uses console.warn for errors rather than
- * user-facing notifications. As a reusable grid component, it doesn't have
- * direct access to Quasar's notification system ($q.notify). The parent page
- * (ItemsPage.vue) provides its own paste handler with full UI notifications
- * for the main paste flow. Context menu paste failures are logged for debugging
- * but don't interrupt the user flow.
+ * user-facing notifications. As a reusable grid component, notification strategy
+ * should be determined by the parent component, not enforced here. The parent
+ * page (ItemsPage.vue) provides its own paste handler with full UI notifications.
+ * Context menu paste failures are logged for debugging but don't interrupt user flow.
  */
 async function handlePasteFromClipboard(): Promise<void> {
   if (contextMenuSlot.value === null) return;
