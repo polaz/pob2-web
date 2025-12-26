@@ -558,6 +558,8 @@ function objectsEqual<T extends object>(a: T, b: T): boolean {
   if (keysA.length !== keysB.length) return false;
 
   for (const key of keysA) {
+    // Verify key exists in b (handles case where a and b have same count but different keys)
+    if (!Object.prototype.hasOwnProperty.call(b, key)) return false;
     if ((a as Record<string, unknown>)[key] !== (b as Record<string, unknown>)[key]) return false;
   }
 
