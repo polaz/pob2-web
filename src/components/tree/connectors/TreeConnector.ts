@@ -21,6 +21,27 @@ import {
 } from './ConnectorGeometry';
 
 // ============================================================================
+// Constants
+// ============================================================================
+
+/**
+ * Connection filtering notes:
+ *
+ * The PoB tree.json (version 0.4) contains 4701 nodes in 1185+ disconnected
+ * components, mixing main tree nodes, ascendancy nodes, and nodes at extreme
+ * positions (|Y| > 10000) whose purpose is unclear.
+ *
+ * We filter connections to prevent:
+ * 1. Origin nodes (0,0) - missing group data creates invalid lines
+ * 2. Cross-boundary connections - ascendancy to non-ascendancy creates long
+ *    lines spanning the viewport since ascendancy trees are at distant positions
+ *
+ * Ascendancy nodes should only connect to other nodes in the same ascendancy
+ * or to the main tree via the ascendancy start node (handled separately by
+ * the visibleAscendancy filter in treeStore).
+ */
+
+// ============================================================================
 // Types
 // ============================================================================
 
@@ -77,9 +98,19 @@ export function buildConnections(
 ): Map<string, ConnectionData> {
   const connections = new Map<string, ConnectionData>();
   const processedIds = new Set<string>();
+  let skippedOriginNodes = 0;
+  let skippedOriginConnections = 0;
+  let skippedCrossBoundary = 0;
 
   for (const node of nodes) {
     if (!node.position || !node.linkedIds) continue;
+
+    // Skip nodes at origin (0,0) - these have missing group data in PoB
+    // and would create invalid long lines across the viewport
+    if (node.position.x === 0 && node.position.y === 0) {
+      skippedOriginNodes++;
+      continue;
+    }
 
     const fromPoint: Point = {
       x: node.position.x,
@@ -95,6 +126,27 @@ export function buildConnections(
       // Get linked node
       const linkedNode = getNode(linkedId);
       if (!linkedNode?.position) continue;
+
+      // Skip connections to nodes at origin (0,0)
+      if (linkedNode.position.x === 0 && linkedNode.position.y === 0) {
+        skippedOriginConnections++;
+        continue;
+      }
+
+      // Skip cross-boundary connections (ascendancy <-> non-ascendancy)
+      // Ascendancy trees are at distant positions and connecting them to
+      // the main tree creates long lines spanning the viewport
+      const fromAsc = node.ascendancyName;
+      const toAsc = linkedNode.ascendancyName;
+      if ((fromAsc && !toAsc) || (!fromAsc && toAsc)) {
+        skippedCrossBoundary++;
+        continue;
+      }
+      // Also skip if both have different ascendancies
+      if (fromAsc && toAsc && fromAsc !== toAsc) {
+        skippedCrossBoundary++;
+        continue;
+      }
 
       const toPoint: Point = {
         x: linkedNode.position.x,
@@ -114,6 +166,40 @@ export function buildConnections(
 
       connections.set(connId, connectionData);
     }
+  }
+
+  if (import.meta.env.DEV) {
+    console.log(`[TreeConnector] Built ${connections.size} connections`);
+    console.log(`[TreeConnector] Skipped: ${skippedOriginNodes} origin nodes, ${skippedOriginConnections} origin connections, ${skippedCrossBoundary} cross-boundary`);
+
+    // Count connection types
+    let arcCount = 0;
+    let straightCount = 0;
+    for (const conn of connections.values()) {
+      if (conn.type === ConnectionType.Arc) {
+        arcCount++;
+      } else {
+        straightCount++;
+      }
+    }
+    console.log(`[TreeConnector] Types: ${arcCount} arcs, ${straightCount} straight lines`);
+
+    // Sample some connections to verify coordinates
+    const samples = Array.from(connections.values()).slice(0, 5);
+    console.log('[TreeConnector] Sample connections:');
+    for (const conn of samples) {
+      const dx = Math.abs(conn.to.x - conn.from.x);
+      const dy = Math.abs(conn.to.y - conn.from.y);
+      console.log(`  ${conn.id}: (${conn.from.x.toFixed(1)}, ${conn.from.y.toFixed(1)}) -> (${conn.to.x.toFixed(1)}, ${conn.to.y.toFixed(1)}) dx=${dx.toFixed(1)} dy=${dy.toFixed(1)}`);
+    }
+
+    // Check for very long connections
+    let longConnections = 0;
+    for (const conn of connections.values()) {
+      const dy = Math.abs(conn.to.y - conn.from.y);
+      if (dy > 100) longConnections++;
+    }
+    console.log(`[TreeConnector] Connections with dy > 100: ${longConnections}`);
   }
 
   return connections;
