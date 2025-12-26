@@ -176,10 +176,18 @@ export function processPassives(input: PassiveProcessorInput): PassiveProcessorR
 
 /**
  * Determine the source type based on node characteristics.
+ *
+ * Priority order (first match wins):
+ * 1. Ascendancy nodes (node.ascendancy is truthy)
+ * 2. Mastery nodes (node.isMastery is true)
+ * 3. Regular passive nodes (default)
  */
 function getNodeSource(node: TreeNode): 'passive' | 'mastery' | 'ascendancy' {
   if (node.ascendancy) {
     return ASCENDANCY_SOURCE;
+  }
+  if (node.isMastery) {
+    return MASTERY_SOURCE;
   }
   return PASSIVE_SOURCE;
 }
