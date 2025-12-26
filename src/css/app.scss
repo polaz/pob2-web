@@ -1,12 +1,80 @@
-// app global css in SCSS form
+/**
+ * Global Application Styles
+ *
+ * This file imports the theme and defines app-wide style rules.
+ * Component-specific styles should be in their respective .vue files.
+ */
+
+// Import PoE2 theme (CSS custom properties)
+@use 'themes/poe2';
+
+// ============================================================================
+// Global Resets & Defaults
+// ============================================================================
+
+// Apply PoE2 theme to body
+body {
+  background-color: var(--poe2-bg-page);
+  color: var(--poe2-text-primary);
+}
+
+// ============================================================================
+// Scrollbar Styling (PoE2 dark theme)
+// ============================================================================
 
 /**
- * PoE2 Theme Variables
- * Custom properties for PoE2-styled UI components.
- * Uses dark theme values matching the game's aesthetic.
+ * Scrollbar dimensions.
+ * 8px is the standard "thin" scrollbar size that balances visibility with
+ * minimal intrusion. Matches browser thin scrollbar defaults and provides
+ * consistent sizing across webkit (width/height) and Firefox (scrollbar-width: thin).
  */
-:root {
-  // Surface colors for panels and overlays
-  --poe2-bg-surface: #1d1d1d;
-  --poe2-bg-overlay: rgba(0, 0, 0, 0.6);
+$scrollbar-size: 8px;
+
+::-webkit-scrollbar {
+  width: $scrollbar-size;
+  height: $scrollbar-size;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--poe2-bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--poe2-border-hover);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--poe2-border-active);
+  }
+}
+
+// Firefox scrollbar
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--poe2-border-hover) var(--poe2-bg-surface);
+}
+
+// ============================================================================
+// Selection Styling
+// ============================================================================
+
+/**
+ * Selection highlight base color.
+ * Matches PoE2 theme token: --poe2-rarity-magic (#8888ff).
+ * Soft blue chosen to complement PoE2's dark theme accent tones
+ * while providing sufficient contrast for text selection visibility.
+ */
+$selection-color: #8888ff;
+
+/**
+ * Selection highlight opacity.
+ * 0.3 (30%) provides visible selection highlighting while keeping text
+ * legible underneath. Lower values make selection hard to see; higher
+ * values obscure text color differences (e.g., syntax highlighting).
+ */
+$selection-opacity: 0.3;
+
+::selection {
+  background-color: rgba($selection-color, $selection-opacity);
+  color: var(--poe2-text-primary);
 }

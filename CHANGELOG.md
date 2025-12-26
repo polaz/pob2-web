@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/polaz/pob2-web/compare/v1.20.1...v1.21.0) (2025-12-26)
+
+
+### Features
+
+* **items:** implement item editor UI with slot grid, editor modal, and comparison pane ([#130](https://github.com/polaz/pob2-web/issues/130)) ([82346a0](https://github.com/polaz/pob2-web/commit/82346a019bb0def34b7f9dc8edb10edc140b4876)), closes [#30](https://github.com/polaz/pob2-web/issues/30)
+
 ## [1.20.1](https://github.com/polaz/pob2-web/compare/v1.20.0...v1.20.1) (2025-12-26)
 
 

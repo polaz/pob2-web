@@ -1,25 +1,47 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+/**
+ * Quasar SCSS Variables - PoE2 Theme Integration
+ *
+ * These variables override Quasar's default theme colors to match
+ * the PoE2 dark aesthetic. They work alongside the CSS custom properties
+ * defined in themes/poe2.scss.
+ *
+ * Note: Quasar variables are compile-time SCSS, while themes/poe2.scss
+ * uses runtime CSS custom properties for dynamic theming.
+ */
 
-// Check documentation for full list of Quasar variables
+// ============================================================================
+// Brand Colors (PoE2 Inspired)
+// ============================================================================
 
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
+// Primary - PoE2 gold accent (used for selections, CTAs)
+$primary: #d4af37;
 
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
+// Secondary - Magic item blue
+$secondary: #8888ff;
 
-$primary: #1976d2;
-$secondary: #26a69a;
-$accent: #9c27b0;
+// Accent - Unique item orange
+$accent: #af6025;
 
-$dark: #1d1d1d;
-$dark-page: #121212;
+// ============================================================================
+// Dark Mode Colors
+// ============================================================================
 
-$positive: #21ba45;
-$negative: #c10015;
-$info: #31ccec;
-$warning: #f2c037;
+// Dark backgrounds matching PoE2 UI
+$dark: #1a1a2e;
+$dark-page: #0a0a12;
+
+// ============================================================================
+// Semantic Colors
+// ============================================================================
+
+// Positive - slightly muted green for dark theme
+$positive: #30c050;
+
+// Negative - PoE2 corrupted red
+$negative: #d02020;
+
+// Info - PoE2 cold/intelligence blue
+$info: #30a0d0;
+
+// Warning - PoE2 rare/gold
+$warning: #d0a030;
