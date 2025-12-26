@@ -433,10 +433,10 @@ const elementalDamage = computed(() => {
  * skill gems, passives, etc.). This is just the base weapon DPS for display in
  * the item card, calculated as: avgDamage * attackSpeed.
  *
- * Quality bonuses: The weaponData values from ItemParser already include quality
- * adjustments. Quality affects local increased physical damage which is baked into
- * physicalMin/physicalMax during parsing. This display calculation uses those
- * pre-computed values directly.
+ * Design Contract: ItemParser is responsible for computing quality-adjusted damage
+ * values. The weaponData.physicalMin/Max fields include quality bonuses applied
+ * during parsing. This separation keeps display logic simple while centralizing
+ * stat computation in the parser. See ItemParser.ts for the quality calculation.
  */
 const totalDps = computed(() => {
   const wd = props.item.weaponData;
@@ -577,32 +577,28 @@ function formatBlock(value: number): string {
 }
 
 /*
- * Socket gradient colors use hardcoded values because each socket needs two
- * colors (highlight and shadow) for the 3D radial gradient effect. The theme
- * defines single socket colors (--poe2-socket-str, etc.) which work for flat
- * fills but not gradients. To use theme variables here would require adding
- * 10+ additional variables (--poe2-socket-str-light, --poe2-socket-str-dark, etc.).
- * These gradient colors are derived from the theme socket colors with consistent
- * lightening/darkening applied.
+ * Socket gradient colors use theme variables for the 3D radial effect.
+ * Each socket type has light/dark variants defined in themes/poe2.scss
+ * for consistent theming across the application.
  */
 .item-card__socket--r {
-  background: radial-gradient(circle at 30% 30%, #ff6b6b, #8b0000);
+  background: radial-gradient(circle at 30% 30%, var(--poe2-socket-str-light), var(--poe2-socket-str-dark));
 }
 
 .item-card__socket--g {
-  background: radial-gradient(circle at 30% 30%, #6bff6b, #006400);
+  background: radial-gradient(circle at 30% 30%, var(--poe2-socket-dex-light), var(--poe2-socket-dex-dark));
 }
 
 .item-card__socket--b {
-  background: radial-gradient(circle at 30% 30%, #6b6bff, #00008b);
+  background: radial-gradient(circle at 30% 30%, var(--poe2-socket-int-light), var(--poe2-socket-int-dark));
 }
 
 .item-card__socket--w {
-  background: radial-gradient(circle at 30% 30%, #ffffff, #888888);
+  background: radial-gradient(circle at 30% 30%, var(--poe2-socket-white-light), var(--poe2-socket-white-dark));
 }
 
 .item-card__socket--a {
-  background: radial-gradient(circle at 30% 30%, #444444, #000000);
+  background: radial-gradient(circle at 30% 30%, var(--poe2-socket-abyss-light), var(--poe2-socket-abyss-dark));
   border-color: var(--poe2-border-muted);
 }
 

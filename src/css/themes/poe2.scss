@@ -215,6 +215,28 @@
   /** Abyss socket */
   --poe2-socket-abyss: #5a5a5a;
 
+  // Socket gradient colors for 3D radial effect (highlight/shadow pairs)
+  /** Strength socket gradient - inner highlight */
+  --poe2-socket-str-light: #ff6b6b;
+  /** Strength socket gradient - outer shadow */
+  --poe2-socket-str-dark: #8b0000;
+  /** Dexterity socket gradient - inner highlight */
+  --poe2-socket-dex-light: #6bff6b;
+  /** Dexterity socket gradient - outer shadow */
+  --poe2-socket-dex-dark: #006400;
+  /** Intelligence socket gradient - inner highlight */
+  --poe2-socket-int-light: #6b6bff;
+  /** Intelligence socket gradient - outer shadow */
+  --poe2-socket-int-dark: #00008b;
+  /** White socket gradient - inner highlight */
+  --poe2-socket-white-light: #ffffff;
+  /** White socket gradient - outer shadow */
+  --poe2-socket-white-dark: #888888;
+  /** Abyss socket gradient - inner highlight */
+  --poe2-socket-abyss-light: #444444;
+  /** Abyss socket gradient - outer shadow */
+  --poe2-socket-abyss-dark: #000000;
+
   // ==========================================================================
   // Attribute Colors
   // ==========================================================================
