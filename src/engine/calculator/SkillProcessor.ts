@@ -173,8 +173,6 @@ function processSkillGroup(
   parser: ModParser,
   skillDB: ModDB
 ): { activeSkills: number; supportGems: number; modsCreated: number } {
-  let activeSkills = 0;
-  let supportGems = 0;
   let modsCreated = 0;
 
   // Separate active skills from support gems
@@ -183,10 +181,10 @@ function processSkillGroup(
     .map((gem) => processGemInstance(gem));
 
   const activeGems = processedGems.filter((g) => !g.isSupport);
-  const supportGemsList = processedGems.filter((g) => g.isSupport);
+  const supportGems = processedGems.filter((g) => g.isSupport);
 
-  activeSkills = activeGems.length;
-  supportGems = supportGemsList.length;
+  const activeSkills = activeGems.length;
+  const supportGemCount = supportGems.length;
 
   // Process active gems with their support gems
   for (const activeGem of activeGems) {
@@ -204,7 +202,7 @@ function processSkillGroup(
     modsCreated += gemModCount;
 
     // Process support gem effects on this active gem
-    for (const supportGem of supportGemsList) {
+    for (const supportGem of supportGems) {
       const supportContext: ModParseContext = {
         source: SKILL_SOURCE,
         sourceId: `${group.id}:${activeGem.instance.id}:${supportGem.instance.id}`,
@@ -217,7 +215,7 @@ function processSkillGroup(
     }
   }
 
-  return { activeSkills, supportGems, modsCreated };
+  return { activeSkills, supportGems: supportGemCount, modsCreated };
 }
 
 /**

@@ -73,6 +73,12 @@ import { CharacterClass } from 'src/protos/common_pb';
  */
 const DEFAULT_CLASS_STATS: AttributeValues = { str: 14, dex: 14, int: 14 };
 
+/**
+ * Pre-computed Set of swap weapon slot names for O(1) lookup.
+ * Created once at module load to avoid recreating on each processAccelerated call.
+ */
+const SWAP_SLOT_SET: ReadonlySet<string> = new Set(SWAP_WEAPON_SLOTS);
+
 // ============================================================================
 // Main Setup Function
 // ============================================================================
@@ -310,11 +316,10 @@ function processAccelerated(
       // entries in dirtyFlags.items are specific slot names that need updating.
       // Defensively skip the wildcard marker in case it's ever mixed with slots.
       // Update the correct map based on whether the slot is a swap weapon slot.
-      const swapSlotSet = new Set<string>(SWAP_WEAPON_SLOTS);
       for (const slot of dirtyFlags.items) {
         if (slot === DIRTY_WILDCARD) continue;
         const item = build.equippedItems[slot];
-        const targetDB = swapSlotSet.has(slot) ? itemDBsSwap : itemDBs;
+        const targetDB = SWAP_SLOT_SET.has(slot) ? itemDBsSwap : itemDBs;
         updateItemSlot(targetDB, slot, item, parser);
       }
     }
