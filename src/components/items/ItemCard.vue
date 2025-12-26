@@ -389,23 +389,20 @@ const hasStatusTags = computed(() => {
 /**
  * Physical damage display string.
  *
- * Uses the pattern `(!min && !max)` for early return when NEITHER has a value.
- * By De Morgan's law, this is equivalent to `!(min || max)`.
- * Result: shows damage if EITHER min or max is non-zero; returns null for 0-0.
+ * Uses the pattern `(min || max)` to check if EITHER value exists.
+ * Shows damage if EITHER min or max is non-zero; returns null for 0-0.
  */
 const physicalDamage = computed(() => {
   const wd = props.item.weaponData;
-  if (!wd || (!wd.physicalMin && !wd.physicalMax)) return null;
+  if (!wd || !(wd.physicalMin || wd.physicalMax)) return null;
   return `${wd.physicalMin ?? 0}-${wd.physicalMax ?? 0}`;
 });
 
 /**
  * Elemental damage display with colored values.
  *
- * Uses the pattern `(min || max)` for inclusion when EITHER has a value.
- * This is logically equivalent to physical damage's `(!min && !max)` check above,
- * just expressed positively rather than for early return.
- * Result: shows damage if EITHER min or max is non-zero; skips 0-0.
+ * Uses the pattern `(min || max)` to check if EITHER value exists.
+ * Shows damage if EITHER min or max is non-zero; skips 0-0.
  */
 const elementalDamage = computed(() => {
   const wd = props.item.weaponData;
@@ -470,8 +467,7 @@ const totalDps = computed(() => {
 
 /**
  * Percentage storage multiplier used by the game data format.
- * Game stores percentage values as integers scaled by 100
- * (i.e., in hundredths of a percent, so 500 represents 5.00%).
+ * Game stores percentages as integers where 100 = 1%, so 500 = 5.00%.
  * Divide by this constant to convert stored values to display percentages.
  *
  * Note: This constant is local to ItemCard because it's only used here for

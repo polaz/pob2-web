@@ -120,8 +120,8 @@ const slotClasses = computed(() => ({
   [`item-slot--${props.size}`]: true,
 }));
 
-/** Slot size dimensions */
-const slotDimensions = computed(() => {
+/** Slot size dimensions based on slot type */
+const slotDimensions = computed<{ width: string; height: string }>(() => {
   switch (props.size) {
     case 'small':
       return { width: `${SLOT_SIZE_SMALL}px`, height: `${SLOT_SIZE_SMALL}px` };
