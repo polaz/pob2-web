@@ -77,8 +77,9 @@ export interface EncodeOptions {
 function uint8ArrayToBase64(bytes: Uint8Array): string {
   // Use for-loop for better performance with large arrays (vs Array.from().join())
   let binary = '';
-  for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i]);
+  const len = bytes.length;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i] as number);
   }
   return btoa(binary);
 }

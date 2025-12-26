@@ -519,9 +519,10 @@ function serializeConfig(config: BuildConfig | undefined): string {
  * Convert a Build object to PoB2-compatible XML string.
  */
 export function buildToXml(build: Build): string {
-  // Nullish coalescing handles unmapped enum values (proto enums can be any number).
-  // CLASS_TO_POB_NAME[unknownValue] returns undefined, triggering the fallback.
-  const className = CLASS_TO_POB_NAME[build.characterClass] ?? DEFAULT_CLASS_NAME;
+  // Nullish coalescing handles undefined and unmapped enum values.
+  // Proto enums can be any number; unmapped values trigger the default fallback.
+  const charClass = build.characterClass ?? CharacterClass.CHARACTER_CLASS_UNKNOWN;
+  const className = CLASS_TO_POB_NAME[charClass] ?? DEFAULT_CLASS_NAME;
 
   // Build element
   const buildElement = xmlElement(
