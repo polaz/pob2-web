@@ -824,10 +824,12 @@ function parseSkills(skillsElement: Element | null): SkillGroup[] {
     const includeInFullDps = getBoolAttr(skillEl, 'includeInFullDPS');
     const slot = getAttr(skillEl, 'slot');
 
-    // Conditional spread: empty strings are intentionally excluded (meaningless labels/slots)
+    // Build group object with conditional spread for optional properties.
+    // Per CLAUDE.md guidelines: use conditional spread `...(condition && { prop })` for optional fields.
+    // Empty strings are excluded as they represent meaningless labels/slots.
     const group: SkillGroup = {
       id: generateUUID(),
-      // Use ?? (not ||) to preserve explicit false values; only undefined triggers default
+      // PoB2 treats missing 'enabled' as true; use ?? to preserve explicit false values
       enabled: getBoolAttr(skillEl, 'enabled') ?? true,
       gems,
       ...(label && { label }),

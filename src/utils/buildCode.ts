@@ -144,9 +144,12 @@ export function isValidBuildCodeFormat(code: string): boolean {
 /**
  * Check if decompressed content looks like valid PoB2 XML.
  *
- * We check for <PathOfBuilding since it's the required root element for all PoB2 exports.
- * This is intentionally a fast pre-check using simple string matching to quickly reject
- * obviously wrong data (e.g., binary garbage) before expensive DOMParser validation.
+ * Fast pre-check using string matching to quickly reject obviously wrong data
+ * (e.g., binary garbage) before expensive DOMParser validation.
+ *
+ * We check for `<PathOfBuilding` (without closing `>`) to match both:
+ * - `<PathOfBuilding>` (with child elements)
+ * - `<PathOfBuilding />` (self-closing, rare but valid)
  */
 function isValidPobXml(xml: string): boolean {
   return xml.includes('<PathOfBuilding');
