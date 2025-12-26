@@ -114,8 +114,8 @@ export function processConfig(input: ConfigProcessorInput): ConfigProcessorResul
 /**
  * Generate modifiers from charge configuration.
  *
- * Uses pre-computed CHARGE_MULTIPLIERS (decimal form) to avoid repeated
- * division operations during config processing.
+ * Uses CHARGE_MULTIPLIERS which are pre-computed at module load time
+ * (in constants.ts) as decimal values, avoiding division operations here.
  *
  * @param config - Resolved build config
  * @returns Array of charge-related mods

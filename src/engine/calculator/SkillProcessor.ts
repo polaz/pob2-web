@@ -231,7 +231,11 @@ let processGemModsPlaceholderWarned = false;
 
 /**
  * Reset warning flags for testing purposes.
- * Call this in test cleanup to ensure warnings can be tested in isolation.
+ *
+ * EXPORTED FOR TESTING: This function is intentionally exported to allow
+ * test isolation. Module-level warning state persists across tests, so
+ * this reset function must be called in test cleanup. This is a standard
+ * pattern for once-per-session warnings that need test coverage.
  */
 export function resetWarningFlags(): void {
   supportGemHeuristicWarned = false;
@@ -243,6 +247,10 @@ export function resetWarningFlags(): void {
  *
  * This is a stopgap until full gem data integration. IDs are stored in
  * lowercase; lookups normalize input accordingly.
+ *
+ * TODO: Validate this list against full PoE2 gem data once gem data
+ * integration is complete. Additional support gems without "support"
+ * in their name may exist.
  */
 const KNOWN_SUPPORT_GEM_IDS: ReadonlySet<string> = new Set([
   'empower',
